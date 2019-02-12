@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0501" revision="0" name="IAS ACE">
+  <classification role="application" picsCode="IASACE" />
+  <server>
+    <attributes />
+    <commands>
+      <command id="00" name="Arm" required="true" />
+      <command id="01" name="Bypass" required="true" />
+      <command id="02" name="Emergency" required="true" />
+      <command id="03" name="Fire" required="true" />
+      <command id="04" name="Panic" required="true" />
+      <command id="05" name="Get Zone ID Map" required="true" />
+      <command id="06" name="Get Zone Information" required="true" />
+      <command id="07" name="Get Panel Status" required="true" />
+      <command id="08" name="Get Bypassed Zone List" required="true" />
+      <command id="09" name="Get Zone Status" required="true" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Arm Response" required="true" />
+      <command id="01" name="Get Zone ID Map Response" required="true" />
+      <command id="02" name="Get Zone Information Response" required="true" />
+      <command id="03" name="Zone Status Changed" required="true" />
+      <command id="04" name="Panel Status Changed" required="true" />
+      <command id="05" name="Get Panel Status Response" required="true" />
+      <command id="06" name="Set Bypassed Zone List" required="true" />
+      <command id="07" name="Bypass Response" required="true" />
+      <command id="08" name="Get Zone Status Response" required="true" />
+    </commands>
+  </client>
+</ZclCluster>

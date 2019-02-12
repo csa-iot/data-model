@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0023" revision="0" name="Neighbor Cleaning">
+  <classification role="utility" picsCode="NBCLEAN" />
+  <server>
+    <attributes />
+    <commands>
+      <command id="00" name="PurgeEntries" required="true" />
+    </commands>
+  </server>
+</ZclCluster>

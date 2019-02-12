@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0700" revision="0" name="Price">
+  <classification role="application" picsCode="SEPR" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="Tier1PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 1”" />
+      <attribute id="0001" name="Tier2PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 2”" />
+      <attribute id="0002" name="Tier3PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 3”" />
+      <attribute id="0003" name="Tier4PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 4”" />
+      <attribute id="0004" name="Tier5PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 5”" />
+      <attribute id="0005" name="Tier6PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 6”" />
+      <attribute id="0006" name="Tier7PriceLabel" type="octstr" min="1" max="13" default="“Tier 7”" />
+      <attribute id="0007" name="Tier8PriceLabel" type="octstr" min="1" max="13" default="“Tier 8”" />
+      <attribute id="0008" name="Tier9PriceLabel" type="octstr" min="1" max="13" default="“Tier 9”" />
+      <attribute id="0009" name="Tier10PriceLabel" type="octstr" min="1" max="13" default="“Tier 10”" />
+      <attribute id="000A" name="Tier11PriceLabel" type="octstr" min="1" max="13" default="“Tier 11”" />
+      <attribute id="000B" name="Tier12PriceLabel" type="octstr" min="1" max="13" default="“Tier 12”" />
+      <attribute id="000C" name="Tier13PriceLabel" type="octstr" min="1" max="13" default="“Tier 13”" />
+      <attribute id="000D" name="Tier14PriceLabel" type="octstr" min="1" max="13" default="“Tier 14”" />
+      <attribute id="000E" name="Tier15PriceLabel" type="octstr" min="1" max="13" default="“Tier 15”" />
+      <attribute id="0000" name="Block1Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0001" name="Block2Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0002" name="Block3Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0003" name="Block4Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0004" name="Block5Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0005" name="Block6Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0006" name="Block7Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0007" name="Block8Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0008" name="Block9Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0009" name="Block10Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="000A" name="Block11Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="000B" name="Block12Threshold" type="uint48" default="-" />
+      <attribute id="000C" name="Block13Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="000D" name="Block14Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="000E" name="Block15Threshold" type="uint48" max="281474976710655" default="-" />
+      <attribute id="0000" name="StartofBlockPeriod" type="UTC" default="-" />
+      <attribute id="0001" name="BlockPeriodDuration" type="uint24" max="16777215" default="-" />
+      <attribute id="0002" name="ThresholdMultiplier" type="uint24" max="16777215" default="-" />
+      <attribute id="0003" name="ThresholdDivisor" type="uint24" max="16777215" default="-" />
+      <attribute id="0000" name="CommodityType" type="enum8" default="-" />
+      <attribute id="0001" name="StandingCharge" type="uint32" max="4294967295" default="-" />
+      <attribute id="0002" name="ConversionFactor" type="uint32" max="4294967295" default="0x10000000" />
+      <attribute id="0003" name="ConversionFactorTrailingDigit" type="map8" default="0x70" />
+      <attribute id="0004" name="CalorificValue" type="uint32" max="4294967295" default="0x2625A00" />
+      <attribute id="0005" name="CalorificValueUnit" type="enum8" default="0x1">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x01" name="MJ/m3" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="MJ/kg" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0006" name="CalorificValueTrailingDigit" type="map8" default="0x60" />
+      <attribute id="0000" name="NoTierBlock1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0001" name="NoTierBlock2Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0002" name="NoTierBlock3Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="NoTierBlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="000F" name="NoTierBlock16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0010" name="Tier1Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0011" name="Tier1Block2Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0012" name="Tier1Block3Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier1BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="001F" name="Tier1Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0020" name="Tier2Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier2BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="002F" name="Tier2Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0030" name="Tier3Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier3BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="003F" name="Tier3Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0040" name="Tier4Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier4BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="004F" name="Tier4Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0050" name="Tier5Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier5BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="005F" name="Tier5Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0060" name="Tier6Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier6BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="006F" name="Tier6Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0070" name="Tier7Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier7BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="007F" name="Tier7Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0080" name="Tier8Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier8BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="008F" name="Tier8Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0090" name="Tier9Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier9BlockN+1Price …" type="uint32" max="4294967295" default="-" />
+      <attribute id="009F" name="Tier9Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="00A0" name="Tier10Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier10BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="00AF" name="Tier10Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="00B0" name="Tier11Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier11BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="00BF" name="Tier11Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="00C0" name="Tier12Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier12BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="00CF" name="Tier12Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="00D0" name="Tier13Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier13BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="00DF" name="Tier13Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="00E0" name="Tier14Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier14BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="00EF" name="Tier14Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="00F0" name="Tier15Block1Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier15BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="00FF" name="Tier15Block16Price" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="CurrentBillingPeriodStart" type="UTC" default="-" />
+      <attribute id="0001" name="CurrentBillingPeriodDuration" type="uint24" max="16777215" default="-" />
+    </attributes>
+    <commands>
+      <command id="00" name="Get Current Price" required="true">
+        <fields>
+          <field name="Command Options" type="uint8" />
+        </fields>
+      </command>
+      <command id="01" name="Get Scheduled Prices">
+        <fields>
+          <field name="Start Time (M)" type="UTC" />
+          <field name="Number of Events (M)" type="uint8" />
+        </fields>
+      </command>
+      <command id="02" name="Price Acknowledgement" required="true">
+        <fields>
+          <field name="Provider ID (M)" type="uint32" />
+          <field name="Issuer Event ID (M)" type="uint32" />
+          <field name="Price Ack Time (M)" type="UTC" />
+          <field name="Control (M)" type="map8" />
+        </fields>
+      </command>
+      <command id="03" name="Get Block Period(s)">
+        <fields>
+          <field name="Start Time (M)" type="UTC" />
+          <field name="Number of Events (M)" type="uint8" />
+        </fields>
+      </command>
+      <command id="04" name="GetConversionFactor">
+        <fields>
+          <field name="Start Time" type="UTC" />
+          <field name="Number of Events" type="uint8" />
+        </fields>
+      </command>
+      <command id="05" name="GetCalorificValue">
+        <fields>
+          <field name="Start Time" type="UTC" />
+          <field name="Number of Events" type="uint8" />
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Publish Price" required="true">
+        <fields>
+          <field name="Provider ID (M)" type="uint32" />
+          <field name="Rate Label (M)" type="octstr" />
+          <field name="Issuer Event ID (M)" type="uint32" />
+          <field name="Current Time (M)" type="UTC" />
+          <field name="Unit of Measure (M)" type="enum8" />
+          <field name="Currency (M)" type="uint16" />
+          <field name="Price Trailing Digit &amp; Price Tier (M)" type="map8" />
+        </fields>
+      </command>
+      <command id="01" name="Publish Block Period">
+        <fields>
+          <field name="Provider ID (M)" type="uint32" />
+          <field name="Issuer Event ID (M)" type="uint32" />
+          <field name="Block Period Start Time (M)" type="UTC" />
+          <field name="Block Period Duration In Minutes (M)" type="uint24" />
+          <field name="Number of Price Tiers &amp; Number of Block Thresholds(M)" type="map8" />
+          <field name="Block Period Control (O)" type="map8" />
+        </fields>
+      </command>
+      <command id="02" name="Publish Conversion Factor">
+        <fields>
+          <field name="Issuer Event ID (M)" type="uint32" />
+          <field name="Start Time (M)" type="UTC" />
+          <field name="Conversion Factor (M)" type="uint32" />
+          <field name="Conversion Factor Trailing Digit (M)" type="map8" />
+        </fields>
+      </command>
+      <command id="03" name="Publish Calorific Value">
+        <fields>
+          <field name="Issuer Event ID (M)" type="uint32" />
+          <field name="Start Time (M)" type="UTC" />
+          <field name="Calorific Value (M)" type="uint32" />
+          <field name="Calorific Value Unit (M)" type="enum8" />
+          <field name="Calorific Value Trailing Digit (M)" type="map8" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

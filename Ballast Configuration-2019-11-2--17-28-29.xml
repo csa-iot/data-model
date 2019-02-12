@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0301" revision="0" name="Ballast Configuration">
+  <classification role="application" picsCode="BALCFG" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="PhysicalMinLevel" type="uint8" required="true" min="1" max="254" default="0x01" />
+      <attribute id="0001" name="PhysicalMaxLevel" type="uint8" required="true" min="1" max="254" default="0xfe" />
+      <attribute id="0002" name="BallastStatus" type="map8" default="0000 0000">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0" name="Ballast Non-operational" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Lamp Failure" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0010" name="MinLevel" type="uint8" writable="true" required="true" min="1" max="254" default="PhysicalMinLevel" />
+      <attribute id="0011" name="MaxLevel" type="uint8" writable="true" required="true" min="1" max="254" default="PhysicalMaxLevel" />
+      <attribute id="0012" name="PowerOnLevel" type="uint8" writable="true" max="254" default="PhysicalMaxLevel" />
+      <attribute id="0013" name="PowerOnFadeTime" type="uint16" writable="true" max="65534" default="0x0000" />
+      <attribute id="0014" name="IntrinsicBallastFactor" type="uint8" writable="true" max="254" default="-" />
+      <attribute id="0015" name="BallastFactorAdjustment" type="uint8" writable="true" min="100" default="0xff" />
+      <attribute id="0020" name="LampQuantity" type="uint8" max="254" default="-" />
+      <attribute id="0030" name="LampType" type="string" writable="true" default="empty string" />
+      <attribute id="0031" name="LampManufacturer" type="string" writable="true" default="empty string" />
+      <attribute id="0032" name="LampRatedHours" type="uint24" writable="true" max="16777214" default="0xffffff" />
+      <attribute id="0033" name="LampBurnHours" type="uint24" writable="true" max="16777214" default="0x000000" />
+      <attribute id="0034" name="LampAlarmMode" type="map8" writable="true" default="0000 0000" />
+      <attribute id="0035" name="LampBurnHoursTripPoint" type="uint24" writable="true" max="16777214" default="0xffffff" />
+    </attributes>
+  </server>
+</ZclCluster>

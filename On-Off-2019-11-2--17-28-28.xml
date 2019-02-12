@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0006" revision="0" name="On/Off">
+  <classification role="application" picsCode="OO" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="OnOff" type="bool" required="true" default="0x00" />
+      <attribute id="4000" name="GlobalSceneControl" type="bool" default="0x01" />
+      <attribute id="4001" name="OnTime" type="uint16" writable="true" max="65535" default="0x0000" />
+      <attribute id="4002" name="OffWaitTime" type="uint16" writable="true" max="65535" default="0x0000" />
+      <attribute id="4003" name="StartUpOnOff" type="enum8" writable="true" default="MS">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Set the OnOff attribute to 0 (off)." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Set the OnOff attribute to 1 (on)." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="If the previous value of the OnOff attribute is equal to 0, set the OnOff attribute to 1.  If the previous value of the OnOff attribute is equal to 1, set the OnOff attribute to 0 (toggle)." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03 to 0xfe" name="These values are reserved.  No action." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xff" name="Set the OnOff attribute to its previous value." xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+    </attributes>
+    <commands>
+      <command id="00" name="Off" required="true" />
+      <command id="01" name="On" required="true" />
+      <command id="02" name="Toggle" required="true" />
+      <command id="40" name="Off with effect">
+        <fields>
+          <field name="Effect identifier" type="uint8" />
+          <field name="Effect variant" type="uint8" />
+        </fields>
+      </command>
+      <command id="41" name="On with recall global scene" />
+      <command id="42" name="On with timed off">
+        <fields>
+          <field name="On/off Control" type="uint8" />
+          <field name="On Time" type="uint16" />
+          <field name="Off Wait Time" type="uint16" />
+        </fields>
+      </command>
+    </commands>
+  </server>
+</ZclCluster>

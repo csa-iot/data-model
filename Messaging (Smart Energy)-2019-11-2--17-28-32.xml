@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0703" revision="0" name="Messaging (Smart Energy)">
+  <classification role="application" picsCode="SEMS" />
+  <server>
+    <attributes />
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Get Last Message" required="true" />
+      <command id="01" name="Message Confirmation" required="true">
+        <fields>
+          <field name="Message ID" type="uint32" />
+          <field name="Confirmation Time" type="UTC" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0009" revision="0" name="Alarms">
+  <classification role="application" picsCode="ALM" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="AlarmCount" type="uint16" default="0x00" />
+    </attributes>
+    <commands>
+      <command id="00" name="Reset Alarm" required="true">
+        <fields>
+          <field name="Alarm code" type="enum8" />
+          <field name="Cluster identifier" type="clusterId" />
+        </fields>
+      </command>
+      <command id="01" name="Reset all alarms" required="true" />
+      <command id="02" name="Get Alarm" />
+      <command id="03" name="Reset alarm log" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Alarm" required="true">
+        <fields>
+          <field name="Alarm code" type="enum8" />
+          <field name="Cluster identifier" type="clusterId" />
+        </fields>
+      </command>
+      <command id="01" name="Get alarm response">
+        <fields>
+          <field name="Status" type="enum8" />
+          <field name="Alarm code" type="enum8" />
+          <field name="Cluster identifier" type="clusterId" />
+          <field name="Time stamp" type="uint32" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0500" revision="0" name="IAS Zone">
+  <classification role="application" picsCode="IASZ" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="ZoneState" type="enum8" required="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Not enrolled" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Enrolled (the client will react to Zone State Change Notification commands from the server)" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0001" name="ZoneType" type="enum16" required="true" default="-" />
+      <attribute id="0002" name="ZoneStatus" type="map16" required="true" default="0x00" />
+      <attribute id="0010" name="IAS_CIE_Address" type="EUI64" writable="true" required="true" default="-" />
+      <attribute id="0011" name="ZoneID" type="uint8" required="true" max="255" default="0xFF" />
+      <attribute id="0012" name="NumberOfZoneSensitivityLevelsSupported" type="uint8" min="2" max="255" default="0x02" />
+      <attribute id="0013" name="CurrentZoneSensitivityLevel" type="uint8" writable="true" max="255" default="0x00" />
+    </attributes>
+    <commands>
+      <command id="00" name="Zone Enroll Response" required="true" />
+      <command id="01" name="Initiate Normal Operation Mode" />
+      <command id="02" name="Initiate Test Mode" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Zone Status Change Notification" required="true" />
+      <command id="01" name="Zone Enroll Request" required="true" />
+    </commands>
+  </client>
+</ZclCluster>

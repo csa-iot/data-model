@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="B002" revision="0" name="EN50523 Appliance Events and Alerts">
+  <classification role="application" picsCode="APPLEV" />
+  <server>
+    <attributes />
+    <commands>
+      <command id="00" name="Get Alerts" required="true" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Get Alerts Response" required="true">
+        <fields>
+          <field name="Alerts Count" type="uint8" />
+          <field name="Alert structure 1" type="uint24" />
+          <field name="..." type="..." />
+          <field name="Alert structure n" type="uint24" />
+        </fields>
+      </command>
+      <command id="01" name="Alerts Notification" required="true">
+        <fields>
+          <field name="Alerts Count" type="uint8" />
+          <field name="Alert structure 1" type="uint24" />
+          <field name="..." type="..." />
+          <field name="Alert structure n" type="uint24" />
+        </fields>
+      </command>
+      <command id="02" name="Event Notification" required="true">
+        <fields>
+          <field name="Event Header" type="uint8" />
+          <field name="Event Identification" type="uint8" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0101" revision="0" name="Door Lock">
+  <classification role="application" picsCode="DRLK" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="LockState" type="enum8" required="true" default="-">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Not fully locked" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01 " name="Locked" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Unlocked" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xFF" name="Undefined" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0001" name="LockType" type="enum8" required="true" default="-">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Dead bolt" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01 " name="Magnetic" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Other" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="Mortise" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x04 " name="Rim" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x05 " name="Latch Bolt" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x06 " name="Cylindrical Lock" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x07 " name="Tubular Lock" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x08 " name="Interconnected Lock" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x09 " name="Dead Latch" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0A" name="Door Furniture " xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0002" name="ActuatorEnabled" type="bool" required="true" default="-" />
+      <attribute id="0003" name="DoorState" type="enum8" default="-">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Open" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01 " name="Closed" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Error (jammed)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="Error (forced open)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x04" name="Error (unspecified)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xFF" name="Undefined" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0004" name="DoorOpenEvents" type="uint32" default="-" />
+      <attribute id="0005" name="DoorClosedEvents" type="uint32" default="-" />
+      <attribute id="0006" name="OpenPeriod" type="uint16" default="-" />
+      <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" default="0" />
+      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" />
+      <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" default="0" />
+      <attribute id="0013" name="NumberOfRFIDUsersSupported" type="uint16" default="0" />
+      <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" />
+      <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" default="0" />
+      <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" default="0" />
+      <attribute id="0017" name="MaxPINCodeLength " type="uint8" default="0x08" />
+      <attribute id="0018" name="MinPINCodeLength" type="uint8" default="0x04" />
+      <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" default="0x14" />
+      <attribute id="001A" name="MinRFIDCodeLength" type="uint8" default="0x08" />
+      <attribute id="0020" name="EnableLogging" type="bool" default="0" />
+      <attribute id="0021" name="Language " type="string (3bytes)" default="0" />
+      <attribute id="0022" name="LEDSettings" type="uint8" default="0" />
+      <attribute id="0023" name="AutoRelockTime" type="uint32" default="0" />
+      <attribute id="0024" name="SoundVolume" type="uint8" default="0" />
+      <attribute id="0025" name="OperatingMode" type="enum8" default="0">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0" name="Normal Mode Supported" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Vacation Mode Supported" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Privacy Mode Supported" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="No RF Lock or Unlock Mode Supported" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="Passage Mode Supported" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0026" name="SupportedOperatingModes" type="map16" default="0x0001" />
+      <attribute id="0027" name="DefaultConfigurationRegister" type="map16" default="0x0000" />
+      <attribute id="0028" name="EnableLocalProgramming" type="bool" default="0x01" />
+      <attribute id="0029" name="EnableOneTouchLocking" type="bool" default="0" />
+      <attribute id="002A" name="EnableInsideStatusLED" type="bool" default="0" />
+      <attribute id="002B" name="EnablePrivacyModeButton" type="bool" default="0" />
+      <attribute id="0030" name="WrongCodeEntryLimit" type="uint8" default="0" />
+      <attribute id="0031" name="UserCodeTemporaryDisableTime" type="uint8" default="0" />
+      <attribute id="0032" name="SendPINOverTheAir" type="bool" default="0" />
+      <attribute id="0033" name="RequirePINforRFOperation" type="bool" default="0" />
+      <attribute id="0034" name="SecurityLevel" type="enum8" default="0" />
+    </attributes>
+    <commands>
+      <command id="00" name="Lock Door" required="true">
+        <fields>
+          <field name="PIN/RFID Code" type="octstr" />
+        </fields>
+      </command>
+      <command id="01" name="Unlock Door" required="true">
+        <fields>
+          <field name="PIN/RFID Code" type="octstr" />
+        </fields>
+      </command>
+      <command id="02" name="Toggle">
+        <fields>
+          <field name="PIN/RFID Code" type="octstr" />
+        </fields>
+      </command>
+      <command id="03" name="Unlock with Timeout">
+        <fields>
+          <field name="Timeout in seconds" type="uint16" />
+          <field name="PIN/RFID Code" type="octstr" />
+        </fields>
+      </command>
+      <command id="04" name="Get Log Record">
+        <fields>
+          <field name="Log Index" type="uint16" />
+        </fields>
+      </command>
+      <command id="05" name="Set PIN Code">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Status" type="uint8" />
+          <field name="User Type" type="enum8" />
+          <field name="PIN" type="octstr" />
+        </fields>
+      </command>
+      <command id="06" name="Get PIN Code">
+        <fields>
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="07" name="Clear PIN Code">
+        <fields>
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="08" name="Clear All PIN Codes" />
+      <command id="09" name="Set User Status">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Status" type="uint8" />
+        </fields>
+      </command>
+      <command id="0A" name="Get User Status">
+        <fields>
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="0B" name="Set Weekday Schedule">
+        <fields>
+          <field name="Schedule ID #" type="uint8" />
+          <field name="User ID" type="uint16" />
+          <field name="Days Mask" type="map8" />
+          <field name="Start Hour" type="uint8" />
+          <field name="Start Minute" type="uint8" />
+          <field name="End Hour" type="uint8" />
+          <field name="End Minute" type="uint8" />
+        </fields>
+      </command>
+      <command id="0C" name="Get Weekday Schedule">
+        <fields>
+          <field name="Schedule ID" type="uint8" />
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="0D" name="Clear Weekday Schedule">
+        <fields>
+          <field name="Schedule ID" type="uint8" />
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="0E" name="Set Year Day Schedule">
+        <fields>
+          <field name="Schedule ID" type="uint8" />
+          <field name="User ID" type="uint16" />
+          <field name="Local Start Time" type="uint32" />
+          <field name="Local End Time" type="uint32" />
+        </fields>
+      </command>
+      <command id="0F" name="Get Year Day Schedule">
+        <fields>
+          <field name="Schedule ID" type="uint8" />
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="10" name="Clear Year Day Schedule">
+        <fields>
+          <field name="Schedule ID" type="uint8" />
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="11" name="Set Holiday Schedule">
+        <fields>
+          <field name="Holiday Schedule ID" type="uint8" />
+          <field name="Local Start Time" type="uint32" />
+          <field name="Local End Time" type="uint32" />
+          <field name="Operating Mode During Holiday" type="enum8" />
+        </fields>
+      </command>
+      <command id="12" name="Get Holiday Schedule">
+        <fields>
+          <field name="Holiday Schedule ID" type="uint8" />
+        </fields>
+      </command>
+      <command id="13" name="Clear Holiday Schedule">
+        <fields>
+          <field name="Holiday Schedule ID" type="uint8" />
+        </fields>
+      </command>
+      <command id="14" name="Set User Type">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Type" type="enum8" />
+        </fields>
+      </command>
+      <command id="15" name="Get User Type">
+        <fields>
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="16" name="Set RFID Code">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Status" type="uint8" />
+          <field name="User Type" type="enum8" />
+          <field name="RFID Code" type="octstr" />
+        </fields>
+      </command>
+      <command id="17" name="Get RFID Code">
+        <fields>
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="18" name="Clear RFID Code">
+        <fields>
+          <field name="User ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="19" name="Clear All RFID Codes" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Lock Door Response" required="true" />
+      <command id="01" name="Unlock Door Response" required="true" />
+      <command id="02" name="Toggle Response" />
+      <command id="03" name="Unlock with Timeout Response" />
+      <command id="04" name="Get Log Record Response">
+        <fields>
+          <field name="Log Entry ID" type="uint16" />
+          <field name="Timestamp" type="uint32" />
+          <field name="Event Type" type="enum8" />
+          <field name="Source (see  REF  RTF37383135323a204865616435 \h \* MERGEFORMAT Operation Event Sources)" type="uint8" />
+          <field name="Event ID/Alarm Code (see  REF  RTF33333734303a204865616435 \h \* MERGEFORMAT Operation Event Codes)" type="uint8" />
+          <field name="User ID" type="uint16" />
+          <field name="PIN" type="octstr" />
+        </fields>
+      </command>
+      <command id="05" name="Set PIN Code Response">
+        <fields>
+          <field name="Status" type="uint8" />
+        </fields>
+      </command>
+      <command id="06" name="Get PIN Code Response">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Status" type="uint8" />
+          <field name="User Type" type="enum8" />
+          <field name="Code" type="octstr" />
+        </fields>
+      </command>
+      <command id="07" name="Clear PIN Code Response" />
+      <command id="08" name="Clear All PIN Codes Response" />
+      <command id="09" name="Set User Status Response" />
+      <command id="0A" name="Get User Status Response">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Status" type="uint8" />
+        </fields>
+      </command>
+      <command id="0B" name="Set Weekday Schedule Response" />
+      <command id="0C" name="Get Weekday Schedule Response">
+        <fields>
+          <field name="Schedule ID" type="uint8" />
+          <field name="User ID" type="uint16" />
+          <field name="Status" type="uint8" />
+          <field name="Days Mask" type="uint8" />
+          <field name="Start Hour" type="uint8" />
+          <field name="Start Minute" type="uint8" />
+          <field name="End Hour" type="uint8" />
+          <field name="End Minute" type="uint8" />
+        </fields>
+      </command>
+      <command id="0D" name="Clear Weekday Schedule Response" />
+      <command id="0E" name="Set Year Day Schedule Response" />
+      <command id="0F" name="Get Year Day Schedule Response">
+        <fields>
+          <field name="Schedule ID" type="uint8" />
+          <field name="User ID" type="uint16" />
+          <field name="Status" type="uint8" />
+          <field name="Local Start Time" type="uint32" />
+          <field name="Local End Time" type="uint32" />
+        </fields>
+      </command>
+      <command id="10" name="Clear Year Day Schedule Response" />
+      <command id="11" name="Set Holiday Schedule Response" />
+      <command id="12" name="Get Holiday Schedule Response">
+        <fields>
+          <field name="Holiday Schedule ID" type="uint8" />
+          <field name="Status" type="uint8" />
+          <field name="Local Start Time" type="uint32" />
+          <field name="Local End Time" type="uint32" />
+          <field name="Operating Mode During Holiday" type="enum8" />
+        </fields>
+      </command>
+      <command id="13" name="Clear Holiday Schedule Response" />
+      <command id="14" name="Set User Type Response" />
+      <command id="15" name="Get User Type Response">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Type" type="enum8" />
+        </fields>
+      </command>
+      <command id="16" name="Set RFID Code Response">
+        <fields>
+          <field name="Status" type="uint8" />
+        </fields>
+      </command>
+      <command id="17" name="Get RFID Code Response">
+        <fields>
+          <field name="User ID" type="uint16" />
+          <field name="User Status" type="uint8" />
+          <field name="User Type" type="enum8" />
+          <field name="RFID Code" type="octstr" />
+        </fields>
+      </command>
+      <command id="18" name="Clear RFID Code Response" />
+      <command id="19" name="Clear All RFID Codes Response" />
+      <command id="20" name="Operating Event Notification" />
+      <command id="21" name="Programming Event Notification">
+        <fields>
+          <field name="Program Event Source" type="uint8" />
+          <field name="Program Event Code" type="uint8" />
+          <field name="User ID" type="uint16" />
+          <field name="PIN" type="octstr" />
+          <field name="User Type" type="enum8" />
+          <field name="User Status" type="uint8" />
+          <field name="LocalTime" type="uint32" />
+          <field name="Data" type="string" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

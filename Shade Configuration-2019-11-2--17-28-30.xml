@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0100" revision="0" name="Shade Configuration">
+  <classification role="application" picsCode="SHDCFG" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="PhysicalClosedLimit" type="uint16" min="1" max="65534" default="-" />
+      <attribute id="0001" name="MotorStepSize" type="uint8" max="254" default="-" />
+      <attribute id="0002" name="Status" type="map8" writable="true" required="true" default="0000 0000">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0" name="Shade operational0 = no 1 = yes" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Shade adjusting0 = no 1 = yes" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Shade direction 0 = closing 1 = opening" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Direction corresponding to forward direction of motor0 = closing 1 = opening" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0010" name="ClosedLimit" type="uint16" writable="true" required="true" min="1" max="65534" default="0x0001" />
+      <attribute id="0011" name="Mode" type="enum8" writable="true" required="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Normal" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Configure" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+    </attributes>
+  </server>
+</ZclCluster>

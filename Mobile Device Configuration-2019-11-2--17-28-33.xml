@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0022" revision="0" name="Mobile Device Configuration">
+  <classification role="utility" picsCode="MOBCFG" />
+  <server>
+    <attributes />
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Keep Alive Notification" required="true" />
+    </commands>
+  </client>
+</ZclCluster>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0004" revision="0" name="Groups">
+  <classification role="utility" picsCode="G" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="NameSupport" type="map8" required="true" default="-" />
+    </attributes>
+    <commands>
+      <command id="00" name="Add group" required="true">
+        <fields>
+          <field name="Group ID" type="uint16" />
+          <field name="Group Name" type="string" />
+        </fields>
+      </command>
+      <command id="01" name="View group" required="true">
+        <fields>
+          <field name="Group ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="02" name="Get group membership" required="true">
+        <fields>
+          <field name="Group count" type="uint8" />
+          <field name="Group list" type="List of 16-bit integers" />
+        </fields>
+      </command>
+      <command id="03" name="Remove group" required="true">
+        <fields>
+          <field name="Group ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="04" name="Remove all groups" required="true" />
+      <command id="05" name="Add group if identifying" required="true">
+        <fields>
+          <field name="Group ID" type="uint16" />
+          <field name="Group Name" type="string" />
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Add group response" required="true">
+        <fields>
+          <field name="Status" type="enum8" />
+          <field name="Group ID" type="uint16" />
+        </fields>
+      </command>
+      <command id="01" name="View group response" required="true">
+        <fields>
+          <field name="Status" type="enum8" />
+          <field name="Group ID" type="uint16" />
+          <field name="Group Name" type="string" />
+        </fields>
+      </command>
+      <command id="02" name="Get group membership response" required="true">
+        <fields>
+          <field name="Capacity" type="uint8" />
+          <field name="Group count" type="uint8" />
+          <field name="Group list" type="List of 16-bit group ID" />
+        </fields>
+      </command>
+      <command id="03" name="Remove group response" required="true">
+        <fields>
+          <field name="Status" type="enum8" />
+          <field name="Group ID" type="uint16" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0617" revision="0" name="Retail Tunnel">
+  <classification role="application" picsCode="RTUN" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="ManufacturerCode" type="uint16" required="true" min="4096" max="4351" default="-" />
+      <attribute id="0001" name="MSProfile" type="uint16" required="true" default="-" />
+    </attributes>
+  </server>
+</ZclCluster>

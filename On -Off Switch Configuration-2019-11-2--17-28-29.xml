@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0007" revision="0" name="On /Off Switch Configuration">
+  <classification role="application" picsCode="OOSC" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="SwitchType" type="enum8" required="true" default="-">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Toggle" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Momentary" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Multifunction" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0010" name="SwitchActions" type="enum8" writable="true" required="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="On" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Off" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Toggle" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+    </attributes>
+  </server>
+</ZclCluster>

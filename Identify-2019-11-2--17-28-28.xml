@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0003" revision="0" name="Identify">
+  <classification role="utility" picsCode="I" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="IdentifyTime" type="uint16" writable="true" required="true" max="65535" default="0x0000" />
+    </attributes>
+    <commands>
+      <command id="00" name="Identify" required="true">
+        <fields>
+          <field name="Identify Time" type="uint16" />
+        </fields>
+      </command>
+      <command id="01" name="Identify Query" required="true" />
+      <command id="40" name="Trigger effect">
+        <fields>
+          <field name="Effect identifier" type="uint8" />
+          <field name="Effect variant" type="uint8" />
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Identify Query Response " required="true">
+        <fields>
+          <field name="Timeout" type="uint16" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

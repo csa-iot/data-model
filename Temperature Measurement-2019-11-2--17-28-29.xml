@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0402" revision="0" name="Temperature Measurement">
+  <classification role="application" picsCode="TMP" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="MeasuredValue" type="int16" required="true" default="0xffff" />
+      <attribute id="0001" name="MinMeasuredValue" type="int16" required="true" default="0x8000" />
+      <attribute id="0002" name="MaxMeasuredValue" type="int16" required="true" default="0x8000" />
+      <attribute id="0003" name="Tolerance" type="uint16" max="2048" default="-" />
+    </attributes>
+  </server>
+</ZclCluster>

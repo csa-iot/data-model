@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="001A" revision="0" name="Power Profile">
+  <classification role="utility" picsCode="PWR" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="TotalProfileNum" type="uint8" required="true" min="1" max="254" default="1" />
+      <attribute id="0001" name="MultipleScheduling" type="bool" required="true" default="FALSE" />
+      <attribute id="0002" name="EnergyFormatting" type="map8" required="true" default="0x01*" />
+      <attribute id="0003" name="EnergyRemote" type="bool" required="true" default="FALSE" />
+      <attribute id="0004" name="ScheduleMode" type="map8" writable="true" required="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="bit0" name="bit0=1 : Schedule Mode Cheapest" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="bit1" name="bit1 =1: Schedule Mode Greenest" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="bit2 to bit7" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+    </attributes>
+    <commands>
+      <command id="00" name="PowerProfileRequest" required="true">
+        <fields>
+          <field name="PowerProfileID" type="uint8" />
+        </fields>
+      </command>
+      <command id="01" name="PowerProfileStateRequest" required="true" />
+      <command id="02" name="GetPowerProfilePriceResponse" required="true">
+        <fields>
+          <field name="Power Profile ID" type="uint8" />
+          <field name="Currency" type="uint16" />
+          <field name="Price" type="uint32" />
+          <field name="Price Trailing Digit" type="uint8" />
+        </fields>
+      </command>
+      <command id="03" name="GetOverallSchedulePriceResponse" required="true">
+        <fields>
+          <field name="Currency" type="uint16" />
+          <field name="Price" type="uint32" />
+          <field name="Price Trailing Digit" type="uint8" />
+        </fields>
+      </command>
+      <command id="04" name="EnergyPhasesScheduleNotification" required="true">
+        <fields>
+          <field name="PowerProfileID" type="uint8" />
+          <field name="Num of Scheduled Phases" type="uint8" />
+          <field name="EnergyPhaseIDn" type="uint8" />
+          <field name="Scheduled Timen" type="uint16" />
+          <field name="…" type="…" />
+          <field name="EnergyPhaseIDn" type="uint8" />
+          <field name="Scheduled Timen" type="uint16" />
+        </fields>
+      </command>
+      <command id="05" name="EnergyPhasesScheduleResponse" required="true" />
+      <command id="06" name="PowerProfileScheduleConstraintsRequest" required="true" />
+      <command id="07" name="EnergyPhasesScheduleStateRequest" required="true" />
+      <command id="08" name="GetPowerProfilePriceExtendedResponse" required="true" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="PowerProfileNotification" required="true">
+        <fields>
+          <field name="TotalProfileNum" type="uint8" />
+          <field name="PowerProfileID" type="uint8" />
+          <field name="Num of Transferred Phases" type="uint8" />
+          <field name="EnergyPhaseID1" type="uint8" />
+          <field name="MacroPhaseID1" type="uint8" />
+          <field name="ExpectedDuration1" type="uint16" />
+          <field name="PeakPower1" type="uint16" />
+          <field name="Energy1" type="uint16" />
+        </fields>
+      </command>
+      <command id="01" name="PowerProfileResponse" required="true" />
+      <command id="02" name="PowerProfileStateResponse " required="true" />
+      <command id="03" name="GetPowerProfilePrice" />
+      <command id="04" name="PowerProfilesStateNotification" required="true" />
+      <command id="05" name="GetOverallSchedulePrice " />
+      <command id="06" name="EnergyPhasesScheduleRequest" required="true" />
+      <command id="07" name="EnergyPhasesScheduleStateResponse" required="true" />
+      <command id="08" name="EnergyPhasesScheduleStateNotification" required="true" />
+      <command id="09" name="PowerProfileScheduleConstraintsNotification" required="true">
+        <fields>
+          <field name="PowerProfileID" type="uint8" />
+          <field name="Start After" type="uint16" />
+          <field name="Stop Before" type="uint16" />
+        </fields>
+      </command>
+      <command id="0A" name="PowerProfileScheduleConstraintsResponse" required="true" />
+      <command id="0B" name="GetPowerProfilePriceExtended">
+        <fields>
+          <field name="Options" type="map8" />
+          <field name="PowerProfileID" type="uint8" />
+          <field name="PowerProfileStartTime" type="uint16" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

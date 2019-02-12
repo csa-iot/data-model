@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0300" revision="0" name="Color Control">
+  <classification role="application" picsCode="CC" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="CurrentHue" type="uint8" required="true" max="254" default="0x00" />
+      <attribute id="0001" name="CurrentSaturation" type="uint8" required="true" max="254" default="0x00" />
+      <attribute id="0002" name="RemainingTime" type="uint16" max="65534" default="0x00" />
+      <attribute id="0003" name="CurrentX" type="uint16" required="true" max="65279" default="0x616b (0.381)" />
+      <attribute id="0004" name="CurrentY" type="uint16" required="true" max="65279" default="0x607d (0.377)" />
+      <attribute id="0005" name="DriftCompensation" type="enum8" default="-">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="None" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Other / Unknown" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Temperature monitoring" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="Optical luminance monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x04" name="Optical color monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0006" name="CompensationText" type="string" max="254" default="-" />
+      <attribute id="0007" name="ColorTemperatureMireds" type="uint16" required="true" max="65279" default="0x00fa (4000K)" />
+      <attribute id="0008" name="ColorMode" type="enum8" required="true" default="0x01">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="000F" name="Options" type="map8" writable="true" required="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0" name="ExecuteIfOff" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="4000" name="EnhancedCurrentHue" type="uint16" required="true" max="65535" default="0x0000" />
+      <attribute id="4001" name="EnhancedColorMode" type="enum8" required="true" default="0x01">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="EnhancedCurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="4002" name="ColorLoopActive" type="uint8" required="true" max="255" default="0x00" />
+      <attribute id="4003" name="ColorLoopDirection" type="uint8" required="true" max="255" default="0x00" />
+      <attribute id="4004" name="ColorLoopTime" type="uint16" required="true" max="65535" default="0x0019" />
+      <attribute id="4005" name="ColorLoopStartEnhancedHue" type="uint16" required="true" max="65535" default="0x2300" />
+      <attribute id="4006" name="ColorLoopStoredEnhancedHue" type="uint16" required="true" max="65535" default="0x0000" />
+      <attribute id="400A" name="ColorCapabilities" type="map16" required="true" default="0x0000" />
+      <attribute id="400B" name="ColorTempPhysicalMinMireds" type="uint16" required="true" max="65279" default="0x0000" />
+      <attribute id="400C" name="ColorTempPhysicalMaxMireds" type="uint16" required="true" max="65279" default="0xfeff" />
+      <attribute id="400D" name="CoupleColorTempToLevelMinMireds" type="uint16" required="true" default="MS" />
+      <attribute id="4010" name="StartUpColorTemperatureMireds" type="uint16" writable="true" required="true" default="MS" />
+      <attribute id="0010" name="NumberOfPrimaries" type="uint8" required="true" max="6" default="-" />
+      <attribute id="0011" name="Primary1X" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0012" name="Primary1Y" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0013" name="Primary1Intensity" type="uint8" required="true" max="255" default="-" />
+      <attribute id="0014" name="Reserved" type="-" default="-" />
+      <attribute id="0015" name="Primary2X" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0016" name="Primary2Y" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0017" name="Primary2Intensity" type="uint8" required="true" default="-" />
+      <attribute id="0018" name="Reserved" type="-" default="-" />
+      <attribute id="0019" name="Primary3X" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="001A" name="Primary3Y" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="001B" name="Primary3Intensity" type="uint8" required="true" max="255" default="-" />
+      <attribute id="0020" name="Primary4X" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0021" name="Primary4Y" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0022" name="Primary4Intensity" type="uint8" required="true" max="255" default="-" />
+      <attribute id="0023" name="Reserved" type="-" default="-" />
+      <attribute id="0024" name="Primary5X" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0025" name="Primary5Y" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0026" name="Primary5Intensity" type="uint8" required="true" max="255" default="-" />
+      <attribute id="0027" name="Reserved" type="-" default="-" />
+      <attribute id="0028" name="Primary6X" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="0029" name="Primary6Y" type="uint16" required="true" max="65279" default="-" />
+      <attribute id="002A" name="Primary6Intensity" type="uint8" required="true" max="255" default="-" />
+      <attribute id="0030" name="WhitePointX" type="uint16" writable="true" max="65279" default="-" />
+      <attribute id="0031" name="WhitePointY" type="uint16" writable="true" max="65279" default="-" />
+      <attribute id="0032" name="ColorPointRX" type="uint16" writable="true" max="65279" default="-" />
+      <attribute id="0033" name="ColorPointRY" type="uint16" writable="true" max="65279" default="-" />
+      <attribute id="0034" name="ColorPointRIntensity" type="uint8" writable="true" max="255" default="-" />
+      <attribute id="0035" name="Reserved" type="-" default="-" />
+      <attribute id="0036" name="ColorPointGX" type="uint16" writable="true" max="65279" default="-" />
+      <attribute id="0037" name="ColorPointGY" type="uint16" writable="true" max="65279" default="-" />
+      <attribute id="0038" name="ColorPointGIntensity" type="uint8" writable="true" max="255" default="-" />
+      <attribute id="0039" name="Reserved" type="-" default="-" />
+      <attribute id="003A" name="ColorPointBX" type="uint16" writable="true" max="65279" default="-" />
+      <attribute id="003B" name="ColorPointBY" type="uint16" writable="true" max="65279" default="" />
+      <attribute id="003C" name="ColorPointBIntensity" type="uint8" writable="true" max="255" default="" />
+    </attributes>
+    <commands>
+      <command id="00" name="Move to Hue" required="true">
+        <fields>
+          <field name="Hue" type="uint8" />
+          <field name="Direction" type=" enum8" />
+          <field name="Transition Time" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="01" name="Move Hue" required="true">
+        <fields>
+          <field name="Move Mode" type="enum8" />
+          <field name="Rate" type="uint8" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="02" name="Step Hue" required="true">
+        <fields>
+          <field name="Step Mode" type="enum8" />
+          <field name="Step Size" type="uint8" />
+          <field name="Transition Time" type="uint8" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="03" name="Move to Saturation" required="true">
+        <fields>
+          <field name="Saturation" type="uint8" />
+          <field name="Transition Time" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="04" name="Move Saturation" required="true">
+        <fields>
+          <field name="Move Mode" type="enum8" />
+          <field name="Rate" type="uint8" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="05" name="Step Saturation" required="true">
+        <fields>
+          <field name="Step Mode" type="enum8" />
+          <field name="Step Size" type="uint8" />
+          <field name="Transition Time" type="uint8" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="06" name="Move to Hue and Saturation" required="true" />
+      <command id="07" name="Move to Color" required="true">
+        <fields>
+          <field name="ColorX" type="uint16" />
+          <field name="ColorY" type="uint16" />
+          <field name="Transition Time" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="08" name="Move Color" required="true">
+        <fields>
+          <field name="RateX" type="int16" />
+          <field name="RateY" type="int16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="09" name="Step Color" required="true">
+        <fields>
+          <field name="StepX" type="int16" />
+          <field name="StepY" type="int16" />
+          <field name="Transition Time" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="0A" name="Move to Color Temperature" required="true" />
+      <command id="40" name="Enhanced Move to Hue" required="true">
+        <fields>
+          <field name="Enhanced Hue" type="uint16" />
+          <field name="Direction" type="enum8" />
+          <field name="Transition Time" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="41" name="Enhanced Move Hue" required="true">
+        <fields>
+          <field name="Move Mode" type="enum8" />
+          <field name="Rate" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="42" name="Enhanced Step Hue" required="true">
+        <fields>
+          <field name="Step Mode" type="enum8" />
+          <field name="Step Size" type="uint16" />
+          <field name="Transition Time" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="43" name="Enhanced Move to Hue and Saturation" required="true">
+        <fields>
+          <field name="Enhanced Hue" type="uint16" />
+          <field name="Saturation" type="uint8" />
+          <field name="Transition Time" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="44" name="Color Loop Set" required="true">
+        <fields>
+          <field name="Update Flags" type="map8" />
+          <field name="Action" type="enum8" />
+          <field name="Direction" type="enum8" />
+          <field name="Time" type="uint16" />
+          <field name="Start Hue" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="47" name="Stop Move Step" required="true">
+        <fields>
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="4B" name="Move Color Temperature" required="true">
+        <fields>
+          <field name="Move Mode" type="map8" />
+          <field name="Rate" type="uint16" />
+          <field name="Color Temperature Minimum Mireds" type="uint16" />
+          <field name="Color Temperature Maximum Mireds" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="4C" name="Step Color Temperature" required="true">
+        <fields>
+          <field name="Step Mode" type="map8" />
+          <field name="Step Size" type="uint16" />
+          <field name="Transition Time" type="uint16" />
+          <field name="Color Temperature Minimum Mireds" type="uint16" />
+          <field name="Color Temperature Maximum Mireds" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+    </commands>
+  </server>
+</ZclCluster>

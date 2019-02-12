@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0904" revision="0" name="Voice Over ZigBee">
+  <classification role="application" picsCode="VOZ" />
+  <server>
+    <attributes />
+    <commands>
+      <command id="00" name="Establishment Request" required="true" />
+      <command id="01" name="Voice Transmission " required="true">
+        <fields>
+          <field name="Voice Data" type="-" />
+        </fields>
+      </command>
+      <command id="02" name="Voice Transmission Completion">
+        <fields>
+          <field name="ZCL Header" type="-" />
+        </fields>
+      </command>
+      <command id="03" name="Control Response">
+        <fields>
+          <field name="ACK=0x01 NAK=0x00" type="enum8" />
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Establishment Response " required="true">
+        <fields>
+          <field name="ACK=0x01 NAK=0x00" type="enum8" />
+          <field name="CodecType" type="enum8" />
+        </fields>
+      </command>
+      <command id="01" name="Voice Transmission Response " required="true">
+        <fields>
+          <field name="Sequence Number of ZCL Header" type="uint8" />
+          <field name="Error Flag" type="enum8" />
+        </fields>
+      </command>
+      <command id="02" name="Control">
+        <fields>
+          <field name="Control Type" type="enum8" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

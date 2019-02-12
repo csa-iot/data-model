@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0701" revision="0" name="Demand Response and Load Control">
+  <classification role="application" picsCode="DRLC" />
+  <server>
+    <attributes />
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Report Event Status" required="true">
+        <fields>
+          <field name="Issuer EventID (M)" type="uint32" />
+          <field name="Event Status (M)" type="uint8" />
+          <field name="Event Status Time (M)" type="UTC" />
+          <field name="Criticality Level Applied (M)" type="uint8" />
+          <field name="Cooling Temperature Set Point Applied (O)" type="uint16" />
+          <field name="Heating Temperature Set Point Applied (O)" type="uint16" />
+        </fields>
+      </command>
+      <command id="01" name="Get Scheduled Events" required="true">
+        <fields>
+          <field name="Start Time (M)" type="UTC" />
+          <field name="Number of Events (M)" type="uint8" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</ZclCluster>

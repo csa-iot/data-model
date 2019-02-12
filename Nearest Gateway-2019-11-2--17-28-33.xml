@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0024" revision="0" name="Nearest Gateway">
+  <classification role="utility" picsCode="NEARGW" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="Nearest Gateway" type="16-bit NWK address" writable="true" required="true" default="0x0000" />
+      <attribute id="0001" name="New Mobile Node" type="16-bit NWK address" writable="true" required="true" default="0x0000" />
+    </attributes>
+  </server>
+</ZclCluster>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0015" revision="0" name="Commissioning">
+  <classification role="utility" picsCode="CS" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="ShortAddress" type="uint16" required="true" max="65527" default="RW" />
+      <attribute id="0001" name="ExtendedPANId" type="EUI64" required="true" default="RW" />
+      <attribute id="0002" name="PANId" type="uint16" required="true" max="65535" default="RW" />
+      <attribute id="0003" name="Channelmask" type="map32" required="true" default="RW" />
+      <attribute id="0004" name="ProtocolVersion" type="uint8" required="true" min="2" default="RW" />
+      <attribute id="0005" name="StackProfile" type="uint8" required="true" min="1" max="2" default="RW" />
+      <attribute id="0006" name="StartupControl" type="enum8" required="true" default="RW">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Indicates that the device should consider itself part of the network indicated by the ExtendedPANId attribute. In this case it will not perform any explicit join or rejoin operation." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Indicates that the device should form a network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to TRUE in this case." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Indicates that the device should rejoin the network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="Indicates that the device should start “from scratch” and join the network using (unsecured) MAC association.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0010" name="TrustCenterAddress" type="EUI64" required="true" default="RW" />
+      <attribute id="0011" name="TrustCenterMasterKey" type="key128" default="RW" />
+      <attribute id="0012" name="NetworkKey" type="key128" required="true" default="RW" />
+      <attribute id="0013" name="UseInsecureJoin" type="bool" required="true" default="RW" />
+      <attribute id="0014" name="PreconfiguredLinkKey" type="key128" required="true" default="RW" />
+      <attribute id="0015" name="NetworkKeySeqNum" type="uint8" required="true" max="255" default="RW" />
+      <attribute id="0016" name="NetworkKeyType" type="enum8" required="true" default="RW" />
+      <attribute id="0017" name="NetworkManagerAddress" type="uint16" required="true" default="RW" />
+    </attributes>
+    <commands>
+      <command id="00" name="Restart Device " required="true">
+        <fields>
+          <field name="Options" type="8-bit bitmap" />
+          <field name="Delay" type="Unsigned 8-bit integer" />
+          <field name="Jitter" type="Unsigned 8-bit integer" />
+        </fields>
+      </command>
+      <command id="01" name="Save Startup Parameters " />
+      <command id="02" name="Restore Startup Parameters " />
+      <command id="03" name="Reset Startup Parameters " required="true" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="Restart Device Response" required="true" />
+      <command id="01" name="Save Startup Parameters Response" required="true" />
+      <command id="02" name="Restore Startup Parameters Response" required="true" />
+      <command id="03" name="Reset Startup Parameters Response" required="true" />
+    </commands>
+  </client>
+</ZclCluster>

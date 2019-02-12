@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0000" revision="0" name="Basic">
+  <classification role="utility" picsCode="B" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="ZCLVersion" type="uint8" required="true" max="255" default="0x03" />
+      <attribute id="0001" name="ApplicationVersion" type="uint8" max="255" default="0x00" />
+      <attribute id="0002" name="StackVersion" type="uint8" max="255" default="0x00" />
+      <attribute id="0003" name="HWVersion" type="uint8" max="255" default="0x00" />
+      <attribute id="0004" name="ManufacturerName" type="string" max="32" default="empty string" />
+      <attribute id="0005" name="ModelIdentifier" type="string" max="32" default="empty string" />
+      <attribute id="0006" name="DateCode" type="string" max="16" default="empty string" />
+      <attribute id="0007" name="PowerSource" type="enum8" required="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Unknown" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Mains (single phase)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Mains (3 phase)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="Battery" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x04" name="DC source" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x05" name="Emergency mains constantly powered" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x06" name="Emergency mains and transfer switch" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x80" name="Unknown" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x81" name="Mains (single phase)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x82" name="Mains (3 phase)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x83" name="Battery" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x84" name="DC source" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x85" name="Emergency mains constantly powered" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x86" name="Emergency mains and transfer switch" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0008" name="GenericDevice-Class" type="enum8" default="0xff">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Lighting" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01 to 0xff" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0009" name="GenericDevice-Type" type="enum8" default="0xff">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Incandescent" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Spotlight Halogen" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Halogen bulb" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="CFL" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x04" name="Linear Fluorescent" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x05" name="LED bulb" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x06" name="Spotlight LED" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x07" name="LED strip" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x08" name="LED tube" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x09" name="Generic indoor luminaire/light fixture" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0a" name="Generic outdoor luminaire/light fixture" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0b" name="Pendant luminaire/light fixture" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0c" name="Floor standing luminaire/light fixture" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xe0" name="Generic Controller (e.g. Remote controller)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xe1" name="Wall Switch" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xe2" name="Portable remote controller" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xe3" name="Motion sensor / light sensor" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xe4 to 0xef" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xf0" name="Generic actuator" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xf1" name="Wall socket" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xf2" name="Gateway/Bridge" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xf3" name="Plug-in unit" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xf4" name="Retrofit actuator" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xff" name="Unspecified" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="000A" name="ProductCode" type="octstr" default="empty string" />
+      <attribute id="000B" name="ProductURL" type="string" default="empty string" />
+      <attribute id="000C" name="ManufacturerVersionDetails" type="string" default="empty string" />
+      <attribute id="000D" name="SerialNumber" type="string" default="empty string" />
+      <attribute id="000E" name="ProductLabel" type="string" default="empty string" />
+      <attribute id="0010" name="LocationDescription" type="string" writable="true" max="16" default="empty string" />
+      <attribute id="0011" name="PhysicalEnvironment" type="enum8" writable="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0x00" name="Unspecified environment" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x01" name="Mirror Capacity Available – for 0x0109 Profile Id only; use 0x71 moving forwardAtrium – defined for legacy devices with non-0x0109 Profile Id; use 0x70 moving forwardNote: This value is deprecated for Profile Id 0x0104. The value 0x01 is maintained for historical purposes and SHOULD only be used for backwards compatibility with devices developed before this specification. The 0x01 value MUST be interpreted using the Profile Id of the endpoint upon which it is implemented. For endpoints with the Smart Energy Profile Id (0x0109) the value 0x01 has a meaning of Mirror. For endpoints with any other profile identifier, the value 0x01 has a meaning of Atrium." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x02" name="Bar" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x03" name="Courtyard" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x04" name="Bathroom" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x05" name="Bedroom" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x06" name="Billiard Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x07" name="Utility Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x08" name="Cellar" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x09" name="Storage Closet" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0a" name="Theater" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0b" name="Office" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0c" name="Deck" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0d" name="Den" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0e" name="Dining Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x0f" name="Electrical Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x10" name="Elevator" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x11" name="Entry" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x12" name="Family Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x13" name="Main Floor" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x14" name="Upstairs" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x15" name="Downstairs" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x16" name="Basement/Lower Level" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x17" name="Gallery" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x18" name="Game Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x19" name="Garage" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x1a" name="Gym" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x1b" name="Hallway" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x1c" name="House" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x1d" name="Kitchen" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x1e" name="Laundry Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x1f" name="Library" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x20" name="Master Bedroom" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x21" name="Mud Room (small room for coats and boots)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x22" name="Nursery" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x23" name="Pantry" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x24" name="Office" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x25" name="Outside" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x26" name="Pool" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x27" name="Porch" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x28" name="Sewing Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x29" name="Sitting Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x2a" name="Stairway" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x2b" name="Yard" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x2c" name="Attic" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x2d" name="Hot Tub" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x2e" name="Living Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x2f" name="Sauna" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x30" name="Shop/Workshop" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x31" name="Guest Bedroom" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x32" name="Guest Bath" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x33" name="Powder Room (1/2 bath)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x34" name="Back Yard" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x35" name="Front Yard" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x36" name="Patio" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x37" name="Driveway" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x38" name="Sun Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x39" name="Living Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x3a" name="Spa" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x3b" name="Whirlpool" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x3c" name="Shed" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x3d" name="Equipment Storage" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x3e" name="Hobby/Craft Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x3f" name="Fountain" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x40" name="Pond" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x41" name="Reception Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x42" name="Breakfast Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x43" name="Nook" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x44" name="Garden" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x45" name="Balcony" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x46" name="Panic Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x47" name="Terrace" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x48" name="Roof" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x49" name="Toilet" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x4a" name="Toilet Main" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x4b" name="Outside Toilet" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x4c" name="Shower room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x4d" name="Study" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x4e" name="Front Garden" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x4f" name="Back Garden" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x50" name="Kettle" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x51" name="Television" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x52" name="Stove" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x53" name="Microwave" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x54" name="Toaster" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x55" name="Vacuum" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x56" name="Appliance" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x57" name="Front Door" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x58" name="Back Door" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x59" name="Fridge Door" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x60" name="Medication Cabinet Door" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x61" name="Wardrobe Door" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x62" name="Front Cupboard Door" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x63" name="Other Door" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x64" name="Waiting Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x65" name="Triage Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x66" name="Doctor’s Office" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x67" name="Patient’s Private Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x68" name="Consultation Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x69" name="Nurse Station" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x6a" name="Ward" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x6b" name="Corridor" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x6c" name="Operating Theatre" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x6d" name="Dental Surgery Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x6e" name="Medical Imaging Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x6f" name="Decontamination Room" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x70" name="Atrium" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0x71" name="Mirror" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0xff" name="Unknown environment" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0012" name="DeviceEnabled" type="bool" writable="true" default="0x01" />
+      <attribute id="0013" name="AlarmMask" type="map8" writable="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0" name="0" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="1" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0014" name="DisableLocalConfig" type="map8" writable="true" default="0x00">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0" name="0 = Reset (to factory defaults) enabled1 = Reset (to factory defaults) disabled" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="0 = Device configuration enabled1 = Device configuration disabled" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="4000" name="SWBuildID" type="string" max="16" default="empty string" />
+    </attributes>
+    <commands>
+      <command id="00" name="Reset to Factory Defaults" />
+    </commands>
+  </server>
+</ZclCluster>
