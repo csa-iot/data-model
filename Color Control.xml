@@ -10,20 +10,20 @@
       <attribute id="0004" name="CurrentY" type="uint16" required="true" max="65279" default="0x607d (0.377)" />
       <attribute id="0005" name="DriftCompensation" type="enum8" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="None" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Other / Unknown" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Temperature monitoring" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="Optical luminance monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x04" name="Optical color monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="None" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Other / Unknown" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Temperature monitoring" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Optical luminance monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="Optical color monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0006" name="CompensationText" type="string" max="254" default="-" />
       <attribute id="0007" name="ColorTemperatureMireds" type="uint16" required="true" max="65279" default="0x00fa (4000K)" />
       <attribute id="0008" name="ColorMode" type="enum8" required="true" default="0x01">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="000F" name="Options" type="map8" writable="true" required="true" default="0x00">
@@ -34,10 +34,10 @@
       <attribute id="4000" name="EnhancedCurrentHue" type="uint16" required="true" max="65535" default="0x0000" />
       <attribute id="4001" name="EnhancedColorMode" type="enum8" required="true" default="0x01">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="EnhancedCurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="EnhancedCurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="4002" name="ColorLoopActive" type="uint8" required="true" max="255" default="0x00" />

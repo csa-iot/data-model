@@ -9,10 +9,9 @@
       <attribute id="0003" name="Tolerance" type="uint16" max="2048" default="ms" />
       <attribute id="0004" name="LightSensorType" type="enum8" default="0xff">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Photodiode" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="CMOS" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x40 – 0xfe" name="Reserved for manufacturer specific light sensor types" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0xff" name="Unknown" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Photodiode" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="CMOS" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="255" name="Unknown" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
     </attributes>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0202" revision="0" name="Fan Control">
+  <classification role="application" picsCode="FAN" />
+  <server>
+    <attributes>
+      <attribute id="0000" name="FanMode" type="enum8" writable="true" required="true" default="0x05 (auto)">
+        <restriction>
+          <facet xsi:type="enumerationType" value="0" name="Off" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Low" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Medium" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="High" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="On " xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="5" name="Auto (the fan speed is self-regulated)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="6" name="Smart (when the heated/cooled space is occupied, the fan is always on)" xmlns="http://zigbee.org/zcl/types" />
+        </restriction>
+      </attribute>
+      <attribute id="0001" name="FanModeSequence" type="enum8" writable="true" required="true" default="0x02" />
+    </attributes>
+  </server>
+</ZclCluster>

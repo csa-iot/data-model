@@ -20,16 +20,16 @@
       <attribute id="0030" name="BatteryManufacturer" type="string" writable="true" max="16" default="Empty string" />
       <attribute id="0031" name="BatterySize" type="enum8" writable="true" default="0xff">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="No battery " xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Built in" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Other" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="AA" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x04" name="AAA" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x05" name="C" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x06" name="D" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x07" name="CR2 (IEC: CR17355 / ANSI: 5046LC)" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x08" name="CR123A (IEC: CR17345 / ANSI: 5018LC)" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0xff" name="Unknown" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="No battery " xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Built in" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Other" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="AA" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="AAA" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="5" name="C" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="6" name="D" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="7" name="CR2 (IEC: CR17355 / ANSI: 5046LC)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="8" name="CR123A (IEC: CR17345 / ANSI: 5018LC)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="255" name="Unknown" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0032" name="BatteryAHrRating" type="uint16" writable="true" max="65535" default="-" />
@@ -57,15 +57,15 @@
           <facet xsi:type="enumerationType" value="1" name="BatteryVoltageThreshold1 or BatteryPercentageThreshold1 reached for Battery Source 1" xmlns="http://zigbee.org/zcl/types" />
           <facet xsi:type="enumerationType" value="2" name="BatteryVoltageThreshold2 or BatteryPercentageThreshold2 reached for Battery Source 1" xmlns="http://zigbee.org/zcl/types" />
           <facet xsi:type="enumerationType" value="3" name="BatteryVoltageThreshold3 or BatteryPercentageThreshold3 reached for Battery Source 1" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="10" name="BatteryVoltageMinThreshold or BatteryPercentageMinThreshold reached for Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="11" name="BatteryVoltageThreshold1 or BatteryPercentageThreshold1 reached for Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="12" name="BatteryVoltageThreshold2 or BatteryPercentageThreshold2 reached Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="13" name="BatteryVoltageThreshold3 or BatteryPercentageThreshold3 reached Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="20" name="BatteryVoltageMinThreshold or BatteryPercentageMinThreshold reached for Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="21" name="BatteryVoltageThreshold1 or BatteryPercentageThreshold1 reached for Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="22" name="BatteryVoltageThreshold2 or BatteryPercentageThreshold2 reached Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="23" name="BatteryVoltageThreshold3 or BatteryPercentageThreshold3 reached Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="30" name="Mains power supply lost/unavailable (i.e., device is running on battery)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="16" name="BatteryVoltageMinThreshold or BatteryPercentageMinThreshold reached for Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="17" name="BatteryVoltageThreshold1 or BatteryPercentageThreshold1 reached for Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="18" name="BatteryVoltageThreshold2 or BatteryPercentageThreshold2 reached Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="19" name="BatteryVoltageThreshold3 or BatteryPercentageThreshold3 reached Battery Source 2" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="32" name="BatteryVoltageMinThreshold or BatteryPercentageMinThreshold reached for Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="33" name="BatteryVoltageThreshold1 or BatteryPercentageThreshold1 reached for Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="34" name="BatteryVoltageThreshold2 or BatteryPercentageThreshold2 reached Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="35" name="BatteryVoltageThreshold3 or BatteryPercentageThreshold3 reached Battery Source 3" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="48" name="Mains power supply lost/unavailable (i.e., device is running on battery)" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
     </attributes>

@@ -16,8 +16,8 @@
       <attribute id="0010" name="ClosedLimit" type="uint16" writable="true" required="true" min="1" max="65534" default="0x0001" />
       <attribute id="0011" name="Mode" type="enum8" writable="true" required="true" default="0x00">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Normal" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Configure" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Normal" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Configure" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
     </attributes>

@@ -9,11 +9,10 @@
       <attribute id="4002" name="OffWaitTime" type="uint16" writable="true" max="65535" default="0x0000" />
       <attribute id="4003" name="StartUpOnOff" type="enum8" writable="true" default="MS">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Set the OnOff attribute to 0 (off)." xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Set the OnOff attribute to 1 (on)." xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="If the previous value of the OnOff attribute is equal to 0, set the OnOff attribute to 1.  If the previous value of the OnOff attribute is equal to 1, set the OnOff attribute to 0 (toggle)." xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03 to 0xfe" name="These values are reserved.  No action." xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0xff" name="Set the OnOff attribute to its previous value." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Set the OnOff attribute to 0 (off)." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Set the OnOff attribute to 1 (on)." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="If the previous value of the OnOff attribute is equal to 0, set the OnOff attribute to 1.  If the previous value of the OnOff attribute is equal to 1, set the OnOff attribute to 0 (toggle)." xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="255" name="Set the OnOff attribute to its previous value." xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
     </attributes>

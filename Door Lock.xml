@@ -5,36 +5,27 @@
     <attributes>
       <attribute id="0000" name="LockState" type="enum8" required="true" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Not fully locked" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01 " name="Locked" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Unlocked" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0xFF" name="Undefined" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Not fully locked" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Unlocked" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="255" name="Undefined" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0001" name="LockType" type="enum8" required="true" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Dead bolt" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01 " name="Magnetic" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Other" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="Mortise" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x04 " name="Rim" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x05 " name="Latch Bolt" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x06 " name="Cylindrical Lock" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x07 " name="Tubular Lock" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x08 " name="Interconnected Lock" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x09 " name="Dead Latch" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x0A" name="Door Furniture " xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Dead bolt" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Other" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Mortise" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="10" name="Door Furniture " xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0002" name="ActuatorEnabled" type="bool" required="true" default="-" />
       <attribute id="0003" name="DoorState" type="enum8" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Open" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01 " name="Closed" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Error (jammed)" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="Error (forced open)" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x04" name="Error (unspecified)" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0xFF" name="Undefined" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Open" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Error (jammed)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Error (forced open)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="Error (unspecified)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="255" name="Undefined" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0004" name="DoorOpenEvents" type="uint32" default="-" />

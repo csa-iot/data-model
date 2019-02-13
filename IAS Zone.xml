@@ -5,8 +5,8 @@
     <attributes>
       <attribute id="0000" name="ZoneState" type="enum8" required="true" default="0x00">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Not enrolled" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Enrolled (the client will react to Zone State Change Notification commands from the server)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Not enrolled" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Enrolled (the client will react to Zone State Change Notification commands from the server)" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0001" name="ZoneType" type="enum16" required="true" default="-" />

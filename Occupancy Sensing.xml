@@ -5,26 +5,22 @@
     <attributes>
       <attribute id="0000" name="Occupancy" type="map8" required="true" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x000" name="Occupancy sensor information" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x001" name="PIR configuration" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x002" name="Ultrasonic configuration" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x003" name="Physical contact configuration" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Occupancy sensor information" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="PIR configuration" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Ultrasonic configuration" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Physical contact configuration" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0001" name="OccupancySensorType" type="enum8" required="true" default="MS">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="PIR" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Ultrasonic" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="PIR and ultrasonic" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="Physical contact" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="PIR" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Ultrasonic" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="PIR and ultrasonic" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Physical contact" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0002" name="OccupancySensorTypeBitmap" type="map8" required="true" default="-">
-        <restriction>
-          <facet xsi:type="enumerationType" value="Bit0" name="PIR" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="Bit1" name="Ultrasonic" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="Bit2" name="Physical contact" xmlns="http://zigbee.org/zcl/types" />
-        </restriction>
+        <restriction />
       </attribute>
       <attribute id="0010" name="PIROccupiedToUnoccupiedDelay" type="uint16" writable="true" max="65534" default="0x00" />
       <attribute id="0011" name="PIRUnoccupiedToOccupiedDelay" type="uint16" writable="true" max="65534" default="0x00" />

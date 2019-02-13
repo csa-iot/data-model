@@ -44,8 +44,8 @@
       <attribute id="0004" name="CalorificValue" type="uint32" max="4294967295" default="0x2625A00" />
       <attribute id="0005" name="CalorificValueUnit" type="enum8" default="0x1">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x01" name="MJ/m3" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="MJ/kg" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="MJ/m3" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="MJ/kg" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0006" name="CalorificValueTrailingDigit" type="map8" default="0x60" />

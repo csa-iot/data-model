@@ -8,11 +8,7 @@
       <attribute id="0002" name="EnergyFormatting" type="map8" required="true" default="0x01*" />
       <attribute id="0003" name="EnergyRemote" type="bool" required="true" default="FALSE" />
       <attribute id="0004" name="ScheduleMode" type="map8" writable="true" required="true" default="0x00">
-        <restriction>
-          <facet xsi:type="enumerationType" value="bit0" name="bit0=1 : Schedule Mode Cheapest" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit1" name="bit1 =1: Schedule Mode Greenest" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit2 to bit7" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
-        </restriction>
+        <restriction />
       </attribute>
     </attributes>
     <commands>

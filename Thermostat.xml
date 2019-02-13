@@ -32,25 +32,25 @@
       </attribute>
       <attribute id="001B" name="ControlSequenceOfOperation" type="enum8" writable="true" required="true" default="0x04">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Cooling Only" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Cooling With Reheat" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Heating Only" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="Heating With Reheat" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x04" name="Cooling and Heating 4-pipes (see 1.3.2)" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x05" name="Cooling and Heating 4-pipes with Reheat" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Cooling Only" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Cooling With Reheat" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Heating Only" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Heating With Reheat" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="Cooling and Heating 4-pipes (see 1.3.2)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="5" name="Cooling and Heating 4-pipes with Reheat" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="001C" name="SystemMode" type="enum8" writable="true" required="true" default="0x01">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Off" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Auto" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="Cool" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x04" name="Heat" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x05" name="Emergency heating" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x06" name="Precooling (see  REF _Ref426633036 \r \h 6.1.2)" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x07" name="Fan only" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x08" name="Dry" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x09" name="Sleep" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Off" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Auto" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Cool" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="Heat" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="5" name="Emergency heating" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="6" name="Precooling (see  REF _Ref426633036 \r \h 6.1.2)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="7" name="Fan only" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="8" name="Dry" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="9" name="Sleep" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="001D" name="AlarmMask" type="map8" default="0" />
@@ -61,8 +61,8 @@
       <attribute id="0000" name="NumberOfDailyTransitions" type="uint8" max="255" default="N/A" />
       <attribute id="0000" name="TemperatureSetpointHold" type="enum8" writable="true" default="0x00">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Setpoint Hold Off" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Setpoint Hold On" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Setpoint Hold Off" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Setpoint Hold On" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0000" name="TemperatureSetpointHoldDuration" type="uint16" writable="true" min="65535" max="1440" default="0xffff" />
@@ -77,9 +77,9 @@
       <attribute id="0000" name="ThermostatRunningState" type="map16" default="-" />
       <attribute id="0030" name="SetpointChangeSource" type="enum8" default="0x00">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Manual, user-initiated setpoint change via the thermostat" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Schedule/internal programming-initiated setpoint change" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Externally-initiated setpoint change (e.g., DRLC cluster command, attribute write)" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Manual, user-initiated setpoint change via the thermostat" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Schedule/internal programming-initiated setpoint change" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Externally-initiated setpoint change (e.g., DRLC cluster command, attribute write)" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0031" name="SetpointChangeAmount" type="int16" default="0x8000" />
@@ -93,28 +93,28 @@
       <attribute id="003A" name="EmergencyHeatDelta" type="uint8" writable="true" max="255" default="0xff" />
       <attribute id="0040" name="ACType" type="enum8" writable="true" default="0x00">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="Cooling and Fixed Speed" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="Heat Pump and Fixed Speed" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="Cooling and Inverter" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x04" name="Heat Pump and Inverter" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="Cooling and Fixed Speed" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="Heat Pump and Fixed Speed" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="Cooling and Inverter" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="4" name="Heat Pump and Inverter" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0041" name="ACCapacity" type="uint16" writable="true" max="65535" default="0x0000" />
       <attribute id="0042" name="ACRefrigerantType" type="enum8" writable="true" default="0x00">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="R22" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="R410a" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="R407c" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="R22" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="R410a" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="R407c" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0043" name="ACCompressorType" type="enum8" writable="true" default="0x00">
         <restriction>
-          <facet xsi:type="enumerationType" value="0x00" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x01" name="T1, Max working ambient 43 ºC" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x02" name="T2, Max working ambient 35 ºC" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="0x03" name="T3, Max working ambient 52 ºC" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="0" name="Reserved" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="1" name="T1, Max working ambient 43 ºC" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="2" name="T2, Max working ambient 35 ºC" xmlns="http://zigbee.org/zcl/types" />
+          <facet xsi:type="enumerationType" value="3" name="T3, Max working ambient 52 ºC" xmlns="http://zigbee.org/zcl/types" />
         </restriction>
       </attribute>
       <attribute id="0044" name="ACErrorCode" type="map32" writable="true" default="0x00000000">
@@ -127,13 +127,7 @@
         </restriction>
       </attribute>
       <attribute id="0045" name="ACLouverPosition" type="enum8" writable="true" default="0x00">
-        <restriction>
-          <facet xsi:type="enumerationType" value="Fully Closed" name="0x01" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="Fully Open" name="0x02" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="Quarter Open" name="0x03" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="Half Open" name="0x04" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="Three Quarters Open" name="0x05" xmlns="http://zigbee.org/zcl/types" />
-        </restriction>
+        <restriction />
       </attribute>
       <attribute id="0046" name="ACCoilTemperature" type="int16" default="-" />
       <attribute id="0047" name="ACCapacityFormat" type="enum8" writable="true" default="0x00" />

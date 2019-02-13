@@ -11,15 +11,7 @@
       <attribute id="0005" name="Number of Actuations – Lift" type="uint16" default="0x0000" />
       <attribute id="0006" name="Number of Actuations – Tilt" type="uint16" default="0x0000" />
       <attribute id="0007" name="Config/Status" type="map8" required="true" default="0000 0011">
-        <restriction>
-          <facet xsi:type="enumerationType" value="bit0" name="0 = Not Operational1 = Operational" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit1" name="0 = Not Online1 = Online" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit2" name="0 = Commands are normal1 = Open/Up Commands have been reversed" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit3" name="0 = Lift control is Open Loop1 = Lift control is Closed Loop" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit4" name="0 = Tilt control is Open Loop1 = Tilt control is Closed Loop" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit5" name="0 = Timer Controlled1 = Encoder ControlledThis bit is Ignored if running Lift in Open Loop Control." xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit6" name="0 = Timer Controlled1 = Encoder ControlledThis bit is Ignored if running Tilt in Open Loop Control." xmlns="http://zigbee.org/zcl/types" />
-        </restriction>
+        <restriction />
       </attribute>
       <attribute id="0008" name="Current Position Lift Percentage" type="uint8" required="true" default="0x00" />
       <attribute id="0009" name="Current Position Tilt Percentage" type="uint8" required="true" default="0x00" />
@@ -31,12 +23,7 @@
       <attribute id="0005" name="Acceleration Time – Lift" type="uint16" default="0x0000" />
       <attribute id="0006" name="Deceleration Time – Lift" type="uint16" default="0x0000" />
       <attribute id="0007" name="Mode" type="map8" required="true" default="0000 0100">
-        <restriction>
-          <facet xsi:type="enumerationType" value="bit0" name="0 = motor direction is normal1 = motor direction is reversed" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit1" name="0 = run in normal mode1 = run in calibration mode" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit2" name="0 = motor is running normally1 = motor is running in maintenance mode" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="bit3" name="0 = LEDs are off1 = LEDs will display feedback" xmlns="http://zigbee.org/zcl/types" />
-        </restriction>
+        <restriction />
       </attribute>
       <attribute id="0008" name="Intermediate Setpoints – Lift" type="octstr" default="“1,0x0000”" />
       <attribute id="0009" name="Intermediate Setpoints – Tilt" type="octstr" default="“1,0x0000”" />
