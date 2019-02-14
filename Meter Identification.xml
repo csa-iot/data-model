@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0B01" revision="0" name="Meter Identification">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0B01" revision="0" name="Meter Identification" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="MTRID" />
   <server>
     <attributes>
@@ -17,4 +17,4 @@
       <attribute id="000E" name="PowerThreshold" type="int24" required="true" default="-" />
     </attributes>
   </server>
-</ZclCluster>
+</zcl:cluster>

@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0502" revision="0" name="IAS WD">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0502" revision="0" name="IAS WD" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="IASWD" />
   <server>
     <attributes>
-      <attribute id="0000" name="MaxDuration" type="uint16" writable="true" required="true" default="240" />
+      <attribute id="0000" name="MaxDuration" type="uint16" writable="true" required="true" default="576" />
     </attributes>
     <commands>
       <command id="00" name="Start warning" required="true" />
       <command id="01" name="Squawk" required="true" />
     </commands>
   </server>
-</ZclCluster>
+</zcl:cluster>

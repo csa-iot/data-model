@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0003" revision="0" name="Identify">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0003" revision="0" name="Identify" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="utility" picsCode="I" />
   <server>
     <attributes>
-      <attribute id="0000" name="IdentifyTime" type="uint16" writable="true" required="true" max="65535" default="0x0000" />
+      <attribute id="0000" name="IdentifyTime" type="uint16" writable="true" required="true" max="65535" default="0" />
     </attributes>
     <commands>
       <command id="00" name="Identify" required="true">
@@ -29,4 +29,4 @@
       </command>
     </commands>
   </client>
-</ZclCluster>
+</zcl:cluster>

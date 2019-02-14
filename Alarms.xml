@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0009" revision="0" name="Alarms">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0009" revision="0" name="Alarms" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="ALM" />
   <server>
     <attributes>
-      <attribute id="0000" name="AlarmCount" type="uint16" default="0x00" />
+      <attribute id="0000" name="AlarmCount" type="uint16" default="0" />
     </attributes>
     <commands>
       <command id="00" name="Reset Alarm" required="true">
@@ -35,4 +35,4 @@
       </command>
     </commands>
   </client>
-</ZclCluster>
+</zcl:cluster>

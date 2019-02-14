@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0005" revision="0" name="Scenes">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0005" revision="0" name="Scenes" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="S" />
   <server>
     <attributes>
-      <attribute id="0000" name="SceneCount" type="uint8" required="true" max="255" default="0x00" />
-      <attribute id="0001" name="CurrentScene" type="uint8" required="true" max="255" default="0x00" />
-      <attribute id="0002" name="CurrentGroup" type="uint16" required="true" max="65527" default="0x00" />
-      <attribute id="0003" name="SceneValid" type="bool" required="true" default="0x00" />
+      <attribute id="0000" name="SceneCount" type="uint8" required="true" max="255" default="0" />
+      <attribute id="0001" name="CurrentScene" type="uint8" required="true" max="255" default="0" />
+      <attribute id="0002" name="CurrentGroup" type="uint16" required="true" max="65527" default="0" />
+      <attribute id="0003" name="SceneValid" type="bool" required="true" default="0" />
       <attribute id="0004" name="NameSupport" type="map8" required="true" default="-" />
       <attribute id="0005" name="LastConfiguredBy" type="EUI64" default="-" />
     </attributes>
@@ -127,4 +127,4 @@
       </command>
     </commands>
   </client>
-</ZclCluster>
+</zcl:cluster>

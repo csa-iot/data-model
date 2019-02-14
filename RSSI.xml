@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="000B" revision="0" name="RSSI">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="000B" revision="0" name="RSSI" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="utility" picsCode="RSSI" />
   <server>
     <attributes>
       <attribute id="0000" name="LocationType" type="data8" writable="true" required="true" default="-" />
       <attribute id="0001" name="LocationMethod" type="enum8" writable="true" required="true" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="Lateration" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="Signposting" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="RF fingerprinting" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="3" name="Out of band" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="4" name="Centralized" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="Lateration" />
+          <type:enumeration value="1" name="Signposting" />
+          <type:enumeration value="2" name="RF fingerprinting" />
+          <type:enumeration value="3" name="Out of band" />
+          <type:enumeration value="4" name="Centralized" />
         </restriction>
       </attribute>
       <attribute id="0002" name="LocationAge" type="uint16" max="65535" default="-" />
@@ -125,4 +125,4 @@
       </command>
     </commands>
   </client>
-</ZclCluster>
+</zcl:cluster>

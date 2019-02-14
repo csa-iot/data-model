@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0200" revision="0" name="Pump Configuration and Control">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0200" revision="0" name="Pump Configuration and Control" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="PCC" />
   <server>
     <attributes>
@@ -24,25 +24,25 @@
       <attribute id="0015" name="LifetimeRunningHours" type="uint24" writable="true" max="16777214" default="0" />
       <attribute id="0016" name="Power" type="uint24" writable="true" max="16777214" default="-" />
       <attribute id="0017" name="LifetimeEnergyConsumed" type="uint32" max="4294967294" default="0" />
-      <attribute id="0020" name="OperationMode" type="enum8" writable="true" required="true" default="0x00">
+      <attribute id="0020" name="OperationMode" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="Normal" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="Minimum" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="Maximum" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="3" name="Local" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="Normal" />
+          <type:enumeration value="1" name="Minimum" />
+          <type:enumeration value="2" name="Maximum" />
+          <type:enumeration value="3" name="Local" />
         </restriction>
       </attribute>
-      <attribute id="0021" name="ControlMode" type="enum8" writable="true" default="0x00">
+      <attribute id="0021" name="ControlMode" type="enum8" writable="true" default="0">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="Constant speed" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="Constant pressure" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="Proportional pressure" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="3" name="Constant flow" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="5" name="Constant temperature" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="7" name="Automatic" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="Constant speed" />
+          <type:enumeration value="1" name="Constant pressure" />
+          <type:enumeration value="2" name="Proportional pressure" />
+          <type:enumeration value="3" name="Constant flow" />
+          <type:enumeration value="5" name="Constant temperature" />
+          <type:enumeration value="7" name="Automatic" />
         </restriction>
       </attribute>
       <attribute id="0022" name="AlarmMask" type="map16" default="-" />
     </attributes>
   </server>
-</ZclCluster>
+</zcl:cluster>

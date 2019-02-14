@@ -1,53 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0300" revision="0" name="Color Control">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0300" revision="0" name="Color Control" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="CC" />
   <server>
     <attributes>
-      <attribute id="0000" name="CurrentHue" type="uint8" required="true" max="254" default="0x00" />
-      <attribute id="0001" name="CurrentSaturation" type="uint8" required="true" max="254" default="0x00" />
-      <attribute id="0002" name="RemainingTime" type="uint16" max="65534" default="0x00" />
+      <attribute id="0000" name="CurrentHue" type="uint8" required="true" max="254" default="0" />
+      <attribute id="0001" name="CurrentSaturation" type="uint8" required="true" max="254" default="0" />
+      <attribute id="0002" name="RemainingTime" type="uint16" max="65534" default="0" />
       <attribute id="0003" name="CurrentX" type="uint16" required="true" max="65279" default="0x616b (0.381)" />
       <attribute id="0004" name="CurrentY" type="uint16" required="true" max="65279" default="0x607d (0.377)" />
       <attribute id="0005" name="DriftCompensation" type="enum8" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="None" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="Other / Unknown" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="Temperature monitoring" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="3" name="Optical luminance monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="4" name="Optical color monitoring and feedback" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="None" />
+          <type:enumeration value="1" name="Other / Unknown" />
+          <type:enumeration value="2" name="Temperature monitoring" />
+          <type:enumeration value="3" name="Optical luminance monitoring and feedback" />
+          <type:enumeration value="4" name="Optical color monitoring and feedback" />
         </restriction>
       </attribute>
       <attribute id="0006" name="CompensationText" type="string" max="254" default="-" />
       <attribute id="0007" name="ColorTemperatureMireds" type="uint16" required="true" max="65279" default="0x00fa (4000K)" />
-      <attribute id="0008" name="ColorMode" type="enum8" required="true" default="0x01">
+      <attribute id="0008" name="ColorMode" type="enum8" required="true" default="1">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="CurrentHue and CurrentSaturation" />
+          <type:enumeration value="1" name="CurrentX and CurrentY" />
+          <type:enumeration value="2" name="ColorTemperatureMireds" />
         </restriction>
       </attribute>
-      <attribute id="000F" name="Options" type="map8" writable="true" required="true" default="0x00">
+      <attribute id="000F" name="Options" type="map8" writable="true" required="true" default="0">
+        <bitmap>
+          <element name="ExecuteIfOff" type="bool" mask="00000001" />
+        </bitmap>
+      </attribute>
+      <attribute id="4000" name="EnhancedCurrentHue" type="uint16" required="true" max="65535" default="0" />
+      <attribute id="4001" name="EnhancedColorMode" type="enum8" required="true" default="1">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="ExecuteIfOff" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="CurrentHue and CurrentSaturation" />
+          <type:enumeration value="1" name="CurrentX and CurrentY" />
+          <type:enumeration value="2" name="ColorTemperatureMireds" />
+          <type:enumeration value="3" name="EnhancedCurrentHue and CurrentSaturation" />
         </restriction>
       </attribute>
-      <attribute id="4000" name="EnhancedCurrentHue" type="uint16" required="true" max="65535" default="0x0000" />
-      <attribute id="4001" name="EnhancedColorMode" type="enum8" required="true" default="0x01">
-        <restriction>
-          <facet xsi:type="enumerationType" value="0" name="CurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="CurrentX and CurrentY" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="ColorTemperatureMireds" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="3" name="EnhancedCurrentHue and CurrentSaturation" xmlns="http://zigbee.org/zcl/types" />
-        </restriction>
-      </attribute>
-      <attribute id="4002" name="ColorLoopActive" type="uint8" required="true" max="255" default="0x00" />
-      <attribute id="4003" name="ColorLoopDirection" type="uint8" required="true" max="255" default="0x00" />
-      <attribute id="4004" name="ColorLoopTime" type="uint16" required="true" max="65535" default="0x0019" />
-      <attribute id="4005" name="ColorLoopStartEnhancedHue" type="uint16" required="true" max="65535" default="0x2300" />
-      <attribute id="4006" name="ColorLoopStoredEnhancedHue" type="uint16" required="true" max="65535" default="0x0000" />
-      <attribute id="400A" name="ColorCapabilities" type="map16" required="true" default="0x0000" />
-      <attribute id="400B" name="ColorTempPhysicalMinMireds" type="uint16" required="true" max="65279" default="0x0000" />
-      <attribute id="400C" name="ColorTempPhysicalMaxMireds" type="uint16" required="true" max="65279" default="0xfeff" />
+      <attribute id="4002" name="ColorLoopActive" type="uint8" required="true" max="255" default="0" />
+      <attribute id="4003" name="ColorLoopDirection" type="uint8" required="true" max="255" default="0" />
+      <attribute id="4004" name="ColorLoopTime" type="uint16" required="true" max="65535" default="25" />
+      <attribute id="4005" name="ColorLoopStartEnhancedHue" type="uint16" required="true" max="65535" default="8960" />
+      <attribute id="4006" name="ColorLoopStoredEnhancedHue" type="uint16" required="true" max="65535" default="0" />
+      <attribute id="400A" name="ColorCapabilities" type="map16" required="true" default="0" />
+      <attribute id="400B" name="ColorTempPhysicalMinMireds" type="uint16" required="true" max="65279" default="0" />
+      <attribute id="400C" name="ColorTempPhysicalMaxMireds" type="uint16" required="true" max="65279" default="65279" />
       <attribute id="400D" name="CoupleColorTempToLevelMinMireds" type="uint16" required="true" default="MS" />
       <attribute id="4010" name="StartUpColorTemperatureMireds" type="uint16" writable="true" required="true" default="MS" />
       <attribute id="0010" name="NumberOfPrimaries" type="uint8" required="true" max="6" default="-" />
@@ -242,4 +242,4 @@
       </command>
     </commands>
   </server>
-</ZclCluster>
+</zcl:cluster>

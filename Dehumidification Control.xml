@@ -1,26 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0203" revision="0" name="Dehumidification Control">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0203" revision="0" name="Dehumidification Control" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="DHUM" />
   <server>
     <attributes>
       <attribute id="0000" name="RelativeHumidity" type="uint8" max="100" default="-" />
       <attribute id="0001" name="DehumidificationCooling" type="uint8" required="true" default="-" />
-      <attribute id="0010" name="RHDehumidificationSetpoint" type="uint8" writable="true" required="true" min="1" max="100" default="0x32" />
-      <attribute id="0011" name="RelativeHumidityMode" type="enum8" writable="true" default="0x00">
+      <attribute id="0010" name="RHDehumidificationSetpoint" type="uint8" writable="true" required="true" min="1" max="100" default="50" />
+      <attribute id="0011" name="RelativeHumidityMode" type="enum8" writable="true" default="0">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="RelativeHumidity measured locally" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="RelativeHumidity updated over the network" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="RelativeHumidity measured locally" />
+          <type:enumeration value="1" name="RelativeHumidity updated over the network" />
         </restriction>
       </attribute>
-      <attribute id="0012" name="DehumidificationLockout" type="enum8" writable="true" default="0x01">
+      <attribute id="0012" name="DehumidificationLockout" type="enum8" writable="true" default="1">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="Dehumidification is not allowed." xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="Dehumidification is allowed." xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="Dehumidification is not allowed." />
+          <type:enumeration value="1" name="Dehumidification is allowed." />
         </restriction>
       </attribute>
-      <attribute id="0013" name="DehumidificationHysteresis" type="uint8" writable="true" required="true" min="2" max="20" default="0x02" />
-      <attribute id="0014" name="DehumidificationMaxCool" type="uint8" writable="true" required="true" min="20" max="100" default="0x14" />
-      <attribute id="0000" name="RelativeHumidityDisplay" type="enum8" writable="true" default="0x00" />
+      <attribute id="0013" name="DehumidificationHysteresis" type="uint8" writable="true" required="true" min="2" max="20" default="2" />
+      <attribute id="0014" name="DehumidificationMaxCool" type="uint8" writable="true" required="true" min="20" max="100" default="20" />
+      <attribute id="0000" name="RelativeHumidityDisplay" type="enum8" writable="true" default="0" />
     </attributes>
   </server>
-</ZclCluster>
+</zcl:cluster>

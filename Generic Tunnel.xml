@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0600" revision="0" name="Generic Tunnel">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0600" revision="0" name="Generic Tunnel" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="TUN" />
   <server>
     <attributes>
-      <attribute id="0001" name="MaximumIncomingTransferSize" type="uint16" required="true" max="65535" default="0x0000" />
-      <attribute id="0002" name="MaximumOutgoingTransferSize" type="uint16" required="true" max="65535" default="0x0000" />
+      <attribute id="0001" name="MaximumIncomingTransferSize" type="uint16" required="true" max="65535" default="0" />
+      <attribute id="0002" name="MaximumOutgoingTransferSize" type="uint16" required="true" max="65535" default="0" />
       <attribute id="0003" name="ProtocolAddress" type="octstr" writable="true" required="true" max="255" default="Null string" />
     </attributes>
   </server>
-</ZclCluster>
+</zcl:cluster>

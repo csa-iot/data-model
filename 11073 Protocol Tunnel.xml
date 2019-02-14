@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0614" revision="0" name="11073 Protocol Tunnel">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0614" revision="0" name="11073 Protocol Tunnel" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="T11073" />
   <server>
     <attributes>
-      <attribute id="0000" name="DeviceIDList" type="array of uint16" default="0xffff" />
+      <attribute id="0000" name="DeviceIDList" type="array of uint16" default="65535" />
       <attribute id="0001" name="ManagerTarget" type="IEEE address" default="-" />
       <attribute id="0002" name="ManagerEndpoint" type="uint8" default="-" />
       <attribute id="0003" name="Connected" type="bool" default="FALSE" />
       <attribute id="0004" name="Preemptible" type="bool" default="TRUE" />
-      <attribute id="0005" name="IdleTimeout" type="uint16" min="1" max="65535" default="0x0000" />
+      <attribute id="0005" name="IdleTimeout" type="uint16" min="1" max="65535" default="0" />
     </attributes>
   </server>
-</ZclCluster>
+</zcl:cluster>

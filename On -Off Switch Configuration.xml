@@ -1,22 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0007" revision="0" name="On /Off Switch Configuration">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0007" revision="0" name="On /Off Switch Configuration" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="OOSC" />
   <server>
     <attributes>
       <attribute id="0000" name="SwitchType" type="enum8" required="true" default="-">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="Toggle" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="Momentary" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="Multifunction" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="Toggle" />
+          <type:enumeration value="1" name="Momentary" />
+          <type:enumeration value="2" name="Multifunction" />
         </restriction>
       </attribute>
-      <attribute id="0010" name="SwitchActions" type="enum8" writable="true" required="true" default="0x00">
+      <attribute id="0010" name="SwitchActions" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <facet xsi:type="enumerationType" value="0" name="On" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="1" name="Off" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="Toggle" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="0" name="On" />
+          <type:enumeration value="1" name="Off" />
+          <type:enumeration value="2" name="Toggle" />
         </restriction>
       </attribute>
     </attributes>
   </server>
-</ZclCluster>
+</zcl:cluster>

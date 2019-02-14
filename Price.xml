@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0700" revision="0" name="Price">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0700" revision="0" name="Price" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="SEPR" />
   <server>
     <attributes>
@@ -39,16 +39,16 @@
       <attribute id="0003" name="ThresholdDivisor" type="uint24" max="16777215" default="-" />
       <attribute id="0000" name="CommodityType" type="enum8" default="-" />
       <attribute id="0001" name="StandingCharge" type="uint32" max="4294967295" default="-" />
-      <attribute id="0002" name="ConversionFactor" type="uint32" max="4294967295" default="0x10000000" />
-      <attribute id="0003" name="ConversionFactorTrailingDigit" type="map8" default="0x70" />
-      <attribute id="0004" name="CalorificValue" type="uint32" max="4294967295" default="0x2625A00" />
-      <attribute id="0005" name="CalorificValueUnit" type="enum8" default="0x1">
+      <attribute id="0002" name="ConversionFactor" type="uint32" max="4294967295" default="268435456" />
+      <attribute id="0003" name="ConversionFactorTrailingDigit" type="map8" default="112" />
+      <attribute id="0004" name="CalorificValue" type="uint32" max="4294967295" default="40000000" />
+      <attribute id="0005" name="CalorificValueUnit" type="enum8" default="1">
         <restriction>
-          <facet xsi:type="enumerationType" value="1" name="MJ/m3" xmlns="http://zigbee.org/zcl/types" />
-          <facet xsi:type="enumerationType" value="2" name="MJ/kg" xmlns="http://zigbee.org/zcl/types" />
+          <type:enumeration value="1" name="MJ/m3" />
+          <type:enumeration value="2" name="MJ/kg" />
         </restriction>
       </attribute>
-      <attribute id="0006" name="CalorificValueTrailingDigit" type="map8" default="0x60" />
+      <attribute id="0006" name="CalorificValueTrailingDigit" type="map8" default="96" />
       <attribute id="0000" name="NoTierBlock1Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0001" name="NoTierBlock2Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0002" name="NoTierBlock3Price" type="uint32" max="4294967295" default="-" />
@@ -186,4 +186,4 @@
       </command>
     </commands>
   </client>
-</ZclCluster>
+</zcl:cluster>

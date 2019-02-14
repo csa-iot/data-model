@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0B05" revision="0" name="Diagnostics">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0B05" revision="0" name="Diagnostics" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="utility" picsCode="DIAG" />
   <server>
     <attributes>
-      <attribute id="0000" name="NumberOfResets" type="uint16" max="65535" default="0x00000000" />
-      <attribute id="0001" name="PersistentMemoryWrites" type="uint16" max="65535" default="0x00000000" />
+      <attribute id="0000" name="NumberOfResets" type="uint16" max="65535" default="0" />
+      <attribute id="0001" name="PersistentMemoryWrites" type="uint16" max="65535" default="0" />
       <attribute id="0100" name="MacRxBcast" type="uint32" max="4294967295" default="0" />
       <attribute id="0101" name="MacTxBcast" type="uint32" max="4294967295" default="0" />
       <attribute id="0102" name="MacRxUcast" type="uint32" max="4294967295" default="0" />
@@ -37,4 +37,4 @@
       <attribute id="011D" name="LastMessageRSSI" type="int8" default="0" />
     </attributes>
   </server>
-</ZclCluster>
+</zcl:cluster>

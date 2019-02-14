@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="001A" revision="0" name="Power Profile">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="001A" revision="0" name="Power Profile" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="utility" picsCode="PWR" />
   <server>
     <attributes>
@@ -7,8 +7,8 @@
       <attribute id="0001" name="MultipleScheduling" type="bool" required="true" default="FALSE" />
       <attribute id="0002" name="EnergyFormatting" type="map8" required="true" default="0x01*" />
       <attribute id="0003" name="EnergyRemote" type="bool" required="true" default="FALSE" />
-      <attribute id="0004" name="ScheduleMode" type="map8" writable="true" required="true" default="0x00">
-        <restriction />
+      <attribute id="0004" name="ScheduleMode" type="map8" writable="true" required="true" default="0">
+        <bitmap />
       </attribute>
     </attributes>
     <commands>
@@ -89,4 +89,4 @@
       </command>
     </commands>
   </client>
-</ZclCluster>
+</zcl:cluster>

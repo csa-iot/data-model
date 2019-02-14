@@ -1,29 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-16"?>
-<ZclCluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0102" revision="0" name="Window Covering">
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0102" revision="0" name="Window Covering" xmlns:zcl="http://zigbee.org/zcl/clusters">
   <classification role="application" picsCode="WNCV" />
   <server>
     <attributes>
-      <attribute id="0000" name="WindowCoveringType" type="enum8" required="true" default="0x00" />
-      <attribute id="0001" name="PhysicalClosedLimit – Lift" type="uint16" default="0x0000" />
-      <attribute id="0002" name="PhysicalClosedLimit – Tilt" type="uint16" default="0x0000" />
-      <attribute id="0003" name="CurrentPosition – Lift" type="uint16" default="0x0000" />
-      <attribute id="0004" name="Current Position – Tilt" type="uint16" default="0x0000" />
-      <attribute id="0005" name="Number of Actuations – Lift" type="uint16" default="0x0000" />
-      <attribute id="0006" name="Number of Actuations – Tilt" type="uint16" default="0x0000" />
+      <attribute id="0000" name="WindowCoveringType" type="enum8" required="true" default="0" />
+      <attribute id="0001" name="PhysicalClosedLimit – Lift" type="uint16" default="0" />
+      <attribute id="0002" name="PhysicalClosedLimit – Tilt" type="uint16" default="0" />
+      <attribute id="0003" name="CurrentPosition – Lift" type="uint16" default="0" />
+      <attribute id="0004" name="Current Position – Tilt" type="uint16" default="0" />
+      <attribute id="0005" name="Number of Actuations – Lift" type="uint16" default="0" />
+      <attribute id="0006" name="Number of Actuations – Tilt" type="uint16" default="0" />
       <attribute id="0007" name="Config/Status" type="map8" required="true" default="0000 0011">
-        <restriction />
+        <bitmap />
       </attribute>
-      <attribute id="0008" name="Current Position Lift Percentage" type="uint8" required="true" default="0x00" />
-      <attribute id="0009" name="Current Position Tilt Percentage" type="uint8" required="true" default="0x00" />
-      <attribute id="0000" name="InstalledOpenLimit – Lift" type="uint16" required="true" default="0x0000" />
-      <attribute id="0001" name="InstalledClosedLimit – Lift" type="uint16" required="true" default="0xffff" />
-      <attribute id="0002" name="InstalledOpenLimit – Tilt" type="uint16" required="true" default="0x0000" />
-      <attribute id="0003" name="InstalledClosedLimit – Tilt" type="uint16" required="true" default="0xffff" />
-      <attribute id="0004" name="Velocity – Lift" type="uint16" default="0x0000" />
-      <attribute id="0005" name="Acceleration Time – Lift" type="uint16" default="0x0000" />
-      <attribute id="0006" name="Deceleration Time – Lift" type="uint16" default="0x0000" />
+      <attribute id="0008" name="Current Position Lift Percentage" type="uint8" required="true" default="0" />
+      <attribute id="0009" name="Current Position Tilt Percentage" type="uint8" required="true" default="0" />
+      <attribute id="0000" name="InstalledOpenLimit – Lift" type="uint16" required="true" default="0" />
+      <attribute id="0001" name="InstalledClosedLimit – Lift" type="uint16" required="true" default="65535" />
+      <attribute id="0002" name="InstalledOpenLimit – Tilt" type="uint16" required="true" default="0" />
+      <attribute id="0003" name="InstalledClosedLimit – Tilt" type="uint16" required="true" default="65535" />
+      <attribute id="0004" name="Velocity – Lift" type="uint16" default="0" />
+      <attribute id="0005" name="Acceleration Time – Lift" type="uint16" default="0" />
+      <attribute id="0006" name="Deceleration Time – Lift" type="uint16" default="0" />
       <attribute id="0007" name="Mode" type="map8" required="true" default="0000 0100">
-        <restriction />
+        <bitmap />
       </attribute>
       <attribute id="0008" name="Intermediate Setpoints – Lift" type="octstr" default="“1,0x0000”" />
       <attribute id="0009" name="Intermediate Setpoints – Tilt" type="octstr" default="“1,0x0000”" />
@@ -50,4 +50,4 @@
       <command id="08" name="Go to Tilt Percentage" />
     </commands>
   </server>
-</ZclCluster>
+</zcl:cluster>
