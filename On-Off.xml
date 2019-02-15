@@ -9,9 +9,9 @@
       <attribute id="4002" name="OffWaitTime" type="uint16" writable="true" max="65535" default="0" />
       <attribute id="4003" name="StartUpOnOff" type="enum8" writable="true" default="MS">
         <restriction>
-          <type:enumeration value="0" name="Set the OnOff attribute to 0 (off)." />
-          <type:enumeration value="1" name="Set the OnOff attribute to 1 (on)." />
-          <type:enumeration value="2" name="If the previous value of the OnOff attribute is equal to 0, set the OnOff attribute to 1.  If the previous value of the OnOff attribute is equal to 1, set the OnOff attribute to 0 (toggle)." />
+          <type:enumeration value="00" name="Set the OnOff attribute to 0 (off)." />
+          <type:enumeration value="01" name="Set the OnOff attribute to 1 (on)." />
+          <type:enumeration value="02" name="If the previous value of the OnOff attribute is equal to 0, set the OnOff attribute to 1.  If the previous value of the OnOff attribute is equal to 1, set the OnOff attribute to 0 (toggle)." />
           <type:enumeration value="FF" name="Set the OnOff attribute to its previous value." />
         </restriction>
       </attribute>

@@ -10,20 +10,20 @@
       <attribute id="0004" name="CurrentY" type="uint16" required="true" max="65279" default="0x607d (0.377)" />
       <attribute id="0005" name="DriftCompensation" type="enum8" default="-">
         <restriction>
-          <type:enumeration value="0" name="None" />
-          <type:enumeration value="1" name="Other / Unknown" />
-          <type:enumeration value="2" name="Temperature monitoring" />
-          <type:enumeration value="3" name="Optical luminance monitoring and feedback" />
-          <type:enumeration value="4" name="Optical color monitoring and feedback" />
+          <type:enumeration value="00" name="None" />
+          <type:enumeration value="01" name="Other / Unknown" />
+          <type:enumeration value="02" name="Temperature monitoring" />
+          <type:enumeration value="03" name="Optical luminance monitoring and feedback" />
+          <type:enumeration value="04" name="Optical color monitoring and feedback" />
         </restriction>
       </attribute>
       <attribute id="0006" name="CompensationText" type="string" max="254" default="-" />
       <attribute id="0007" name="ColorTemperatureMireds" type="uint16" required="true" max="65279" default="0x00fa (4000K)" />
       <attribute id="0008" name="ColorMode" type="enum8" required="true" default="1">
         <restriction>
-          <type:enumeration value="0" name="CurrentHue and CurrentSaturation" />
-          <type:enumeration value="1" name="CurrentX and CurrentY" />
-          <type:enumeration value="2" name="ColorTemperatureMireds" />
+          <type:enumeration value="00" name="CurrentHue and CurrentSaturation" />
+          <type:enumeration value="01" name="CurrentX and CurrentY" />
+          <type:enumeration value="02" name="ColorTemperatureMireds" />
         </restriction>
       </attribute>
       <attribute id="000F" name="Options" type="map8" writable="true" required="true" default="0">
@@ -34,10 +34,10 @@
       <attribute id="4000" name="EnhancedCurrentHue" type="uint16" required="true" max="65535" default="0" />
       <attribute id="4001" name="EnhancedColorMode" type="enum8" required="true" default="1">
         <restriction>
-          <type:enumeration value="0" name="CurrentHue and CurrentSaturation" />
-          <type:enumeration value="1" name="CurrentX and CurrentY" />
-          <type:enumeration value="2" name="ColorTemperatureMireds" />
-          <type:enumeration value="3" name="EnhancedCurrentHue and CurrentSaturation" />
+          <type:enumeration value="00" name="CurrentHue and CurrentSaturation" />
+          <type:enumeration value="01" name="CurrentX and CurrentY" />
+          <type:enumeration value="02" name="ColorTemperatureMireds" />
+          <type:enumeration value="03" name="EnhancedCurrentHue and CurrentSaturation" />
         </restriction>
       </attribute>
       <attribute id="4002" name="ColorLoopActive" type="uint8" required="true" max="255" default="0" />

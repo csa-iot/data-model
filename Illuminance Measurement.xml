@@ -9,8 +9,8 @@
       <attribute id="0003" name="Tolerance" type="uint16" max="2048" default="ms" />
       <attribute id="0004" name="LightSensorType" type="enum8" default="255">
         <restriction>
-          <type:enumeration value="0" name="Photodiode" />
-          <type:enumeration value="1" name="CMOS" />
+          <type:enumeration value="00" name="Photodiode" />
+          <type:enumeration value="01" name="CMOS" />
           <type:enumeration value="FF" name="Unknown" />
         </restriction>
       </attribute>

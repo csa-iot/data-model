@@ -6,3 +6,6 @@ sed -i '' 's/<facet xsi:type="enumerationType"/<type:enumeration/g' *.xml
 sed -i '' 's/<type:enumeration value="0x/<type:enumeration value="/g' *.xml
 sed -i '' 's/<type:enumeration\(.*\) xmlns="http:\/\/zigbee.org\/zcl\/types" \/>/<type:enumeration\1 \/>/g' *.xml
 sed -i '' '/<type:enumeration\(.*\)name="Reserved" \/>/d' *.xml
+sed -i '' 's/default="empty string"/default=""/g' *.xml
+sed -i '' 's/<type:enumeration value="\([0-9a-fA-F]\)"/<type:enumeration value="0\1"/g' *.xml
+

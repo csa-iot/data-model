@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0000" revision="0" name="Basic" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="utility" picsCode="B" />
+  <classification hierarchy="base" role="utility" picsCode="B" />
   <server>
     <attributes>
       <attribute id="0000" name="ZCLVersion" type="uint8" required="true" max="255" default="3" />
@@ -12,13 +12,13 @@
       <attribute id="0006" name="DateCode" type="string" max="16" default="" />
       <attribute id="0007" name="PowerSource" type="enum8" required="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Unknown" />
-          <type:enumeration value="1" name="Mains (single phase)" />
-          <type:enumeration value="2" name="Mains (3 phase)" />
-          <type:enumeration value="3" name="Battery" />
-          <type:enumeration value="4" name="DC source" />
-          <type:enumeration value="5" name="Emergency mains constantly powered" />
-          <type:enumeration value="6" name="Emergency mains and transfer switch" />
+          <type:enumeration value="00" name="Unknown" />
+          <type:enumeration value="01" name="Mains (single phase)" />
+          <type:enumeration value="02" name="Mains (3 phase)" />
+          <type:enumeration value="03" name="Battery" />
+          <type:enumeration value="04" name="DC source" />
+          <type:enumeration value="05" name="Emergency mains constantly powered" />
+          <type:enumeration value="06" name="Emergency mains and transfer switch" />
           <type:enumeration value="80" name="Unknown" />
           <type:enumeration value="81" name="Mains (single phase)" />
           <type:enumeration value="82" name="Mains (3 phase)" />
@@ -30,24 +30,24 @@
       </attribute>
       <attribute id="0008" name="GenericDevice-Class" type="enum8" default="255">
         <restriction>
-          <type:enumeration value="0" name="Lighting" />
+          <type:enumeration value="00" name="Lighting" />
         </restriction>
       </attribute>
       <attribute id="0009" name="GenericDevice-Type" type="enum8" default="255">
         <restriction>
-          <type:enumeration value="0" name="Incandescent" />
-          <type:enumeration value="1" name="Spotlight Halogen" />
-          <type:enumeration value="2" name="Halogen bulb" />
-          <type:enumeration value="3" name="CFL" />
-          <type:enumeration value="4" name="Linear Fluorescent" />
-          <type:enumeration value="5" name="LED bulb" />
-          <type:enumeration value="6" name="Spotlight LED" />
-          <type:enumeration value="7" name="LED strip" />
-          <type:enumeration value="8" name="LED tube" />
-          <type:enumeration value="9" name="Generic indoor luminaire/light fixture" />
-          <type:enumeration value="A" name="Generic outdoor luminaire/light fixture" />
-          <type:enumeration value="B" name="Pendant luminaire/light fixture" />
-          <type:enumeration value="C" name="Floor standing luminaire/light fixture" />
+          <type:enumeration value="00" name="Incandescent" />
+          <type:enumeration value="01" name="Spotlight Halogen" />
+          <type:enumeration value="02" name="Halogen bulb" />
+          <type:enumeration value="03" name="CFL" />
+          <type:enumeration value="04" name="Linear Fluorescent" />
+          <type:enumeration value="05" name="LED bulb" />
+          <type:enumeration value="06" name="Spotlight LED" />
+          <type:enumeration value="07" name="LED strip" />
+          <type:enumeration value="08" name="LED tube" />
+          <type:enumeration value="09" name="Generic indoor luminaire/light fixture" />
+          <type:enumeration value="0A" name="Generic outdoor luminaire/light fixture" />
+          <type:enumeration value="0B" name="Pendant luminaire/light fixture" />
+          <type:enumeration value="0C" name="Floor standing luminaire/light fixture" />
           <type:enumeration value="E0" name="Generic Controller (e.g. Remote controller)" />
           <type:enumeration value="E1" name="Wall Switch" />
           <type:enumeration value="E2" name="Portable remote controller" />
@@ -68,22 +68,22 @@
       <attribute id="0010" name="LocationDescription" type="string" writable="true" max="16" default="" />
       <attribute id="0011" name="PhysicalEnvironment" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Unspecified environment" />
-          <type:enumeration value="1" name="Mirror Capacity Available – for 0x0109 Profile Id only; use 0x71 moving forwardAtrium – defined for legacy devices with non-0x0109 Profile Id; use 0x70 moving forwardNote: This value is deprecated for Profile Id 0x0104. The value 0x01 is maintained for historical purposes and SHOULD only be used for backwards compatibility with devices developed before this specification. The 0x01 value MUST be interpreted using the Profile Id of the endpoint upon which it is implemented. For endpoints with the Smart Energy Profile Id (0x0109) the value 0x01 has a meaning of Mirror. For endpoints with any other profile identifier, the value 0x01 has a meaning of Atrium." />
-          <type:enumeration value="2" name="Bar" />
-          <type:enumeration value="3" name="Courtyard" />
-          <type:enumeration value="4" name="Bathroom" />
-          <type:enumeration value="5" name="Bedroom" />
-          <type:enumeration value="6" name="Billiard Room" />
-          <type:enumeration value="7" name="Utility Room" />
-          <type:enumeration value="8" name="Cellar" />
-          <type:enumeration value="9" name="Storage Closet" />
-          <type:enumeration value="A" name="Theater" />
-          <type:enumeration value="B" name="Office" />
-          <type:enumeration value="C" name="Deck" />
-          <type:enumeration value="D" name="Den" />
-          <type:enumeration value="E" name="Dining Room" />
-          <type:enumeration value="F" name="Electrical Room" />
+          <type:enumeration value="00" name="Unspecified environment" />
+          <type:enumeration value="01" name="Mirror Capacity Available – for 0x0109 Profile Id only; use 0x71 moving forwardAtrium – defined for legacy devices with non-0x0109 Profile Id; use 0x70 moving forwardNote: This value is deprecated for Profile Id 0x0104. The value 0x01 is maintained for historical purposes and SHOULD only be used for backwards compatibility with devices developed before this specification. The 0x01 value MUST be interpreted using the Profile Id of the endpoint upon which it is implemented. For endpoints with the Smart Energy Profile Id (0x0109) the value 0x01 has a meaning of Mirror. For endpoints with any other profile identifier, the value 0x01 has a meaning of Atrium." />
+          <type:enumeration value="02" name="Bar" />
+          <type:enumeration value="03" name="Courtyard" />
+          <type:enumeration value="04" name="Bathroom" />
+          <type:enumeration value="05" name="Bedroom" />
+          <type:enumeration value="06" name="Billiard Room" />
+          <type:enumeration value="07" name="Utility Room" />
+          <type:enumeration value="08" name="Cellar" />
+          <type:enumeration value="09" name="Storage Closet" />
+          <type:enumeration value="0A" name="Theater" />
+          <type:enumeration value="0B" name="Office" />
+          <type:enumeration value="0C" name="Deck" />
+          <type:enumeration value="0D" name="Den" />
+          <type:enumeration value="0E" name="Dining Room" />
+          <type:enumeration value="0F" name="Electrical Room" />
           <type:enumeration value="10" name="Elevator" />
           <type:enumeration value="11" name="Entry" />
           <type:enumeration value="12" name="Family Room" />
@@ -182,8 +182,8 @@
       <attribute id="0012" name="DeviceEnabled" type="bool" writable="true" default="1" />
       <attribute id="0013" name="AlarmMask" type="map8" writable="true" default="0">
         <bitmap>
-          <element name="Generalhardwarefault" type="bool" mask="0001" />
-          <element name="Generalsoftwarefault" type="bool" mask="0002" shiftRight="1" />
+          <element name="GeneraHardwareFault" type="bool" mask="0001" />
+          <element name="GeneralSoftwareFault" type="bool" mask="0002" shiftRight="1" />
         </bitmap>
       </attribute>
       <attribute id="0014" name="DisableLocalConfig" type="map8" writable="true" default="0">

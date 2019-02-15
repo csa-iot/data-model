@@ -44,8 +44,8 @@
       <attribute id="0004" name="CalorificValue" type="uint32" max="4294967295" default="40000000" />
       <attribute id="0005" name="CalorificValueUnit" type="enum8" default="1">
         <restriction>
-          <type:enumeration value="1" name="MJ/m3" />
-          <type:enumeration value="2" name="MJ/kg" />
+          <type:enumeration value="01" name="MJ/m3" />
+          <type:enumeration value="02" name="MJ/kg" />
         </restriction>
       </attribute>
       <attribute id="0006" name="CalorificValueTrailingDigit" type="map8" default="96" />

@@ -6,11 +6,11 @@
       <attribute id="0000" name="LocationType" type="data8" writable="true" required="true" default="-" />
       <attribute id="0001" name="LocationMethod" type="enum8" writable="true" required="true" default="-">
         <restriction>
-          <type:enumeration value="0" name="Lateration" />
-          <type:enumeration value="1" name="Signposting" />
-          <type:enumeration value="2" name="RF fingerprinting" />
-          <type:enumeration value="3" name="Out of band" />
-          <type:enumeration value="4" name="Centralized" />
+          <type:enumeration value="00" name="Lateration" />
+          <type:enumeration value="01" name="Signposting" />
+          <type:enumeration value="02" name="RF fingerprinting" />
+          <type:enumeration value="03" name="Out of band" />
+          <type:enumeration value="04" name="Centralized" />
         </restriction>
       </attribute>
       <attribute id="0002" name="LocationAge" type="uint16" max="65535" default="-" />

@@ -26,20 +26,20 @@
       <attribute id="0017" name="LifetimeEnergyConsumed" type="uint32" max="4294967294" default="0" />
       <attribute id="0020" name="OperationMode" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Normal" />
-          <type:enumeration value="1" name="Minimum" />
-          <type:enumeration value="2" name="Maximum" />
-          <type:enumeration value="3" name="Local" />
+          <type:enumeration value="00" name="Normal" />
+          <type:enumeration value="01" name="Minimum" />
+          <type:enumeration value="02" name="Maximum" />
+          <type:enumeration value="03" name="Local" />
         </restriction>
       </attribute>
       <attribute id="0021" name="ControlMode" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Constant speed" />
-          <type:enumeration value="1" name="Constant pressure" />
-          <type:enumeration value="2" name="Proportional pressure" />
-          <type:enumeration value="3" name="Constant flow" />
-          <type:enumeration value="5" name="Constant temperature" />
-          <type:enumeration value="7" name="Automatic" />
+          <type:enumeration value="00" name="Constant speed" />
+          <type:enumeration value="01" name="Constant pressure" />
+          <type:enumeration value="02" name="Proportional pressure" />
+          <type:enumeration value="03" name="Constant flow" />
+          <type:enumeration value="05" name="Constant temperature" />
+          <type:enumeration value="07" name="Automatic" />
         </restriction>
       </attribute>
       <attribute id="0022" name="AlarmMask" type="map16" default="-" />

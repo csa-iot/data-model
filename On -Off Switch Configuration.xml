@@ -5,16 +5,16 @@
     <attributes>
       <attribute id="0000" name="SwitchType" type="enum8" required="true" default="-">
         <restriction>
-          <type:enumeration value="0" name="Toggle" />
-          <type:enumeration value="1" name="Momentary" />
-          <type:enumeration value="2" name="Multifunction" />
+          <type:enumeration value="00" name="Toggle" />
+          <type:enumeration value="01" name="Momentary" />
+          <type:enumeration value="02" name="Multifunction" />
         </restriction>
       </attribute>
       <attribute id="0010" name="SwitchActions" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="On" />
-          <type:enumeration value="1" name="Off" />
-          <type:enumeration value="2" name="Toggle" />
+          <type:enumeration value="00" name="On" />
+          <type:enumeration value="01" name="Off" />
+          <type:enumeration value="02" name="Toggle" />
         </restriction>
       </attribute>
     </attributes>

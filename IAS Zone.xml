@@ -5,8 +5,8 @@
     <attributes>
       <attribute id="0000" name="ZoneState" type="enum8" required="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Not enrolled" />
-          <type:enumeration value="1" name="Enrolled (the client will react to Zone State Change Notification commands from the server)" />
+          <type:enumeration value="00" name="Not enrolled" />
+          <type:enumeration value="01" name="Enrolled (the client will react to Zone State Change Notification commands from the server)" />
         </restriction>
       </attribute>
       <attribute id="0001" name="ZoneType" type="enum16" required="true" default="-" />

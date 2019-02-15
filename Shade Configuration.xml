@@ -11,8 +11,8 @@
       <attribute id="0010" name="ClosedLimit" type="uint16" writable="true" required="true" min="1" max="65534" default="1" />
       <attribute id="0011" name="Mode" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Normal" />
-          <type:enumeration value="1" name="Configure" />
+          <type:enumeration value="00" name="Normal" />
+          <type:enumeration value="01" name="Configure" />
         </restriction>
       </attribute>
     </attributes>

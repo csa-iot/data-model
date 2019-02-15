@@ -20,15 +20,15 @@
       <attribute id="0030" name="BatteryManufacturer" type="string" writable="true" max="16" default="" />
       <attribute id="0031" name="BatterySize" type="enum8" writable="true" default="255">
         <restriction>
-          <type:enumeration value="0" name="No battery " />
-          <type:enumeration value="1" name="Built in" />
-          <type:enumeration value="2" name="Other" />
-          <type:enumeration value="3" name="AA" />
-          <type:enumeration value="4" name="AAA" />
-          <type:enumeration value="5" name="C" />
-          <type:enumeration value="6" name="D" />
-          <type:enumeration value="7" name="CR2 (IEC: CR17355 / ANSI: 5046LC)" />
-          <type:enumeration value="8" name="CR123A (IEC: CR17345 / ANSI: 5018LC)" />
+          <type:enumeration value="00" name="No battery " />
+          <type:enumeration value="01" name="Built in" />
+          <type:enumeration value="02" name="Other" />
+          <type:enumeration value="03" name="AA" />
+          <type:enumeration value="04" name="AAA" />
+          <type:enumeration value="05" name="C" />
+          <type:enumeration value="06" name="D" />
+          <type:enumeration value="07" name="CR2 (IEC: CR17355 / ANSI: 5046LC)" />
+          <type:enumeration value="08" name="CR123A (IEC: CR17345 / ANSI: 5018LC)" />
           <type:enumeration value="FF" name="Unknown" />
         </restriction>
       </attribute>

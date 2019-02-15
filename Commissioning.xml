@@ -11,10 +11,10 @@
       <attribute id="0005" name="StackProfile" type="uint8" required="true" min="1" max="2" default="RW" />
       <attribute id="0006" name="StartupControl" type="enum8" required="true" default="RW">
         <restriction>
-          <type:enumeration value="0" name="Indicates that the device should consider itself part of the network indicated by the ExtendedPANId attribute. In this case it will not perform any explicit join or rejoin operation." />
-          <type:enumeration value="1" name="Indicates that the device should form a network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to TRUE in this case." />
-          <type:enumeration value="2" name="Indicates that the device should rejoin the network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." />
-          <type:enumeration value="3" name="Indicates that the device should start “from scratch” and join the network using (unsecured) MAC association.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." />
+          <type:enumeration value="00" name="Indicates that the device should consider itself part of the network indicated by the ExtendedPANId attribute. In this case it will not perform any explicit join or rejoin operation." />
+          <type:enumeration value="01" name="Indicates that the device should form a network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to TRUE in this case." />
+          <type:enumeration value="02" name="Indicates that the device should rejoin the network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." />
+          <type:enumeration value="03" name="Indicates that the device should start “from scratch” and join the network using (unsecured) MAC association.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." />
         </restriction>
       </attribute>
       <attribute id="0010" name="TrustCenterAddress" type="EUI64" required="true" default="RW" />
