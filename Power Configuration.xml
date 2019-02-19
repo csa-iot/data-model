@@ -17,7 +17,12 @@
       <attribute id="0013" name="MainsVoltageDwellTripPoint" type="uint16" writable="true" max="65535" default="0" />
       <attribute id="0020" name="BatteryVoltage" type="uint8" max="255" default="-" />
       <attribute id="0021" name="BatteryPercentageRemaining" type="uint8" max="255" default="0" />
-      <attribute id="0030" name="BatteryManufacturer" type="string" writable="true" max="16" default="" />
+      <attribute id="0030" name="BatteryManufacturer" type="string" writable="true" default="">
+        <restriction>
+          <type:minLength value="0" />
+          <type:maxLength value="16" />
+        </restriction>
+      </attribute>
       <attribute id="0031" name="BatterySize" type="enum8" writable="true" default="255">
         <restriction>
           <type:enumeration value="00" name="NoBattery" />
