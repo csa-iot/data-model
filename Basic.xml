@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" id="0000" revision="0" name="Basic">
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			 xmlns:type="http://zigbee.org/zcl/types" 
+			 xmlns:xi="http://www.w3.org/2001/XInclude" 
+			 xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+			 id="0000" revision="2" name="Basic">
   <classification hierarchy="base" role="utility" picsCode="B" />
   <server>
     <attributes>
@@ -7,25 +12,40 @@
       <attribute id="0001" name="ApplicationVersion" type="uint8" max="255" default="0" />
       <attribute id="0002" name="StackVersion" type="uint8" max="255" default="0" />
       <attribute id="0003" name="HWVersion" type="uint8" max="255" default="0" />
-      <attribute id="0004" name="ManufacturerName" type="string" max="32" default="" />
-      <attribute id="0005" name="ModelIdentifier" type="string" max="32" default="" />
-      <attribute id="0006" name="DateCode" type="string" max="16" default="" />
+      <attribute id="0004" name="ManufacturerName" type="string" default="">
+      	<restriction>
+      	  <type:minLength value="0" />
+      	  <type:maxLength value="32"/>
+      	</restriction>
+      </attribute>
+      <attribute id="0005" name="ModelIdentifier" type="string" default="">
+        <restriction>
+      	  <type:minLength value="0" />
+      	  <type:maxLength value="32"/>
+      	</restriction>
+      </attribute>
+      <attribute id="0006" name="DateCode" type="string" default="">
+        <restriction>
+      	  <type:minLength value="0" />
+      	  <type:maxLength value="16"/>
+      	</restriction>
+      </attribute>
       <attribute id="0007" name="PowerSource" type="enum8" required="true" default="0">
         <restriction>
           <type:enumeration value="00" name="Unknown" />
-          <type:enumeration value="01" name="Mains(singlePhase)" />
-          <type:enumeration value="02" name="Mains(3Phase)" />
+          <type:enumeration value="01" name="SinglePhaseMains" />
+          <type:enumeration value="02" name="ThreePhaseMains" />
           <type:enumeration value="03" name="Battery" />
           <type:enumeration value="04" name="DCSource" />
           <type:enumeration value="05" name="EmergencyMainsConstantlyPowered" />
           <type:enumeration value="06" name="EmergencyMainsAndTransferSwitch" />
-          <type:enumeration value="80" name="Unknown" />
-          <type:enumeration value="81" name="Mains(singlePhase)" />
-          <type:enumeration value="82" name="Mains(3Phase)" />
-          <type:enumeration value="83" name="Battery" />
-          <type:enumeration value="84" name="DCSource" />
-          <type:enumeration value="85" name="EmergencyMainsConstantlyPowered" />
-          <type:enumeration value="86" name="EmergencyMainsAndTransferSwitch" />
+          <type:enumeration value="80" name="UnknownWithBatteryBackup" />
+          <type:enumeration value="81" name="SinglePhaseMainsWithBatteryBackup" />
+          <type:enumeration value="82" name="ThreePhaseMainsWithBatteryBackup" />
+          <type:enumeration value="83" name="BatteryWithBatteryBackup" />
+          <type:enumeration value="84" name="DCSourceWithBatteryBackup" />
+          <type:enumeration value="85" name="EmergencyMainsConstantlyPoweredWithBatteryBackup" />
+          <type:enumeration value="86" name="EmergencyMainsAndTransferSwitchWithBatteryBackup" />
         </restriction>
       </attribute>
       <attribute id="0008" name="GenericDevice-Class" type="enum8" default="255">
@@ -44,18 +64,18 @@
           <type:enumeration value="06" name="SpotlightLED" />
           <type:enumeration value="07" name="LEDStrip" />
           <type:enumeration value="08" name="LEDTube" />
-          <type:enumeration value="09" name="GenericIndoorLuminaire/lightFixture" />
-          <type:enumeration value="0A" name="GenericOutdoorLuminaire/lightFixture" />
-          <type:enumeration value="0B" name="PendantLuminaire/lightFixture" />
-          <type:enumeration value="0C" name="FloorStandingLuminaire/lightFixture" />
-          <type:enumeration value="E0" name="GenericController(e.g.RemoteController)" />
+          <type:enumeration value="09" name="GenericIndoorLuminaireOrLightFixture" />
+          <type:enumeration value="0A" name="GenericOutdoorLuminaireOrLightFixture" />
+          <type:enumeration value="0B" name="PendantLuminaireOrLightFixture" />
+          <type:enumeration value="0C" name="FloorStandingLuminaireOrLightFixture" />
+          <type:enumeration value="E0" name="GenericController" />
           <type:enumeration value="E1" name="WallSwitch" />
           <type:enumeration value="E2" name="PortableRemoteController" />
-          <type:enumeration value="E3" name="MotionSensor/LightSensor" />
+          <type:enumeration value="E3" name="MotionSensorOrLightSensor" />
           <type:enumeration value="F0" name="GenericActuator" />
           <type:enumeration value="F1" name="WallSocket" />
-          <type:enumeration value="F2" name="Gateway/Bridge" />
-          <type:enumeration value="F3" name="Plug-inUnit" />
+          <type:enumeration value="F2" name="GatewayOrBridge" />
+          <type:enumeration value="F3" name="PlugInUnit" />
           <type:enumeration value="F4" name="RetrofitActuator" />
           <type:enumeration value="FF" name="Unspecified" />
         </restriction>
@@ -65,7 +85,12 @@
       <attribute id="000C" name="ManufacturerVersionDetails" type="string" default="" />
       <attribute id="000D" name="SerialNumber" type="string" default="" />
       <attribute id="000E" name="ProductLabel" type="string" default="" />
-      <attribute id="0010" name="LocationDescription" type="string" writable="true" max="16" default="" />
+      <attribute id="0010" name="LocationDescription" type="string" writable="true" default="">
+      	<restriction>
+      	  <type:minLength value="0" />
+      	  <type:maxLength value="16"/>
+      	</restriction>
+      </attribute>
       <attribute id="0011" name="PhysicalEnvironment" type="enum8" writable="true" default="0">
         <restriction>
           <type:enumeration value="00" name="UnspecifiedEnvironment" />
@@ -101,7 +126,7 @@
           <type:enumeration value="1E" name="LaundryRoom" />
           <type:enumeration value="1F" name="Library" />
           <type:enumeration value="20" name="MasterBedroom" />
-          <type:enumeration value="21" name="MudRoom(smallRoomForCoatsAndBoots)" />
+          <type:enumeration value="21" name="MudRoom" />
           <type:enumeration value="22" name="Nursery" />
           <type:enumeration value="23" name="Pantry" />
           <type:enumeration value="24" name="Office" />
@@ -116,10 +141,10 @@
           <type:enumeration value="2D" name="HotTub" />
           <type:enumeration value="2E" name="LivingRoom" />
           <type:enumeration value="2F" name="Sauna" />
-          <type:enumeration value="30" name="Shop/Workshop" />
+          <type:enumeration value="30" name="ShopOrWorkshop" />
           <type:enumeration value="31" name="GuestBedroom" />
           <type:enumeration value="32" name="GuestBath" />
-          <type:enumeration value="33" name="PowderRoom(1/2Bath)" />
+          <type:enumeration value="33" name="PowderRoom" />
           <type:enumeration value="34" name="BackYard" />
           <type:enumeration value="35" name="FrontYard" />
           <type:enumeration value="36" name="Patio" />
@@ -130,7 +155,7 @@
           <type:enumeration value="3B" name="Whirlpool" />
           <type:enumeration value="3C" name="Shed" />
           <type:enumeration value="3D" name="EquipmentStorage" />
-          <type:enumeration value="3E" name="Hobby/CraftRoom" />
+          <type:enumeration value="3E" name="HobbyOrCraftRoom" />
           <type:enumeration value="3F" name="Fountain" />
           <type:enumeration value="40" name="Pond" />
           <type:enumeration value="41" name="ReceptionRoom" />
@@ -164,8 +189,8 @@
           <type:enumeration value="63" name="OtherDoor" />
           <type:enumeration value="64" name="WaitingRoom" />
           <type:enumeration value="65" name="TriageRoom" />
-          <type:enumeration value="66" name="Doctor’sOffice" />
-          <type:enumeration value="67" name="Patient’sPrivateRoom" />
+          <type:enumeration value="66" name="DoctorsOffice" />
+          <type:enumeration value="67" name="PatientsPrivateRoom" />
           <type:enumeration value="68" name="ConsultationRoom" />
           <type:enumeration value="69" name="NurseStation" />
           <type:enumeration value="6A" name="Ward" />
@@ -192,7 +217,12 @@
           <element name="DisableDeviceConfiguration" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
-      <attribute id="4000" name="SWBuildID" type="string" max="16" default="" />
+      <attribute id="4000" name="SWBuildID" type="string" default="">
+        <restriction>
+          <type:minLength value="0" />
+          <type:maxLength value="16"/>
+        </restriction>
+      </attribute>      
     </attributes>
     <commands>
       <command id="00" name="ResetToFactoryDefaults" />
