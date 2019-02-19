@@ -120,9 +120,12 @@
 	</xs:complexType>
 
 	<xs:complexType name="Tag">
-		<xs:sequence>
-
-		</xs:sequence>
+		<xs:choice>
+			<xs:element name="bitmap" type="type:BitmapDefinition"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="restriction" type="type:restrictionType"
+				minOccurs="0" maxOccurs="1" />
+		</xs:choice>
 		<xs:attribute name="id" type="zcl:TagId" use="required" />
 		<xs:attribute name="name" type="type:NamedElement"
 			use="required" />
@@ -211,6 +214,11 @@
 		<xs:keyref name="commandDataTypeRef" refer="zcl:dataType">
 			<xs:selector
 				xpath=".//zcl:cluster/server/commands/command/fields/field | .//zcl:cluster/client/commands/command/fields/field | .//zcl:global/commands/command/fields/field | .//zcl:global/commands/command/fields/field" />
+			<xs:field xpath="@type"></xs:field>
+		</xs:keyref>
+		<xs:keyref name="tagDataTypeRef" refer="zcl:dataType">
+			<xs:selector
+				xpath=".//zcl:cluster/tags/tag" />
 			<xs:field xpath="@type"></xs:field>
 		</xs:keyref>
 		<xs:key name="dataType">
