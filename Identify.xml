@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0003" revision="0" name="Identify" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="utility" picsCode="I" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:type="http://zigbee.org/zcl/types" 
+             xmlns:xi="http://www.w3.org/2001/XInclude" 
+             xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+             id="0003" revision="1" name="Identify">
+  <classification hierarchy="base" role="utility" picsCode="I" />
   <server>
     <attributes>
       <attribute id="0000" name="IdentifyTime" type="uint16" writable="true" required="true" max="65535" default="0" />
@@ -14,7 +19,16 @@
       <command id="01" name="IdentifyQuery" required="true" />
       <command id="40" name="TriggerEffect">
         <fields>
-          <field name="EffectIdentifier" type="uint8" />
+          <field name="EffectIdentifier" type="uint8">
+          	<restriction>
+              <type:enumeration value="00" name="Blink" />
+              <type:enumeration value="01" name="Breathe" />
+              <type:enumeration value="02" name="Okay" />
+              <type:enumeration value="0b" name="ChannelChange" />
+              <type:enumeration value="fe" name="FinishEffect" />
+              <type:enumeration value="ff" name="StopEffect" />
+            </restriction>
+          </field>
           <field name="EffectVariant" type="uint8" />
         </fields>
       </command>
