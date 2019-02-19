@@ -4,31 +4,31 @@
   <server>
     <attributes />
     <commands>
-      <command id="00" name="Get Alerts" required="true" />
+      <command id="00" name="GetAlerts" required="true" />
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Get Alerts Response" required="true">
+      <command id="00" name="GetAlertsResponse" required="true">
         <fields>
-          <field name="Alerts Count" type="uint8" />
-          <field name="Alert structure 1" type="uint24" />
+          <field name="AlertsCount" type="uint8" />
+          <field name="AlertStructure1" type="uint24" />
           <field name="..." type="..." />
-          <field name="Alert structure n" type="uint24" />
+          <field name="AlertStructureN" type="uint24" />
         </fields>
       </command>
-      <command id="01" name="Alerts Notification" required="true">
+      <command id="01" name="AlertsNotification" required="true">
         <fields>
-          <field name="Alerts Count" type="uint8" />
-          <field name="Alert structure 1" type="uint24" />
+          <field name="AlertsCount" type="uint8" />
+          <field name="AlertStructure1" type="uint24" />
           <field name="..." type="..." />
-          <field name="Alert structure n" type="uint24" />
+          <field name="AlertStructureN" type="uint24" />
         </fields>
       </command>
-      <command id="02" name="Event Notification" required="true">
+      <command id="02" name="EventNotification" required="true">
         <fields>
-          <field name="Event Header" type="uint8" />
-          <field name="Event Identification" type="uint8" />
+          <field name="EventHeader" type="uint8" />
+          <field name="EventIdentification" type="uint8" />
         </fields>
       </command>
     </commands>

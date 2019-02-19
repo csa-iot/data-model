@@ -8,10 +8,10 @@
       </attribute>
       <attribute id="0001" name="OccupancySensorType" type="enum8" required="true" default="MS">
         <restriction>
-          <type:enumeration value="0" name="PIR" />
-          <type:enumeration value="1" name="Ultrasonic" />
-          <type:enumeration value="2" name="PIR and ultrasonic" />
-          <type:enumeration value="3" name="Physical contact" />
+          <type:enumeration value="00" name="PIR" />
+          <type:enumeration value="01" name="Ultrasonic" />
+          <type:enumeration value="02" name="PIRAndUltrasonic" />
+          <type:enumeration value="03" name="PhysicalContact" />
         </restriction>
       </attribute>
       <attribute id="0002" name="OccupancySensorTypeBitmap" type="map8" required="true" default="-">

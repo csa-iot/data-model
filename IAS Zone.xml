@@ -5,8 +5,8 @@
     <attributes>
       <attribute id="0000" name="ZoneState" type="enum8" required="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Not enrolled" />
-          <type:enumeration value="1" name="Enrolled (the client will react to Zone State Change Notification commands from the server)" />
+          <type:enumeration value="00" name="NotEnrolled" />
+          <type:enumeration value="01" name="Enrolled(theClientWillReactToZoneStateChangeNotificationCommandsFromTheServer)" />
         </restriction>
       </attribute>
       <attribute id="0001" name="ZoneType" type="enum16" required="true" default="-" />
@@ -17,15 +17,15 @@
       <attribute id="0013" name="CurrentZoneSensitivityLevel" type="uint8" writable="true" max="255" default="0" />
     </attributes>
     <commands>
-      <command id="00" name="Zone Enroll Response" required="true" />
-      <command id="01" name="Initiate Normal Operation Mode" />
-      <command id="02" name="Initiate Test Mode" />
+      <command id="00" name="ZoneEnrollResponse" required="true" />
+      <command id="01" name="InitiateNormalOperationMode" />
+      <command id="02" name="InitiateTestMode" />
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Zone Status Change Notification" required="true" />
-      <command id="01" name="Zone Enroll Request" required="true" />
+      <command id="00" name="ZoneStatusChangeNotification" required="true" />
+      <command id="01" name="ZoneEnrollRequest" required="true" />
     </commands>
   </client>
 </zcl:cluster>

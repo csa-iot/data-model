@@ -6,11 +6,11 @@
       <attribute id="0000" name="LocationType" type="data8" writable="true" required="true" default="-" />
       <attribute id="0001" name="LocationMethod" type="enum8" writable="true" required="true" default="-">
         <restriction>
-          <type:enumeration value="0" name="Lateration" />
-          <type:enumeration value="1" name="Signposting" />
-          <type:enumeration value="2" name="RF fingerprinting" />
-          <type:enumeration value="3" name="Out of band" />
-          <type:enumeration value="4" name="Centralized" />
+          <type:enumeration value="00" name="Lateration" />
+          <type:enumeration value="01" name="Signposting" />
+          <type:enumeration value="02" name="RFFingerprinting" />
+          <type:enumeration value="03" name="OutOfBand" />
+          <type:enumeration value="04" name="Centralized" />
         </restriction>
       </attribute>
       <attribute id="0002" name="LocationAge" type="uint16" max="65535" default="-" />
@@ -26,21 +26,21 @@
       <attribute id="0017" name="NumberRSSIMeasurements" type="uint8" writable="true" required="true" min="1" max="255" default="-" />
     </attributes>
     <commands>
-      <command id="00" name="Set Absolute Location" required="true">
+      <command id="00" name="SetAbsoluteLocation" required="true">
         <fields>
-          <field name="Coordinate 1" type="int16" />
-          <field name="Coordinate 2" type="int16" />
-          <field name="Coordinate 3" type="int16" />
+          <field name="Coordinate1" type="int16" />
+          <field name="Coordinate2" type="int16" />
+          <field name="Coordinate3" type="int16" />
           <field name="Power" type="int16" />
-          <field name="Path Loss Exponent" type="uint16" />
+          <field name="PathLossExponent" type="uint16" />
         </fields>
       </command>
-      <command id="01" name="Set Device Configuration" required="true" />
-      <command id="02" name="Get Device Configuration" required="true" />
-      <command id="03" name="Get Location Data" required="true" />
-      <command id="04" name="RSSI Response">
+      <command id="01" name="SetDeviceConfiguration" required="true" />
+      <command id="02" name="GetDeviceConfiguration" required="true" />
+      <command id="03" name="GetLocationData" required="true" />
+      <command id="04" name="RSSIResponse">
         <fields>
-          <field name="Replying Device" type="EUI64" />
+          <field name="ReplyingDevice" type="EUI64" />
           <field name="X" type="int16" />
           <field name="Y" type="int16" />
           <field name="Z" type="int16" />
@@ -48,16 +48,16 @@
           <field name="NumberRSSIMeasurements" type="uint8" />
         </fields>
       </command>
-      <command id="05" name="Send Pings">
+      <command id="05" name="SendPings">
         <fields>
-          <field name="Target Address" type="EUI64" />
+          <field name="TargetAddress" type="EUI64" />
           <field name="NumberRSSIMeasurements" type="uint8" />
           <field name="CalculationPeriod" type="uint16" />
         </fields>
       </command>
-      <command id="06" name="Anchor Node Announce">
+      <command id="06" name="AnchorNodeAnnounce">
         <fields>
-          <field name="Anchor Node IEEE Address" type="EUI64" />
+          <field name="AnchorNodeIEEEAddress" type="EUI64" />
           <field name="X" type="int16" />
           <field name="Y" type="int16" />
           <field name="Z" type="int16" />
@@ -67,60 +67,60 @@
   </server>
   <client>
     <commands>
-      <command id="00" name="Device configuration response" required="true">
+      <command id="00" name="DeviceConfigurationResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
           <field name="Power" type="int16" />
-          <field name="Path Loss Exponent" type="uint16" />
-          <field name="Calculation Period" type="uint16" />
-          <field name="Number RSSI Measurements" type="uint8" />
-          <field name="Reporting Period" type="uint16" />
+          <field name="PathLossExponent" type="uint16" />
+          <field name="CalculationPeriod" type="uint16" />
+          <field name="NumberRSSIMeasurements" type="uint8" />
+          <field name="ReportingPeriod" type="uint16" />
         </fields>
       </command>
-      <command id="01" name="Location data response" required="true">
+      <command id="01" name="LocationDataResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Loca-tion Type" type="data8" />
-          <field name="Coordinate 1" type="int16" />
-          <field name="Coordinate 2" type="int16" />
-          <field name="Coordinate 3" type="int16" />
+          <field name="Loca-tionType" type="data8" />
+          <field name="Coordinate1" type="int16" />
+          <field name="Coordinate2" type="int16" />
+          <field name="Coordinate3" type="int16" />
           <field name="Power" type="int16" />
-          <field name="Path Loss Exponent" type="uint16" />
-          <field name="Location Method" type="enum8" />
-          <field name="Quality Mea-sure" type="uint8" />
-          <field name="Location Age" type="uint16" />
+          <field name="PathLossExponent" type="uint16" />
+          <field name="LocationMethod" type="enum8" />
+          <field name="QualityMea-sure" type="uint8" />
+          <field name="LocationAge" type="uint16" />
         </fields>
       </command>
-      <command id="02" name="Location data notification" required="true">
+      <command id="02" name="LocationDataNotification" required="true">
         <fields>
-          <field name="Location Type" type="data8" />
-          <field name="Coordinate 1" type="int16" />
-          <field name="Coordinate 2" type="int16" />
-          <field name="Coordinate 3" type="int16" />
+          <field name="LocationType" type="data8" />
+          <field name="Coordinate1" type="int16" />
+          <field name="Coordinate2" type="int16" />
+          <field name="Coordinate3" type="int16" />
           <field name="Power" type="int16" />
-          <field name="Path Loss Exponent" type="uint16" />
-          <field name="Location Method" type="enum8" />
-          <field name="Quality Measure" type="uint8" />
-          <field name="Location Age" type="uint16" />
+          <field name="PathLossExponent" type="uint16" />
+          <field name="LocationMethod" type="enum8" />
+          <field name="QualityMeasure" type="uint8" />
+          <field name="LocationAge" type="uint16" />
         </fields>
       </command>
-      <command id="03" name="Compact location data notification" required="true" />
-      <command id="04" name="RSSI Ping" required="true">
+      <command id="03" name="CompactLocationDataNotification" required="true" />
+      <command id="04" name="RSSIPing" required="true">
         <fields>
-          <field name="Location Type" type="data8" />
+          <field name="LocationType" type="data8" />
         </fields>
       </command>
-      <command id="05" name="RSSI Request" />
-      <command id="06" name="Report RSSI Measurements">
+      <command id="05" name="RSSIRequest" />
+      <command id="06" name="ReportRSSIMeasurements">
         <fields>
-          <field name="Measuring Device" type="EUI64" />
-          <field name="N Neighbors" type="uint8" />
+          <field name="MeasuringDevice" type="EUI64" />
+          <field name="NNeighbors" type="uint8" />
           <field name="NeighborsInfo" type="Variable [E1]" />
         </fields>
       </command>
-      <command id="07" name="Request Own Location">
+      <command id="07" name="RequestOwnLocation">
         <fields>
-          <field name="IEEE Address of the Blind Node" type="EUI64" />
+          <field name="IEEEAddressOfTheBlindNode" type="EUI64" />
         </fields>
       </command>
     </commands>

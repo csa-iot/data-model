@@ -4,15 +4,15 @@
   <server>
     <attributes />
     <commands>
-      <command id="00" name="Move to Level" required="true" />
+      <command id="00" name="MoveToLevel" required="true" />
       <command id="01" name="Move" required="true" />
       <command id="02" name="Step" required="true" />
       <command id="03" name="Stop" required="true" />
-      <command id="04" name="Move to Level (with On/Off)" required="true" />
-      <command id="05" name="Move (with On/Off)" required="true" />
-      <command id="06" name="Step (with On/Off) " required="true" />
+      <command id="04" name="MoveToLevel(withOn/Off)" required="true" />
+      <command id="05" name="Move(withOn/Off)" required="true" />
+      <command id="06" name="Step(withOn/Off)" required="true" />
       <command id="07" name="Stop" required="true" />
-      <command id="08" name="Move to Closest Frequency" required="true" />
+      <command id="08" name="MoveToClosestFrequency" required="true" />
     </commands>
   </server>
 </zcl:cluster>

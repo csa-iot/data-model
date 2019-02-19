@@ -12,7 +12,7 @@
       <attribute id="0006" name="AbsMaxCoolSetpointLimit" type="int16" default="0x0c80 (32°C)" />
       <attribute id="0007" name="PICoolingDemand" type="uint8" max="100" default="-" />
       <attribute id="0008" name="PIHeatingDemand" type="uint8" max="100" default="-" />
-      <attribute id="0009" name="HVACSystemTypeConfiguration " type="map8" writable="true" default="0" />
+      <attribute id="0009" name="HVACSystemTypeConfiguration" type="map8" writable="true" default="0" />
       <attribute id="0010" name="LocalTemperatureCalibration" type="int8" writable="true" default="0x00(0°C)" />
       <attribute id="0011" name="OccupiedCoolingSetpoint" type="int16" writable="true" required="true" default="0x0a28(26°C)" />
       <attribute id="0012" name="OccupiedHeatingSetpoint" type="int16" writable="true" required="true" default="0x07d0(20°C)" />
@@ -28,50 +28,50 @@
       </attribute>
       <attribute id="001B" name="ControlSequenceOfOperation" type="enum8" writable="true" required="true" default="4">
         <restriction>
-          <type:enumeration value="0" name="Cooling Only" />
-          <type:enumeration value="1" name="Cooling With Reheat" />
-          <type:enumeration value="2" name="Heating Only" />
-          <type:enumeration value="3" name="Heating With Reheat" />
-          <type:enumeration value="4" name="Cooling and Heating 4-pipes (see 1.3.2)" />
-          <type:enumeration value="5" name="Cooling and Heating 4-pipes with Reheat" />
+          <type:enumeration value="00" name="CoolingOnly" />
+          <type:enumeration value="01" name="CoolingWithReheat" />
+          <type:enumeration value="02" name="HeatingOnly" />
+          <type:enumeration value="03" name="HeatingWithReheat" />
+          <type:enumeration value="04" name="CoolingAndHeating4-pipes(see1.3.2)" />
+          <type:enumeration value="05" name="CoolingAndHeating4-pipesWithReheat" />
         </restriction>
       </attribute>
       <attribute id="001C" name="SystemMode" type="enum8" writable="true" required="true" default="1">
         <restriction>
-          <type:enumeration value="0" name="Off" />
-          <type:enumeration value="1" name="Auto" />
-          <type:enumeration value="3" name="Cool" />
-          <type:enumeration value="4" name="Heat" />
-          <type:enumeration value="5" name="Emergency heating" />
-          <type:enumeration value="6" name="Precooling (see  REF _Ref426633036 \r \h 6.1.2)" />
-          <type:enumeration value="7" name="Fan only" />
-          <type:enumeration value="8" name="Dry" />
-          <type:enumeration value="9" name="Sleep" />
+          <type:enumeration value="00" name="Off" />
+          <type:enumeration value="01" name="Auto" />
+          <type:enumeration value="03" name="Cool" />
+          <type:enumeration value="04" name="Heat" />
+          <type:enumeration value="05" name="EmergencyHeating" />
+          <type:enumeration value="06" name="Precooling(seeREF_Ref426633036\r\h6.1.2)" />
+          <type:enumeration value="07" name="FanOnly" />
+          <type:enumeration value="08" name="Dry" />
+          <type:enumeration value="09" name="Sleep" />
         </restriction>
       </attribute>
       <attribute id="001D" name="AlarmMask" type="map8" default="0" />
       <attribute id="001E" name="ThermostatRunningMode" type="enum8" default="0" />
-      <attribute id="0000" name="0x0020 – 0x0028" type="" default="" />
+      <attribute id="0000" name="0x0020–0x0028" type="" default="" />
       <attribute id="0000" name="StartOfWeek" type="enum8" default="–" />
       <attribute id="0000" name="NumberOfWeeklyTransitions" type="uint8" max="255" default="N/A" />
       <attribute id="0000" name="NumberOfDailyTransitions" type="uint8" max="255" default="N/A" />
       <attribute id="0000" name="TemperatureSetpointHold" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Setpoint Hold Off" />
-          <type:enumeration value="1" name="Setpoint Hold On" />
+          <type:enumeration value="00" name="SetpointHoldOff" />
+          <type:enumeration value="01" name="SetpointHoldOn" />
         </restriction>
       </attribute>
       <attribute id="0000" name="TemperatureSetpointHoldDuration" type="uint16" writable="true" min="65535" max="1440" default="65535" />
       <attribute id="0000" name="ThermostatProgrammingOperationMode" type="map8" writable="true" default="0">
         <bitmap />
       </attribute>
-      <attribute id="0000" name="0x0029 – 0x002F" type="" default="" />
+      <attribute id="0000" name="0x0029–0x002F" type="" default="" />
       <attribute id="0000" name="ThermostatRunningState" type="map16" default="-" />
       <attribute id="0030" name="SetpointChangeSource" type="enum8" default="0">
         <restriction>
-          <type:enumeration value="0" name="Manual, user-initiated setpoint change via the thermostat" />
-          <type:enumeration value="1" name="Schedule/internal programming-initiated setpoint change" />
-          <type:enumeration value="2" name="Externally-initiated setpoint change (e.g., DRLC cluster command, attribute write)" />
+          <type:enumeration value="00" name="Manual,User-initiatedSetpointChangeViaTheThermostat" />
+          <type:enumeration value="01" name="Schedule/internalProgramming-initiatedSetpointChange" />
+          <type:enumeration value="02" name="Externally-initiatedSetpointChange(e.g.,DRLCClusterCommand,AttributeWrite)" />
         </restriction>
       </attribute>
       <attribute id="0031" name="SetpointChangeAmount" type="int16" default="32768" />
@@ -85,28 +85,28 @@
       <attribute id="003A" name="EmergencyHeatDelta" type="uint8" writable="true" max="255" default="255" />
       <attribute id="0040" name="ACType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Reserved" />
-          <type:enumeration value="1" name="Cooling and Fixed Speed" />
-          <type:enumeration value="2" name="Heat Pump and Fixed Speed" />
-          <type:enumeration value="3" name="Cooling and Inverter" />
-          <type:enumeration value="4" name="Heat Pump and Inverter" />
+          <type:enumeration value="00" name="Reserved" />
+          <type:enumeration value="01" name="CoolingAndFixedSpeed" />
+          <type:enumeration value="02" name="HeatPumpAndFixedSpeed" />
+          <type:enumeration value="03" name="CoolingAndInverter" />
+          <type:enumeration value="04" name="HeatPumpAndInverter" />
         </restriction>
       </attribute>
       <attribute id="0041" name="ACCapacity" type="uint16" writable="true" max="65535" default="0" />
       <attribute id="0042" name="ACRefrigerantType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Reserved" />
-          <type:enumeration value="1" name="R22" />
-          <type:enumeration value="2" name="R410a" />
-          <type:enumeration value="3" name="R407c" />
+          <type:enumeration value="00" name="Reserved" />
+          <type:enumeration value="01" name="R22" />
+          <type:enumeration value="02" name="R410a" />
+          <type:enumeration value="03" name="R407c" />
         </restriction>
       </attribute>
       <attribute id="0043" name="ACCompressorType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Reserved" />
-          <type:enumeration value="1" name="T1, Max working ambient 43 ºC" />
-          <type:enumeration value="2" name="T2, Max working ambient 35 ºC" />
-          <type:enumeration value="3" name="T3, Max working ambient 52 ºC" />
+          <type:enumeration value="00" name="Reserved" />
+          <type:enumeration value="01" name="T1,MaxWorkingAmbient43ºC" />
+          <type:enumeration value="02" name="T2,MaxWorkingAmbient35ºC" />
+          <type:enumeration value="03" name="T3,MaxWorkingAmbient52ºC" />
         </restriction>
       </attribute>
       <attribute id="0044" name="ACErrorCode" type="map32" writable="true" default="0">

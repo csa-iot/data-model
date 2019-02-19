@@ -11,118 +11,118 @@
       <attribute id="0005" name="LastConfiguredBy" type="EUI64" default="-" />
     </attributes>
     <commands>
-      <command id="00" name="Add Scene" required="true">
+      <command id="00" name="AddScene" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
-          <field name="Transition time" type="uint16" />
-          <field name="Scene Name" type="string" />
-          <field name="Extension field sets, one per cluster" type="Variable (multiple types)" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
+          <field name="TransitionTime" type="uint16" />
+          <field name="SceneName" type="string" />
+          <field name="ExtensionFieldSets,OnePerCluster" type="Variable (multiple types)" />
         </fields>
       </command>
-      <command id="01" name="View Scene" required="true">
+      <command id="01" name="ViewScene" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
         </fields>
       </command>
-      <command id="02" name="Remove Scene" required="true">
+      <command id="02" name="RemoveScene" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
         </fields>
       </command>
-      <command id="03" name="Remove All Scenes" required="true">
+      <command id="03" name="RemoveAllScenes" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
+          <field name="GroupID" type="uint16" />
         </fields>
       </command>
-      <command id="04" name="Store Scene" required="true">
+      <command id="04" name="StoreScene" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
         </fields>
       </command>
-      <command id="05" name="Recall Scene" required="true">
+      <command id="05" name="RecallScene" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
-          <field name="Transition Time" type="uint16" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
+          <field name="TransitionTime" type="uint16" />
         </fields>
       </command>
-      <command id="06" name="Get Scene Membership" required="true">
+      <command id="06" name="GetSceneMembership" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
+          <field name="GroupID" type="uint16" />
         </fields>
       </command>
-      <command id="40" name="Enhanced Add Scene" />
-      <command id="41" name="Enhanced View Scene" />
-      <command id="42" name="Copy Scene">
+      <command id="40" name="EnhancedAddScene" />
+      <command id="41" name="EnhancedViewScene" />
+      <command id="42" name="CopyScene">
         <fields>
           <field name="Mode" type="uint8" />
-          <field name="Group identifier from" type="uint16" />
-          <field name="Scene identifier from" type="uint8" />
-          <field name="Group identifier to" type="uint16" />
-          <field name="Scene identifier to" type="uint8" />
+          <field name="GroupIdentifierFrom" type="uint16" />
+          <field name="SceneIdentifierFrom" type="uint8" />
+          <field name="GroupIdentifierTo" type="uint16" />
+          <field name="SceneIdentifierTo" type="uint8" />
         </fields>
       </command>
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Add Scene Response" required="true">
+      <command id="00" name="AddSceneResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
         </fields>
       </command>
-      <command id="01" name="View Scene Response" required="true">
+      <command id="01" name="ViewSceneResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
-          <field name="Transition time" type="uint16" />
-          <field name="Scene Name" type="string" />
-          <field name="Extension field sets, one per cluster" type="Variable (multiple types) " />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
+          <field name="TransitionTime" type="uint16" />
+          <field name="SceneName" type="string" />
+          <field name="ExtensionFieldSets,OnePerCluster" type="Variable (multiple types) " />
         </fields>
       </command>
-      <command id="02" name="Remove Scene Response" required="true">
+      <command id="02" name="RemoveSceneResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
         </fields>
       </command>
-      <command id="03" name="Remove All Scenes Response" required="true">
+      <command id="03" name="RemoveAllScenesResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
+          <field name="GroupID" type="uint16" />
         </fields>
       </command>
-      <command id="04" name="Store Scene Response" required="true">
+      <command id="04" name="StoreSceneResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
-          <field name="Scene ID" type="uint8" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneID" type="uint8" />
         </fields>
       </command>
-      <command id="06" name="Get Scene Membership Response" required="true">
+      <command id="06" name="GetSceneMembershipResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
           <field name="Capacity" type="uint8" />
-          <field name="Group ID" type="uint16" />
-          <field name="Scene count" type="uint8" />
-          <field name="Scene list" type="uint8 x N" />
+          <field name="GroupID" type="uint16" />
+          <field name="SceneCount" type="uint8" />
+          <field name="SceneList" type="uint8 x N" />
         </fields>
       </command>
-      <command id="40" name="Enhanced Add Scene Response" />
-      <command id="41" name="Enhanced View Scene Response" />
-      <command id="42" name="Copy Scene Response">
+      <command id="40" name="EnhancedAddSceneResponse" />
+      <command id="41" name="EnhancedViewSceneResponse" />
+      <command id="42" name="CopySceneResponse">
         <fields>
           <field name="Status" type="uint8" />
-          <field name="Group identifier from" type="uint16" />
-          <field name="Scene identifier from" type="uint8" />
+          <field name="GroupIdentifierFrom" type="uint16" />
+          <field name="SceneIdentifierFrom" type="uint8" />
         </fields>
       </command>
     </commands>

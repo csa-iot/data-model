@@ -3,8 +3,8 @@
   <classification role="utility" picsCode="NEARGW" />
   <server>
     <attributes>
-      <attribute id="0000" name="Nearest Gateway" type="16-bit NWK address" writable="true" required="true" default="0" />
-      <attribute id="0001" name="New Mobile Node" type="16-bit NWK address" writable="true" required="true" default="0" />
+      <attribute id="0000" name="NearestGateway" type="16-bit NWK address" writable="true" required="true" default="0" />
+      <attribute id="0001" name="NewMobileNode" type="16-bit NWK address" writable="true" required="true" default="0" />
     </attributes>
   </server>
 </zcl:cluster>

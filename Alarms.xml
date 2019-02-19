@@ -6,31 +6,31 @@
       <attribute id="0000" name="AlarmCount" type="uint16" default="0" />
     </attributes>
     <commands>
-      <command id="00" name="Reset Alarm" required="true">
+      <command id="00" name="ResetAlarm" required="true">
         <fields>
-          <field name="Alarm code" type="enum8" />
-          <field name="Cluster identifier" type="clusterId" />
+          <field name="AlarmCode" type="enum8" />
+          <field name="ClusterIdentifier" type="clusterId" />
         </fields>
       </command>
-      <command id="01" name="Reset all alarms" required="true" />
-      <command id="02" name="Get Alarm" />
-      <command id="03" name="Reset alarm log" />
+      <command id="01" name="ResetAllAlarms" required="true" />
+      <command id="02" name="GetAlarm" />
+      <command id="03" name="ResetAlarmLog" />
     </commands>
   </server>
   <client>
     <commands>
       <command id="00" name="Alarm" required="true">
         <fields>
-          <field name="Alarm code" type="enum8" />
-          <field name="Cluster identifier" type="clusterId" />
+          <field name="AlarmCode" type="enum8" />
+          <field name="ClusterIdentifier" type="clusterId" />
         </fields>
       </command>
-      <command id="01" name="Get alarm response">
+      <command id="01" name="GetAlarmResponse">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Alarm code" type="enum8" />
-          <field name="Cluster identifier" type="clusterId" />
-          <field name="Time stamp" type="uint32" />
+          <field name="AlarmCode" type="enum8" />
+          <field name="ClusterIdentifier" type="clusterId" />
+          <field name="TimeStamp" type="uint32" />
         </fields>
       </command>
     </commands>

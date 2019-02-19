@@ -6,11 +6,11 @@
   </server>
   <client>
     <commands>
-      <command id="00" name="Get Last Message" required="true" />
-      <command id="01" name="Message Confirmation" required="true">
+      <command id="00" name="GetLastMessage" required="true" />
+      <command id="01" name="MessageConfirmation" required="true">
         <fields>
-          <field name="Message ID" type="uint32" />
-          <field name="Confirmation Time" type="UTC" />
+          <field name="MessageID" type="uint32" />
+          <field name="ConfirmationTime" type="UTC" />
         </fields>
       </command>
     </commands>

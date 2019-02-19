@@ -17,54 +17,54 @@
       <attribute id="0014" name="DefaultMoveRate" type="uint16" writable="true" max="254" default="MS" />
       <attribute id="000F" name="Options" type="map8" writable="true" default="0">
         <bitmap>
-          <element name="ExecuteIfOff" type="bool" mask="00000001" />
-          <element name="ReservedforDerivedClusters" type="bool" mask="00000002" shiftRight="1" />
+          <element name="ExecuteIfOff" type="bool" mask="01" />
+          <element name="ReservedforDerivedClusters" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
       <attribute id="4000" name="StartUpCurrentLevel" type="uint8" writable="true" max="255" default="MS" />
     </attributes>
     <commands>
-      <command id="00" name="Move to Level " required="true">
+      <command id="00" name="MoveToLevel" required="true">
         <fields>
           <field name="Level" type="uint8" />
-          <field name="Transition time" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="01" name="Move " required="true">
+      <command id="01" name="Move" required="true">
         <fields>
-          <field name="Move mode" type="enum8" />
+          <field name="MoveMode" type="enum8" />
           <field name="Rate" type="uint8" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="02" name="Step " required="true">
+      <command id="02" name="Step" required="true">
         <fields>
-          <field name="Step mode" type="enum8" />
-          <field name="Step size" type="uint8" />
-          <field name="Transition time" type="uint16" />
+          <field name="StepMode" type="enum8" />
+          <field name="StepSize" type="uint8" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="03" name="Stop " required="true">
-        <fields>
-          <field name="OptionsMask" type="map8" />
-          <field name="OptionsOverride" type="map8" />
-        </fields>
-      </command>
-      <command id="04" name="Move to Level (with On/Off) " required="true" />
-      <command id="05" name="Move (with On/Off) " required="true" />
-      <command id="06" name="Step (with On/Off) " required="true" />
-      <command id="07" name="Stop " required="true">
+      <command id="03" name="Stop" required="true">
         <fields>
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="08" name="Move to Closest Frequency" required="true">
+      <command id="04" name="MoveToLevel(withOn/Off)" required="true" />
+      <command id="05" name="Move(withOn/Off)" required="true" />
+      <command id="06" name="Step(withOn/Off)" required="true" />
+      <command id="07" name="Stop" required="true">
+        <fields>
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="08" name="MoveToClosestFrequency" required="true">
         <fields>
           <field name="Frequency" type="uint16" />
         </fields>

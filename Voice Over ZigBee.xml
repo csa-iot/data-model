@@ -4,41 +4,41 @@
   <server>
     <attributes />
     <commands>
-      <command id="00" name="Establishment Request" required="true" />
-      <command id="01" name="Voice Transmission " required="true">
+      <command id="00" name="EstablishmentRequest" required="true" />
+      <command id="01" name="VoiceTransmission" required="true">
         <fields>
-          <field name="Voice Data" type="-" />
+          <field name="VoiceData" type="-" />
         </fields>
       </command>
-      <command id="02" name="Voice Transmission Completion">
+      <command id="02" name="VoiceTransmissionCompletion">
         <fields>
-          <field name="ZCL Header" type="-" />
+          <field name="ZCLHeader" type="-" />
         </fields>
       </command>
-      <command id="03" name="Control Response">
+      <command id="03" name="ControlResponse">
         <fields>
-          <field name="ACK=0x01 NAK=0x00" type="enum8" />
+          <field name="ACK=0x01NAK=0x00" type="enum8" />
         </fields>
       </command>
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Establishment Response " required="true">
+      <command id="00" name="EstablishmentResponse" required="true">
         <fields>
-          <field name="ACK=0x01 NAK=0x00" type="enum8" />
+          <field name="ACK=0x01NAK=0x00" type="enum8" />
           <field name="CodecType" type="enum8" />
         </fields>
       </command>
-      <command id="01" name="Voice Transmission Response " required="true">
+      <command id="01" name="VoiceTransmissionResponse" required="true">
         <fields>
-          <field name="Sequence Number of ZCL Header" type="uint8" />
-          <field name="Error Flag" type="enum8" />
+          <field name="SequenceNumberOfZCLHeader" type="uint8" />
+          <field name="ErrorFlag" type="enum8" />
         </fields>
       </command>
       <command id="02" name="Control">
         <fields>
-          <field name="Control Type" type="enum8" />
+          <field name="ControlType" type="enum8" />
         </fields>
       </command>
     </commands>

@@ -9,24 +9,24 @@
       <command id="02" name="Emergency" required="true" />
       <command id="03" name="Fire" required="true" />
       <command id="04" name="Panic" required="true" />
-      <command id="05" name="Get Zone ID Map" required="true" />
-      <command id="06" name="Get Zone Information" required="true" />
-      <command id="07" name="Get Panel Status" required="true" />
-      <command id="08" name="Get Bypassed Zone List" required="true" />
-      <command id="09" name="Get Zone Status" required="true" />
+      <command id="05" name="GetZoneIDMap" required="true" />
+      <command id="06" name="GetZoneInformation" required="true" />
+      <command id="07" name="GetPanelStatus" required="true" />
+      <command id="08" name="GetBypassedZoneList" required="true" />
+      <command id="09" name="GetZoneStatus" required="true" />
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Arm Response" required="true" />
-      <command id="01" name="Get Zone ID Map Response" required="true" />
-      <command id="02" name="Get Zone Information Response" required="true" />
-      <command id="03" name="Zone Status Changed" required="true" />
-      <command id="04" name="Panel Status Changed" required="true" />
-      <command id="05" name="Get Panel Status Response" required="true" />
-      <command id="06" name="Set Bypassed Zone List" required="true" />
-      <command id="07" name="Bypass Response" required="true" />
-      <command id="08" name="Get Zone Status Response" required="true" />
+      <command id="00" name="ArmResponse" required="true" />
+      <command id="01" name="GetZoneIDMapResponse" required="true" />
+      <command id="02" name="GetZoneInformationResponse" required="true" />
+      <command id="03" name="ZoneStatusChanged" required="true" />
+      <command id="04" name="PanelStatusChanged" required="true" />
+      <command id="05" name="GetPanelStatusResponse" required="true" />
+      <command id="06" name="SetBypassedZoneList" required="true" />
+      <command id="07" name="BypassResponse" required="true" />
+      <command id="08" name="GetZoneStatusResponse" required="true" />
     </commands>
   </client>
 </zcl:cluster>

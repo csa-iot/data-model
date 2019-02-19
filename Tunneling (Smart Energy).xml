@@ -8,44 +8,44 @@
     <commands>
       <command id="00" name="RequestTunnel" required="true">
         <fields>
-          <field name="ProtocolID (M)" type="enum8" />
-          <field name="Manufacturer Code (M)" type="uint16" />
-          <field name="FlowControl Support (M)" type="bool" />
-          <field name="Maximum Incoming TransferSize" type="uint16" />
+          <field name="ProtocolID(M)" type="enum8" />
+          <field name="ManufacturerCode(M)" type="uint16" />
+          <field name="FlowControlSupport(M)" type="bool" />
+          <field name="MaximumIncomingTransferSize" type="uint16" />
         </fields>
       </command>
       <command id="01" name="CloseTunnel" required="true">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
+          <field name="TunnelID(M)" type="uint16" />
         </fields>
       </command>
       <command id="02" name="TransferData" required="true">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
-          <field name="Data (M)" type="opaque" />
+          <field name="TunnelID(M)" type="uint16" />
+          <field name="Data(M)" type="opaque" />
         </fields>
       </command>
       <command id="03" name="TransferDataError" required="true">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
-          <field name="TransferDataStatus (M)" type="uint8" />
+          <field name="TunnelID(M)" type="uint16" />
+          <field name="TransferDataStatus(M)" type="uint8" />
         </fields>
       </command>
       <command id="04" name="AckTransferData">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
-          <field name="NumberOfBytesLeft (M)" type="uint16" />
+          <field name="TunnelID(M)" type="uint16" />
+          <field name="NumberOfBytesLeft(M)" type="uint16" />
         </fields>
       </command>
       <command id="05" name="ReadyData">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
-          <field name="NumberOfOctetsLeft (M)" type="uint16" />
+          <field name="TunnelID(M)" type="uint16" />
+          <field name="NumberOfOctetsLeft(M)" type="uint16" />
         </fields>
       </command>
       <command id="00" name="GetSupportedTunnelProtocols">
         <fields>
-          <field name="Protocol Offset" type="uint8" />
+          <field name="ProtocolOffset" type="uint8" />
         </fields>
       </command>
     </commands>
@@ -54,32 +54,32 @@
     <commands>
       <command id="00" name="RequestTunnelResponse" required="true">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
-          <field name="TunnelStatus (M)" type="uint8" />
-          <field name="Maximum Incoming TransferSize" type="uint16" />
+          <field name="TunnelID(M)" type="uint16" />
+          <field name="TunnelStatus(M)" type="uint8" />
+          <field name="MaximumIncomingTransferSize" type="uint16" />
         </fields>
       </command>
       <command id="01" name="TransferData" required="true">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
-          <field name="Data (M)" type="opaque" />
+          <field name="TunnelID(M)" type="uint16" />
+          <field name="Data(M)" type="opaque" />
         </fields>
       </command>
       <command id="02" name="TransferDataError" required="true" />
       <command id="03" name="AckTransferData" />
       <command id="04" name="ReadyData" />
-      <command id="05" name="Supported Tunnel Protocols Response">
+      <command id="05" name="SupportedTunnelProtocolsResponse">
         <fields>
-          <field name="Protocol List Complete" type="bool" />
-          <field name="Protocol Count" type="uint8" />
-          <field name="Protocol 1" type="" />
+          <field name="ProtocolListComplete" type="bool" />
+          <field name="ProtocolCount" type="uint8" />
+          <field name="Protocol1" type="" />
           <field name="…" type="" />
-          <field name="Protocol n" type="" />
+          <field name="ProtocolN" type="" />
         </fields>
       </command>
       <command id="06" name="TunnelClosureNotification">
         <fields>
-          <field name="TunnelID (M)" type="uint16" />
+          <field name="TunnelID(M)" type="uint16" />
         </fields>
       </command>
     </commands>

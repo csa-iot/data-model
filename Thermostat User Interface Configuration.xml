@@ -6,18 +6,18 @@
       <attribute id="0000" name="TemperatureDisplayMode" type="enum8" writable="true" required="true" default="0x00 (Celsius)" />
       <attribute id="0001" name="KeypadLockout" type="enum8" writable="true" required="true" default="0x00 (no lockout)">
         <restriction>
-          <type:enumeration value="0" name="No lockout" />
-          <type:enumeration value="1" name="Level 1 lockout" />
-          <type:enumeration value="2" name="Level 2 lockout" />
-          <type:enumeration value="3" name="Level 3 lockout" />
-          <type:enumeration value="4" name="Level 4 lockout" />
-          <type:enumeration value="5" name="Level 5 lockout (least functionality available to the user)" />
+          <type:enumeration value="00" name="NoLockout" />
+          <type:enumeration value="01" name="Level1Lockout" />
+          <type:enumeration value="02" name="Level2Lockout" />
+          <type:enumeration value="03" name="Level3Lockout" />
+          <type:enumeration value="04" name="Level4Lockout" />
+          <type:enumeration value="05" name="Level5Lockout(leastFunctionalityAvailableToTheUser)" />
         </restriction>
       </attribute>
       <attribute id="0002" name="ScheduleProgrammingVisibility" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="Local schedule programming functionality is enabled at the thermostat" />
-          <type:enumeration value="1" name="Local schedule programming functionality is disabled at the thermostat" />
+          <type:enumeration value="00" name="LocalScheduleProgrammingFunctionalityIsEnabledAtTheThermostat" />
+          <type:enumeration value="01" name="LocalScheduleProgrammingFunctionalityIsDisabledAtTheThermostat" />
         </restriction>
       </attribute>
     </attributes>

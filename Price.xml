@@ -44,8 +44,8 @@
       <attribute id="0004" name="CalorificValue" type="uint32" max="4294967295" default="40000000" />
       <attribute id="0005" name="CalorificValueUnit" type="enum8" default="1">
         <restriction>
-          <type:enumeration value="1" name="MJ/m3" />
-          <type:enumeration value="2" name="MJ/kg" />
+          <type:enumeration value="01" name="MJ/m3" />
+          <type:enumeration value="02" name="MJ/kg" />
         </restriction>
       </attribute>
       <attribute id="0006" name="CalorificValueTrailingDigit" type="map8" default="96" />
@@ -81,7 +81,7 @@
       <attribute id="0000" name="Tier8BlockN+1Price…" type="uint32" max="4294967295" default="-" />
       <attribute id="008F" name="Tier8Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0090" name="Tier9Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier9BlockN+1Price …" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier9BlockN+1Price…" type="uint32" max="4294967295" default="-" />
       <attribute id="009F" name="Tier9Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="00A0" name="Tier10Block1Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0000" name="Tier10BlockN+1Price…" type="uint32" max="4294967295" default="-" />
@@ -105,83 +105,83 @@
       <attribute id="0001" name="CurrentBillingPeriodDuration" type="uint24" max="16777215" default="-" />
     </attributes>
     <commands>
-      <command id="00" name="Get Current Price" required="true">
+      <command id="00" name="GetCurrentPrice" required="true">
         <fields>
-          <field name="Command Options" type="uint8" />
+          <field name="CommandOptions" type="uint8" />
         </fields>
       </command>
-      <command id="01" name="Get Scheduled Prices">
+      <command id="01" name="GetScheduledPrices">
         <fields>
-          <field name="Start Time (M)" type="UTC" />
-          <field name="Number of Events (M)" type="uint8" />
+          <field name="StartTime(M)" type="UTC" />
+          <field name="NumberOfEvents(M)" type="uint8" />
         </fields>
       </command>
-      <command id="02" name="Price Acknowledgement" required="true">
+      <command id="02" name="PriceAcknowledgement" required="true">
         <fields>
-          <field name="Provider ID (M)" type="uint32" />
-          <field name="Issuer Event ID (M)" type="uint32" />
-          <field name="Price Ack Time (M)" type="UTC" />
-          <field name="Control (M)" type="map8" />
+          <field name="ProviderID(M)" type="uint32" />
+          <field name="IssuerEventID(M)" type="uint32" />
+          <field name="PriceAckTime(M)" type="UTC" />
+          <field name="Control(M)" type="map8" />
         </fields>
       </command>
-      <command id="03" name="Get Block Period(s)">
+      <command id="03" name="GetBlockPeriod(s)">
         <fields>
-          <field name="Start Time (M)" type="UTC" />
-          <field name="Number of Events (M)" type="uint8" />
+          <field name="StartTime(M)" type="UTC" />
+          <field name="NumberOfEvents(M)" type="uint8" />
         </fields>
       </command>
       <command id="04" name="GetConversionFactor">
         <fields>
-          <field name="Start Time" type="UTC" />
-          <field name="Number of Events" type="uint8" />
+          <field name="StartTime" type="UTC" />
+          <field name="NumberOfEvents" type="uint8" />
         </fields>
       </command>
       <command id="05" name="GetCalorificValue">
         <fields>
-          <field name="Start Time" type="UTC" />
-          <field name="Number of Events" type="uint8" />
+          <field name="StartTime" type="UTC" />
+          <field name="NumberOfEvents" type="uint8" />
         </fields>
       </command>
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Publish Price" required="true">
+      <command id="00" name="PublishPrice" required="true">
         <fields>
-          <field name="Provider ID (M)" type="uint32" />
-          <field name="Rate Label (M)" type="octstr" />
-          <field name="Issuer Event ID (M)" type="uint32" />
-          <field name="Current Time (M)" type="UTC" />
-          <field name="Unit of Measure (M)" type="enum8" />
-          <field name="Currency (M)" type="uint16" />
-          <field name="Price Trailing Digit &amp; Price Tier (M)" type="map8" />
+          <field name="ProviderID(M)" type="uint32" />
+          <field name="RateLabel(M)" type="octstr" />
+          <field name="IssuerEventID(M)" type="uint32" />
+          <field name="CurrentTime(M)" type="UTC" />
+          <field name="UnitOfMeasure(M)" type="enum8" />
+          <field name="Currency(M)" type="uint16" />
+          <field name="PriceTrailingDigit&amp;PriceTier(M)" type="map8" />
         </fields>
       </command>
-      <command id="01" name="Publish Block Period">
+      <command id="01" name="PublishBlockPeriod">
         <fields>
-          <field name="Provider ID (M)" type="uint32" />
-          <field name="Issuer Event ID (M)" type="uint32" />
-          <field name="Block Period Start Time (M)" type="UTC" />
-          <field name="Block Period Duration In Minutes (M)" type="uint24" />
-          <field name="Number of Price Tiers &amp; Number of Block Thresholds(M)" type="map8" />
-          <field name="Block Period Control (O)" type="map8" />
+          <field name="ProviderID(M)" type="uint32" />
+          <field name="IssuerEventID(M)" type="uint32" />
+          <field name="BlockPeriodStartTime(M)" type="UTC" />
+          <field name="BlockPeriodDurationInMinutes(M)" type="uint24" />
+          <field name="NumberOfPriceTiers&amp;NumberOfBlockThresholds(M)" type="map8" />
+          <field name="BlockPeriodControl(O)" type="map8" />
         </fields>
       </command>
-      <command id="02" name="Publish Conversion Factor">
+      <command id="02" name="PublishConversionFactor">
         <fields>
-          <field name="Issuer Event ID (M)" type="uint32" />
-          <field name="Start Time (M)" type="UTC" />
-          <field name="Conversion Factor (M)" type="uint32" />
-          <field name="Conversion Factor Trailing Digit (M)" type="map8" />
+          <field name="IssuerEventID(M)" type="uint32" />
+          <field name="StartTime(M)" type="UTC" />
+          <field name="ConversionFactor(M)" type="uint32" />
+          <field name="ConversionFactorTrailingDigit(M)" type="map8" />
         </fields>
       </command>
-      <command id="03" name="Publish Calorific Value">
+      <command id="03" name="PublishCalorificValue">
         <fields>
-          <field name="Issuer Event ID (M)" type="uint32" />
-          <field name="Start Time (M)" type="UTC" />
-          <field name="Calorific Value (M)" type="uint32" />
-          <field name="Calorific Value Unit (M)" type="enum8" />
-          <field name="Calorific Value Trailing Digit (M)" type="map8" />
+          <field name="IssuerEventID(M)" type="uint32" />
+          <field name="StartTime(M)" type="UTC" />
+          <field name="CalorificValue(M)" type="uint32" />
+          <field name="CalorificValueUnit(M)" type="enum8" />
+          <field name="CalorificValueTrailingDigit(M)" type="map8" />
         </fields>
       </command>
     </commands>

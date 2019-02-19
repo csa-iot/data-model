@@ -10,34 +10,34 @@
       <attribute id="0004" name="CurrentY" type="uint16" required="true" max="65279" default="0x607d (0.377)" />
       <attribute id="0005" name="DriftCompensation" type="enum8" default="-">
         <restriction>
-          <type:enumeration value="0" name="None" />
-          <type:enumeration value="1" name="Other / Unknown" />
-          <type:enumeration value="2" name="Temperature monitoring" />
-          <type:enumeration value="3" name="Optical luminance monitoring and feedback" />
-          <type:enumeration value="4" name="Optical color monitoring and feedback" />
+          <type:enumeration value="00" name="None" />
+          <type:enumeration value="01" name="Other/Unknown" />
+          <type:enumeration value="02" name="TemperatureMonitoring" />
+          <type:enumeration value="03" name="OpticalLuminanceMonitoringAndFeedback" />
+          <type:enumeration value="04" name="OpticalColorMonitoringAndFeedback" />
         </restriction>
       </attribute>
       <attribute id="0006" name="CompensationText" type="string" max="254" default="-" />
       <attribute id="0007" name="ColorTemperatureMireds" type="uint16" required="true" max="65279" default="0x00fa (4000K)" />
       <attribute id="0008" name="ColorMode" type="enum8" required="true" default="1">
         <restriction>
-          <type:enumeration value="0" name="CurrentHue and CurrentSaturation" />
-          <type:enumeration value="1" name="CurrentX and CurrentY" />
-          <type:enumeration value="2" name="ColorTemperatureMireds" />
+          <type:enumeration value="00" name="CurrentHueAndCurrentSaturation" />
+          <type:enumeration value="01" name="CurrentXAndCurrentY" />
+          <type:enumeration value="02" name="ColorTemperatureMireds" />
         </restriction>
       </attribute>
       <attribute id="000F" name="Options" type="map8" writable="true" required="true" default="0">
         <bitmap>
-          <element name="ExecuteIfOff" type="bool" mask="00000001" />
+          <element name="ExecuteIfOff" type="bool" mask="01" />
         </bitmap>
       </attribute>
       <attribute id="4000" name="EnhancedCurrentHue" type="uint16" required="true" max="65535" default="0" />
       <attribute id="4001" name="EnhancedColorMode" type="enum8" required="true" default="1">
         <restriction>
-          <type:enumeration value="0" name="CurrentHue and CurrentSaturation" />
-          <type:enumeration value="1" name="CurrentX and CurrentY" />
-          <type:enumeration value="2" name="ColorTemperatureMireds" />
-          <type:enumeration value="3" name="EnhancedCurrentHue and CurrentSaturation" />
+          <type:enumeration value="00" name="CurrentHueAndCurrentSaturation" />
+          <type:enumeration value="01" name="CurrentXAndCurrentY" />
+          <type:enumeration value="02" name="ColorTemperatureMireds" />
+          <type:enumeration value="03" name="EnhancedCurrentHueAndCurrentSaturation" />
         </restriction>
       </attribute>
       <attribute id="4002" name="ColorLoopActive" type="uint8" required="true" max="255" default="0" />
@@ -88,68 +88,68 @@
       <attribute id="003C" name="ColorPointBIntensity" type="uint8" writable="true" max="255" default="" />
     </attributes>
     <commands>
-      <command id="00" name="Move to Hue" required="true">
+      <command id="00" name="MoveToHue" required="true">
         <fields>
           <field name="Hue" type="uint8" />
           <field name="Direction" type=" enum8" />
-          <field name="Transition Time" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="01" name="Move Hue" required="true">
+      <command id="01" name="MoveHue" required="true">
         <fields>
-          <field name="Move Mode" type="enum8" />
+          <field name="MoveMode" type="enum8" />
           <field name="Rate" type="uint8" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="02" name="Step Hue" required="true">
+      <command id="02" name="StepHue" required="true">
         <fields>
-          <field name="Step Mode" type="enum8" />
-          <field name="Step Size" type="uint8" />
-          <field name="Transition Time" type="uint8" />
+          <field name="StepMode" type="enum8" />
+          <field name="StepSize" type="uint8" />
+          <field name="TransitionTime" type="uint8" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="03" name="Move to Saturation" required="true">
+      <command id="03" name="MoveToSaturation" required="true">
         <fields>
           <field name="Saturation" type="uint8" />
-          <field name="Transition Time" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="04" name="Move Saturation" required="true">
+      <command id="04" name="MoveSaturation" required="true">
         <fields>
-          <field name="Move Mode" type="enum8" />
+          <field name="MoveMode" type="enum8" />
           <field name="Rate" type="uint8" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="05" name="Step Saturation" required="true">
+      <command id="05" name="StepSaturation" required="true">
         <fields>
-          <field name="Step Mode" type="enum8" />
-          <field name="Step Size" type="uint8" />
-          <field name="Transition Time" type="uint8" />
+          <field name="StepMode" type="enum8" />
+          <field name="StepSize" type="uint8" />
+          <field name="TransitionTime" type="uint8" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="06" name="Move to Hue and Saturation" required="true" />
-      <command id="07" name="Move to Color" required="true">
+      <command id="06" name="MoveToHueAndSaturation" required="true" />
+      <command id="07" name="MoveToColor" required="true">
         <fields>
           <field name="ColorX" type="uint16" />
           <field name="ColorY" type="uint16" />
-          <field name="Transition Time" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="08" name="Move Color" required="true">
+      <command id="08" name="MoveColor" required="true">
         <fields>
           <field name="RateX" type="int16" />
           <field name="RateY" type="int16" />
@@ -157,85 +157,85 @@
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="09" name="Step Color" required="true">
+      <command id="09" name="StepColor" required="true">
         <fields>
           <field name="StepX" type="int16" />
           <field name="StepY" type="int16" />
-          <field name="Transition Time" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="0A" name="Move to Color Temperature" required="true" />
-      <command id="40" name="Enhanced Move to Hue" required="true">
+      <command id="0A" name="MoveToColorTemperature" required="true" />
+      <command id="40" name="EnhancedMoveToHue" required="true">
         <fields>
-          <field name="Enhanced Hue" type="uint16" />
+          <field name="EnhancedHue" type="uint16" />
           <field name="Direction" type="enum8" />
-          <field name="Transition Time" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="41" name="Enhanced Move Hue" required="true">
+      <command id="41" name="EnhancedMoveHue" required="true">
         <fields>
-          <field name="Move Mode" type="enum8" />
+          <field name="MoveMode" type="enum8" />
           <field name="Rate" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="42" name="Enhanced Step Hue" required="true">
+      <command id="42" name="EnhancedStepHue" required="true">
         <fields>
-          <field name="Step Mode" type="enum8" />
-          <field name="Step Size" type="uint16" />
-          <field name="Transition Time" type="uint16" />
+          <field name="StepMode" type="enum8" />
+          <field name="StepSize" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="43" name="Enhanced Move to Hue and Saturation" required="true">
+      <command id="43" name="EnhancedMoveToHueAndSaturation" required="true">
         <fields>
-          <field name="Enhanced Hue" type="uint16" />
+          <field name="EnhancedHue" type="uint16" />
           <field name="Saturation" type="uint8" />
-          <field name="Transition Time" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="44" name="Color Loop Set" required="true">
+      <command id="44" name="ColorLoopSet" required="true">
         <fields>
-          <field name="Update Flags" type="map8" />
+          <field name="UpdateFlags" type="map8" />
           <field name="Action" type="enum8" />
           <field name="Direction" type="enum8" />
           <field name="Time" type="uint16" />
-          <field name="Start Hue" type="uint16" />
+          <field name="StartHue" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="47" name="Stop Move Step" required="true">
+      <command id="47" name="StopMoveStep" required="true">
         <fields>
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="4B" name="Move Color Temperature" required="true">
+      <command id="4B" name="MoveColorTemperature" required="true">
         <fields>
-          <field name="Move Mode" type="map8" />
+          <field name="MoveMode" type="map8" />
           <field name="Rate" type="uint16" />
-          <field name="Color Temperature Minimum Mireds" type="uint16" />
-          <field name="Color Temperature Maximum Mireds" type="uint16" />
+          <field name="ColorTemperatureMinimumMireds" type="uint16" />
+          <field name="ColorTemperatureMaximumMireds" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="4C" name="Step Color Temperature" required="true">
+      <command id="4C" name="StepColorTemperature" required="true">
         <fields>
-          <field name="Step Mode" type="map8" />
-          <field name="Step Size" type="uint16" />
-          <field name="Transition Time" type="uint16" />
-          <field name="Color Temperature Minimum Mireds" type="uint16" />
-          <field name="Color Temperature Maximum Mireds" type="uint16" />
+          <field name="StepMode" type="map8" />
+          <field name="StepSize" type="uint16" />
+          <field name="TransitionTime" type="uint16" />
+          <field name="ColorTemperatureMinimumMireds" type="uint16" />
+          <field name="ColorTemperatureMaximumMireds" type="uint16" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>

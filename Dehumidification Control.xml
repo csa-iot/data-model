@@ -8,14 +8,14 @@
       <attribute id="0010" name="RHDehumidificationSetpoint" type="uint8" writable="true" required="true" min="1" max="100" default="50" />
       <attribute id="0011" name="RelativeHumidityMode" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="0" name="RelativeHumidity measured locally" />
-          <type:enumeration value="1" name="RelativeHumidity updated over the network" />
+          <type:enumeration value="00" name="RelativeHumidityMeasuredLocally" />
+          <type:enumeration value="01" name="RelativeHumidityUpdatedOverTheNetwork" />
         </restriction>
       </attribute>
       <attribute id="0012" name="DehumidificationLockout" type="enum8" writable="true" default="1">
         <restriction>
-          <type:enumeration value="0" name="Dehumidification is not allowed." />
-          <type:enumeration value="1" name="Dehumidification is allowed." />
+          <type:enumeration value="00" name="DehumidificationIsNotAllowed." />
+          <type:enumeration value="01" name="DehumidificationIsAllowed." />
         </restriction>
       </attribute>
       <attribute id="0013" name="DehumidificationHysteresis" type="uint8" writable="true" required="true" min="2" max="20" default="2" />

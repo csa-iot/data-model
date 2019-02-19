@@ -6,63 +6,63 @@
       <attribute id="0000" name="NameSupport" type="map8" required="true" default="-" />
     </attributes>
     <commands>
-      <command id="00" name="Add group" required="true">
+      <command id="00" name="AddGroup" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
-          <field name="Group Name" type="string" />
+          <field name="GroupID" type="uint16" />
+          <field name="GroupName" type="string" />
         </fields>
       </command>
-      <command id="01" name="View group" required="true">
+      <command id="01" name="ViewGroup" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
+          <field name="GroupID" type="uint16" />
         </fields>
       </command>
-      <command id="02" name="Get group membership" required="true">
+      <command id="02" name="GetGroupMembership" required="true">
         <fields>
-          <field name="Group count" type="uint8" />
-          <field name="Group list" type="List of 16-bit integers" />
+          <field name="GroupCount" type="uint8" />
+          <field name="GroupList" type="List of 16-bit integers" />
         </fields>
       </command>
-      <command id="03" name="Remove group" required="true">
+      <command id="03" name="RemoveGroup" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
+          <field name="GroupID" type="uint16" />
         </fields>
       </command>
-      <command id="04" name="Remove all groups" required="true" />
-      <command id="05" name="Add group if identifying" required="true">
+      <command id="04" name="RemoveAllGroups" required="true" />
+      <command id="05" name="AddGroupIfIdentifying" required="true">
         <fields>
-          <field name="Group ID" type="uint16" />
-          <field name="Group Name" type="string" />
+          <field name="GroupID" type="uint16" />
+          <field name="GroupName" type="string" />
         </fields>
       </command>
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Add group response" required="true">
+      <command id="00" name="AddGroupResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
+          <field name="GroupID" type="uint16" />
         </fields>
       </command>
-      <command id="01" name="View group response" required="true">
+      <command id="01" name="ViewGroupResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
-          <field name="Group Name" type="string" />
+          <field name="GroupID" type="uint16" />
+          <field name="GroupName" type="string" />
         </fields>
       </command>
-      <command id="02" name="Get group membership response" required="true">
+      <command id="02" name="GetGroupMembershipResponse" required="true">
         <fields>
           <field name="Capacity" type="uint8" />
-          <field name="Group count" type="uint8" />
-          <field name="Group list" type="List of 16-bit group ID" />
+          <field name="GroupCount" type="uint8" />
+          <field name="GroupList" type="List of 16-bit group ID" />
         </fields>
       </command>
-      <command id="03" name="Remove group response" required="true">
+      <command id="03" name="RemoveGroupResponse" required="true">
         <fields>
           <field name="Status" type="enum8" />
-          <field name="Group ID" type="uint16" />
+          <field name="GroupID" type="uint16" />
         </fields>
       </command>
     </commands>

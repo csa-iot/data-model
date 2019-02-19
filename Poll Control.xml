@@ -4,7 +4,7 @@
   <server>
     <attributes>
       <attribute id="0000" name="Check-inInterval" type="uint32" writable="true" required="true" max="6" default="0x3840 (1 hr.)" />
-      <attribute id="0001" name="LongPoll Interval" type="uint32" required="true" min="4" max="6" default="0x14 (5 sec)" />
+      <attribute id="0001" name="LongPollInterval" type="uint32" required="true" min="4" max="6" default="0x14 (5 sec)" />
       <attribute id="0002" name="ShortPollInterval" type="uint16" required="true" min="1" max="65535" default="0x02 (2 qs)" />
       <attribute id="0003" name="FastPollTimeout" type="uint16" writable="true" required="true" min="1" max="65535" default="0x28 (10 sec.)" />
       <attribute id="0004" name="Check-inIntervalMin" type="uint32" default="0" />
@@ -17,21 +17,21 @@
   </server>
   <client>
     <commands>
-      <command id="00" name="Check-in Response" required="true">
+      <command id="00" name="Check-inResponse" required="true">
         <fields>
-          <field name="Start Fast Polling" type="bool" />
-          <field name="Fast Poll Timeout" type="uint16" />
+          <field name="StartFastPolling" type="bool" />
+          <field name="FastPollTimeout" type="uint16" />
         </fields>
       </command>
-      <command id="01" name="Fast Poll Stop" required="true" />
-      <command id="02" name="Set Long Poll Interval">
+      <command id="01" name="FastPollStop" required="true" />
+      <command id="02" name="SetLongPollInterval">
         <fields>
           <field name="NewLongPollInterval" type="uint32" />
         </fields>
       </command>
-      <command id="03" name="Set Short Poll Interval">
+      <command id="03" name="SetShortPollInterval">
         <fields>
-          <field name="New Short Poll Interval" type="uint16" />
+          <field name="NewShortPollInterval" type="uint16" />
         </fields>
       </command>
     </commands>

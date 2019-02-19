@@ -6,20 +6,20 @@
   </server>
   <client>
     <commands>
-      <command id="00" name="Report Event Status" required="true">
+      <command id="00" name="ReportEventStatus" required="true">
         <fields>
-          <field name="Issuer EventID (M)" type="uint32" />
-          <field name="Event Status (M)" type="uint8" />
-          <field name="Event Status Time (M)" type="UTC" />
-          <field name="Criticality Level Applied (M)" type="uint8" />
-          <field name="Cooling Temperature Set Point Applied (O)" type="uint16" />
-          <field name="Heating Temperature Set Point Applied (O)" type="uint16" />
+          <field name="IssuerEventID(M)" type="uint32" />
+          <field name="EventStatus(M)" type="uint8" />
+          <field name="EventStatusTime(M)" type="UTC" />
+          <field name="CriticalityLevelApplied(M)" type="uint8" />
+          <field name="CoolingTemperatureSetPointApplied(O)" type="uint16" />
+          <field name="HeatingTemperatureSetPointApplied(O)" type="uint16" />
         </fields>
       </command>
-      <command id="01" name="Get Scheduled Events" required="true">
+      <command id="01" name="GetScheduledEvents" required="true">
         <fields>
-          <field name="Start Time (M)" type="UTC" />
-          <field name="Number of Events (M)" type="uint8" />
+          <field name="StartTime(M)" type="UTC" />
+          <field name="NumberOfEvents(M)" type="uint8" />
         </fields>
       </command>
     </commands>

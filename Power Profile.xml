@@ -20,28 +20,28 @@
       <command id="01" name="PowerProfileStateRequest" required="true" />
       <command id="02" name="GetPowerProfilePriceResponse" required="true">
         <fields>
-          <field name="Power Profile ID" type="uint8" />
+          <field name="PowerProfileID" type="uint8" />
           <field name="Currency" type="uint16" />
           <field name="Price" type="uint32" />
-          <field name="Price Trailing Digit" type="uint8" />
+          <field name="PriceTrailingDigit" type="uint8" />
         </fields>
       </command>
       <command id="03" name="GetOverallSchedulePriceResponse" required="true">
         <fields>
           <field name="Currency" type="uint16" />
           <field name="Price" type="uint32" />
-          <field name="Price Trailing Digit" type="uint8" />
+          <field name="PriceTrailingDigit" type="uint8" />
         </fields>
       </command>
       <command id="04" name="EnergyPhasesScheduleNotification" required="true">
         <fields>
           <field name="PowerProfileID" type="uint8" />
-          <field name="Num of Scheduled Phases" type="uint8" />
+          <field name="NumOfScheduledPhases" type="uint8" />
           <field name="EnergyPhaseIDn" type="uint8" />
-          <field name="Scheduled Timen" type="uint16" />
+          <field name="ScheduledTimen" type="uint16" />
           <field name="…" type="…" />
           <field name="EnergyPhaseIDn" type="uint8" />
-          <field name="Scheduled Timen" type="uint16" />
+          <field name="ScheduledTimen" type="uint16" />
         </fields>
       </command>
       <command id="05" name="EnergyPhasesScheduleResponse" required="true" />
@@ -56,7 +56,7 @@
         <fields>
           <field name="TotalProfileNum" type="uint8" />
           <field name="PowerProfileID" type="uint8" />
-          <field name="Num of Transferred Phases" type="uint8" />
+          <field name="NumOfTransferredPhases" type="uint8" />
           <field name="EnergyPhaseID1" type="uint8" />
           <field name="MacroPhaseID1" type="uint8" />
           <field name="ExpectedDuration1" type="uint16" />
@@ -65,18 +65,18 @@
         </fields>
       </command>
       <command id="01" name="PowerProfileResponse" required="true" />
-      <command id="02" name="PowerProfileStateResponse " required="true" />
+      <command id="02" name="PowerProfileStateResponse" required="true" />
       <command id="03" name="GetPowerProfilePrice" />
       <command id="04" name="PowerProfilesStateNotification" required="true" />
-      <command id="05" name="GetOverallSchedulePrice " />
+      <command id="05" name="GetOverallSchedulePrice" />
       <command id="06" name="EnergyPhasesScheduleRequest" required="true" />
       <command id="07" name="EnergyPhasesScheduleStateResponse" required="true" />
       <command id="08" name="EnergyPhasesScheduleStateNotification" required="true" />
       <command id="09" name="PowerProfileScheduleConstraintsNotification" required="true">
         <fields>
           <field name="PowerProfileID" type="uint8" />
-          <field name="Start After" type="uint16" />
-          <field name="Stop Before" type="uint16" />
+          <field name="StartAfter" type="uint16" />
+          <field name="StopBefore" type="uint16" />
         </fields>
       </command>
       <command id="0A" name="PowerProfileScheduleConstraintsResponse" required="true" />

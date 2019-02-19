@@ -6,10 +6,10 @@
       <attribute id="0000" name="Time" type="UTC" writable="true" required="true" default="4294967295" />
       <attribute id="0001" name="TimeStatus" type="map8" writable="true" required="true" default="47244640256">
         <bitmap>
-          <element name="Master" type="bool" mask="00000001" />
-          <element name="Synchronized" type="bool" mask="00000002" shiftRight="1" />
-          <element name="MasterZoneDst" type="bool" mask="00000004" shiftRight="2" />
-          <element name="Superseding" type="bool" mask="00000008" shiftRight="3" />
+          <element name="Master" type="bool" mask="01" />
+          <element name="Synchronized" type="bool" mask="02" shiftRight="1" />
+          <element name="MasterZoneDst" type="bool" mask="04" shiftRight="2" />
+          <element name="Superseding" type="bool" mask="08" shiftRight="3" />
         </bitmap>
       </attribute>
       <attribute id="0002" name="TimeZone" type="int32" writable="true" default="0x00000000 " />

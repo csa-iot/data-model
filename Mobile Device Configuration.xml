@@ -6,7 +6,7 @@
   </server>
   <client>
     <commands>
-      <command id="00" name="Keep Alive Notification" required="true" />
+      <command id="00" name="KeepAliveNotification" required="true" />
     </commands>
   </client>
 </zcl:cluster>

@@ -5,26 +5,26 @@
     <attributes>
       <attribute id="0000" name="LockState" type="enum8" required="true" default="-">
         <restriction>
-          <type:enumeration value="0" name="Not fully locked" />
-          <type:enumeration value="2" name="Unlocked" />
+          <type:enumeration value="00" name="NotFullyLocked" />
+          <type:enumeration value="02" name="Unlocked" />
           <type:enumeration value="FF" name="Undefined" />
         </restriction>
       </attribute>
       <attribute id="0001" name="LockType" type="enum8" required="true" default="-">
         <restriction>
-          <type:enumeration value="0" name="Dead bolt" />
-          <type:enumeration value="2" name="Other" />
-          <type:enumeration value="3" name="Mortise" />
-          <type:enumeration value="A" name="Door Furniture " />
+          <type:enumeration value="00" name="DeadBolt" />
+          <type:enumeration value="02" name="Other" />
+          <type:enumeration value="03" name="Mortise" />
+          <type:enumeration value="0A" name="DoorFurniture" />
         </restriction>
       </attribute>
       <attribute id="0002" name="ActuatorEnabled" type="bool" required="true" default="-" />
       <attribute id="0003" name="DoorState" type="enum8" default="-">
         <restriction>
-          <type:enumeration value="0" name="Open" />
-          <type:enumeration value="2" name="Error (jammed)" />
-          <type:enumeration value="3" name="Error (forced open)" />
-          <type:enumeration value="4" name="Error (unspecified)" />
+          <type:enumeration value="00" name="Open" />
+          <type:enumeration value="02" name="Error(jammed)" />
+          <type:enumeration value="03" name="Error(forcedOpen)" />
+          <type:enumeration value="04" name="Error(unspecified)" />
           <type:enumeration value="FF" name="Undefined" />
         </restriction>
       </attribute>
@@ -38,22 +38,22 @@
       <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" />
       <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" default="0" />
       <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" default="0" />
-      <attribute id="0017" name="MaxPINCodeLength " type="uint8" default="8" />
+      <attribute id="0017" name="MaxPINCodeLength" type="uint8" default="8" />
       <attribute id="0018" name="MinPINCodeLength" type="uint8" default="4" />
       <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" default="20" />
       <attribute id="001A" name="MinRFIDCodeLength" type="uint8" default="8" />
       <attribute id="0020" name="EnableLogging" type="bool" default="0" />
-      <attribute id="0021" name="Language " type="string (3bytes)" default="0" />
+      <attribute id="0021" name="Language" type="string (3bytes)" default="0" />
       <attribute id="0022" name="LEDSettings" type="uint8" default="0" />
       <attribute id="0023" name="AutoRelockTime" type="uint32" default="0" />
       <attribute id="0024" name="SoundVolume" type="uint8" default="0" />
       <attribute id="0025" name="OperatingMode" type="enum8" default="0">
         <restriction>
-          <type:enumeration value="0" name="Normal Mode Supported" />
-          <type:enumeration value="1" name="Vacation Mode Supported" />
-          <type:enumeration value="2" name="Privacy Mode Supported" />
-          <type:enumeration value="3" name="No RF Lock or Unlock Mode Supported" />
-          <type:enumeration value="4" name="Passage Mode Supported" />
+          <type:enumeration value="00" name="NormalModeSupported" />
+          <type:enumeration value="01" name="VacationModeSupported" />
+          <type:enumeration value="02" name="PrivacyModeSupported" />
+          <type:enumeration value="03" name="NoRFLockOrUnlockModeSupported" />
+          <type:enumeration value="04" name="PassageModeSupported" />
         </restriction>
       </attribute>
       <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" />
@@ -69,261 +69,261 @@
       <attribute id="0034" name="SecurityLevel" type="enum8" default="0" />
     </attributes>
     <commands>
-      <command id="00" name="Lock Door" required="true">
+      <command id="00" name="LockDoor" required="true">
         <fields>
-          <field name="PIN/RFID Code" type="octstr" />
+          <field name="PIN/RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="01" name="Unlock Door" required="true">
+      <command id="01" name="UnlockDoor" required="true">
         <fields>
-          <field name="PIN/RFID Code" type="octstr" />
+          <field name="PIN/RFIDCode" type="octstr" />
         </fields>
       </command>
       <command id="02" name="Toggle">
         <fields>
-          <field name="PIN/RFID Code" type="octstr" />
+          <field name="PIN/RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="03" name="Unlock with Timeout">
+      <command id="03" name="UnlockWithTimeout">
         <fields>
-          <field name="Timeout in seconds" type="uint16" />
-          <field name="PIN/RFID Code" type="octstr" />
+          <field name="TimeoutInSeconds" type="uint16" />
+          <field name="PIN/RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="04" name="Get Log Record">
+      <command id="04" name="GetLogRecord">
         <fields>
-          <field name="Log Index" type="uint16" />
+          <field name="LogIndex" type="uint16" />
         </fields>
       </command>
-      <command id="05" name="Set PIN Code">
+      <command id="05" name="SetPINCode">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Status" type="uint8" />
-          <field name="User Type" type="enum8" />
+          <field name="UserID" type="uint16" />
+          <field name="UserStatus" type="uint8" />
+          <field name="UserType" type="enum8" />
           <field name="PIN" type="octstr" />
         </fields>
       </command>
-      <command id="06" name="Get PIN Code">
+      <command id="06" name="GetPINCode">
         <fields>
-          <field name="User ID" type="uint16" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="07" name="Clear PIN Code">
+      <command id="07" name="ClearPINCode">
         <fields>
-          <field name="User ID" type="uint16" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="08" name="Clear All PIN Codes" />
-      <command id="09" name="Set User Status">
+      <command id="08" name="ClearAllPINCodes" />
+      <command id="09" name="SetUserStatus">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Status" type="uint8" />
+          <field name="UserID" type="uint16" />
+          <field name="UserStatus" type="uint8" />
         </fields>
       </command>
-      <command id="0A" name="Get User Status">
+      <command id="0A" name="GetUserStatus">
         <fields>
-          <field name="User ID" type="uint16" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="0B" name="Set Weekday Schedule">
+      <command id="0B" name="SetWeekdaySchedule">
         <fields>
-          <field name="Schedule ID #" type="uint8" />
-          <field name="User ID" type="uint16" />
-          <field name="Days Mask" type="map8" />
-          <field name="Start Hour" type="uint8" />
-          <field name="Start Minute" type="uint8" />
-          <field name="End Hour" type="uint8" />
-          <field name="End Minute" type="uint8" />
+          <field name="ScheduleID#" type="uint8" />
+          <field name="UserID" type="uint16" />
+          <field name="DaysMask" type="map8" />
+          <field name="StartHour" type="uint8" />
+          <field name="StartMinute" type="uint8" />
+          <field name="EndHour" type="uint8" />
+          <field name="EndMinute" type="uint8" />
         </fields>
       </command>
-      <command id="0C" name="Get Weekday Schedule">
+      <command id="0C" name="GetWeekdaySchedule">
         <fields>
-          <field name="Schedule ID" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="ScheduleID" type="uint8" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="0D" name="Clear Weekday Schedule">
+      <command id="0D" name="ClearWeekdaySchedule">
         <fields>
-          <field name="Schedule ID" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="ScheduleID" type="uint8" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="0E" name="Set Year Day Schedule">
+      <command id="0E" name="SetYearDaySchedule">
         <fields>
-          <field name="Schedule ID" type="uint8" />
-          <field name="User ID" type="uint16" />
-          <field name="Local Start Time" type="uint32" />
-          <field name="Local End Time" type="uint32" />
+          <field name="ScheduleID" type="uint8" />
+          <field name="UserID" type="uint16" />
+          <field name="LocalStartTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" />
         </fields>
       </command>
-      <command id="0F" name="Get Year Day Schedule">
+      <command id="0F" name="GetYearDaySchedule">
         <fields>
-          <field name="Schedule ID" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="ScheduleID" type="uint8" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="10" name="Clear Year Day Schedule">
+      <command id="10" name="ClearYearDaySchedule">
         <fields>
-          <field name="Schedule ID" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="ScheduleID" type="uint8" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="11" name="Set Holiday Schedule">
+      <command id="11" name="SetHolidaySchedule">
         <fields>
-          <field name="Holiday Schedule ID" type="uint8" />
-          <field name="Local Start Time" type="uint32" />
-          <field name="Local End Time" type="uint32" />
-          <field name="Operating Mode During Holiday" type="enum8" />
+          <field name="HolidayScheduleID" type="uint8" />
+          <field name="LocalStartTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" />
+          <field name="OperatingModeDuringHoliday" type="enum8" />
         </fields>
       </command>
-      <command id="12" name="Get Holiday Schedule">
+      <command id="12" name="GetHolidaySchedule">
         <fields>
-          <field name="Holiday Schedule ID" type="uint8" />
+          <field name="HolidayScheduleID" type="uint8" />
         </fields>
       </command>
-      <command id="13" name="Clear Holiday Schedule">
+      <command id="13" name="ClearHolidaySchedule">
         <fields>
-          <field name="Holiday Schedule ID" type="uint8" />
+          <field name="HolidayScheduleID" type="uint8" />
         </fields>
       </command>
-      <command id="14" name="Set User Type">
+      <command id="14" name="SetUserType">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Type" type="enum8" />
+          <field name="UserID" type="uint16" />
+          <field name="UserType" type="enum8" />
         </fields>
       </command>
-      <command id="15" name="Get User Type">
+      <command id="15" name="GetUserType">
         <fields>
-          <field name="User ID" type="uint16" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="16" name="Set RFID Code">
+      <command id="16" name="SetRFIDCode">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Status" type="uint8" />
-          <field name="User Type" type="enum8" />
-          <field name="RFID Code" type="octstr" />
+          <field name="UserID" type="uint16" />
+          <field name="UserStatus" type="uint8" />
+          <field name="UserType" type="enum8" />
+          <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="17" name="Get RFID Code">
+      <command id="17" name="GetRFIDCode">
         <fields>
-          <field name="User ID" type="uint16" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="18" name="Clear RFID Code">
+      <command id="18" name="ClearRFIDCode">
         <fields>
-          <field name="User ID" type="uint16" />
+          <field name="UserID" type="uint16" />
         </fields>
       </command>
-      <command id="19" name="Clear All RFID Codes" />
+      <command id="19" name="ClearAllRFIDCodes" />
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Lock Door Response" required="true" />
-      <command id="01" name="Unlock Door Response" required="true" />
-      <command id="02" name="Toggle Response" />
-      <command id="03" name="Unlock with Timeout Response" />
-      <command id="04" name="Get Log Record Response">
+      <command id="00" name="LockDoorResponse" required="true" />
+      <command id="01" name="UnlockDoorResponse" required="true" />
+      <command id="02" name="ToggleResponse" />
+      <command id="03" name="UnlockWithTimeoutResponse" />
+      <command id="04" name="GetLogRecordResponse">
         <fields>
-          <field name="Log Entry ID" type="uint16" />
+          <field name="LogEntryID" type="uint16" />
           <field name="Timestamp" type="uint32" />
-          <field name="Event Type" type="enum8" />
-          <field name="Source (see  REF  RTF37383135323a204865616435 \h \* MERGEFORMAT Operation Event Sources)" type="uint8" />
-          <field name="Event ID/Alarm Code (see  REF  RTF33333734303a204865616435 \h \* MERGEFORMAT Operation Event Codes)" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="EventType" type="enum8" />
+          <field name="Source(seeREFRTF37383135323a204865616435\h\*MERGEFORMATOperationEventSources)" type="uint8" />
+          <field name="EventID/AlarmCode(seeREFRTF33333734303a204865616435\h\*MERGEFORMATOperationEventCodes)" type="uint8" />
+          <field name="UserID" type="uint16" />
           <field name="PIN" type="octstr" />
         </fields>
       </command>
-      <command id="05" name="Set PIN Code Response">
+      <command id="05" name="SetPINCodeResponse">
         <fields>
           <field name="Status" type="uint8" />
         </fields>
       </command>
-      <command id="06" name="Get PIN Code Response">
+      <command id="06" name="GetPINCodeResponse">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Status" type="uint8" />
-          <field name="User Type" type="enum8" />
+          <field name="UserID" type="uint16" />
+          <field name="UserStatus" type="uint8" />
+          <field name="UserType" type="enum8" />
           <field name="Code" type="octstr" />
         </fields>
       </command>
-      <command id="07" name="Clear PIN Code Response" />
-      <command id="08" name="Clear All PIN Codes Response" />
-      <command id="09" name="Set User Status Response" />
-      <command id="0A" name="Get User Status Response">
+      <command id="07" name="ClearPINCodeResponse" />
+      <command id="08" name="ClearAllPINCodesResponse" />
+      <command id="09" name="SetUserStatusResponse" />
+      <command id="0A" name="GetUserStatusResponse">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Status" type="uint8" />
+          <field name="UserID" type="uint16" />
+          <field name="UserStatus" type="uint8" />
         </fields>
       </command>
-      <command id="0B" name="Set Weekday Schedule Response" />
-      <command id="0C" name="Get Weekday Schedule Response">
+      <command id="0B" name="SetWeekdayScheduleResponse" />
+      <command id="0C" name="GetWeekdayScheduleResponse">
         <fields>
-          <field name="Schedule ID" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="ScheduleID" type="uint8" />
+          <field name="UserID" type="uint16" />
           <field name="Status" type="uint8" />
-          <field name="Days Mask" type="uint8" />
-          <field name="Start Hour" type="uint8" />
-          <field name="Start Minute" type="uint8" />
-          <field name="End Hour" type="uint8" />
-          <field name="End Minute" type="uint8" />
+          <field name="DaysMask" type="uint8" />
+          <field name="StartHour" type="uint8" />
+          <field name="StartMinute" type="uint8" />
+          <field name="EndHour" type="uint8" />
+          <field name="EndMinute" type="uint8" />
         </fields>
       </command>
-      <command id="0D" name="Clear Weekday Schedule Response" />
-      <command id="0E" name="Set Year Day Schedule Response" />
-      <command id="0F" name="Get Year Day Schedule Response">
+      <command id="0D" name="ClearWeekdayScheduleResponse" />
+      <command id="0E" name="SetYearDayScheduleResponse" />
+      <command id="0F" name="GetYearDayScheduleResponse">
         <fields>
-          <field name="Schedule ID" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="ScheduleID" type="uint8" />
+          <field name="UserID" type="uint16" />
           <field name="Status" type="uint8" />
-          <field name="Local Start Time" type="uint32" />
-          <field name="Local End Time" type="uint32" />
+          <field name="LocalStartTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" />
         </fields>
       </command>
-      <command id="10" name="Clear Year Day Schedule Response" />
-      <command id="11" name="Set Holiday Schedule Response" />
-      <command id="12" name="Get Holiday Schedule Response">
+      <command id="10" name="ClearYearDayScheduleResponse" />
+      <command id="11" name="SetHolidayScheduleResponse" />
+      <command id="12" name="GetHolidayScheduleResponse">
         <fields>
-          <field name="Holiday Schedule ID" type="uint8" />
+          <field name="HolidayScheduleID" type="uint8" />
           <field name="Status" type="uint8" />
-          <field name="Local Start Time" type="uint32" />
-          <field name="Local End Time" type="uint32" />
-          <field name="Operating Mode During Holiday" type="enum8" />
+          <field name="LocalStartTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" />
+          <field name="OperatingModeDuringHoliday" type="enum8" />
         </fields>
       </command>
-      <command id="13" name="Clear Holiday Schedule Response" />
-      <command id="14" name="Set User Type Response" />
-      <command id="15" name="Get User Type Response">
+      <command id="13" name="ClearHolidayScheduleResponse" />
+      <command id="14" name="SetUserTypeResponse" />
+      <command id="15" name="GetUserTypeResponse">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Type" type="enum8" />
+          <field name="UserID" type="uint16" />
+          <field name="UserType" type="enum8" />
         </fields>
       </command>
-      <command id="16" name="Set RFID Code Response">
+      <command id="16" name="SetRFIDCodeResponse">
         <fields>
           <field name="Status" type="uint8" />
         </fields>
       </command>
-      <command id="17" name="Get RFID Code Response">
+      <command id="17" name="GetRFIDCodeResponse">
         <fields>
-          <field name="User ID" type="uint16" />
-          <field name="User Status" type="uint8" />
-          <field name="User Type" type="enum8" />
-          <field name="RFID Code" type="octstr" />
+          <field name="UserID" type="uint16" />
+          <field name="UserStatus" type="uint8" />
+          <field name="UserType" type="enum8" />
+          <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="18" name="Clear RFID Code Response" />
-      <command id="19" name="Clear All RFID Codes Response" />
-      <command id="20" name="Operating Event Notification" />
-      <command id="21" name="Programming Event Notification">
+      <command id="18" name="ClearRFIDCodeResponse" />
+      <command id="19" name="ClearAllRFIDCodesResponse" />
+      <command id="20" name="OperatingEventNotification" />
+      <command id="21" name="ProgrammingEventNotification">
         <fields>
-          <field name="Program Event Source" type="uint8" />
-          <field name="Program Event Code" type="uint8" />
-          <field name="User ID" type="uint16" />
+          <field name="ProgramEventSource" type="uint8" />
+          <field name="ProgramEventCode" type="uint8" />
+          <field name="UserID" type="uint16" />
           <field name="PIN" type="octstr" />
-          <field name="User Type" type="enum8" />
-          <field name="User Status" type="uint8" />
+          <field name="UserType" type="enum8" />
+          <field name="UserStatus" type="uint8" />
           <field name="LocalTime" type="uint32" />
           <field name="Data" type="string" />
         </fields>

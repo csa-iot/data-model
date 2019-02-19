@@ -9,10 +9,10 @@
       <attribute id="4002" name="OffWaitTime" type="uint16" writable="true" max="65535" default="0" />
       <attribute id="4003" name="StartUpOnOff" type="enum8" writable="true" default="MS">
         <restriction>
-          <type:enumeration value="0" name="Set the OnOff attribute to 0 (off)." />
-          <type:enumeration value="1" name="Set the OnOff attribute to 1 (on)." />
-          <type:enumeration value="2" name="If the previous value of the OnOff attribute is equal to 0, set the OnOff attribute to 1.  If the previous value of the OnOff attribute is equal to 1, set the OnOff attribute to 0 (toggle)." />
-          <type:enumeration value="FF" name="Set the OnOff attribute to its previous value." />
+          <type:enumeration value="00" name="SetTheOnOffAttributeTo0(off)." />
+          <type:enumeration value="01" name="SetTheOnOffAttributeTo1(on)." />
+          <type:enumeration value="02" name="IfThePreviousValueOfTheOnOffAttributeIsEqualTo0,SetTheOnOffAttributeTo1.IfThePreviousValueOfTheOnOffAttributeIsEqualTo1,SetTheOnOffAttributeTo0(toggle)." />
+          <type:enumeration value="FF" name="SetTheOnOffAttributeToItsPreviousValue." />
         </restriction>
       </attribute>
     </attributes>
@@ -20,18 +20,18 @@
       <command id="00" name="Off" required="true" />
       <command id="01" name="On" required="true" />
       <command id="02" name="Toggle" required="true" />
-      <command id="40" name="Off with effect">
+      <command id="40" name="OffWithEffect">
         <fields>
-          <field name="Effect identifier" type="uint8" />
-          <field name="Effect variant" type="uint8" />
+          <field name="EffectIdentifier" type="uint8" />
+          <field name="EffectVariant" type="uint8" />
         </fields>
       </command>
-      <command id="41" name="On with recall global scene" />
-      <command id="42" name="On with timed off">
+      <command id="41" name="OnWithRecallGlobalScene" />
+      <command id="42" name="OnWithTimedOff">
         <fields>
-          <field name="On/off Control" type="uint8" />
-          <field name="On Time" type="uint16" />
-          <field name="Off Wait Time" type="uint16" />
+          <field name="On/offControl" type="uint8" />
+          <field name="OnTime" type="uint16" />
+          <field name="OffWaitTime" type="uint16" />
         </fields>
       </command>
     </commands>

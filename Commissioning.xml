@@ -11,10 +11,10 @@
       <attribute id="0005" name="StackProfile" type="uint8" required="true" min="1" max="2" default="RW" />
       <attribute id="0006" name="StartupControl" type="enum8" required="true" default="RW">
         <restriction>
-          <type:enumeration value="0" name="Indicates that the device should consider itself part of the network indicated by the ExtendedPANId attribute. In this case it will not perform any explicit join or rejoin operation." />
-          <type:enumeration value="1" name="Indicates that the device should form a network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to TRUE in this case." />
-          <type:enumeration value="2" name="Indicates that the device should rejoin the network with extended PAN ID given by the ExtendedPANId attribute.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." />
-          <type:enumeration value="3" name="Indicates that the device should start “from scratch” and join the network using (unsecured) MAC association.The AIB attribute apsDesignatedCoordinator (see [B1]) shall be set to FALSE in this case." />
+          <type:enumeration value="00" name="IndicatesThatTheDeviceShouldConsiderItselfPartOfTheNetworkIndicatedByTheExtendedPANIdAttribute.InThisCaseItWillNotPerformAnyExplicitJoinOrRejoinOperation." />
+          <type:enumeration value="01" name="IndicatesThatTheDeviceShouldFormANetworkWithExtendedPANIDGivenByTheExtendedPANIdAttribute.TheAIBAttributeApsDesignatedCoordinator(see[B1])ShallBeSetToTRUEInThisCase." />
+          <type:enumeration value="02" name="IndicatesThatTheDeviceShouldRejoinTheNetworkWithExtendedPANIDGivenByTheExtendedPANIdAttribute.TheAIBAttributeApsDesignatedCoordinator(see[B1])ShallBeSetToFALSEInThisCase." />
+          <type:enumeration value="03" name="IndicatesThatTheDeviceShouldStart“fromScratch”AndJoinTheNetworkUsing(unsecured)MACAssociation.TheAIBAttributeApsDesignatedCoordinator(see[B1])ShallBeSetToFALSEInThisCase." />
         </restriction>
       </attribute>
       <attribute id="0010" name="TrustCenterAddress" type="EUI64" required="true" default="RW" />
@@ -27,24 +27,24 @@
       <attribute id="0017" name="NetworkManagerAddress" type="uint16" required="true" default="RW" />
     </attributes>
     <commands>
-      <command id="00" name="Restart Device " required="true">
+      <command id="00" name="RestartDevice" required="true">
         <fields>
           <field name="Options" type="8-bit bitmap" />
           <field name="Delay" type="Unsigned 8-bit integer" />
           <field name="Jitter" type="Unsigned 8-bit integer" />
         </fields>
       </command>
-      <command id="01" name="Save Startup Parameters " />
-      <command id="02" name="Restore Startup Parameters " />
-      <command id="03" name="Reset Startup Parameters " required="true" />
+      <command id="01" name="SaveStartupParameters" />
+      <command id="02" name="RestoreStartupParameters" />
+      <command id="03" name="ResetStartupParameters" required="true" />
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Restart Device Response" required="true" />
-      <command id="01" name="Save Startup Parameters Response" required="true" />
-      <command id="02" name="Restore Startup Parameters Response" required="true" />
-      <command id="03" name="Reset Startup Parameters Response" required="true" />
+      <command id="00" name="RestartDeviceResponse" required="true" />
+      <command id="01" name="SaveStartupParametersResponse" required="true" />
+      <command id="02" name="RestoreStartupParametersResponse" required="true" />
+      <command id="03" name="ResetStartupParametersResponse" required="true" />
     </commands>
   </client>
 </zcl:cluster>

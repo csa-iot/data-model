@@ -31,7 +31,7 @@
       <attribute id="0117" name="PacketBufferAllocateFailures" type="uint16" max="65535" default="0" />
       <attribute id="0118" name="RelayedUcast" type="uint16" max="65535" default="0" />
       <attribute id="0119" name="PhytoMACqueuelimitreached" type="uint16" max="65535" default="0" />
-      <attribute id="011A" name="PacketValidatedropcount " type="uint16" max="65535" default="0" />
+      <attribute id="011A" name="PacketValidatedropcount" type="uint16" max="65535" default="0" />
       <attribute id="011B" name="AverageMACRetryPerAPSMessageSent" type="uint16" max="65535" default="0" />
       <attribute id="011C" name="LastMessageLQI" type="uint8" max="255" default="0" />
       <attribute id="011D" name="LastMessageRSSI" type="int8" default="0" />
