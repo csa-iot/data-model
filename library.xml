@@ -253,7 +253,6 @@
 	
 	<xi:include href="global.xml" parse="xml" />
 	<xi:include href="Basic.xml" parse="xml" />
-	<xi:include href="On-Off.xml" parse="xml" />
 	<!-- xi:include href="basic_martin_2.xml" parse="xml" /-->
 	<!-- xi:include href="basic_martin.xml" parse="xml" /-->
 	<!-- Power Configuration -->
