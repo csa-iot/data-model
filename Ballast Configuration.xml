@@ -15,8 +15,12 @@
       <attribute id="0014" name="IntrinsicBallastFactor" type="uint8" writable="true" max="254" default="-" />
       <attribute id="0015" name="BallastFactorAdjustment" type="uint8" writable="true" min="100" default="255" />
       <attribute id="0020" name="LampQuantity" type="uint8" max="254" default="-" />
-      <attribute id="0030" name="LampType" type="string" writable="true" default="" />
-      <attribute id="0031" name="LampManufacturer" type="string" writable="true" default="" />
+      <attribute id="0030" name="LampType" type="string" writable="true" default="">
+        <restriction />
+      </attribute>
+      <attribute id="0031" name="LampManufacturer" type="string" writable="true" default="">
+        <restriction />
+      </attribute>
       <attribute id="0032" name="LampRatedHours" type="uint24" writable="true" max="16777214" default="16777215" />
       <attribute id="0033" name="LampBurnHours" type="uint24" writable="true" max="16777214" default="0" />
       <attribute id="0034" name="LampAlarmMode" type="map8" writable="true" default="0000 0000" />

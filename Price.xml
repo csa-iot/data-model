@@ -3,21 +3,96 @@
   <classification role="application" picsCode="SEPR" />
   <server>
     <attributes>
-      <attribute id="0000" name="Tier1PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 1”" />
-      <attribute id="0001" name="Tier2PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 2”" />
-      <attribute id="0002" name="Tier3PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 3”" />
-      <attribute id="0003" name="Tier4PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 4”" />
-      <attribute id="0004" name="Tier5PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 5”" />
-      <attribute id="0005" name="Tier6PriceLabel" type="octstr" writable="true" min="1" max="13" default="“Tier 6”" />
-      <attribute id="0006" name="Tier7PriceLabel" type="octstr" min="1" max="13" default="“Tier 7”" />
-      <attribute id="0007" name="Tier8PriceLabel" type="octstr" min="1" max="13" default="“Tier 8”" />
-      <attribute id="0008" name="Tier9PriceLabel" type="octstr" min="1" max="13" default="“Tier 9”" />
-      <attribute id="0009" name="Tier10PriceLabel" type="octstr" min="1" max="13" default="“Tier 10”" />
-      <attribute id="000A" name="Tier11PriceLabel" type="octstr" min="1" max="13" default="“Tier 11”" />
-      <attribute id="000B" name="Tier12PriceLabel" type="octstr" min="1" max="13" default="“Tier 12”" />
-      <attribute id="000C" name="Tier13PriceLabel" type="octstr" min="1" max="13" default="“Tier 13”" />
-      <attribute id="000D" name="Tier14PriceLabel" type="octstr" min="1" max="13" default="“Tier 14”" />
-      <attribute id="000E" name="Tier15PriceLabel" type="octstr" min="1" max="13" default="“Tier 15”" />
+      <attribute id="0000" name="Tier1PriceLabel" type="octstr" writable="true" default="“Tier 1”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0001" name="Tier2PriceLabel" type="octstr" writable="true" default="“Tier 2”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0002" name="Tier3PriceLabel" type="octstr" writable="true" default="“Tier 3”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0003" name="Tier4PriceLabel" type="octstr" writable="true" default="“Tier 4”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0004" name="Tier5PriceLabel" type="octstr" writable="true" default="“Tier 5”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0005" name="Tier6PriceLabel" type="octstr" writable="true" default="“Tier 6”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0006" name="Tier7PriceLabel" type="octstr" default="“Tier 7”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0007" name="Tier8PriceLabel" type="octstr" default="“Tier 8”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0008" name="Tier9PriceLabel" type="octstr" default="“Tier 9”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="0009" name="Tier10PriceLabel" type="octstr" default="“Tier 10”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="000A" name="Tier11PriceLabel" type="octstr" default="“Tier 11”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="000B" name="Tier12PriceLabel" type="octstr" default="“Tier 12”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="000C" name="Tier13PriceLabel" type="octstr" default="“Tier 13”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="000D" name="Tier14PriceLabel" type="octstr" default="“Tier 14”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
+      <attribute id="000E" name="Tier15PriceLabel" type="octstr" default="“Tier 15”">
+        <restriction>
+          <type:minLength value="1" />
+          <type:maxLength value="13" />
+        </restriction>
+      </attribute>
       <attribute id="0000" name="Block1Threshold" type="uint48" max="281474976710655" default="-" />
       <attribute id="0001" name="Block2Threshold" type="uint48" max="281474976710655" default="-" />
       <attribute id="0002" name="Block3Threshold" type="uint48" max="281474976710655" default="-" />

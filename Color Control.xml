@@ -17,7 +17,12 @@
           <type:enumeration value="04" name="OpticalColorMonitoringAndFeedback" />
         </restriction>
       </attribute>
-      <attribute id="0006" name="CompensationText" type="string" max="254" default="-" />
+      <attribute id="0006" name="CompensationText" type="string" default="-">
+        <restriction>
+          <type:minLength value="0" />
+          <type:maxLength value="254" />
+        </restriction>
+      </attribute>
       <attribute id="0007" name="ColorTemperatureMireds" type="uint16" required="true" max="65279" default="0x00fa (4000K)" />
       <attribute id="0008" name="ColorMode" type="enum8" required="true" default="1">
         <restriction>
