@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0000" revision="0" name="Basic" xmlns:zcl="http://zigbee.org/zcl/clusters">
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" id="0000" revision="0" name="Basic">
   <classification hierarchy="base" role="utility" picsCode="B" />
   <server>
     <attributes>
@@ -69,7 +69,7 @@
       <attribute id="0011" name="PhysicalEnvironment" type="enum8" writable="true" default="0">
         <restriction>
           <type:enumeration value="00" name="UnspecifiedEnvironment" />
-          <type:enumeration value="01" name="MirrorCapacityAvailable–For0x0109ProfileIdOnly;Use0x71MovingForwardAtrium–DefinedForLegacyDevicesWithNon-0x0109ProfileId;Use0x70MovingForwardNote:ThisValueIsDeprecatedForProfileId0x0104.TheValue0x01IsMaintainedForHistoricalPurposesAndSHOULDOnlyBeUsedForBackwardsCompatibilityWithDevicesDevelopedBeforeThisSpecification.The0x01ValueMUSTBeInterpretedUsingTheProfileIdOfTheEndpointUponWhichItIsImplemented.ForEndpointsWithTheSmartEnergyProfileId(0x0109)TheValue0x01HasAMeaningOfMirror.ForEndpointsWithAnyOtherProfileIdentifier,TheValue0x01HasAMeaningOfAtrium." />
+          <type:enumeration value="01" name="Deprecated" />
           <type:enumeration value="02" name="Bar" />
           <type:enumeration value="03" name="Courtyard" />
           <type:enumeration value="04" name="Bathroom" />
@@ -188,8 +188,8 @@
       </attribute>
       <attribute id="0014" name="DisableLocalConfig" type="map8" writable="true" default="0">
         <bitmap>
-          <element name="0=Reset(tofactorydefaults)enabled1=Reset(tofactorydefaults)disabled" type="bool" mask="01" />
-          <element name="0=Deviceconfigurationenabled1=Deviceconfigurationdisabled" type="bool" mask="02" shiftRight="1" />
+          <element name="DisableResetToFactoryDefaults" type="bool" mask="01" />
+          <element name="DisableDeviceConfiguration" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
       <attribute id="4000" name="SWBuildID" type="string" max="16" default="" />
