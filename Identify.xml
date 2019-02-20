@@ -30,7 +30,11 @@
               <type:enumeration value="ff" name="StopEffect" />
             </restriction>
           </field>
-          <field name="EffectVariant" type="uint8" />
+          <field name="EffectVariant" type="uint8">
+            <restriction>
+              <type:enumeration value="00" name="Default" />
+            </restriction>
+          </field>
         </fields>
       </command>
     </commands>
