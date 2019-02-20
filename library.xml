@@ -259,5 +259,6 @@
 	<!-- Device Temperature Configuration -->
 	<!-- xi:include href="identify.xml" parse="xml" / -->
 	<!-- xi:include href="groups.xml" parse="xml" / -->
+	<xi:include href="Thermostat.xml" parse="xml" />
 	
 </zcl:library>

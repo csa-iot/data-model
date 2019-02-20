@@ -1,30 +1,95 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0201" revision="0" name="Thermostat" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="TSTAT" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:type="http://zigbee.org/zcl/types" 
+             xmlns:xi="http://www.w3.org/2001/XInclude" 
+             xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+             id="0201" revision="2" name="Thermostat" >
+  <classification hierarchy="base" role="application" picsCode="TSTAT" primaryTransaction="2" />
+  
   <server>
     <attributes>
-      <attribute id="0000" name="LocalTemperature" type="int16" required="true" default="-" />
-      <attribute id="0001" name="OutdoorTemperature" type="int16" default="-" />
-      <attribute id="0002" name="Occupancy" type="map8" default="0" />
-      <attribute id="0003" name="AbsMinHeatSetpointLimit" type="int16" default="0x02bc (7°C)" />
-      <attribute id="0004" name="AbsMaxHeatSetpointLimit" type="int16" default="0x0bb8 (30°C)" />
-      <attribute id="0005" name="AbsMinCoolSetpointLimit" type="int16" default="0x0640 (16°C)" />
-      <attribute id="0006" name="AbsMaxCoolSetpointLimit" type="int16" default="0x0c80 (32°C)" />
-      <attribute id="0007" name="PICoolingDemand" type="uint8" max="100" default="-" />
-      <attribute id="0008" name="PIHeatingDemand" type="uint8" max="100" default="-" />
-      <attribute id="0009" name="HVACSystemTypeConfiguration" type="map8" writable="true" default="0" />
-      <attribute id="0010" name="LocalTemperatureCalibration" type="int8" writable="true" default="0x00(0°C)" />
-      <attribute id="0011" name="OccupiedCoolingSetpoint" type="int16" writable="true" required="true" default="0x0a28(26°C)" />
-      <attribute id="0012" name="OccupiedHeatingSetpoint" type="int16" writable="true" required="true" default="0x07d0(20°C)" />
-      <attribute id="0013" name="UnoccupiedCoolingSetpoint" type="int16" writable="true" default="0x0a28(26°C)" />
-      <attribute id="0014" name="UnoccupiedHeatingSetpoint" type="int16" writable="true" default="0x07d0(20°C)" />
-      <attribute id="0015" name="MinHeatSetpointLimit" type="int16" writable="true" default="0x02bc(7°C)" />
-      <attribute id="0016" name="MaxHeatSetpointLimit" type="int16" writable="true" default="0x0bb8(30°C)" />
-      <attribute id="0017" name="MinCoolSetpointLimit" type="int16" writable="true" default="0x0640 (16°C)" />
-      <attribute id="0018" name="MaxCoolSetpointLimit" type="int16" writable="true" default="0x0c80 (32°C)" />
-      <attribute id="0019" name="MinSetpointDeadBand" type="int8" writable="true" min="10" max="25" default="0x19(2.5°C)" />
+      <!-- Thermostat Information Attribute Set -->
+      <attribute id="0000" name="LocalTemperature" type="int16" min="-27315" max="32767" reportRequired="true" required="true" />
+      <attribute id="0001" name="OutdoorTemperature" type="int16" min="-27315" max="32767" />
+      <attribute id="0002" name="Occupancy" type="map8" default="0">
+      	<bitmap>
+      	  <element name="Occupied" type="bool" mask="01" />
+      	</bitmap>
+      </attribute>
+      <attribute id="0003" name="AbsMinHeatSetpointLimit" type="int16" min="-27315" max="32767" default="700" />
+      <attribute id="0004" name="AbsMaxHeatSetpointLimit" type="int16" min="-27315" max="32767" default="3000" />
+      <attribute id="0005" name="AbsMinCoolSetpointLimit" type="int16" min="-27315" max="32767" default="1600" />
+      <attribute id="0006" name="AbsMaxCoolSetpointLimit" type="int16" min="-27315" max="32767" default="3200" />
+      <attribute id="0007" name="PICoolingDemand" type="uint8" max="100" reportRequired="true" />
+      <attribute id="0008" name="PIHeatingDemand" type="uint8" max="100" reportRequired="true" />
+      <attribute id="0009" name="HVACSystemTypeConfiguration" type="map8" writable="true" default="0">
+        <bitmap>
+          <element name="CoolingSystemStage" type="enum8" mask="03">
+          	<restriction>
+              <type:enumeration value="00" name="CoolStage1" />
+              <type:enumeration value="01" name="CoolStage2" />
+              <type:enumeration value="02" name="CoolStage3" />
+          	</restriction>
+          </element>
+          <element name="HeatingSystemStage" type="enum8" mask="0c" shiftRight="2">
+          	<restriction>
+          	  <type:enumeration value="00" name="HeatStage1" />
+          	  <type:enumeration value="01" name="HeatStage2" />
+          	  <type:enumeration value="02" name="HeatStage3" />
+          	</restriction>
+          </element>
+          <element name="HeatingSystemType" type="enum8" mask="10" shiftRight="4">
+          	<restriction>
+          	  <type:enumeration value="00" name="Conventional" />
+          	  <type:enumeration value="01" name="HeatPump" />
+          	</restriction>
+          </element>
+          <element name="HeatingFuelSource" type="enum8" mask="20" shiftRight="5">
+          	<restriction>
+          	  <type:enumeration value="00" name="ElectricOrB" />
+          	  <type:enumeration value="01" name="GasOrO" />
+          	</restriction>
+          </element>
+        </bitmap>
+      </attribute>
+      <!-- Thermostat Settings Attribute Set -->
+      <attribute id="0010" name="LocalTemperatureCalibration" type="int8" writable="true" min="-25" max="25" default="0" />
+      <attribute id="0011" name="OccupiedCoolingSetpoint" type="int16" writable="true" required="true" sceneRequired="true" default="2600">
+        <restriction>
+          <type:minInclusiveRef ref="MinCoolSetpointLimit" />
+          <type:maxInclusiveRef ref="MaxCoolSetpointLimit" />
+        </restriction>
+      </attribute>
+      <attribute id="0012" name="OccupiedHeatingSetpoint" type="int16" writable="true" required="true" sceneRequired="true" default="2000">
+        <restriction>
+          <type:minInclusiveRef ref="MinHeatSetpointLimit" />
+          <type:maxInclusiveRef ref="MaxHeatSetpointLimit" />
+        </restriction>
+      </attribute>
+      <attribute id="0013" name="UnoccupiedCoolingSetpoint" type="int16" writable="true" default="2600">
+        <restriction>
+          <type:minInclusiveRef ref="MinCoolSetpointLimit" />
+          <type:maxInclusiveRef ref="MaxCoolSetpointLimit" />
+        </restriction>
+      </attribute>
+      <attribute id="0014" name="UnoccupiedHeatingSetpoint" type="int16" writable="true" default="2000">
+        <restriction>
+          <type:minInclusiveRef ref="MinHeatSetpointLimit" />
+          <type:maxInclusiveRef ref="MaxHeatSetpointLimit" />
+        </restriction>
+      </attribute>
+      <attribute id="0015" name="MinHeatSetpointLimit" type="int16" min="-27315" max="32767" writable="true" default="700" />
+      <attribute id="0016" name="MaxHeatSetpointLimit" type="int16" min="-27315" max="32767" writable="true" default="3000" />
+      <attribute id="0017" name="MinCoolSetpointLimit" type="int16" min="-27315" max="32767" writable="true" default="1600" />
+      <attribute id="0018" name="MaxCoolSetpointLimit" type="int16" min="-27315" max="32767" writable="true" default="3200" />
+      <attribute id="0019" name="MinSetpointDeadBand" type="int8" writable="true" min="10" max="25" default="25" />
       <attribute id="001A" name="RemoteSensing" type="map8" writable="true" default="0">
-        <bitmap />
+        <bitmap>
+          <element name="LocalTemperatureRemote" mask="01" type="bool" />
+          <element name="OutdoorTemperatureRemote" mask="02" shiftRight="1" type="bool" />
+          <element name="OccupancyRemote" mask="04" shiftRight="2" type="bool" />
+        </bitmap>
       </attribute>
       <attribute id="001B" name="ControlSequenceOfOperation" type="enum8" writable="true" required="true" default="4">
         <restriction>
@@ -32,8 +97,8 @@
           <type:enumeration value="01" name="CoolingWithReheat" />
           <type:enumeration value="02" name="HeatingOnly" />
           <type:enumeration value="03" name="HeatingWithReheat" />
-          <type:enumeration value="04" name="CoolingAndHeating4-pipes(see1.3.2)" />
-          <type:enumeration value="05" name="CoolingAndHeating4-pipesWithReheat" />
+          <type:enumeration value="04" name="CoolingAndHeating4Pipes" />
+          <type:enumeration value="05" name="CoolingAndHeating4PipesWithReheat" />
         </restriction>
       </attribute>
       <attribute id="001C" name="SystemMode" type="enum8" writable="true" required="true" default="1">
@@ -43,30 +108,58 @@
           <type:enumeration value="03" name="Cool" />
           <type:enumeration value="04" name="Heat" />
           <type:enumeration value="05" name="EmergencyHeating" />
-          <type:enumeration value="06" name="Precooling(seeREF_Ref426633036\r\h6.1.2)" />
+          <type:enumeration value="06" name="Precooling" />
           <type:enumeration value="07" name="FanOnly" />
           <type:enumeration value="08" name="Dry" />
           <type:enumeration value="09" name="Sleep" />
         </restriction>
       </attribute>
-      <attribute id="001D" name="AlarmMask" type="map8" default="0" />
-      <attribute id="001E" name="ThermostatRunningMode" type="enum8" default="0" />
-      <attribute id="0000" name="0x0020–0x0028" type="" default="" />
-      <attribute id="0000" name="StartOfWeek" type="enum8" default="–" />
-      <attribute id="0000" name="NumberOfWeeklyTransitions" type="uint8" max="255" default="N/A" />
-      <attribute id="0000" name="NumberOfDailyTransitions" type="uint8" max="255" default="N/A" />
-      <attribute id="0000" name="TemperatureSetpointHold" type="enum8" writable="true" default="0">
+      <attribute id="001D" name="AlarmMask" type="map8" default="0">
+      	<bitmap>
+      	  <element name="InitializationFailure" type="bool" mask="01" />
+      	  <element name="HardwareFailure" type="bool" mask="02" shiftRight="1" />
+      	  <element name="SelfCalibrationFailure" type="bool" mask="04" shiftRight="2" />
+      	</bitmap>
+      </attribute>
+      <attribute id="001E" name="ThermostatRunningMode" type="enum8" default="0">
+        <restriction>
+          <type:enumeration value="00" name="Off" />
+          <type:enumeration value="03" name="Cool" />
+          <type:enumeration value="04" name="Heat" />
+        </restriction>
+      </attribute>
+      
+      <!-- Thermostat Schedule and HVAC Relay Attribute Set -->
+      <!-- Schedule Attribute Set 0x0020-0x0028 -->
+      <attribute id="0020" name="StartOfWeek" type="enum8">
+      	<restriction>
+      	  <type:enumeration value="00" name="Sunday" />
+     	  <type:enumeration value="01" name="Monday" />
+     	  <type:enumeration value="02" name="Tuesday" />
+     	  <type:enumeration value="03" name="Wednesday" />
+     	  <type:enumeration value="04" name="Thursday" />
+     	  <type:enumeration value="05" name="Friday" />
+     	  <type:enumeration value="06" name="Sunday" />
+      	</restriction>
+      </attribute>
+      <attribute id="0021" name="NumberOfWeeklyTransitions" type="uint8" max="255" />
+      <attribute id="0022" name="NumberOfDailyTransitions" type="uint8" max="255" />
+      <attribute id="0023" name="TemperatureSetpointHold" type="enum8" writable="true" default="0">
         <restriction>
           <type:enumeration value="00" name="SetpointHoldOff" />
           <type:enumeration value="01" name="SetpointHoldOn" />
         </restriction>
       </attribute>
-      <attribute id="0000" name="TemperatureSetpointHoldDuration" type="uint16" writable="true" min="65535" max="1440" default="65535" />
-      <attribute id="0000" name="ThermostatProgrammingOperationMode" type="map8" writable="true" default="0">
-        <bitmap />
+      <attribute id="0024" name="TemperatureSetpointHoldDuration" type="uint16" writable="true" min="0" max="1440" default="65535" />
+      <attribute id="0025" name="ThermostatProgrammingOperationMode" type="map8" writable="true" default="0">
+        <bitmap>
+          
+        </bitmap>
       </attribute>
-      <attribute id="0000" name="0x0029–0x002F" type="" default="" />
-      <attribute id="0000" name="ThermostatRunningState" type="map16" default="-" />
+      <!-- HVA Relay Attribute Set 0x0029-0x002F -->
+      <attribute id="0029" name="ThermostatRunningState" type="map16" default="-" />
+
+
       <attribute id="0030" name="SetpointChangeSource" type="enum8" default="0">
         <restriction>
           <type:enumeration value="00" name="Manual,User-initiatedSetpointChangeViaTheThermostat" />
