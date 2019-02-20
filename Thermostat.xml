@@ -151,44 +151,91 @@
         </restriction>
       </attribute>
       <attribute id="0024" name="TemperatureSetpointHoldDuration" type="uint16" writable="true" min="0" max="1440" default="65535" />
-      <attribute id="0025" name="ThermostatProgrammingOperationMode" type="map8" writable="true" default="0">
+      <attribute id="0025" name="ThermostatProgrammingOperationMode" type="map8" writable="true" reportRequired="true" default="0">
         <bitmap>
-          
+          <element name="ProgrammingMode" type="enum8" mask="01">
+            <restriction>
+              <type:enumeration value="00" name="SimpleOrSetpoint" />
+              <type:enumeration value="01" name="Schedule" />
+            </restriction>
+          </element>
+          <element name="AutoOrRecovery" type="bool" mask="02" shiftRight="1" />
+          <element name="EconomyOrEnergyStar" type="bool" mask="04" shiftRight="2" />
         </bitmap>
       </attribute>
       <!-- HVA Relay Attribute Set 0x0029-0x002F -->
-      <attribute id="0029" name="ThermostatRunningState" type="map16" default="-" />
+      <attribute id="0029" name="ThermostatRunningState" type="map16">
+        <bitmap>
+          <element name="HeatOn" type="bool" mask="01" />
+          <element name="CoolOn" type="bool" mask="02" shiftRight="1" />
+          <element name="FanOn" type="bool" mask="04" shiftRight="2" />
+          <element name="HeatSecondStageOn" type="bool" mask="08" shiftRight="3" />
+          <element name="CoolSecondStageOn" type="bool" mask="10" shiftRight="4" />
+          <element name="FanSecondStageOn" type="bool" mask="20" shiftRight="5" />
+          <element name="FanThirdStageOn" type="bool" mask="40" shiftRight="6" />
+        </bitmap>
+      </attribute>
 
-
+      <!-- Thermostat Setpoint Change Tracking Attribute Set -->
       <attribute id="0030" name="SetpointChangeSource" type="enum8" default="0">
         <restriction>
-          <type:enumeration value="00" name="Manual,User-initiatedSetpointChangeViaTheThermostat" />
-          <type:enumeration value="01" name="Schedule/internalProgramming-initiatedSetpointChange" />
-          <type:enumeration value="02" name="Externally-initiatedSetpointChange(e.g.,DRLCClusterCommand,AttributeWrite)" />
+          <type:enumeration value="00" name="Manual" />
+          <type:enumeration value="01" name="ScheduleOrInternalProgramming" />
+          <type:enumeration value="02" name="External" />
         </restriction>
       </attribute>
       <attribute id="0031" name="SetpointChangeAmount" type="int16" default="32768" />
       <attribute id="0032" name="SetpointChangeSourceTimestamp" type="UTC" default="0" />
-      <attribute id="0034" name="OccupiedSetback" type="uint8" writable="true" default="255" />
-      <attribute id="0035" name="OccupiedSetbackMin" type="uint8" default="255" />
-      <attribute id="0036" name="OccupiedSetbackMax" type="uint8" min="255" default="255" />
-      <attribute id="0037" name="UnoccupiedSetback" type="uint8" writable="true" default="255" />
-      <attribute id="0038" name="UnoccupiedSetbackMin" type="uint8" default="255" />
-      <attribute id="0039" name="UnoccupiedSetbackMax" type="uint8" min="255" default="255" />
+      <attribute id="0034" name="OccupiedSetback" type="uint8" writable="true" default="255">
+        <restriction>
+          <type:minInclusiveRef ref="OccupiedSetbackMin" />
+          <type:maxInclusiveRef ref="OccupiedSetbackMax" />
+        </restriction>
+      </attribute>
+      <attribute id="0035" name="OccupiedSetbackMin" type="uint8" default="255">
+        <restriction>
+          <type:minInclusive value="0" />
+          <type:maxInclusiveRef ref="OccupiedSetbackMax" />
+        </restriction>
+      </attribute>
+      <attribute id="0036" name="OccupiedSetbackMax" type="uint8" default="255">
+        <restriction>
+          <type:minInclusiveRef ref="OccupiedSetbackMin" />
+          <type:maxInclusive value="255" />
+        </restriction>
+      </attribute>
+      <attribute id="0037" name="UnoccupiedSetback" type="uint8" writable="true" default="255">
+        <restriction>
+          <type:minInclusiveRef ref="UnoccupiedSetbackMin" />
+          <type:maxInclusiveRef ref="UnoccupiedSetbackMax" />
+        </restriction>
+      </attribute>
+      <attribute id="0038" name="UnoccupiedSetbackMin" type="uint8" default="255">
+        <restriction>
+          <type:minInclusive value="0" />
+          <type:maxInclusiveRef ref="UnoccupiedSetbackMax" />
+        </restriction>
+      </attribute>
+      <attribute id="0039" name="UnoccupiedSetbackMax" type="uint8" default="255">
+        <restriction>
+          <type:minInclusiveRef ref="UnoccupiedSetbackMin" />
+          <type:maxInclusive value="255" />
+        </restriction>
+      </attribute>
       <attribute id="003A" name="EmergencyHeatDelta" type="uint8" writable="true" max="255" default="255" />
+      
+      <!-- AC Information Attribute Set -->
       <attribute id="0040" name="ACType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Reserved" />
           <type:enumeration value="01" name="CoolingAndFixedSpeed" />
           <type:enumeration value="02" name="HeatPumpAndFixedSpeed" />
           <type:enumeration value="03" name="CoolingAndInverter" />
           <type:enumeration value="04" name="HeatPumpAndInverter" />
         </restriction>
       </attribute>
-      <attribute id="0041" name="ACCapacity" type="uint16" writable="true" max="65535" default="0" />
+      <attribute id="0041" name="ACCapacity" type="uint16" writable="true" default="0" />
       <attribute id="0042" name="ACRefrigerantType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Reserved" />
           <type:enumeration value="01" name="R22" />
           <type:enumeration value="02" name="R410a" />
           <type:enumeration value="03" name="R407c" />
@@ -196,14 +243,19 @@
       </attribute>
       <attribute id="0043" name="ACCompressorType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Reserved" />
-          <type:enumeration value="01" name="T1,MaxWorkingAmbient43ºC" />
-          <type:enumeration value="02" name="T2,MaxWorkingAmbient35ºC" />
-          <type:enumeration value="03" name="T3,MaxWorkingAmbient52ºC" />
+          <type:enumeration value="01" name="T1" />
+          <type:enumeration value="02" name="T2" />
+          <type:enumeration value="03" name="T3" />
         </restriction>
       </attribute>
       <attribute id="0044" name="ACErrorCode" type="map32" writable="true" default="0">
-        <bitmap />
+        <bitmap>
+          <element name="CompressorFailureOrRefrigerantLeakage" type="bool" mask="01" />
+          <element name="RoomTemperatureSensorFailure" type="bool" mask="02" shiftRight="1" />
+          <element name="OutdoorTemperatureSensorFailure" type="bool" mask="04" shiftRight="2" />
+          <element name="IndoorCoilTemperatureSensorFailure" type="bool" mask="08" shiftRight="3" />
+          <element name="FanFailure" type="bool" mask="10" shiftRight="4" />
+        </bitmap>
       </attribute>
       <attribute id="0045" name="ACLouverPosition" type="enum8" writable="true" default="0">
         <restriction />
