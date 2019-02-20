@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
-			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-			 xmlns:type="http://zigbee.org/zcl/types" 
-			 xmlns:xi="http://www.w3.org/2001/XInclude" 
-			 xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-			 id="0000" revision="2" name="Basic">
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+  id="0000" revision="2" name="Basic">
   <classification hierarchy="base" role="utility" picsCode="B" />
   <server>
     <attributes>
@@ -13,22 +13,22 @@
       <attribute id="0002" name="StackVersion" type="uint8" max="255" default="0" />
       <attribute id="0003" name="HWVersion" type="uint8" max="255" default="0" />
       <attribute id="0004" name="ManufacturerName" type="string" default="">
-      	<restriction>
-      	  <type:minLength value="0" />
-      	  <type:maxLength value="32"/>
-      	</restriction>
+        <restriction>
+          <type:minLength value="0" />
+          <type:maxLength value="32" />
+        </restriction>
       </attribute>
       <attribute id="0005" name="ModelIdentifier" type="string" default="">
         <restriction>
-      	  <type:minLength value="0" />
-      	  <type:maxLength value="32"/>
-      	</restriction>
+          <type:minLength value="0" />
+          <type:maxLength value="32" />
+        </restriction>
       </attribute>
       <attribute id="0006" name="DateCode" type="string" default="">
         <restriction>
-      	  <type:minLength value="0" />
-      	  <type:maxLength value="16"/>
-      	</restriction>
+          <type:minLength value="0" />
+          <type:maxLength value="16" />
+        </restriction>
       </attribute>
       <attribute id="0007" name="PowerSource" type="enum8" required="true" default="0">
         <restriction>
@@ -86,10 +86,10 @@
       <attribute id="000D" name="SerialNumber" type="string" default="" />
       <attribute id="000E" name="ProductLabel" type="string" default="" />
       <attribute id="0010" name="LocationDescription" type="string" writable="true" default="">
-      	<restriction>
-      	  <type:minLength value="0" />
-      	  <type:maxLength value="16"/>
-      	</restriction>
+        <restriction>
+          <type:minLength value="0" />
+          <type:maxLength value="16" />
+        </restriction>
       </attribute>
       <attribute id="0011" name="PhysicalEnvironment" type="enum8" writable="true" default="0">
         <restriction>
@@ -220,9 +220,9 @@
       <attribute id="4000" name="SWBuildID" type="string" default="">
         <restriction>
           <type:minLength value="0" />
-          <type:maxLength value="16"/>
+          <type:maxLength value="16" />
         </restriction>
-      </attribute>      
+      </attribute>
     </attributes>
     <commands>
       <command id="00" name="ResetToFactoryDefaults" />
