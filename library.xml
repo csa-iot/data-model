@@ -253,11 +253,7 @@
 	
 	<xi:include href="global.xml" parse="xml" />
 	<xi:include href="Basic.xml" parse="xml" />
-	<!-- xi:include href="basic_martin_2.xml" parse="xml" /-->
-	<!-- xi:include href="basic_martin.xml" parse="xml" /-->
-	<!-- Power Configuration -->
-	<!-- Device Temperature Configuration -->
-	<!-- xi:include href="identify.xml" parse="xml" / -->
-	<!-- xi:include href="groups.xml" parse="xml" / -->
+	<xi:include href="Identify.xml" parse="xml" />
+	<xi:include href="Groups.xml" parse="xml" />
 	
 </zcl:library>
