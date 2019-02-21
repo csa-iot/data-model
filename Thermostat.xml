@@ -258,10 +258,20 @@
         </bitmap>
       </attribute>
       <attribute id="0045" name="ACLouverPosition" type="enum8" writable="true" default="0">
-        <restriction />
+        <restriction>
+          <type:enumeration value="01" name="FullyClosed" />
+          <type:enumeration value="02" name="FullyOpen" />
+          <type:enumeration value="03" name="QuarterOpen" />
+          <type:enumeration value="04" name="HalfOpen" />
+          <type:enumeration value="05" name="ThreeQuartersOpen" />
+        </restriction>
       </attribute>
-      <attribute id="0046" name="ACCoilTemperature" type="int16" default="-" />
-      <attribute id="0047" name="ACCapacityFormat" type="enum8" writable="true" default="0" />
+      <attribute id="0046" name="ACCoilTemperature" type="int16" min="-27315" max="32767" />
+      <attribute id="0047" name="ACCapacityFormat" type="enum8" writable="true" default="0">
+        <restriction>
+          <type:enumeration value="00" name="BTUh" />
+        </restriction>
+      </attribute>
     </attributes>
   </server>
 </zcl:cluster>
