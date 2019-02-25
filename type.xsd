@@ -256,10 +256,12 @@
 	</xs:complexType>
   
   <xs:complexType name="ZigbeeDataType">
-  	<xs:sequence>
+  	<xs:choice>
+        <xs:element name="bitmap" type="zclType:BitmapDefinition"
+      minOccurs="0" maxOccurs="1" />
 		<xs:element name="restriction" type="zclType:restrictionType"
 				minOccurs="0" maxOccurs="1" />
-	</xs:sequence>
+	</xs:choice>
   	<xs:attribute name="id" type="zclType:DataTypeId" use="required" />
   	<xs:attribute name="name" type="xs:string" use="required" />
   	<xs:attribute name="short" type="xs:string" use="required" />
