@@ -1,23 +1,28 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0020" revision="0" name="Poll Control" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="utility" picsCode="POLL" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:type="http://zigbee.org/zcl/types" 
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+  id="0020" revision="2" name="PollControl" >
+  <classification hierarchy="base" role="utility" picsCode="POLL" />
   <server>
     <attributes>
-      <attribute id="0000" name="Check-inInterval" type="uint32" writable="true" required="true" max="6" default="0x3840 (1 hr.)" />
-      <attribute id="0001" name="LongPollInterval" type="uint32" required="true" min="4" max="6" default="0x14 (5 sec)" />
-      <attribute id="0002" name="ShortPollInterval" type="uint16" required="true" min="1" max="65535" default="0x02 (2 qs)" />
-      <attribute id="0003" name="FastPollTimeout" type="uint16" writable="true" required="true" min="1" max="65535" default="0x28 (10 sec.)" />
-      <attribute id="0004" name="Check-inIntervalMin" type="uint32" default="0" />
+      <attribute id="0000" name="CheckInInterval" type="uint32" writable="true" required="true" max="7208960" default="14400" />
+      <attribute id="0001" name="LongPollInterval" type="uint32" required="true" min="4" max="7208960" default="20" />
+      <attribute id="0002" name="ShortPollInterval" type="uint16" required="true" min="1" max="65535" default="2" />
+      <attribute id="0003" name="FastPollTimeout" type="uint16" writable="true" required="true" min="1" max="65535" default="40" />
+      <attribute id="0004" name="CheckInIntervalMin" type="uint32" default="0" />
       <attribute id="0005" name="LongPollIntervalMin" type="uint32" default="0" />
       <attribute id="0006" name="FastPollTimeoutMax" type="uint16" default="0" />
     </attributes>
     <commands>
-      <command id="00" name="Check-in" required="true" />
+      <command id="00" name="CheckIn" required="true" />
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="Check-inResponse" required="true">
+      <command id="00" name="CheckInResponse" required="true">
         <fields>
           <field name="StartFastPolling" type="bool" />
           <field name="FastPollTimeout" type="uint16" />
