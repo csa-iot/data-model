@@ -272,7 +272,9 @@
 	<xi:include href="global.xml" parse="xml" />
 	<xi:include href="Basic.xml" parse="xml" />
 	<xi:include href="Identify.xml" parse="xml" />
+	<xi:include href="Flow Measurement.xml" parse="xml" />
 	<xi:include href="Groups.xml" parse="xml" />
+	<xi:include href="Pressure Measurement.xml" parse="xml" />
 	<xi:include href="Time.xml" parse="xml" />
 	
 </zcl:library>
