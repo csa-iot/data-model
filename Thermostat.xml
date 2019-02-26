@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0201" revision="0" name="Thermostat" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="TSTAT" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0201" revision="0" name="Thermostat">
+  <classification hierarchy="base" role="application" picsCode="TSTAT" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="LocalTemperature" type="int16" required="true" default="-" />
@@ -85,7 +90,6 @@
       <attribute id="003A" name="EmergencyHeatDelta" type="uint8" writable="true" max="255" default="255" />
       <attribute id="0040" name="ACType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Reserved" />
           <type:enumeration value="01" name="CoolingAndFixedSpeed" />
           <type:enumeration value="02" name="HeatPumpAndFixedSpeed" />
           <type:enumeration value="03" name="CoolingAndInverter" />
@@ -95,7 +99,6 @@
       <attribute id="0041" name="ACCapacity" type="uint16" writable="true" max="65535" default="0" />
       <attribute id="0042" name="ACRefrigerantType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Reserved" />
           <type:enumeration value="01" name="R22" />
           <type:enumeration value="02" name="R410a" />
           <type:enumeration value="03" name="R407c" />
@@ -103,7 +106,6 @@
       </attribute>
       <attribute id="0043" name="ACCompressorType" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Reserved" />
           <type:enumeration value="01" name="T1,MaxWorkingAmbient43ºC" />
           <type:enumeration value="02" name="T2,MaxWorkingAmbient35ºC" />
           <type:enumeration value="03" name="T3,MaxWorkingAmbient52ºC" />
