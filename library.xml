@@ -290,6 +290,7 @@
 	<xi:include href="Basic.xml" parse="xml" />
 	<xi:include href="Identify.xml" parse="xml" />
 	<xi:include href="Groups.xml" parse="xml" />
+    <xi:include href="On-Off.xml" parse="xml" />
 	<xi:include href="Thermostat.xml" parse="xml" />
 	
 </zcl:library>

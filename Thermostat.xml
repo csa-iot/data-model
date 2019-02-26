@@ -273,5 +273,30 @@
         </restriction>
       </attribute>
     </attributes>
+    <commands>
+      <command id="00" name="SetpointRaiseOrLower" required="true">
+        <fields>
+          <field name="Mode" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Heat" />
+              <type:enumeration value="01" name="Cool" />
+              <type:enumeration value="02" name="Both" />
+            </restriction>
+          </field>
+          <field name="Amout" type="int8" />
+        </fields>
+      </command>
+      <command id="01" name="SetWeeklySchedule"></command>
+      <command id="02" name="GetWeeklySchedule"></command>
+      <command id="03" name="ClearWeeklySchedule"></command>
+      <command id="04" name="GetRelayStatusLog"></command>
+    </commands>
   </server>
+  
+  <client>
+    <commands>
+      <command id="00" name="GetWeeklyScheduleResponse"></command>
+      <command id="01" name="GetRelayStatusLogResponse"></command>
+    </commands>
+  </client>
 </zcl:cluster>
