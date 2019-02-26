@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="B002" revision="0" name="EN50523 Appliance Events and Alerts" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="APPLEV" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="B002" revision="0" name="EN50523 Appliance Events and Alerts">
+  <classification hierarchy="base" role="application" picsCode="APPLEV" primaryTransaction="" />
   <server>
     <attributes />
     <commands>

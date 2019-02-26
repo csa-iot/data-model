@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:type="http://zigbee.org/zcl/types"

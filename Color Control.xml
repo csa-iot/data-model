@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0300" revision="0" name="Color Control" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="CC" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0300" revision="0" name="Color Control">
+  <classification hierarchy="base" role="application" picsCode="CC" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="CurrentHue" type="uint8" required="true" max="254" default="0" />
