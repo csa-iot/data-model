@@ -7,6 +7,38 @@
              id="0201" revision="2" name="Thermostat" >
   <classification hierarchy="base" role="application" picsCode="TSTAT" primaryTransaction="2" />
   
+  <!-- Note that this type has a dependencies on the on a Mode field of 
+  type tstatScheduleMode for any command it is used in -->
+  <type:type short="TransitionType" name="TransitionType" id="ff">
+    <restriction>
+      <type:sequence>
+        <field name="TransitionTime" type="uint16" />
+        <field name="HeatSetPoint" type="int16" presentIf="Mode.Heat" />
+        <field name="CoolSetPoint" type="int16" presentIf="Mode.Cool" />
+      </type:sequence>
+    </restriction>
+  </type:type>
+  
+  <type:type short="tstatScheduleDOW" name="Day Of Week" id="18" inheritsFrom="map8">
+    <bitmap>
+      <element name="Sunday" mask="01" type="bool" />
+      <element name="Monday" mask="02" shiftRight="1" type="bool" />
+      <element name="Tuesday" mask="04" shiftRight="2" type="bool" />
+      <element name="Wednesday" mask="08" shiftRight="3" type="bool" />
+      <element name="Thursday" mask="10" shiftRight="4" type="bool" />
+      <element name="Friday" mask="20" shiftRight="5" type="bool" />
+      <element name="Saturday" mask="40" shiftRight="6" type="bool" />
+      <element name="AwayOrVacation" mask="80" shiftRight="7" type="bool" />
+    </bitmap>
+  </type:type>
+  
+  <type:type short="tstatScheduleMode" name="ScheduleMode" id="18" inheritsFrom="map8">
+    <bitmap>
+      <element name="Heat" mask="01" type="bool" />
+      <element name="Cool" mask="02" shiftRight="1" type="bool" />
+    </bitmap>
+  </type:type>
+  
   <server>
     <attributes>
       <!-- Thermostat Information Attribute Set -->
@@ -286,17 +318,55 @@
           <field name="Amout" type="int8" />
         </fields>
       </command>
-      <command id="01" name="SetWeeklySchedule"></command>
-      <command id="02" name="GetWeeklySchedule"></command>
-      <command id="03" name="ClearWeeklySchedule"></command>
-      <command id="04" name="GetRelayStatusLog"></command>
+      <command id="01" name="SetWeeklySchedule">
+        <fields>
+          <field name="NumberOfTransitions" type="enum8">
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="10" />
+            </restriction>
+          </field>
+          <field name="DayOfWeek" type="tstatScheduleDOW" />
+          <field name="Mode" type="tstatScheduleMode" />
+          <field name="Transitions" type="TransitionType" array="true" arrayLengthField="NumberOfTransitions" />
+        </fields>
+      </command>
+      <command id="02" name="GetWeeklySchedule">
+        <fields>
+          <field name="DaysToReturn" type="tstatScheduleDOW" />
+          <field name="ModeToReturn" type="tstatScheduleMode" />
+        </fields>
+      </command>
+      <command id="03" name="ClearWeeklySchedule" />
+      <command id="04" name="GetRelayStatusLog" />
     </commands>
   </server>
   
   <client>
     <commands>
-      <command id="00" name="GetWeeklyScheduleResponse"></command>
-      <command id="01" name="GetRelayStatusLogResponse"></command>
+      <command id="00" name="GetWeeklyScheduleResponse">
+        <fields>
+          <field name="NumberOfTransitions" type="enum8">
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="10" />
+            </restriction>
+          </field>
+          <field name="DayOfWeek" type="tstatScheduleDOW" />
+          <field name="Mode" type="tstatScheduleMode" />
+          <field name="Transitions" type="TransitionType" array="true" arrayLengthField="NumberOfTransitions" />
+        </fields>
+      </command>
+      <command id="01" name="GetRelayStatusLogResponse">
+        <fields>
+          <field name="TimeOfDay" type="uint16" />
+          <field name="RelayStatus" type="map8" />
+          <field name="LocalTemperature" type="int16" />
+          <field name="HumidityPercentage" type="uint8" />
+          <field name="SetPoint" type="int16" />
+          <field name="UnreadEntries" type="uint16" />
+        </fields>
+      </command>
     </commands>
   </client>
 </zcl:cluster>

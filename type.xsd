@@ -63,6 +63,11 @@
 		use="optional" default="false" />
 	<xs:attribute name="arrayLengthSize" type="xs:unsignedByte" 
 		use="optional" default="1" />
+    <!-- The use of this is discouraged, and should not be used in the case
+         the count and array are adjacent
+    -->
+    <xs:attribute name="arrayLengthField" type="zclType:NamedElement"
+        use="optional" default="" />
 	<xs:attribute name="presentIf" type="zclType:DependencyExpression" 
 		use="optional" default="true" />
   </xs:complexType>
