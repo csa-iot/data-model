@@ -137,18 +137,24 @@
 	<!-- Sequences -->	
 	<!-- Collections -->
 	<!-- Time -->
-    <type:type id="e0" short="ToD" name="Time of day">
-      <!-- Need the update for bitmaps in types -->
-    </type:type> 
-    <type:type id="e1" short="date" name="Date">
-      <!-- Need the update for bitmaps in types -->
-    </type:type> 
-     <type:type id="e2" short="UTC" name="UTC Time">
-      <restriction>
-        <type:minInclusive value="0"/>
-        <type:maxInclusive value="4294967295"/>
-      </restriction>
-    </type:type> 
+	<type:type id="e0" short="ToD" name="Time of day">
+		<restriction>
+			<type:minInclusive value="0"/>
+			<type:maxInclusive value="4294967295"/>
+		</restriction>
+	</type:type>
+	<type:type id="e1" short="date" name="Date">
+		<restriction>
+			<type:minInclusive value="0"/>
+			<type:maxInclusive value="4294967295"/>
+		</restriction>
+	</type:type>
+	<type:type id="e2" short="UTC" name="UTCTime">
+		<restriction>
+			<type:minInclusive value="0"/>
+			<type:maxInclusive value="4294967295"/>
+		</restriction>
+	</type:type>
 	<!-- Identifiers -->
     <type:type id="e8" short="clusterId" name="Cluster ID" discrete="true">
       <restriction>
@@ -290,7 +296,7 @@
 	<xi:include href="Basic.xml" parse="xml" />
 	<xi:include href="Identify.xml" parse="xml" />
 	<xi:include href="Groups.xml" parse="xml" />
-    <xi:include href="On-Off.xml" parse="xml" />
+	<xi:include href="Time.xml" parse="xml" />
 	<xi:include href="Thermostat.xml" parse="xml" />
 	
 </zcl:library>
