@@ -137,6 +137,24 @@
 	<!-- Sequences -->	
 	<!-- Collections -->
 	<!-- Time -->
+	<type:type id="e0" short="ToD" name="Time of day">
+		<restriction>
+			<type:minInclusive value="0"/>
+			<type:maxInclusive value="4294967295"/>
+		</restriction>
+	</type:type>
+	<type:type id="e1" short="date" name="Date">
+		<restriction>
+			<type:minInclusive value="0"/>
+			<type:maxInclusive value="4294967295"/>
+		</restriction>
+	</type:type>
+	<type:type id="e2" short="UTC" name="UTCTime">
+		<restriction>
+			<type:minInclusive value="0"/>
+			<type:maxInclusive value="4294967295"/>
+		</restriction>
+	</type:type>
 	<!-- Identifiers -->
 	<type:type id="e9" short="attribId" name="Attribute ID" discrete="true">
 		<restriction>
@@ -255,5 +273,6 @@
 	<xi:include href="Basic.xml" parse="xml" />
 	<xi:include href="Identify.xml" parse="xml" />
 	<xi:include href="Groups.xml" parse="xml" />
+	<xi:include href="Time.xml" parse="xml" />
 	
 </zcl:library>
