@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="000A" revision="0" name="Time" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="T" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="000A" revision="0" name="Time">
+  <classification hierarchy="base" role="application" picsCode="T" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="Time" type="UTC" writable="true" required="true" default="4294967295" />
