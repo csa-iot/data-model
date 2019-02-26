@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns:type="http://zigbee.org/zcl/types" 
-  xmlns:xi="http://www.w3.org/2001/XInclude" 
-  xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0001" revision="1" name="PowerConfiguration">
   <classification hierarchy="base" role="utility" picsCode="PC" />
   
@@ -66,11 +66,11 @@
       <attribute id="0011" name="MainsVoltageMinThreshold" type="uint16" writable="true" max="65535" default="0" />
       <attribute id="0012" name="MainsVoltageMaxThreshold" type="uint16" writable="true" max="65535" default="65535" />
       <attribute id="0013" name="MainsVoltageDwellTripPoint" type="uint16" writable="true" max="65535" default="0" />
-      
+
       <!-- Battery Information Attribute Set -->
       <attribute id="0020" name="BatteryVoltage" type="uint8" max="255" />
       <attribute id="0021" name="BatteryPercentageRemaining" type="uint8" reportRequired="true" max="255" default="0" />
-      
+
       <!-- Battery Settings Attribute Set -->
       <attribute id="0030" name="BatteryManufacturer" type="string" writable="true" default="">
         <restriction>
