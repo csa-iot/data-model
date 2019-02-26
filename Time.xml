@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="000A" revision="0" name="Time" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="T" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="000A" revision="0" name="Time">
+  <classification hierarchy="base" role="application" picsCode="T" />
   <server>
     <attributes>
-      <attribute id="0000" name="Time" type="UTC" writable="true" required="true" default="4294967295" />
-      <attribute id="0001" name="TimeStatus" type="map8" writable="true" required="true" default="47244640256">
+      <attribute id="0000" name="Time" type="UTC" writable="true" max="4294967294" required="true" default="4294967295" />
+      <attribute id="0001" name="TimeStatus" type="map8" writable="true" required="true" default="0">
         <bitmap>
           <element name="Master" type="bool" mask="01" />
           <element name="Synchronized" type="bool" mask="02" shiftRight="1" />
@@ -12,14 +17,14 @@
           <element name="Superseding" type="bool" mask="08" shiftRight="3" />
         </bitmap>
       </attribute>
-      <attribute id="0002" name="TimeZone" type="int32" writable="true" default="0x00000000 " />
+      <attribute id="0002" name="TimeZone" type="int32" writable="true" min="-86400" max="86400" default="0" />
       <attribute id="0003" name="DstStart" type="uint32" writable="true" max="4294967294" default="4294967295" />
       <attribute id="0004" name="DstEnd" type="uint32" writable="true" max="4294967294" default="4294967295" />
-      <attribute id="0005" name="DstShift" type="int32" writable="true" default="0x00000000 " />
+      <attribute id="0005" name="DstShift" type="int32" writable="true" min="-86400" max="86400" default="0" />
       <attribute id="0006" name="StandardTime" type="uint32" max="4294967294" default="4294967295" />
       <attribute id="0007" name="LocalTime" type="uint32" max="4294967294" default="4294967295" />
-      <attribute id="0008" name="LastSetTime" type="UTC" default="0xffffffff " />
-      <attribute id="0009" name="ValidUntilTime" type="UTC" writable="true" default="0xffffffff " />
+      <attribute id="0008" name="LastSetTime" type="UTC" default="4294967295" />
+      <attribute id="0009" name="ValidUntilTime" type="UTC" writable="true" default="4294967295" />
     </attributes>
   </server>
 </zcl:cluster>
