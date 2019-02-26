@@ -8,4 +8,13 @@ sed -i '' 's/<type:enumeration\(.*\) xmlns="http:\/\/zigbee.org\/zcl\/types" \/>
 sed -i '' '/<type:enumeration\(.*\)name="Reserved" \/>/d' *.xml
 sed -i '' 's/default="empty string"/default=""/g' *.xml
 sed -i '' 's/<type:enumeration value="\([0-9a-fA-F]\)"/<type:enumeration value="0\1"/g' *.xml
-
+sed -i '' 's/<zcl:cluster xmlns:schemaLocation="http:\/\/zigbee.org\/zcl\/clusters cluster.xsd http:\/\/zigbee.org\/zcl\/types type.xsd" xmlns:xsi="http:\/\/www.w3.org\/2001\/XMLSchema-instance" xmlns:type="http:\/\/zigbee.org\/zcl\/types" xmlns:xi="http:\/\/www.w3.org\/2001\/XInclude" /<zcl:cluster xmlns:zcl="http:\/\/zigbee.org\/zcl\/clusters"\
+  xmlns:xsi="http:\/\/www.w3.org\/2001\/XMLSchema-instance"\
+  xmlns:type="http:\/\/zigbee.org\/zcl\/types"\
+  xmlns:xi="http:\/\/www.w3.org\/2001\/XInclude"\
+  xsi:schemaLocation="http:\/\/zigbee.org\/zcl\/clusters cluster.xsd http:\/\/zigbee.org\/zcl\/types type.xsd"\
+  /g' *.xml
+sed -i '' 's/xmlns:schemaLocation/xsi:schemaLocation/g' *.xml
+sed -i '' 's/ xmlns:zcl="http:\/\/zigbee.org\/zcl\/clusters">/>/g' *.xml
+sed -i '' 's/<classification role="\([^"]*\)" picsCode="\([^"]*\)" \/>/<classification hierarchy="base" role="\1" picsCode="\2" \/>/g' *.xml
+sed -i '' 's/<classification hierarchy="\([^"]*\)" role="application" picsCode="\([^"]*\)" \/>/<classification hierarchy="\1" role="application" picsCode="\2" primaryTransaction="" \/>/g' *.xml

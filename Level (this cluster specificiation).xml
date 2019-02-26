@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0008" revision="0" name="Level (this cluster specificiation)" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="LVL" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0008" revision="0" name="Level (this cluster specificiation)">
+  <classification hierarchy="base" role="application" picsCode="LVL" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="CurrentLevel" type="uint8" required="true" default="255" />

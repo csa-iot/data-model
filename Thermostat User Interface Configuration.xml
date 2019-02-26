@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:type="http://zigbee.org/zcl/types" xmlns:xi="http://www.w3.org/2001/XInclude" id="0204" revision="0" name="Thermostat User Interface Configuration" xmlns:zcl="http://zigbee.org/zcl/clusters">
-  <classification role="application" picsCode="TSUIC" />
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0204" revision="0" name="Thermostat User Interface Configuration">
+  <classification hierarchy="base" role="application" picsCode="TSUIC" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="TemperatureDisplayMode" type="enum8" writable="true" required="true" default="0x00 (Celsius)" />
