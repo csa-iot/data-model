@@ -4,13 +4,11 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0405" revision="2" name="RelativeHumidity">
-  <!--
-        Same cluster instance also serves:
-          0407 Leaf Wetness
-          0408 Soil Moisture
-        but these are not derived clusters.
-  -->
+  id="0405" revision="2" name="RelativityHumidity">
+  <aliases>
+    <alias id="0407" name="LeafWetness" />
+    <alias id="0408" name="SoilMoisture" />
+  </aliases>
   <classification hierarchy="base" role="application" picsCode="RH" primaryTransaction="2" />
   <server>
     <attributes>

@@ -29,6 +29,20 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:complexType name="ClusterIdAlias">
+		<xs:attribute name="id" type="type:ClusterId"
+			use="required" />
+		<xs:attribute name="name" type="type:NamedElement"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ClusterIdAliasList">
+		<xs:sequence>
+			<xs:element name="alias" type="zcl:ClusterIdAlias"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:complexType name="Classification">
 		<xs:attribute name="hierarchy" type="xs:string"
 			use="required" />
@@ -151,6 +165,8 @@
 	<xs:element name="cluster">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element name="aliases" type="zcl:ClusterIdAliasList"
+					minOccurs="0" maxOccurs="1" />
 				<xs:element name="classification"
 					type="zcl:Classification" />
 				<xs:element ref="type:type" minOccurs="0"
