@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0B05" revision="0" name="Diagnostics">
+<zcl:cluster
+	xmlns:zcl="http://zigbee.org/zcl/clusters"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:type="http://zigbee.org/zcl/types"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+	id="0B05" revision="2" name="Diagnostics">
   <classification hierarchy="base" role="utility" picsCode="DIAG" />
   <server>
     <attributes>
@@ -35,11 +36,11 @@
       <attribute id="0116" name="APSDecryptFailures" type="uint16" max="65535" default="0" />
       <attribute id="0117" name="PacketBufferAllocateFailures" type="uint16" max="65535" default="0" />
       <attribute id="0118" name="RelayedUcast" type="uint16" max="65535" default="0" />
-      <attribute id="0119" name="PhytoMACqueuelimitreached" type="uint16" max="65535" default="0" />
-      <attribute id="011A" name="PacketValidatedropcount" type="uint16" max="65535" default="0" />
+      <attribute id="0119" name="PHYToMACQueueLimitReached" type="uint16" max="65535" default="0" />
+      <attribute id="011A" name="PacketValidateDropCount" type="uint16" max="65535" default="0" />
       <attribute id="011B" name="AverageMACRetryPerAPSMessageSent" type="uint16" max="65535" default="0" />
       <attribute id="011C" name="LastMessageLQI" type="uint8" max="255" default="0" />
-      <attribute id="011D" name="LastMessageRSSI" type="int8" default="0" />
+      <attribute id="011D" name="LastMessageRSSI" type="int8" min="-127" max="127" default="0" />
     </attributes>
   </server>
 </zcl:cluster>
