@@ -278,6 +278,6 @@
     <xi:include href="Poll Control.xml" parse="xml" />
 	<xi:include href="Pressure Measurement.xml" parse="xml" />
 	<xi:include href="Flow Measurement.xml" parse="xml" />
-	<xi:include href="Water Content.xml" parse="xml" />
+	<xi:include href="Water Content Measurement.xml" parse="xml" />
 	
 </zcl:library>
