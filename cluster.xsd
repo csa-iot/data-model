@@ -67,7 +67,7 @@
 		<xs:choice>
 			<xs:element name="bitmap" type="type:BitmapDefinition"
 			minOccurs="0" maxOccurs="1" />
-			<xs:element name="restriction" type="type:restrictionType"
+			<xs:element name="restriction" type="type:RestrictionType"
 				minOccurs="0" maxOccurs="1" />
 		</xs:choice>
 		<xs:attribute name="id" type="type:AttributeId"
@@ -137,7 +137,7 @@
 		<xs:choice>
 			<xs:element name="bitmap" type="type:BitmapDefinition"
 				minOccurs="0" maxOccurs="1" />
-			<xs:element name="restriction" type="type:restrictionType"
+			<xs:element name="restriction" type="type:RestrictionType"
 				minOccurs="0" maxOccurs="1" />
 		</xs:choice>
 		<xs:attribute name="id" type="zcl:TagId" use="required" />
