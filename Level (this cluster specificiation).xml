@@ -1,32 +1,63 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+<zcl:cluster
+  xmlns:zcl="http://zigbee.org/zcl/clusters"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0008" revision="0" name="Level (this cluster specificiation)">
-  <classification hierarchy="base" role="application" picsCode="LVL" primaryTransaction="" />
+  id="0008" revision="2" name="Level">
+  <classification hierarchy="base" role="application" picsCode="LVL" primaryTransaction="1" />
   <server>
     <attributes>
-      <attribute id="0000" name="CurrentLevel" type="uint8" required="true" default="255" />
+      <attribute id="0000" name="CurrentLevel" type="uint8" reportRequired="true" sceneRequired="true" default="255" required="true">
+        <restriction>
+          <type:minInclusiveRef ref="MinLevel" />
+          <type:maxInclusiveRef ref="MaxLevel" />
+        </restriction>
+      </attribute>
       <attribute id="0001" name="RemainingTime" type="uint16" max="65535" default="0" />
-      <attribute id="0002" name="MinLevel" type="uint8" default="0" />
-      <attribute id="0003" name="MaxLevel" type="uint8" min="255" default="255" />
-      <attribute id="0004" name="CurrentFrequency" type="uint16" default="0" />
-      <attribute id="0005" name="MinFrequency" type="uint16" default="0" />
-      <attribute id="0006" name="MaxFrequency" type="uint16" min="65535" default="0" />
-      <attribute id="0010" name="OnOffTransitionTime" type="uint16" writable="true" max="65535" default="0" />
-      <attribute id="0011" name="OnLevel" type="uint8" writable="true" default="255" />
-      <attribute id="0012" name="OnTransitionTime" type="uint16" writable="true" max="65534" default="65535" />
-      <attribute id="0013" name="OffTransitionTime" type="uint16" writable="true" max="65534" default="65535" />
-      <attribute id="0014" name="DefaultMoveRate" type="uint16" writable="true" max="254" default="MS" />
+      <attribute id="0002" name="MinLevel" type="uint8" default="0">
+        <restriction>
+          <type:maxInclusiveRef ref="MaxLevel" />
+        </restriction>
+      </attribute>
+      <attribute id="0003" name="MaxLevel" type="uint8" max="255" default="255">
+        <restriction>
+          <type:minInclusiveRef ref="MinLevel" />
+        </restriction>
+      </attribute>
+      <attribute id="0004" name="CurrentFrequency" type="uint16" reportRequired="true" sceneRequired="true" default="0">
+        <restriction>
+          <type:minInclusiveRef ref="MinFrequency" />
+          <type:maxInclusiveRef ref="MaxFrequency" />
+        </restriction>
+      </attribute>
+      <attribute id="0005" name="MinFrequency" type="uint16" default="0">
+        <restriction>
+          <type:maxInclusiveRef ref="MaxFrequency" />
+        </restriction>
+      </attribute>
+      <attribute id="0006" name="MaxFrequency" type="uint16" max="65535" default="0">
+        <restriction>
+          <type:minInclusiveRef ref="MinFrequency" />
+        </restriction>
+      </attribute>
+      <attribute id="0010" name="OnOffTransitionTime" type="uint16" max="65535" writable="true" default="0" />
+      <attribute id="0011" name="OnLevel" type="uint8" writable="true" default="255">
+        <restriction>
+          <type:minInclusiveRef ref="MinLevel" />
+          <type:maxInclusiveRef ref="MaxLevel" />
+        </restriction>
+      </attribute>
+      <attribute id="0012" name="OnTransitionTime" type="uint16" max="65534" writable="true" default="65535" />
+      <attribute id="0013" name="OffTransitionTime" type="uint16" max="65534" writable="true" default="65535" />
+      <attribute id="0014" name="DefaultMoveRate" type="uint16" max="254" writable="true" />
       <attribute id="000F" name="Options" type="map8" writable="true" default="0">
         <bitmap>
           <element name="ExecuteIfOff" type="bool" mask="01" />
-          <element name="ReservedforDerivedClusters" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
-      <attribute id="4000" name="StartUpCurrentLevel" type="uint8" writable="true" max="255" default="MS" />
+      <attribute id="4000" name="StartUpCurrentLevel" type="uint8" max="255" writable="true" />
     </attributes>
     <commands>
       <command id="00" name="MoveToLevel" required="true">
@@ -39,7 +70,12 @@
       </command>
       <command id="01" name="Move" required="true">
         <fields>
-          <field name="MoveMode" type="enum8" />
+          <field name="MoveMode" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Up" />
+              <type:enumeration value="01" name="Down" />
+            </restriction>
+          </field>
           <field name="Rate" type="uint8" />
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
@@ -47,7 +83,12 @@
       </command>
       <command id="02" name="Step" required="true">
         <fields>
-          <field name="StepMode" type="enum8" />
+          <field name="StepMode" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Up" />
+              <type:enumeration value="01" name="Down" />
+            </restriction>
+          </field>
           <field name="StepSize" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="OptionsMask" type="map8" />
@@ -60,16 +101,48 @@
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="04" name="MoveToLevel(withOn/Off)" required="true" />
-      <command id="05" name="Move(withOn/Off)" required="true" />
-      <command id="06" name="Step(withOn/Off)" required="true" />
+      <command id="04" name="MoveToLevelWithOnOff" required="true">
+        <fields>
+          <field name="Level" type="uint8" />
+          <field name="TransitionTime" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="05" name="MoveWithOnOff" required="true">
+        <fields>
+          <field name="MoveMode" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Up" />
+              <type:enumeration value="01" name="Down" />
+            </restriction>
+          </field>
+          <field name="Rate" type="uint8" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
+      <command id="06" name="StepWithOnOff" required="true">
+        <fields>
+          <field name="StepMode" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Up" />
+              <type:enumeration value="01" name="Down" />
+            </restriction>
+          </field>
+          <field name="StepSize" type="uint8" />
+          <field name="TransitionTime" type="uint16" />
+          <field name="OptionsMask" type="map8" />
+          <field name="OptionsOverride" type="map8" />
+        </fields>
+      </command>
       <command id="07" name="Stop" required="true">
         <fields>
           <field name="OptionsMask" type="map8" />
           <field name="OptionsOverride" type="map8" />
         </fields>
       </command>
-      <command id="08" name="MoveToClosestFrequency" required="true">
+      <command id="08" name="MoveToClosestFrequency">
         <fields>
           <field name="Frequency" type="uint16" />
         </fields>
