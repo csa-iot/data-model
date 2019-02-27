@@ -164,6 +164,7 @@ An attribute may be specified using the following attributes in the XML.
 | reportRequired | false    | If attribute is required to be reportable. Defaults to false   |
 | sceneRequired  | false    | If attribute is required to be part of the scene extensions. Defaults to false |
 | required       | false    | If the attribute is mandatory. Defaults to false               |
+| requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which an attribute is mandatory. Defaults to false |
 | min            | false    | A decimal integer specifying the min value (inclusive). Not for use on strings, use minLength restriction instead. Defaults to 0 |
 | max            | false    | A decimal integer specifiying the max value (inclusive). Not for use on strings, use maxLength restriction instead. No Default. |
 | default        | false    | Specifies the default value of an attribute. No Default        |
@@ -209,12 +210,18 @@ Each field is defined with the following attributes in XML
 | array           | false    | If the field is an array. Defaults to false                    |
 | arrayLengthSize | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. |
 | presentIf       | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
+| requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
 
 Expressions
 ===========
 Logical expressions in the XML SHALL be expressed using the operators specified in [XPath 1.0](https://www.w3.org/TR/1999/REC-xpath-19991116/#section-Expressions). Specifically, section 3. This provides the operators or, and, =, !=, <=, <, >=, >. References to other fields in a command are done through name. Sub-elements in a bitmap may also be referenced using dot notation (ie, field.bitmapItem). 
+
+In addition, the following functions are available for expressions
+
+| Function      | Description                                                                                |
+| implements(X) | Returns true when a specific implementation implements the attribute or command named by X |
 
 Fields in a Command
 -------------------

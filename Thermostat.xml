@@ -87,13 +87,13 @@
       </attribute>
       <!-- Thermostat Settings Attribute Set -->
       <attribute id="0010" name="LocalTemperatureCalibration" type="int8" writable="true" min="-25" max="25" default="0" />
-      <attribute id="0011" name="OccupiedCoolingSetpoint" type="int16" writable="true" required="true" sceneRequired="true" default="2600">
+      <attribute id="0011" name="OccupiedCoolingSetpoint" type="int16" writable="true" requiredIf="implements(OccupiedHeatingSetpoint) = false" sceneRequired="true" default="2600">
         <restriction>
           <type:minInclusiveRef ref="MinCoolSetpointLimit" />
           <type:maxInclusiveRef ref="MaxCoolSetpointLimit" />
         </restriction>
       </attribute>
-      <attribute id="0012" name="OccupiedHeatingSetpoint" type="int16" writable="true" required="true" sceneRequired="true" default="2000">
+      <attribute id="0012" name="OccupiedHeatingSetpoint" type="int16" writable="true" requiredIf="implements(OccupiedCoolingSetpoint) = false" sceneRequired="true" default="2000">
         <restriction>
           <type:minInclusiveRef ref="MinHeatSetpointLimit" />
           <type:maxInclusiveRef ref="MaxHeatSetpointLimit" />
