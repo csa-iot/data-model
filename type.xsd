@@ -224,8 +224,34 @@
         </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  
+  <xs:element name="minExclusiveRef" id="minExclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
 
   <xs:element name="maxInclusiveRef" id="maxInclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="maxExclusiveRef" id="maxExclusiveRef"
     substitutionGroup="zclType:facet">
     <xs:complexType>
         <xs:complexContent>

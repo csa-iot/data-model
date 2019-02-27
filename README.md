@@ -105,9 +105,11 @@ There are a number of restrictions available for types. These build the basis of
 
 * enumeration - see the Enumerations section below
 * minExclusive - sets a minimum that doesn't include the value specified, i.e. a field of this type must be strictly greater than the value
+* minExclusiveRef - sets a minimum that is based on the value of the referenced attribute. The value of the referenced attribute is excluded from the range
 * minInclusive - sets a minimum that includes the value specified, i.e. a field of this type must be greater than or equal than the value
-* minInclusiveRef - sets a minimum that is based on the value of the referenced attribute.
+* minInclusiveRef - sets a minimum that is based on the value of the referenced attribute. The value of the referenced attribute is included in the range
 * maxExclusive - sets a maximum that doesn't include the value specified, i.e. a field of this type must be strictly less than the value
+* maxExclusiveRef - sets a maximum that is based on teh value of the referenced attribute. The value of the referenced attribute is excluded from the range
 * maxInclusive - sets a maximum that includes the value specified, i.e. a field of this type must be less than or equal to the value
 * maxInclusiveRef - sets a maximum that is based on the value of the referenced attribute.
 * totalDigits - see http://www.w3.org/TR/xmlschema11-2/#element-totalDigits
