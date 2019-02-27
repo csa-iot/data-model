@@ -7,7 +7,7 @@
              id="0201" revision="2" name="Thermostat" >
   <classification hierarchy="base" role="application" picsCode="TSTAT" primaryTransaction="2" />
   
-  <!-- Note that this type has a dependencies on the on a Mode field of 
+  <!-- Note that this type has a dependency on the Mode field of 
   type tstatScheduleMode for any command it is used in -->
   <type:type short="TransitionType" name="TransitionType" id="ff">
     <restriction>
