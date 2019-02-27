@@ -4,25 +4,30 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0204" revision="0" name="Thermostat User Interface Configuration">
-  <classification hierarchy="base" role="application" picsCode="TSUIC" primaryTransaction="" />
+  id="0204" revision="0" name="ThermostatUserInterfaceConfiguration">
+  <classification hierarchy="base" role="application" picsCode="TSUIC" primaryTransaction="1" />
   <server>
     <attributes>
-      <attribute id="0000" name="TemperatureDisplayMode" type="enum8" writable="true" required="true" default="0x00 (Celsius)" />
-      <attribute id="0001" name="KeypadLockout" type="enum8" writable="true" required="true" default="0x00 (no lockout)">
+      <attribute id="0000" name="TemperatureDisplayMode" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="NoLockout" />
-          <type:enumeration value="01" name="Level1Lockout" />
-          <type:enumeration value="02" name="Level2Lockout" />
-          <type:enumeration value="03" name="Level3Lockout" />
-          <type:enumeration value="04" name="Level4Lockout" />
-          <type:enumeration value="05" name="Level5Lockout(leastFunctionalityAvailableToTheUser)" />
+          <type:enumeration value="00" name="Celsius" />
+          <type:enumeration value="01" name="Fahrenheit" />
+        </restriction>
+      </attribute>
+      <attribute id="0001" name="KeypadLockout" type="enum8" writable="true" required="true" default="0">
+        <restriction>
+          <type:enumeration value="00" name="None" />
+          <type:enumeration value="01" name="Level1" />
+          <type:enumeration value="02" name="Level2" />
+          <type:enumeration value="03" name="Level3" />
+          <type:enumeration value="04" name="Level4" />
+          <type:enumeration value="05" name="Level5" />
         </restriction>
       </attribute>
       <attribute id="0002" name="ScheduleProgrammingVisibility" type="enum8" writable="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="LocalScheduleProgrammingFunctionalityIsEnabledAtTheThermostat" />
-          <type:enumeration value="01" name="LocalScheduleProgrammingFunctionalityIsDisabledAtTheThermostat" />
+          <type:enumeration value="00" name="LocalEnabled" />
+          <type:enumeration value="01" name="LocalDisabled" />
         </restriction>
       </attribute>
     </attributes>
