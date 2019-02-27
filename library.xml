@@ -277,5 +277,6 @@
 	<xi:include href="Time.xml" parse="xml" />
   <xi:include href="Diagnostics.xml" parse="xml" />
     <xi:include href="Poll Control.xml" parse="xml" />
+    <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
 	
 </zcl:library>
