@@ -276,5 +276,6 @@
 	<xi:include href="Groups.xml" parse="xml" />
 	<xi:include href="Time.xml" parse="xml" />
     <xi:include href="Poll Control.xml" parse="xml" />
-	
+	<xi:include href="Fan Control.xml" parse="xml" />
+  
 </zcl:library>
