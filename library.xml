@@ -276,5 +276,6 @@
 	<xi:include href="Groups.xml" parse="xml" />
 	<xi:include href="Pressure Measurement.xml" parse="xml" />
 	<xi:include href="Time.xml" parse="xml" />
+	<xi:include href="Water Content.xml" parse="xml" />
 	
 </zcl:library>
