@@ -4,7 +4,7 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0204" revision="0" name="ThermostatUserInterfaceConfiguration">
+  id="0204" revision="1" name="ThermostatUserInterfaceConfiguration">
   <classification hierarchy="base" role="application" picsCode="TSUIC" primaryTransaction="1" />
   <server>
     <attributes>
