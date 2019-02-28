@@ -8,7 +8,7 @@
   <classification hierarchy="base" role="application" picsCode="TSTAT" primaryTransaction="2" />
   
   <!-- Note that this type has a dependency on the Mode field of 
-  type tstatScheduleMode for any command it is used in -->
+  type TstatScheduleMode for any command it is used in -->
   <type:type short="TransitionType" name="TransitionType" id="ff">
     <restriction>
       <type:sequence>
@@ -19,7 +19,7 @@
     </restriction>
   </type:type>
   
-  <type:type short="tstatScheduleDOW" name="Day Of Week" id="18" inheritsFrom="map8">
+  <type:type short="TstatScheduleDOW" name="Day Of Week" id="18" inheritsFrom="map8">
     <bitmap>
       <element name="Sunday" mask="01" type="bool" />
       <element name="Monday" mask="02" shiftRight="1" type="bool" />
@@ -32,7 +32,7 @@
     </bitmap>
   </type:type>
   
-  <type:type short="tstatScheduleMode" name="ScheduleMode" id="18" inheritsFrom="map8">
+  <type:type short="TstatScheduleMode" name="ScheduleMode" id="18" inheritsFrom="map8">
     <bitmap>
       <element name="Heat" mask="01" type="bool" />
       <element name="Cool" mask="02" shiftRight="1" type="bool" />
@@ -224,13 +224,13 @@
           <type:maxInclusiveRef ref="OccupiedSetbackMax" />
         </restriction>
       </attribute>
-      <attribute id="0035" name="OccupiedSetbackMin" type="uint8" default="255">
+      <attribute id="0035" name="OccupiedSetbackMin" type="uint8" default="255" requiredIf="implements(OccupiedSetback)">
         <restriction>
           <type:minInclusive value="0" />
           <type:maxInclusiveRef ref="OccupiedSetbackMax" />
         </restriction>
       </attribute>
-      <attribute id="0036" name="OccupiedSetbackMax" type="uint8" default="255">
+      <attribute id="0036" name="OccupiedSetbackMax" type="uint8" default="255" requiredIf="implements(OccupiedSetback)">
         <restriction>
           <type:minInclusiveRef ref="OccupiedSetbackMin" />
           <type:maxInclusive value="255" />
@@ -242,13 +242,13 @@
           <type:maxInclusiveRef ref="UnoccupiedSetbackMax" />
         </restriction>
       </attribute>
-      <attribute id="0038" name="UnoccupiedSetbackMin" type="uint8" default="255">
+      <attribute id="0038" name="UnoccupiedSetbackMin" type="uint8" default="255" requiredIf="implements(UnoccupiedSetback)">
         <restriction>
           <type:minInclusive value="0" />
           <type:maxInclusiveRef ref="UnoccupiedSetbackMax" />
         </restriction>
       </attribute>
-      <attribute id="0039" name="UnoccupiedSetbackMax" type="uint8" default="255">
+      <attribute id="0039" name="UnoccupiedSetbackMax" type="uint8" default="255" requiredIf="implements(UnoccupiedSetback)">
         <restriction>
           <type:minInclusiveRef ref="UnoccupiedSetbackMin" />
           <type:maxInclusive value="255" />
@@ -326,15 +326,15 @@
               <type:maxInclusive value="10" />
             </restriction>
           </field>
-          <field name="DayOfWeek" type="tstatScheduleDOW" />
-          <field name="Mode" type="tstatScheduleMode" />
+          <field name="DayOfWeek" type="TstatScheduleDOW" />
+          <field name="Mode" type="TstatScheduleMode" />
           <field name="Transitions" type="TransitionType" array="true" arrayLengthField="NumberOfTransitions" />
         </fields>
       </command>
       <command id="02" name="GetWeeklySchedule">
         <fields>
-          <field name="DaysToReturn" type="tstatScheduleDOW" />
-          <field name="ModeToReturn" type="tstatScheduleMode" />
+          <field name="DaysToReturn" type="TstatScheduleDOW" />
+          <field name="ModeToReturn" type="TstatScheduleMode" />
         </fields>
       </command>
       <command id="03" name="ClearWeeklySchedule" />
@@ -352,8 +352,8 @@
               <type:maxInclusive value="10" />
             </restriction>
           </field>
-          <field name="DayOfWeek" type="tstatScheduleDOW" />
-          <field name="Mode" type="tstatScheduleMode" />
+          <field name="DayOfWeek" type="TstatScheduleDOW" />
+          <field name="Mode" type="TstatScheduleMode" />
           <field name="Transitions" type="TransitionType" array="true" arrayLengthField="NumberOfTransitions" />
         </fields>
       </command>
