@@ -8,12 +8,12 @@
   id="0008" revision="2" name="Level">
   <classification hierarchy="base" role="application" picsCode="LVL" primaryTransaction="1" />
 
-  <type:type short="LevelOptions" name="LevelOptions" id="30">
+  <type:type short="LevelOptions" name="LevelOptions" id="18" inheritsFrom="map8">
     <bitmap>
       <element name="ExecuteIfOff" type="bool" mask="01" />
     </bitmap>
   </type:type>
-  <type:type short="MoveStepMode" name="MoveStepMode" id="30">
+  <type:type short="MoveStepMode" name="MoveStepMode" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="00" name="Up" />
       <type:enumeration value="01" name="Down" />
