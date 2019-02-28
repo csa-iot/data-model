@@ -6,7 +6,7 @@
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0101" revision="2" name="DoorLock">
   <classification hierarchy="base" role="application" picsCode="DRLK" primaryTransaction="2" />
-  
+
   <type:type short="DrlkUserStatus" name="DrlkUserStatus" id="20" inheritsFrom="uint8">
     <restriction>
       <type:enumeration value="00" name="Available" />
@@ -16,7 +16,7 @@
       <type:enumeration value="FF" name="NotSupported" />
     </restriction>
   </type:type>
-  
+
   <type:type short="DrlkUserType" name="DrlkUserType" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="00" name="UnrestrictedUser" />
@@ -27,7 +27,17 @@
       <type:enumeration value="FF" name="NotSupported" />
     </restriction>
   </type:type>
-  
+
+  <type:type short="DrlkOperMode" name="DrlkOperatingMode" id="30" inheritsFrom="enum8">
+    <restriction>
+          <type:enumeration value="00" name="Normal" />
+          <type:enumeration value="01" name="Vacation" />
+          <type:enumeration value="02" name="Privacy" />
+          <type:enumeration value="03" name="NoRFLockOrUnlock" />
+          <type:enumeration value="04" name="Passage" />
+    </restriction>
+  </type:type>
+
   <server>
     <attributes>
       <!--  Basic Information Attribute Set -->
@@ -108,15 +118,7 @@
           <type:enumeration value="02" name="HighVolume" />
         </restriction>
       </attribute>
-      <attribute id="0025" name="OperatingMode" type="enum8" writable="true" writeOptional="true" reportRequired="true" default="0">
-        <restriction>
-          <type:enumeration value="00" name="Normal" />
-          <type:enumeration value="01" name="Vacation" />
-          <type:enumeration value="02" name="Privacy" />
-          <type:enumeration value="03" name="NoRFLockOrUnlock" />
-          <type:enumeration value="04" name="Passage" />
-        </restriction>
-      </attribute>
+      <attribute id="0025" name="OperatingMode" type="DrlkOperMode" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" >
         <bitmap>
           <element name="NormalModeSupported" type="bool" mask="01" />
@@ -347,7 +349,7 @@
           <field name="HolidayScheduleID" type="uint8" />
           <field name="LocalStartTime" type="uint32" />
           <field name="LocalEndTime" type="uint32" />
-          <field name="OperatingModeDuringHoliday" type="enum8" />
+          <field name="OperatingModeDuringHoliday" type="DrlkOperMode" />
         </fields>
       </command>
       <command id="12" name="GetHolidaySchedule">
@@ -463,7 +465,7 @@
           <field name="Status" type="uint8" />
           <field name="LocalStartTime" type="uint32" />
           <field name="LocalEndTime" type="uint32" />
-          <field name="OperatingModeDuringHoliday" type="enum8" />
+          <field name="OperatingModeDuringHoliday" type="DrlkOperMode" />
         </fields>
       </command>
       <command id="13" name="ClearHolidayScheduleResponse" />
