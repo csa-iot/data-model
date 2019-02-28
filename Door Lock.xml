@@ -38,6 +38,18 @@
     </restriction>
   </type:type>
 
+  <type:type short="DrlkDaysMask" name="DrlkDaysMask" id="18" inheritsFrom="map8">
+    <bitmap>
+      <element name="Sun" type="bool" mask="01" />
+      <element name="Mon" type="bool" mask="02" shiftRight="1" />
+      <element name="Tue" type="bool" mask="04" shiftRight="2" />
+      <element name="Wed" type="bool" mask="08" shiftRight="3" />
+      <element name="Thu" type="bool" mask="10" shiftRight="4" />
+      <element name="Fri" type="bool" mask="20" shiftRight="5" />
+      <element name="Sat" type="bool" mask="40" shiftRight="6" />
+    </bitmap>
+  </type:type>
+
   <server>
     <attributes>
       <!--  Basic Information Attribute Set -->
@@ -305,7 +317,7 @@
         <fields>
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
-          <field name="DaysMask" type="map8" />
+          <field name="DaysMask" type="DrlkDaysMask" />
           <field name="StartHour" type="uint8" />
           <field name="StartMinute" type="uint8" />
           <field name="EndHour" type="uint8" />
@@ -439,7 +451,7 @@
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
           <field name="Status" type="uint8" />
-          <field name="DaysMask" type="uint8" />
+          <field name="DaysMask" type="DrlkDaysMask" />
           <field name="StartHour" type="uint8" />
           <field name="StartMinute" type="uint8" />
           <field name="EndHour" type="uint8" />
