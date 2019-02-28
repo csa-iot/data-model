@@ -318,10 +318,36 @@
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
           <field name="DaysMask" type="DrlkDaysMask" />
-          <field name="StartHour" type="uint8" />
-          <field name="StartMinute" type="uint8" />
-          <field name="EndHour" type="uint8" />
-          <field name="EndMinute" type="uint8" />
+          <!--
+            ZCL7 specifies constraint that StartHour <= EndHour;
+            and if they are equal, then StartMinute < EndMinute.
+            Result: StartHour/Minute strictly less than EndHour/Minute.
+            The restrictions below don't quite accomplish that.
+          -->
+          <field name="StartHour" type="uint8" >
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="23" />
+            </restriction>
+          </field>
+          <field name="StartMinute" type="uint8" >
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="59" />
+            </restriction>
+          </field>
+          <field name="EndHour" type="uint8" >
+            <restriction>
+              <type:minInclusiveRef ref="StartHour" />
+              <type:maxInclusive value="23" />
+            </restriction>
+          </field>
+          <field name="EndMinute" type="uint8" >
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="59" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="0C" name="GetWeekdaySchedule">
@@ -341,7 +367,11 @@
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
           <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" >
+            <restriction>
+              <type:minExclusiveRef ref="LocalStartTime" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="0F" name="GetYearDaySchedule">
@@ -360,7 +390,11 @@
         <fields>
           <field name="HolidayScheduleID" type="uint8" />
           <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" >
+            <restriction>
+              <type:minExclusiveRef ref="LocalStartTime" />
+            </restriction>
+          </field>
           <field name="OperatingModeDuringHoliday" type="DrlkOperMode" />
         </fields>
       </command>
@@ -452,10 +486,36 @@
           <field name="UserID" type="uint16" />
           <field name="Status" type="uint8" />
           <field name="DaysMask" type="DrlkDaysMask" />
-          <field name="StartHour" type="uint8" />
-          <field name="StartMinute" type="uint8" />
-          <field name="EndHour" type="uint8" />
-          <field name="EndMinute" type="uint8" />
+          <!--
+            ZCL7 specifies constraint that StartHour <= EndHour;
+            and if they are equal, then StartMinute < EndMinute.
+            Result: StartHour/Minute strictly less than EndHour/Minute.
+            The restrictions below don't quite accomplish that.
+          -->
+          <field name="StartHour" type="uint8" >
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="23" />
+            </restriction>
+          </field>
+          <field name="StartMinute" type="uint8" >
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="59" />
+            </restriction>
+          </field>
+          <field name="EndHour" type="uint8" >
+            <restriction>
+              <type:minInclusiveRef ref="StartHour" />
+              <type:maxInclusive value="23" />
+            </restriction>
+          </field>
+          <field name="EndMinute" type="uint8" >
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="59" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="0D" name="ClearWeekdayScheduleResponse" />
@@ -466,7 +526,11 @@
           <field name="UserID" type="uint16" />
           <field name="Status" type="uint8" />
           <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" >
+            <restriction>
+              <type:minExclusiveRef ref="LocalStartTime" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="10" name="ClearYearDayScheduleResponse" />
@@ -476,7 +540,11 @@
           <field name="HolidayScheduleID" type="uint8" />
           <field name="Status" type="uint8" />
           <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" />
+          <field name="LocalEndTime" type="uint32" >
+            <restriction>
+              <type:minExclusiveRef ref="LocalStartTime" />
+            </restriction>
+          </field>
           <field name="OperatingModeDuringHoliday" type="DrlkOperMode" />
         </fields>
       </command>
