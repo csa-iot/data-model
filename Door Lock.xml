@@ -12,6 +12,7 @@
       <attribute id="0000" name="LockState" type="enum8" reportRequired="true" required="true" >
         <restriction>
           <type:enumeration value="00" name="NotFullyLocked" />
+          <type:enumeration value="01" name="Locked" />
           <type:enumeration value="02" name="Unlocked" />
           <type:enumeration value="FF" name="Undefined" />
         </restriction>
@@ -19,8 +20,15 @@
       <attribute id="0001" name="LockType" type="enum8" required="true" >
         <restriction>
           <type:enumeration value="00" name="DeadBolt" />
+          <type:enumeration value="01" name="Magnetic" />
           <type:enumeration value="02" name="Other" />
           <type:enumeration value="03" name="Mortise" />
+          <type:enumeration value="04" name="Rim" />
+          <type:enumeration value="05" name="LatchBolt" />
+          <type:enumeration value="06" name="CylindricalLock" />
+          <type:enumeration value="07" name="TubularLock" />
+          <type:enumeration value="08" name="InterconnectedLock" />
+          <type:enumeration value="09" name="DeadLatch" />
           <type:enumeration value="0A" name="DoorFurniture" />
         </restriction>
       </attribute>
@@ -28,6 +36,7 @@
       <attribute id="0003" name="DoorState" type="enum8" reportRequired="true" >
         <restriction>
           <type:enumeration value="00" name="Open" />
+          <type:enumeration value="01" name="Closed" />
           <type:enumeration value="02" name="ErrorJammed" />
           <type:enumeration value="03" name="ErrorForcedOpen" />
           <type:enumeration value="04" name="ErrorUnspecified" />
@@ -57,11 +66,11 @@
       <attribute id="0024" name="SoundVolume" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0025" name="OperatingMode" type="enum8" writable="true" writeOptional="true" reportRequired="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="NormalModeSupported" />
-          <type:enumeration value="01" name="VacationModeSupported" />
-          <type:enumeration value="02" name="PrivacyModeSupported" />
-          <type:enumeration value="03" name="NoRFLockOrUnlockModeSupported" />
-          <type:enumeration value="04" name="PassageModeSupported" />
+          <type:enumeration value="00" name="Normal" />
+          <type:enumeration value="01" name="Vacation" />
+          <type:enumeration value="02" name="Privacy" />
+          <type:enumeration value="03" name="NoRFLockOrUnlock" />
+          <type:enumeration value="04" name="Passage" />
         </restriction>
       </attribute>
       <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" />
