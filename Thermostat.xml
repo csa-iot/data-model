@@ -227,12 +227,12 @@
       <attribute id="0035" name="OccupiedSetbackMin" type="uint8" default="255" requiredIf="implements(OccupiedSetback)">
         <restriction>
           <type:minInclusive value="0" />
-          <type:maxInclusiveRef ref="OccupiedSetbackMax" />
+          <type:maxExclusiveRef ref="OccupiedSetbackMax" />
         </restriction>
       </attribute>
       <attribute id="0036" name="OccupiedSetbackMax" type="uint8" default="255" requiredIf="implements(OccupiedSetback)">
         <restriction>
-          <type:minInclusiveRef ref="OccupiedSetbackMin" />
+          <type:minExclusiveRef ref="OccupiedSetbackMin" />
           <type:maxInclusive value="255" />
         </restriction>
       </attribute>
@@ -245,12 +245,12 @@
       <attribute id="0038" name="UnoccupiedSetbackMin" type="uint8" default="255" requiredIf="implements(UnoccupiedSetback)">
         <restriction>
           <type:minInclusive value="0" />
-          <type:maxInclusiveRef ref="UnoccupiedSetbackMax" />
+          <type:maxExclusiveRef ref="UnoccupiedSetbackMax" />
         </restriction>
       </attribute>
       <attribute id="0039" name="UnoccupiedSetbackMax" type="uint8" default="255" requiredIf="implements(UnoccupiedSetback)">
         <restriction>
-          <type:minInclusiveRef ref="UnoccupiedSetbackMin" />
+          <type:minExclusiveRef ref="UnoccupiedSetbackMin" />
           <type:maxInclusive value="255" />
         </restriction>
       </attribute>
