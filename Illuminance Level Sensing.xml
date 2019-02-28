@@ -1,12 +1,29 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+<zcl:cluster
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0401" revision="0" name="Illuminance Level Sensing">
-  <classification hierarchy="base" role="application" picsCode="ILLVL" primaryTransaction="" />
+  id="0401" revision="1" name="IlluminanceLevelSensing">
+  <classification hierarchy="base" role="application" picsCode="ILLVL" primaryTransaction="2" />
   <server>
-    <attributes />
+    <attributes>
+      <attribute id="0000" name="LevelStatus" type="enum8" reportRequired="true" required="true">
+        <restriction>
+          <type:enumeration value="00" name="IlluminanceOnTarget" />
+          <type:enumeration value="01" name="IlluminanceBelowTarget" />
+          <type:enumeration value="02" name="IlluminanceAboveTarget" />
+        </restriction>
+      </attribute>
+      <attribute id="0001" name="LightSensorType" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="Photodiode" />
+          <type:enumeration value="01" name="CMOS" />
+          <type:enumeration value="ff" name="Unknown" />
+        </restriction>
+      </attribute>
+      <attribute id="0010" name="IlluminanceTargetLevel" type="uint16" max="65534" writable="true" require="true" />
+    </attributes>
   </server>
 </zcl:cluster>
