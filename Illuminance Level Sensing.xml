@@ -23,7 +23,7 @@
           <type:enumeration value="ff" name="Unknown" />
         </restriction>
       </attribute>
-      <attribute id="0010" name="IlluminanceTargetLevel" type="uint16" max="65534" writable="true" require="true" />
+      <attribute id="0010" name="IlluminanceTargetLevel" type="uint16" max="65534" writable="true" required="true" />
     </attributes>
   </server>
 </zcl:cluster>
