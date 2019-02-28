@@ -6,6 +6,28 @@
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0101" revision="2" name="DoorLock">
   <classification hierarchy="base" role="application" picsCode="DRLK" primaryTransaction="2" />
+  
+  <type:type short="DrlkUserStatus" name="DrlkUserStatus" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:enumeration value="00" name="Available" />
+      <type:enumeration value="01" name="OccupiedEnabled" />
+      <!--  02 is not defined. -->
+      <type:enumeration value="03" name="OccupiedDisabled" />
+      <type:enumeration value="FF" name="NotSupported" />
+    </restriction>
+  </type:type>
+  
+  <type:type short="DrlkUserType" name="DrlkUserType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="UnrestrictedUser" />
+      <type:enumeration value="01" name="YearDayScheduleUser" />
+      <type:enumeration value="02" name="WeekDayScheduleUser" />
+      <type:enumeration value="03" name="MasterUser" />
+      <type:enumeration value="04" name="NonAccessUser" />
+      <type:enumeration value="FF" name="NotSupported" />
+    </restriction>
+  </type:type>
+  
   <server>
     <attributes>
       <!--  Basic Information Attribute Set -->
@@ -250,8 +272,8 @@
       <command id="05" name="SetPINCode">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="uint8" />
-          <field name="UserType" type="enum8" />
+          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="UserType" type="DrlkUserType" />
           <field name="PIN" type="octstr" />
         </fields>
       </command>
@@ -269,7 +291,7 @@
       <command id="09" name="SetUserStatus">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="uint8" />
+          <field name="UserStatus" type="DrlkUserStatus" />
         </fields>
       </command>
       <command id="0A" name="GetUserStatus">
@@ -341,7 +363,7 @@
       <command id="14" name="SetUserType">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserType" type="enum8" />
+          <field name="UserType" type="DrlkUserType" />
         </fields>
       </command>
       <command id="15" name="GetUserType">
@@ -352,8 +374,8 @@
       <command id="16" name="SetRFIDCode">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="uint8" />
-          <field name="UserType" type="enum8" />
+          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="UserType" type="DrlkUserType" />
           <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
@@ -395,8 +417,8 @@
       <command id="06" name="GetPINCodeResponse">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="uint8" />
-          <field name="UserType" type="enum8" />
+          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="UserType" type="DrlkUserType" />
           <field name="Code" type="octstr" />
         </fields>
       </command>
@@ -406,7 +428,7 @@
       <command id="0A" name="GetUserStatusResponse">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="uint8" />
+          <field name="UserStatus" type="DrlkUserStatus" />
         </fields>
       </command>
       <command id="0B" name="SetWeekdayScheduleResponse" />
@@ -449,7 +471,7 @@
       <command id="15" name="GetUserTypeResponse">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserType" type="enum8" />
+          <field name="UserType" type="DrlkUserType" />
         </fields>
       </command>
       <command id="16" name="SetRFIDCodeResponse">
@@ -460,8 +482,8 @@
       <command id="17" name="GetRFIDCodeResponse">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="uint8" />
-          <field name="UserType" type="enum8" />
+          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="UserType" type="DrlkUserType" />
           <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
@@ -474,8 +496,8 @@
           <field name="ProgramEventCode" type="uint8" />
           <field name="UserID" type="uint16" />
           <field name="PIN" type="octstr" />
-          <field name="UserType" type="enum8" />
-          <field name="UserStatus" type="uint8" />
+          <field name="UserType" type="DrlkUserType" />
+          <field name="UserStatus" type="DrlkUserStatus" />
           <field name="LocalTime" type="uint32" />
           <field name="Data" type="string" />
         </fields>
