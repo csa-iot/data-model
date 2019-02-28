@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0400" revision="2" name="Illuminance Measurement">
+  id="0400" revision="2" name="IlluminanceMeasurement">
   <classification hierarchy="base" role="application" picsCode="ILL" primaryTransaction="2" />
   <server>
     <attributes>
