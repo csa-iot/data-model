@@ -121,22 +121,22 @@
       <attribute id="0025" name="OperatingMode" type="DrlkOperMode" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" >
         <bitmap>
-          <element name="NormalModeSupported" type="bool" mask="01" />
-          <element name="VacationModeSupported" type="bool" mask="02" shiftRight="1" />
-          <element name="PrivacyModeSupported" type="bool" mask="04" shiftRight="2" />
-          <element name="NoRFLockOrUnlockModeSupported" type="bool" mask="08" shiftRight="3" />
-          <element name="PassageModeSupported" type="bool" mask="10" shiftRight="4" />
+          <element name="NormalModeSupported" type="bool" mask="0001" />
+          <element name="VacationModeSupported" type="bool" mask="0002" shiftRight="1" />
+          <element name="PrivacyModeSupported" type="bool" mask="0004" shiftRight="2" />
+          <element name="NoRFLockOrUnlockModeSupported" type="bool" mask="0008" shiftRight="3" />
+          <element name="PassageModeSupported" type="bool" mask="0010" shiftRight="4" />
         </bitmap>
       </attribute>
       <attribute id="0027" name="DefaultConfigurationRegister" type="map16" reportRequired="true" default="0" >
         <bitmap>
-          <element name="DefaultEnableLocalProgrammingAttributeIsEnabled" type="bool" mask="01" />
-          <element name="DefaultKeypadInterfaceIsEnabled" type="bool" mask="02" shiftRight="1" />
-          <element name="DefaultRFInterfaceIsEnabled" type="bool" mask="04" shiftRight="2" />
+          <element name="DefaultEnableLocalProgrammingAttributeIsEnabled" type="bool" mask="0001" />
+          <element name="DefaultKeypadInterfaceIsEnabled" type="bool" mask="0002" shiftRight="1" />
+          <element name="DefaultRFInterfaceIsEnabled" type="bool" mask="0004" shiftRight="2" />
           <!--  Bits 3 and 4 not defined. -->
-          <element name="DefaultSoundVolumeIsEnabled" type="bool" mask="20" shiftRight="5" />
-          <element name="DefaultAutoRelockTimeIsEnabled" type="bool" mask="40" shiftRight="6" />
-          <element name="DefaultLEDSettingsIsEnabled" type="bool" mask="80" shiftRight="7" />
+          <element name="DefaultSoundVolumeIsEnabled" type="bool" mask="0020" shiftRight="5" />
+          <element name="DefaultAutoRelockTimeIsEnabled" type="bool" mask="0040" shiftRight="6" />
+          <element name="DefaultLEDSettingsIsEnabled" type="bool" mask="0080" shiftRight="7" />
         </bitmap>
       </attribute>
       <attribute id="0028" name="EnableLocalProgramming" type="bool" writable="true" writeOptional="true" reportRequired="true" default="1" />
