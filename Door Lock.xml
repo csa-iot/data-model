@@ -60,10 +60,27 @@
       <attribute id="001A" name="MinRFIDCodeLength" type="uint8" default="8" />
       <!--  Operational Settings Attribute Set -->
       <attribute id="0020" name="EnableLogging" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0021" name="Language" type="string (3bytes)" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0022" name="LEDSettings" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
+      <attribute id="0021" name="Language" type="string" writable="true" writeOptional="true" reportRequired="true" default="0" >
+        <restriction>
+          <type:minLength value="3" />
+          <type:maxLength value="3" />
+        </restriction>
+      </attribute>
+      <attribute id="0022" name="LEDSettings" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" >
+        <restriction>
+          <type:enumeration value="00" name="NeverUseLED" />
+          <type:enumeration value="01" name="UseLEDExceptForAccessAllowed" />
+          <type:enumeration value="02" name="UseLEDForAllEvents" />
+        </restriction>
+      </attribute>
       <attribute id="0023" name="AutoRelockTime" type="uint32" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0024" name="SoundVolume" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
+      <attribute id="0024" name="SoundVolume" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" >
+        <restriction>
+          <type:enumeration value="00" name="SilentMode" />
+          <type:enumeration value="01" name="LowVolume" />
+          <type:enumeration value="02" name="HighVolume" />
+        </restriction>
+      </attribute>
       <attribute id="0025" name="OperatingMode" type="enum8" writable="true" writeOptional="true" reportRequired="true" default="0">
         <restriction>
           <type:enumeration value="00" name="Normal" />
@@ -73,8 +90,26 @@
           <type:enumeration value="04" name="Passage" />
         </restriction>
       </attribute>
-      <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" />
-      <attribute id="0027" name="DefaultConfigurationRegister" type="map16" reportRequired="true" default="0" />
+      <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" >
+        <bitmap>
+          <element name="NormalModeSupported" type="bool" mask="01" />
+          <element name="VacationModeSupported" type="bool" mask="02" shiftRight="1" />
+          <element name="PrivacyModeSupported" type="bool" mask="04" shiftRight="2" />
+          <element name="NoRFLockOrUnlockModeSupported" type="bool" mask="08" shiftRight="3" />
+          <element name="PassageModeSupported" type="bool" mask="10" shiftRight="4" />
+        </bitmap>
+      </attribute>
+      <attribute id="0027" name="DefaultConfigurationRegister" type="map16" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="DefaultEnableLocalProgrammingAttributeIsEnabled" type="bool" mask="01" />
+          <element name="DefaultKeypadInterfaceIsEnabled" type="bool" mask="02" shiftRight="1" />
+          <element name="DefaultRFInterfaceIsEnabled" type="bool" mask="04" shiftRight="2" />
+          <!--  Bits 3 and 4 not defined. -->
+          <element name="DefaultSoundVolumeIsEnabled" type="bool" mask="20" shiftRight="5" />
+          <element name="DefaultAutoRelockTimeIsEnabled" type="bool" mask="40" shiftRight="6" />
+          <element name="DefaultLEDSettingsIsEnabled" type="bool" mask="80" shiftRight="7" />
+        </bitmap>
+      </attribute>
       <attribute id="0028" name="EnableLocalProgramming" type="bool" writable="true" writeOptional="true" reportRequired="true" default="1" />
       <attribute id="0029" name="EnableOneTouchLocking" type="bool" writable="true" reportRequired="true" default="0" />
       <attribute id="002A" name="EnableInsideStatusLED" type="bool" writable="true" reportRequired="true" default="0" />
@@ -84,16 +119,101 @@
       <attribute id="0031" name="UserCodeTemporaryDisableTime" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0032" name="SendPINOverTheAir" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0033" name="RequirePINforRFOperation" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0034" name="SecurityLevel" type="enum8" reportRequired="true" default="0" />
+      <attribute id="0034" name="SecurityLevel" type="enum8" reportRequired="true" default="0" >
+        <restriction>
+          <type:enumeration value="00" name="Network" />
+          <type:enumeration value="01" name="APS" />
+        </restriction>
+      </attribute>
       <!--  Alarm and Event Masks Attribute Set -->
-      <attribute id="0040" name="AlarmMask" type="map16" writable="true" reportRequired="true" default="0" />
-      <attribute id="0041" name="KeypadOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" />
-      <attribute id="0042" name="RFOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" />
-      <attribute id="0043" name="ManualOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" />
-      <attribute id="0044" name="RFIDOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" />
-      <attribute id="0045" name="KeypadProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" />
-      <attribute id="0046" name="RFProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" />
-      <attribute id="0047" name="RFIDProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" />
+      <attribute id="0040" name="AlarmMask" type="map16" writable="true" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="DeadboltJammed" type="bool" mask="0001" />
+          <element name="LockResetToFactoryDefaults" type="bool" mask="0002" shiftRight="1" />
+          <!--  Bit 2 reserved. -->
+          <element name="RFPowerModuleCycled" type="bool" mask="0008" shiftRight="3" />
+          <element name="TamperAlarmWrongCodeEntryLimit" type="bool" mask="0010" shiftRight="4" />
+          <element name="TamperAlarmFrontEscutcheonRemovedFromMain" type="bool" mask="0020" shiftRight="5" />
+          <element name="ForcedDoorOpenUnderDoorLockedCondition" type="bool" mask="0040" shiftRight="6" />
+        </bitmap>
+      </attribute>
+      <attribute id="0041" name="KeypadOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="KeypadOpUnknownOrMS" type="bool" mask="0001" />
+          <element name="KeypadOpLock" type="bool" mask="0002" shiftRight="1" />
+          <element name="KeypadOpUnlock" type="bool" mask="0004" shiftRight="2" />
+          <element name="KeypadOpLockErrorInvalidPIN" type="bool" mask="0008" shiftRight="3" />
+          <element name="KeypadOpLockErrorInvalidSchedule" type="bool" mask="0010" shiftRight="4" />
+          <element name="KeypadOpUnlockInvalidPIN" type="bool" mask="0020" shiftRight="5" />
+          <element name="KeypadOpUnlockInvalidSchedule" type="bool" mask="0040" shiftRight="6" />
+          <element name="KeypadOpNonAccessUser" type="bool" mask="0080" shiftRight="7" />
+        </bitmap>
+      </attribute>
+      <attribute id="0042" name="RFOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="RFOpUnknownOrMS" type="bool" mask="0001" />
+          <element name="RFOpLock" type="bool" mask="0002" shiftRight="1" />
+          <element name="RFOpUnlock" type="bool" mask="0004" shiftRight="2" />
+          <element name="RFOpLockErrorInvalidCode" type="bool" mask="0008" shiftRight="3" />
+          <element name="RFOpLockErrorInvalidSchedule" type="bool" mask="0010" shiftRight="4" />
+          <element name="RFOpUnlockInvalidCode" type="bool" mask="0020" shiftRight="5" />
+          <element name="RFOpUnlockInvalidSchedule" type="bool" mask="0040" shiftRight="6" />
+        </bitmap>
+      </attribute>
+      <attribute id="0043" name="ManualOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="ManualOpUnknownOrMS" type="bool" mask="0001" />
+          <element name="ManualOpThumbturnLock" type="bool" mask="0002" shiftRight="1" />
+          <element name="ManualOpThumbturnUnlock" type="bool" mask="0004" shiftRight="2" />
+          <element name="ManualOpOneTouchLock" type="bool" mask="0008" shiftRight="3" />
+          <element name="ManualOpKeyLock" type="bool" mask="0010" shiftRight="4" />
+          <element name="ManualOpKeyUnlock" type="bool" mask="0020" shiftRight="5" />
+          <element name="ManualOpAutoLock" type="bool" mask="0040" shiftRight="6" />
+          <element name="ManualOpScheduleLock" type="bool" mask="0080" shiftRight="7" />
+          <element name="ManualOpScheduleUnlock" type="bool" mask="0100" shiftRight="8" />
+          <element name="ManualOpLock" type="bool" mask="0200" shiftRight="9" />
+          <element name="ManualOpUnlock" type="bool" mask="0400" shiftRight="10" />
+        </bitmap>
+      </attribute>
+      <attribute id="0044" name="RFIDOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="RFIDOpUnknownOrMS" type="bool" mask="0001" />
+          <element name="RFIDOpLock" type="bool" mask="0002" shiftRight="1" />
+          <element name="RFIDOpUnlock" type="bool" mask="0004" shiftRight="2" />
+          <element name="RFIDOpLockErrorInvalidRFID" type="bool" mask="0008" shiftRight="3" />
+          <element name="RFIDOpLockErrorInvalidSchedule" type="bool" mask="0010" shiftRight="4" />
+          <element name="RFIDOpUnlockErrorInvalidRFID" type="bool" mask="0020" shiftRight="5" />
+          <element name="RFIDOpUnlockErrorInvalidSchedule" type="bool" mask="0040" shiftRight="6" />
+        </bitmap>
+      </attribute>
+      <attribute id="0045" name="KeypadProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="KeypadProgUnknownOrMS" type="bool" mask="0001" />
+          <element name="KeypadProgMasterCodeChanged" type="bool" mask="0002" shiftRight="1" />
+          <element name="KeypadProgPINAdded" type="bool" mask="0004" shiftRight="2" />
+          <element name="KeypadProgPINDeleted" type="bool" mask="0008" shiftRight="3" />
+          <element name="KeypadProgPINChanged" type="bool" mask="0010" shiftRight="4" />
+        </bitmap>
+      </attribute>
+      <attribute id="0046" name="RFProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+        <bitmap>
+          <element name="RFProgUnknownOrMS" type="bool" mask="0001" />
+          <!--  Bit 1 not defined.  -->
+          <element name="RFProgPINAdded" type="bool" mask="0004" shiftRight="2" />
+          <element name="RFProgPINDeleted" type="bool" mask="0008" shiftRight="3" />
+          <element name="RFProgPINChanged" type="bool" mask="0010" shiftRight="4" />
+          <element name="RFProgRFIDAdded" type="bool" mask="0020" shiftRight="5" />
+          <element name="RFProgRFIDDeleted" type="bool" mask="0040" shiftRight="6" />
+        </bitmap>
+      </attribute>
+      <attribute id="0047" name="RFIDProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+         <bitmap>
+          <element name="RFIDProgUnknownOrMS" type="bool" mask="0001" />
+          <!--  Bits 1-4 not defined. -->
+          <element name="RFIDProgRFIDAdded" type="bool" mask="0020" shiftRight="5" />
+          <element name="RFIDProgRFIDDeleted" type="bool" mask="0040" shiftRight="6" />
+        </bitmap>
+      </attribute>
     </attributes>
     <commands>
       <command id="00" name="LockDoor" required="true">
