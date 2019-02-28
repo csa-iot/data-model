@@ -50,6 +50,22 @@
     </bitmap>
   </type:type>
 
+  <type:type short="DrlkPassFailStatus" name="DrlkPassFailStatus" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:enumeration value="00" name="Pass" />
+      <type:enumeration value="01" name="Fail" />
+    </restriction>
+  </type:type>
+
+  <type:type short="DrlkSetCodeStatus" name="DrlkSetCodeStatus" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:enumeration name="Success" value="00"/>
+      <type:enumeration name="GeneralFailure" value="01"/>
+      <type:enumeration name="MemoryFull" value="02"/>
+      <type:enumeration name="DuplicateCode" value="03"/>
+    </restriction>
+  </type:type>
+
   <server>
     <attributes>
       <!--  Basic Information Attribute Set -->
@@ -442,10 +458,26 @@
   </server>
   <client>
     <commands>
-      <command id="00" name="LockDoorResponse" required="true" />
-      <command id="01" name="UnlockDoorResponse" required="true" />
-      <command id="02" name="ToggleResponse" />
-      <command id="03" name="UnlockWithTimeoutResponse" />
+      <command id="00" name="LockDoorResponse" required="true" >
+        <fields>
+          <field name="Status" type="zclStatus" />
+        </fields>
+      </command>
+      <command id="01" name="UnlockDoorResponse" required="true" >
+        <fields>
+          <field name="Status" type="zclStatus" />
+        </fields>
+      </command>
+      <command id="02" name="ToggleResponse" >
+        <fields>
+          <field name="Status" type="zclStatus" />
+        </fields>
+      </command>
+      <command id="03" name="UnlockWithTimeoutResponse" >
+        <fields>
+          <field name="Status" type="zclStatus" />
+        </fields>
+      </command>
       <command id="04" name="GetLogRecordResponse">
         <fields>
           <field name="LogEntryID" type="uint16" />
@@ -459,7 +491,7 @@
       </command>
       <command id="05" name="SetPINCodeResponse">
         <fields>
-          <field name="Status" type="uint8" />
+          <field name="Status" type="DrlkSetCodeStatus" />
         </fields>
       </command>
       <command id="06" name="GetPINCodeResponse">
@@ -470,16 +502,32 @@
           <field name="Code" type="octstr" />
         </fields>
       </command>
-      <command id="07" name="ClearPINCodeResponse" />
-      <command id="08" name="ClearAllPINCodesResponse" />
-      <command id="09" name="SetUserStatusResponse" />
+      <command id="07" name="ClearPINCodeResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
+      <command id="08" name="ClearAllPINCodesResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
+      <command id="09" name="SetUserStatusResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
       <command id="0A" name="GetUserStatusResponse">
         <fields>
           <field name="UserID" type="uint16" />
           <field name="UserStatus" type="DrlkUserStatus" />
         </fields>
       </command>
-      <command id="0B" name="SetWeekdayScheduleResponse" />
+      <command id="0B" name="SetWeekdayScheduleResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
       <command id="0C" name="GetWeekdayScheduleResponse">
         <fields>
           <field name="ScheduleID" type="uint8" />
@@ -518,8 +566,16 @@
           </field>
         </fields>
       </command>
-      <command id="0D" name="ClearWeekdayScheduleResponse" />
-      <command id="0E" name="SetYearDayScheduleResponse" />
+      <command id="0D" name="ClearWeekdayScheduleResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
+      <command id="0E" name="SetYearDayScheduleResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
       <command id="0F" name="GetYearDayScheduleResponse">
         <fields>
           <field name="ScheduleID" type="uint8" />
@@ -533,8 +589,16 @@
           </field>
         </fields>
       </command>
-      <command id="10" name="ClearYearDayScheduleResponse" />
-      <command id="11" name="SetHolidayScheduleResponse" />
+      <command id="10" name="ClearYearDayScheduleResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
+      <command id="11" name="SetHolidayScheduleResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
       <command id="12" name="GetHolidayScheduleResponse">
         <fields>
           <field name="HolidayScheduleID" type="uint8" />
@@ -548,8 +612,16 @@
           <field name="OperatingModeDuringHoliday" type="DrlkOperMode" />
         </fields>
       </command>
-      <command id="13" name="ClearHolidayScheduleResponse" />
-      <command id="14" name="SetUserTypeResponse" />
+      <command id="13" name="ClearHolidayScheduleResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
+      <command id="14" name="SetUserTypeResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
       <command id="15" name="GetUserTypeResponse">
         <fields>
           <field name="UserID" type="uint16" />
@@ -558,7 +630,7 @@
       </command>
       <command id="16" name="SetRFIDCodeResponse">
         <fields>
-          <field name="Status" type="uint8" />
+          <field name="Status" type="DrlkSetCodeStatus" />
         </fields>
       </command>
       <command id="17" name="GetRFIDCodeResponse">
@@ -569,8 +641,16 @@
           <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="18" name="ClearRFIDCodeResponse" />
-      <command id="19" name="ClearAllRFIDCodesResponse" />
+      <command id="18" name="ClearRFIDCodeResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
+      <command id="19" name="ClearAllRFIDCodesResponse" >
+        <fields>
+          <field name="Status" type="DrlkPassFailStatus" />
+        </fields>
+      </command>
       <command id="20" name="OperatingEventNotification" />
       <command id="21" name="ProgrammingEventNotification">
         <fields>
