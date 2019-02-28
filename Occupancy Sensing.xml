@@ -27,7 +27,7 @@
         <bitmap>
           <element name="PIR" type="bool" mask="01" />
           <element name="Ultrasonic" type="bool" mask="02" shiftRight="1" />
-          <element name="PhysicalContact" type="bool" mask="03" shiftRight="2" />
+          <element name="PhysicalContact" type="bool" mask="04" shiftRight="2" />
         </bitmap>
       </attribute>
       <!-- PIR Configuration Set -->
