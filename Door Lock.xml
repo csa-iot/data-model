@@ -4,8 +4,8 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0101" revision="0" name="Door Lock">
-  <classification hierarchy="base" role="application" picsCode="DRLK" primaryTransaction="" />
+  id="0101" revision="2" name="DoorLock">
+  <classification hierarchy="base" role="application" picsCode="DRLK" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="LockState" type="enum8" required="true" default="-">
@@ -27,9 +27,9 @@
       <attribute id="0003" name="DoorState" type="enum8" default="-">
         <restriction>
           <type:enumeration value="00" name="Open" />
-          <type:enumeration value="02" name="Error(jammed)" />
-          <type:enumeration value="03" name="Error(forcedOpen)" />
-          <type:enumeration value="04" name="Error(unspecified)" />
+          <type:enumeration value="02" name="ErrorJammed" />
+          <type:enumeration value="03" name="ErrorForcedOpen" />
+          <type:enumeration value="04" name="ErrorUnspecified" />
           <type:enumeration value="FF" name="Undefined" />
         </restriction>
       </attribute>
@@ -76,23 +76,23 @@
     <commands>
       <command id="00" name="LockDoor" required="true">
         <fields>
-          <field name="PIN/RFIDCode" type="octstr" />
+          <field name="PINOrRFIDCode" type="octstr" />
         </fields>
       </command>
       <command id="01" name="UnlockDoor" required="true">
         <fields>
-          <field name="PIN/RFIDCode" type="octstr" />
+          <field name="PINOrRFIDCode" type="octstr" />
         </fields>
       </command>
       <command id="02" name="Toggle">
         <fields>
-          <field name="PIN/RFIDCode" type="octstr" />
+          <field name="PINOrRFIDCode" type="octstr" />
         </fields>
       </command>
       <command id="03" name="UnlockWithTimeout">
         <fields>
           <field name="TimeoutInSeconds" type="uint16" />
-          <field name="PIN/RFIDCode" type="octstr" />
+          <field name="PINOrRFIDCode" type="octstr" />
         </fields>
       </command>
       <command id="04" name="GetLogRecord">
@@ -132,7 +132,7 @@
       </command>
       <command id="0B" name="SetWeekdaySchedule">
         <fields>
-          <field name="ScheduleID#" type="uint8" />
+          <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
           <field name="DaysMask" type="map8" />
           <field name="StartHour" type="uint8" />
@@ -234,8 +234,8 @@
           <field name="LogEntryID" type="uint16" />
           <field name="Timestamp" type="uint32" />
           <field name="EventType" type="enum8" />
-          <field name="Source(seeREFRTF37383135323a204865616435\h\*MERGEFORMATOperationEventSources)" type="uint8" />
-          <field name="EventID/AlarmCode(seeREFRTF33333734303a204865616435\h\*MERGEFORMATOperationEventCodes)" type="uint8" />
+          <field name="SourceOperationEvent" type="uint8" />
+          <field name="EventIDOrAlarmCode" type="uint8" />
           <field name="UserID" type="uint16" />
           <field name="PIN" type="octstr" />
         </fields>
