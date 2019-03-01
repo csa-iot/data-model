@@ -87,6 +87,8 @@
 			default="false" />
 		<xs:attribute name="required" type="xs:boolean"
 			default="false" />
+        <xs:attribute name="requiredIf" type="type:DependencyExpression"
+            default="false" />      
 		<xs:attribute name="min" type="xs:integer" default="0"
 			use="optional" />
 		<xs:attribute name="max" type="xs:integer" use="optional" />
@@ -114,6 +116,8 @@
 			use="required" />
 		<xs:attribute name="required" type="xs:boolean"
 			default="false" />
+        <xs:attribute name="requiredIf" type="type:DependencyExpression"
+            default="false" />
 	</xs:complexType>
 
 	<xs:complexType name="CommandList">
