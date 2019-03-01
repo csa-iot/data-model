@@ -280,5 +280,6 @@
     <xi:include href="Pump Configuration and Control.xml" parse="xml" />
 	<xi:include href="Fan Control.xml" parse="xml" />
     <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
+    <xi:include href="Door Lock.xml" parse="xml" />
 	
 </zcl:library>
