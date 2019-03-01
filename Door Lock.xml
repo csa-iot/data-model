@@ -651,11 +651,65 @@
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="20" name="OperatingEventNotification" />
+      <command id="20" name="OperatingEventNotification" >
+        <fields>
+          <field name="OperationEventSource" type="uint8" >
+            <restriction>
+              <type:enumeration name="Keypad" value="00"/>
+              <type:enumeration name="RF" value="01"/>
+              <type:enumeration name="Manual" value="02"/>
+              <type:enumeration name="RFID" value="03"/>
+              <type:enumeration name="Indeterminate" value="FF"/>
+            </restriction>
+          </field>
+          <field name="OperationEventCode" type="uint8" >
+            <restriction>
+              <type:enumeration name="UnknownOrMS" value="00"/>
+              <type:enumeration name="Lock" value="01"/>
+              <type:enumeration name="Unlock" value="02"/>
+              <type:enumeration name="LockFailureInvalidPINOrID" value="03"/>
+              <type:enumeration name="LockFailureInvalidSchedule" value="04"/>
+              <type:enumeration name="UnlockFailureInvalidPINOrID" value="05"/>
+              <type:enumeration name="UnlockFailureInvalidSchedule" value="06"/>
+              <type:enumeration name="OneTouchLock" value="07"/>
+              <type:enumeration name="KeyLock" value="08"/>
+              <type:enumeration name="KeyUnlock" value="09"/>
+              <type:enumeration name="AutoLock" value="0A"/>
+              <type:enumeration name="ScheduleLock" value="0B"/>
+              <type:enumeration name="ScheduleUnlock" value="0C"/>
+              <type:enumeration name="ManualLock" value="0D"/>
+              <type:enumeration name="ManualUnlock" value="0E"/>
+              <type:enumeration name="NonAccessUserOperationalEvent" value="0E"/>
+            </restriction>
+          </field>
+          <field name="UserID" type="uint16" />
+          <field name="PIN" type="octstr" />
+          <field name="LocalTime" type="uint32" />
+          <field name="Data" type="string" />
+        </fields>
+      </command>
       <command id="21" name="ProgrammingEventNotification">
         <fields>
-          <field name="ProgramEventSource" type="uint8" />
-          <field name="ProgramEventCode" type="uint8" />
+          <field name="ProgramEventSource" type="uint8" >
+            <restriction>
+              <type:enumeration name="Keypad" value="00"/>
+              <type:enumeration name="RF" value="01"/>
+              <!-- 02 reserved, corresponds to Manual for Operation Event Source -->
+              <type:enumeration name="RFID" value="03"/>
+              <type:enumeration name="Indeterminate" value="FF"/>
+            </restriction>
+          </field>
+          <field name="ProgramEventCode" type="uint8" >
+            <restriction>
+              <type:enumeration name="UnknownOrMS" value="00"/>
+              <type:enumeration name="MasterCodeChanged" value="01"/>
+              <type:enumeration name="PINCodeAdded" value="02"/>
+              <type:enumeration name="PINCodeDeleted" value="03"/>
+              <type:enumeration name="PINCodeChanged" value="04"/>
+              <type:enumeration name="RFIDCodeAdded" value="05"/>
+              <type:enumeration name="RFIDCodeDeleted" value="06"/>
+            </restriction>
+          </field>
           <field name="UserID" type="uint16" />
           <field name="PIN" type="octstr" />
           <field name="UserType" type="DrlkUserType" />
