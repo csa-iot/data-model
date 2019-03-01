@@ -4,8 +4,8 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0500" revision="0" name="IAS Zone">
-  <classification hierarchy="base" role="application" picsCode="IASZ" primaryTransaction="" />
+  id="0500" revision="2" name="IASZone">
+  <classification hierarchy="base" role="application" picsCode="IASZ" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="ZoneState" type="enum8" required="true" default="0">
@@ -16,7 +16,7 @@
       </attribute>
       <attribute id="0001" name="ZoneType" type="enum16" required="true" default="-" />
       <attribute id="0002" name="ZoneStatus" type="map16" required="true" default="0" />
-      <attribute id="0010" name="IAS_CIE_Address" type="EUI64" writable="true" required="true" default="-" />
+      <attribute id="0010" name="IASCIEAddress" type="EUI64" writable="true" required="true" default="-" />
       <attribute id="0011" name="ZoneID" type="uint8" required="true" max="255" default="255" />
       <attribute id="0012" name="NumberOfZoneSensitivityLevelsSupported" type="uint8" min="2" max="255" default="2" />
       <attribute id="0013" name="CurrentZoneSensitivityLevel" type="uint8" writable="true" max="255" default="0" />

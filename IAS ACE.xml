@@ -4,10 +4,10 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0501" revision="0" name="IAS ACE">
-  <classification hierarchy="base" role="application" picsCode="IASACE" primaryTransaction="" />
+  id="0501" revision="1" name="IASACE">
+  <classification hierarchy="base" role="application" picsCode="IASACE" primaryTransaction="1" />
   <server>
-    <attributes />
+    <!-- This cluster defines no attributes.  -->
     <commands>
       <command id="00" name="Arm" required="true" />
       <command id="01" name="Bypass" required="true" />

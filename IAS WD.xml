@@ -4,8 +4,8 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0502" revision="0" name="IAS WD">
-  <classification hierarchy="base" role="application" picsCode="IASWD" primaryTransaction="" />
+  id="0502" revision="2" name="IASWD">
+  <classification hierarchy="base" role="application" picsCode="IASWD" primaryTransaction="1" />
   <server>
     <attributes>
       <attribute id="0000" name="MaxDuration" type="uint16" writable="true" required="true" default="576" />

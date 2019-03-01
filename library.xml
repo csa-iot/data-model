@@ -306,5 +306,8 @@
     <xi:include href="Thermostat.xml" parse="xml" />
 	<xi:include href="Fan Control.xml" parse="xml" />
     <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
+	<xi:include href="IAS Zone.xml" parse="xml" />
+	<xi:include href="IAS ACE.xml" parse="xml" />
+	<xi:include href="IAS WD.xml" parse="xml" />
 	
 </zcl:library>
