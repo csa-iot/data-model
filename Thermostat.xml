@@ -315,7 +315,7 @@
               <type:enumeration value="02" name="Both" />
             </restriction>
           </field>
-          <field name="Amout" type="int8" />
+          <field name="Amount" type="int8" />
         </fields>
       </command>
       <command id="01" name="SetWeeklySchedule">
