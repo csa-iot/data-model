@@ -6,31 +6,99 @@
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0500" revision="2" name="IASZone">
   <classification hierarchy="base" role="application" picsCode="IASZ" primaryTransaction="2" />
+
+  <type:type short="IaszType" name="IaszType" id="19" inheritsFrom="enum16">
+    <restriction>
+      <type:enumeration name="StandardCIE" value="0000"/>
+      <type:enumeration name="MotionSensor" value="000D"/>
+      <type:enumeration name="ContactSwitch" value="0015"/>
+      <type:enumeration name="DoorOrWindowHandle" value="0016"/>
+      <type:enumeration name="FireSensor" value="0028"/>
+      <type:enumeration name="WaterSensor" value="002A"/>
+      <type:enumeration name="CarbonMonoxideSensor" value="002B"/>
+      <type:enumeration name="PersonalEmergencyDevice" value="002C"/>
+      <type:enumeration name="VibrationOrMovementSensor" value="002D"/>
+      <type:enumeration name="RemoteControl" value="010F"/>
+      <type:enumeration name="KeyFob" value="0115"/>
+      <type:enumeration name="Keypad" value="021D"/>
+      <type:enumeration name="StandardWarningDevice" value="0225"/>
+      <type:enumeration name="GlassBreakSensor" value="0226"/>
+      <type:enumeration name="SecurityRepeater" value="0229"/>
+      <!-- 8000-FFFE are manufacturer specific types -->
+      <type:enumeration name="Invalid" value="FFFF"/>
+    </restriction>
+  </type:type>
+  <type:type short="IaszStatus" name="IaszStatus" id="31" inheritsFrom="map16">
+    <bitmap>
+      <element name="Alarm1" type="bool" mask="0001" shiftRight="0" />
+      <element name="Alarm2" type="bool" mask="0002" shiftRight="1" />
+      <element name="Tamper" type="bool" mask="0004" shiftRight="2" />
+      <element name="BatteryLow" type="bool" mask="0008" shiftRight="3" />
+      <element name="SupervisionNotify" type="bool" mask="0010" shiftRight="4" />
+      <element name="RestoreNotify" type="bool" mask="0020" shiftRight="5" />
+      <element name="Trouble" type="bool" mask="0040" shiftRight="6" />
+      <element name="ACMainsFault" type="bool" mask="0080" shiftRight="7" />
+      <element name="Test" type="bool" mask="0100" shiftRight="8" />
+      <element name="BatteryDefect" type="bool" mask="0200" shiftRight="9" />
+    </bitmap>
+  </type:type>
+
   <server>
     <attributes>
-      <attribute id="0000" name="ZoneState" type="enum8" required="true" default="0">
+      <!--  Zone Information Attribute Set -->
+      <attribute id="0000" name="ZoneState" type="enum8" required="true" max="255" default="0">
         <restriction>
           <type:enumeration value="00" name="NotEnrolled" />
-          <type:enumeration value="01" name="Enrolled(theClientWillReactToZoneStateChangeNotificationCommandsFromTheServer)" />
+          <type:enumeration value="01" name="Enrolled" />
         </restriction>
       </attribute>
-      <attribute id="0001" name="ZoneType" type="enum16" required="true" default="-" />
-      <attribute id="0002" name="ZoneStatus" type="map16" required="true" default="0" />
-      <attribute id="0010" name="IASCIEAddress" type="EUI64" writable="true" required="true" default="-" />
+      <attribute id="0001" name="ZoneType" type="IaszType" required="true" />
+      <attribute id="0002" name="ZoneStatus" type="IaszStatus" required="true" default="0" />
+      <!--  Zone Settings Attribute Set -->
+      <attribute id="0010" name="IASCIEAddress" type="EUI64" writable="true" required="true" />
       <attribute id="0011" name="ZoneID" type="uint8" required="true" max="255" default="255" />
       <attribute id="0012" name="NumberOfZoneSensitivityLevelsSupported" type="uint8" min="2" max="255" default="2" />
       <attribute id="0013" name="CurrentZoneSensitivityLevel" type="uint8" writable="true" max="255" default="0" />
     </attributes>
     <commands>
-      <command id="00" name="ZoneEnrollResponse" required="true" />
+      <command id="00" name="ZoneEnrollResponse" required="true" >
+        <fields>
+          <field name="EnrollResponseCode" type="enum8">
+            <restriction>
+              <type:enumeration name="Success" value="00"/>
+              <type:enumeration name="NotSupported" value="01"/>
+              <type:enumeration name="NoEnrollPermit" value="02"/>
+              <type:enumeration name="TooManyZones" value="03"/>
+            </restriction>
+          </field>
+          <field name="ZoneID" type="uint8"/>
+        </fields>
+      </command>
       <command id="01" name="InitiateNormalOperationMode" />
-      <command id="02" name="InitiateTestMode" />
+      <command id="02" name="InitiateTestMode" >
+       <fields>
+          <field name="TestModeDuration" type="uint8"/>
+          <field name="CurrentZoneSensitivityLevel" type="uint8"/>
+        </fields>
+      </command>
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="ZoneStatusChangeNotification" required="true" />
-      <command id="01" name="ZoneEnrollRequest" required="true" />
+      <command id="00" name="ZoneStatusChangeNotification" required="true" >
+        <fields>
+          <field name="ZoneStatus" type="IaszStatus"/>
+          <field name="ExtendedStatus" type="map8"/>
+          <field name="ZoneID" type="uint8"/>
+          <field name="Delay" type="uint16"/>
+        </fields>
+      </command>
+      <command id="01" name="ZoneEnrollRequest" required="true" >
+       <fields>
+          <field name="ZoneType" type="IaszType"/>
+          <field name="ManufacturerCode" type="uint16"/>
+        </fields>
+      </command>
     </commands>
   </client>
 </zcl:cluster>
