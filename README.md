@@ -205,7 +205,7 @@ Each field is defined with the following attributes in XML
 | name            | true     | The name of the command, as per the Naming section above       | 
 | type            | true     | The short name of the field type                               |
 | array           | false    | If the field is an array. Defaults to false                    |
-| arrayLengthSize | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. |
+| arrayLengthSize | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. Defaults to 1. |
 | presentIf       | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
