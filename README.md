@@ -105,9 +105,13 @@ There are a number of restrictions available for types. These build the basis of
 
 * enumeration - see the Enumerations section below
 * minExclusive - sets a minimum that doesn't include the value specified, i.e. a field of this type must be strictly greater than the value
+* minExclusiveRef - sets a minimum that is based on the value of the referenced attribute. The value of the referenced attribute is excluded from the range
 * minInclusive - sets a minimum that includes the value specified, i.e. a field of this type must be greater than or equal than the value
+* minInclusiveRef - sets a minimum that is based on the value of the referenced attribute. The value of the referenced attribute is included in the range
 * maxExclusive - sets a maximum that doesn't include the value specified, i.e. a field of this type must be strictly less than the value
+* maxExclusiveRef - sets a maximum that is based on the value of the referenced attribute. The value of the referenced attribute is excluded from the range
 * maxInclusive - sets a maximum that includes the value specified, i.e. a field of this type must be less than or equal to the value
+* maxInclusiveRef - sets a maximum that is based on the value of the referenced attribute.
 * totalDigits - see http://www.w3.org/TR/xmlschema11-2/#element-totalDigits
 * fractionDigits - see http://www.w3.org/TR/xmlschema11-2/#element-fractionDigits
 * length - specifies an exact length, generally used for a string.
@@ -162,6 +166,7 @@ An attribute may be specified using the following attributes in the XML.
 | reportRequired | false    | If attribute is required to be reportable. Defaults to false   |
 | sceneRequired  | false    | If attribute is required to be part of the scene extensions. Defaults to false |
 | required       | false    | If the attribute is mandatory. Defaults to false               |
+| requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which an attribute is mandatory. Defaults to false |
 | min            | false    | A decimal integer specifying the min value (inclusive). Not for use on strings, use minLength restriction instead. Defaults to 0 |
 | max            | false    | A decimal integer specifiying the max value (inclusive). Not for use on strings, use maxLength restriction instead. No Default. |
 | default        | false    | Specifies the default value of an attribute. No Default        |
@@ -207,12 +212,18 @@ Each field is defined with the following attributes in XML
 | array           | false    | If the field is an array. Defaults to false                    |
 | arrayLengthSize | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. |
 | presentIf       | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
+| requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
 
 Expressions
 ===========
 Logical expressions in the XML SHALL be expressed using the operators specified in [XPath 1.0](https://www.w3.org/TR/1999/REC-xpath-19991116/#section-Expressions). Specifically, section 3. This provides the operators or, and, =, !=, <=, <, >=, >. References to other fields in a command are done through name. Sub-elements in a bitmap may also be referenced using dot notation (ie, field.bitmapItem). 
+
+In addition, the following functions are available for expressions
+
+| Function      | Description                                                                                |
+| implements(X) | Returns true when a specific implementation implements the attribute or command named by X |
 
 Fields in a Command
 -------------------
