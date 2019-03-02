@@ -7,7 +7,7 @@
   id="0500" revision="2" name="IASZone">
   <classification hierarchy="base" role="application" picsCode="IASZ" primaryTransaction="2" />
 
-  <type:type short="IaszType" name="IaszType" id="19" inheritsFrom="enum16">
+  <type:type short="IaszZoneType" name="IaszZoneType" id="31" inheritsFrom="enum16">
     <restriction>
       <type:enumeration name="StandardCIE" value="0000"/>
       <type:enumeration name="MotionSensor" value="000D"/>
@@ -28,7 +28,7 @@
       <type:enumeration name="Invalid" value="FFFF"/>
     </restriction>
   </type:type>
-  <type:type short="IaszStatus" name="IaszStatus" id="31" inheritsFrom="map16">
+  <type:type short="IaszZoneStatus" name="IaszZoneStatus" id="19" inheritsFrom="map16">
     <bitmap>
       <element name="Alarm1" type="bool" mask="0001" shiftRight="0" />
       <element name="Alarm2" type="bool" mask="0002" shiftRight="1" />
@@ -52,8 +52,8 @@
           <type:enumeration value="01" name="Enrolled" />
         </restriction>
       </attribute>
-      <attribute id="0001" name="ZoneType" type="IaszType" required="true" />
-      <attribute id="0002" name="ZoneStatus" type="IaszStatus" required="true" default="0" />
+      <attribute id="0001" name="ZoneType" type="IaszZoneType" required="true" />
+      <attribute id="0002" name="ZoneStatus" type="IaszZoneStatus" required="true" default="0" />
       <!--  Zone Settings Attribute Set -->
       <attribute id="0010" name="IASCIEAddress" type="EUI64" writable="true" required="true" />
       <attribute id="0011" name="ZoneID" type="uint8" required="true" max="255" default="255" />
@@ -87,7 +87,7 @@
     <commands>
       <command id="00" name="ZoneStatusChangeNotification" required="true" >
         <fields>
-          <field name="ZoneStatus" type="IaszStatus"/>
+          <field name="ZoneStatus" type="IaszZoneStatus"/>
           <field name="ExtendedStatus" type="map8"/>
           <field name="ZoneID" type="uint8"/>
           <field name="Delay" type="uint16"/>
@@ -95,7 +95,7 @@
       </command>
       <command id="01" name="ZoneEnrollRequest" required="true" >
        <fields>
-          <field name="ZoneType" type="IaszType"/>
+          <field name="ZoneType" type="IaszZoneType"/>
           <field name="ManufacturerCode" type="uint16"/>
         </fields>
       </command>
