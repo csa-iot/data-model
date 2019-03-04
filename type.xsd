@@ -55,6 +55,10 @@
     <xs:attribute name="type" type="xs:string" use="required" />
     <xs:attribute name="array" type="xs:boolean" use="optional" default="false" />
     <xs:attribute name="arrayLengthSize" type="xs:unsignedByte" use="optional" default="1" />
+    <!-- The use of this is discouraged, and should not be used in the case
+     the count and array are adjacent
+     -->
+    <xs:attribute name="arrayLengthField" type="zclType:NamedElement" use="optional" default="" />
     <xs:attribute name="presentIf" type="zclType:DependencyExpression" use="optional" default="true" />
   </xs:complexType>
 
@@ -205,6 +209,58 @@
           <xs:attribute name="value" type="xs:string" use="required" />
         </xs:restriction>
       </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="minInclusiveRef" id="minInclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="minExclusiveRef" id="minExclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="maxInclusiveRef" id="maxInclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="maxExclusiveRef" id="maxExclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
     </xs:complexType>
   </xs:element>
 
