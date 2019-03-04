@@ -18,7 +18,7 @@
       <type:enumeration value="00" name="Up" />
       <type:enumeration value="01" name="Down" />
     </restriction>
-  </type>
+  </type:type>
 
   <server>
     <attributes>
