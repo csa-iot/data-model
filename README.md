@@ -136,7 +136,29 @@ The ReportableChange field is specified as unk, but must be interpreted based on
 
 Clusters
 ========
-Each cluster is defined as a set of attributes and/or commands. A cluster must have at least one attribute or command. See the Attributes and Commands sections below for more information
+Each cluster is defined as a client / server pair. Inside each side of these pairs exists a set of attributes and/or commands. Each side is required to implement several global attributes. There may be additional attributes and commands defined. See the Attributes and Commands sections below for more information.
+
+A cluster also has some additional information such as id, name, and how it is 
+classified.
+
+| Attribute      | Required | Description                                                    |
+|----------------|----------|----------------------------------------------------------------|
+| id             | true     | The Zigbee cluster id, as a HexBinary (ie, 4 hex characters)   |
+| name           | true     | The name of the cluster, as per the Naming section above       |
+| revision       | true     | The cluster revision described by this document                |
+
+Classification
+---------
+The classification tag contains information about the role the cluster takes and 
+any hierarchy information.  
+
+| Attribute          | Required | Description                                                           | 
+|--------------------|----------|-----------------------------------------------------------------------|
+| hierarchy          | true     | Indicates if the cluster is a base cluster or derived from another.   |
+| base               | false    | The base cluster id for the cluster from which this is defined.       |
+| role               | true     | The role that the cluster takes (application or utility).             |
+| picsCode           | true     | The code which is used for PICS items relating to this cluster        |
+| primaryTransaction | false    | For applicaiton clusters, the primary transaction type. Defaults to 1 |
 
 Attributes
 ----------
@@ -170,6 +192,7 @@ An attribute may be specified using the following attributes in the XML.
 | min            | false    | A decimal integer specifying the min value (inclusive). Not for use on strings, use minLength restriction instead. Defaults to 0 |
 | max            | false    | A decimal integer specifiying the max value (inclusive). Not for use on strings, use maxLength restriction instead. No Default. |
 | default        | false    | Specifies the default value of an attribute. No Default        |
+| deprecated     | false    | Indicates that an attribute has been deprecated                |
 
 Inside an attribute definition, either a bitmap or a series of restrictions may be specified. An example of restrictions can be seen in the example attribute definition for `GenericDevice-Class`. For an example of bitmap definitions, see the Bitmaps section.
 
@@ -200,6 +223,7 @@ A command may be specified using the following attributes in XML
 | id             | true     | The Zigbee command id, as a HexBinary (ie, 2 hex characters)   |
 | name           | true     | The name of the command, as per the Naming section above       | 
 | required       | false    | If the command is mandatory. Defaults to false                 |
+| deprecated     | false    | Indicates that a command has been deprecated                   |
 
 Inside a command definition, a series of fields followed by tag definitions is permitted. 
 
@@ -214,6 +238,7 @@ Each field is defined with the following attributes in XML
 | arrayLengthField | false    | When the number of elements in an array field is specified by another field which does not immediately proceed an array field, that field may be referenced using this attribute. | 
 | presentIf        | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
 | requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
+| deprecated     | false    | Indicates that a command field has been deprecated               |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
 
