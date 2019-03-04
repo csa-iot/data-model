@@ -297,6 +297,7 @@
     <xi:include href="Power Configuration.xml" parse="xml" />
 	<xi:include href="Identify.xml" parse="xml" />
 	<xi:include href="Groups.xml" parse="xml" />
+  <xi:include href="On-Off.xml" parse="xml" />
 	<xi:include href="Alarms.xml" parse="xml" />
 	<xi:include href="Time.xml" parse="xml" />
     <xi:include href="Diagnostics.xml" parse="xml" />
