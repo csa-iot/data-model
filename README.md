@@ -79,7 +79,7 @@ Bitmap types can be expanded to subfields in the schema using the bitmap tag, wh
   <bitmap>
     <element name="DisableResetToFactoryDefaults" type="bool" mask="01" />
     <element name="DisableDeviceConfiguration" type="bool" mask="02" shiftRight="1" />
-    <element name="MyEnum� type=�enum8" mask="0C" shiftRight="2">
+    <element name="MyEnum" type="enum8" mask="0C" shiftRight="2">
       <restriction>
         <type:enumeration name="FirstValue" value="00" />
         <type:enumeration name="SecondValue" value="01" />
