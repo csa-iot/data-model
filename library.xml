@@ -303,6 +303,7 @@
     <xi:include href="Diagnostics.xml" parse="xml" />
     <xi:include href="Poll Control.xml" parse="xml" />
     <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
+    <xi:include href="Temperature Measurement.xml" parse="xml" />
     <xi:include href="Occupancy Sensing.xml" parse="xml" />
     <xi:include href="Pump Configuration and Control.xml" parse="xml" />
     <xi:include href="Thermostat.xml" parse="xml" />
