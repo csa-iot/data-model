@@ -125,7 +125,7 @@
           <field name="OptionsOverride" type="LevelOptions" />
         </fields>
       </command>
-      <command id="07" name="Stop" required="true">
+      <command id="07" name="StopWithOnOff" required="true">
         <fields>
           <field name="OptionsMask" type="LevelOptions" />
           <field name="OptionsOverride" type="LevelOptions" />
