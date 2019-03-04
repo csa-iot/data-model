@@ -79,7 +79,7 @@ Bitmap types can be expanded to subfields in the schema using the bitmap tag, wh
   <bitmap>
     <element name="DisableResetToFactoryDefaults" type="bool" mask="01" />
     <element name="DisableDeviceConfiguration" type="bool" mask="02" shiftRight="1" />
-    <element name="MyEnumâ€ type=â€enum8" mask="0C" shiftRight="2">
+    <element name="MyEnum” type=”enum8" mask="0C" shiftRight="2">
       <restriction>
         <type:enumeration name="FirstValue" value="00" />
         <type:enumeration name="SecondValue" value="01" />
@@ -221,37 +221,42 @@ Arrays
 ======
 Conversion of an array in a command field is done using the following process.
 
-1. Identify the type of each element in the array. It may be necessary to create
-   a type which contains other types using the sequence restriction.
-2. Identify how the number of elements in the array is determined. This could be
-   through a count field that immediately proceeds the elements, a count field 
-   that exists elsewhere in the command, or implicitly (i.e., the rest of the 
-   frame is consumed by array elements)
+1. Identify the type of each element in the array. It may be necessary to create a type which contains other types using the sequence restriction.
+2. Identify how the number of elements in the array is determined. This could be through a count field that immediately proceeds the elements, a count field 
+   that exists elsewhere in the command, or implicitly (i.e., the rest of the frame is consumed by array elements)
 3. If the array elements are immediately proceeded by a count field (which is 
    not a component of a bitmap), then the array should be defined by an entry 
    for the elements with array="true". If the size counter was not 8 bits, then 
    the arrayLengthSize should also be set to the number of octets. For example, 
    an array of 8 bit unsigned integers with a 16-bit length would be defined as 
-   follows: ```<field name="MyArray" type="uint8" array="true" arrayLengthSize="2" />```
+   follows: 
+   
+    ```xml
+    <field name="MyArray" type="uint8" array="true" arrayLengthSize="2" />
+    ```
+   
 4. If the field that specifies the number of elements in the array is elsewhere
    in the command, it must be specified properly as a numeric type and then
    referenced by the array field in the XML. The element may be part of a bitmap
    or a separate field.
-        ```xml
-		<field name="MyBitmap" type="map8">
-		  <bitmap>
-		    <element name="TransitionCount" type="uint8" mask="0f" />
-		    ...
-		  </bitmap>
-		</field>
-		<field name="Transitions" type="TransitionType" array="true" arrayLengthField="MyBitmap.NumberOfTransitions" />
-        ```
+   
+    ```xml
+    <field name="MyBitmap" type="map8">
+        <bitmap>
+            <element name="TransitionCount" type="uint8" mask="0f" />
+            ...
+        </bitmap>
+    </field>
+    <field name="Transitions" type="TransitionType" array="true" arrayLengthField="MyBitmap.NumberOfTransitions" />
+    ```
+   
 5. If there is no field that specifies the number of entries, then this means 
    that they must consume the rest of the message. This is indicated by setting 
    the arrayLengthSize to 0.
-```xml
-<field name="MyArray" type="uint8" array="true" arrayLengthSize="0" />
-```
+   
+    ```xml
+    <field name="MyArray" type="uint8" array="true" arrayLengthSize="0" />
+    ```
    
 Expressions
 ===========
