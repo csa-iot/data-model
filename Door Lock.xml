@@ -115,26 +115,26 @@
           <type:enumeration value="FF" name="Undefined" />
         </restriction>
       </attribute>
-      <attribute id="0004" name="DoorOpenEvents" type="uint32" writable="true" max="4294967295" />
-      <attribute id="0005" name="DoorClosedEvents" type="uint32" writable="true" max="4294967295" />
-      <attribute id="0006" name="OpenPeriod" type="uint16" writable="true" max="65535" />
+      <attribute id="0004" name="DoorOpenEvents" type="uint32" writable="true" />
+      <attribute id="0005" name="DoorClosedEvents" type="uint32" writable="true" />
+      <attribute id="0006" name="OpenPeriod" type="uint16" writable="true" />
       <!--  User / PIN / Schedule Information Attribute Set -->
-      <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" max="65535" default="0" />
+      <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" default="0" />
       <!--
         ZCL7 states that NumberOfTotalUsersSupported is equal to the higher of subsequent
         ...PINUsers...and ...RFIDUsers... attribute values. How to phrase restriction?
       -->
-      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" max="65535" default="0" />
-      <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" max="65535" default="0" />
-      <attribute id="0013" name="NumberOfRFIDUsersSupported" type="uint16" max="65535" default="0" />
-      <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" max="255" default="0" />
-      <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" max="255" default="0" />
-      <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" max="255" default="0" />
+      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" />
+      <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" default="0" />
+      <attribute id="0013" name="NumberOfRFIDUsersSupported" type="uint16" default="0" />
+      <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" />
+      <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" default="0" />
+      <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" default="0" />
       <!--  ZCL7 does not spec a relationship between these next two Max/Min attribute pairs; add restriction? -->
-      <attribute id="0017" name="MaxPINCodeLength" type="uint8" max="255" default="8" />
-      <attribute id="0018" name="MinPINCodeLength" type="uint8" max="255" default="4" />
-      <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" max="255" default="20" />
-      <attribute id="001A" name="MinRFIDCodeLength" type="uint8" max="255" default="8" />
+      <attribute id="0017" name="MaxPINCodeLength" type="uint8" default="8" />
+      <attribute id="0018" name="MinPINCodeLength" type="uint8" default="4" />
+      <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" default="20" />
+      <attribute id="001A" name="MinRFIDCodeLength" type="uint8" default="8" />
       <!--  Operational Settings Attribute Set -->
       <attribute id="0020" name="EnableLogging" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0021" name="Language" type="string" writable="true" writeOptional="true" reportRequired="true" default="0" >
