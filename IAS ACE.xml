@@ -7,41 +7,6 @@
   id="0501" revision="1" name="IASACE">
   <classification hierarchy="base" role="application" picsCode="IASACE" primaryTransaction="1" />
 
-  <type:type short="IasaceZoneStatus" name="IasaceZoneStatus" id="19" inheritsFrom="map16">
-    <bitmap>
-      <element name="Alarm1" type="bool" mask="0001" shiftRight="0" />
-      <element name="Alarm2" type="bool" mask="0002" shiftRight="1" />
-      <element name="Tamper" type="bool" mask="0004" shiftRight="2" />
-      <element name="BatteryLow" type="bool" mask="0008" shiftRight="3" />
-      <element name="SupervisionNotify" type="bool" mask="0010" shiftRight="4" />
-      <element name="RestoreNotify" type="bool" mask="0020" shiftRight="5" />
-      <element name="Trouble" type="bool" mask="0040" shiftRight="6" />
-      <element name="ACMainsFault" type="bool" mask="0080" shiftRight="7" />
-      <element name="Test" type="bool" mask="0100" shiftRight="8" />
-      <element name="BatteryDefect" type="bool" mask="0200" shiftRight="9" />
-    </bitmap>
-  </type:type>
-  <type:type short="IasaceZoneType" name="IasaceZoneType" id="31" inheritsFrom="enum16">
-    <restriction>
-      <type:enumeration name="StandardCIE" value="0000"/>
-      <type:enumeration name="MotionSensor" value="000D"/>
-      <type:enumeration name="ContactSwitch" value="0015"/>
-      <type:enumeration name="DoorOrWindowHandle" value="0016"/>
-      <type:enumeration name="FireSensor" value="0028"/>
-      <type:enumeration name="WaterSensor" value="002A"/>
-      <type:enumeration name="CarbonMonoxideSensor" value="002B"/>
-      <type:enumeration name="PersonalEmergencyDevice" value="002C"/>
-      <type:enumeration name="VibrationOrMovementSensor" value="002D"/>
-      <type:enumeration name="RemoteControl" value="010F"/>
-      <type:enumeration name="KeyFob" value="0115"/>
-      <type:enumeration name="Keypad" value="021D"/>
-      <type:enumeration name="StandardWarningDevice" value="0225"/>
-      <type:enumeration name="GlassBreakSensor" value="0226"/>
-      <type:enumeration name="SecurityRepeater" value="0229"/>
-      <!-- 8000-FFFE are manufacturer specific types -->
-      <type:enumeration name="Invalid" value="FFFF"/>
-    </restriction>
-  </type:type>
    <type:type short="IasaceAudibleNotification" name="IasaceAudibleNotification" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration name="Mute" value="00"/>
@@ -73,6 +38,14 @@
       <type:enumeration name="ArmingStay" value="08"/>
       <type:enumeration name="ArmingNight" value="09"/>
       <type:enumeration name="ArmingAway" value="0A"/>
+    </restriction>
+  </type:type>
+  <type:type short="IasaceZoneStatusRecord" name="IasaceZoneStatusRecord" id="FF">
+    <restriction>
+      <type:sequence>
+        <field name="ZoneID" type="uint8" />
+        <field name="ZoneStatus" type="IasZoneStatus" />
+      </type:sequence>
     </restriction>
   </type:type>
 
@@ -115,7 +88,7 @@
           <field name="StartingZoneID" type="uint8" />
           <field name="MaxNumberOfZoneIDs" type="uint8" />
           <field name="ZoneStatusMaskFlag" type="bool" />
-          <field name="ZoneStatusMask" type="IasaceZoneStatus" />
+          <field name="ZoneStatusMask" type="IasZoneStatus" />
         </fields>
       </command>
     </commands>
@@ -160,7 +133,7 @@
       <command id="02" name="GetZoneInformationResponse" required="true" >
         <fields>
           <field name="ZoneID" type="uint8" />
-          <field name="ZoneType" type="IasaceZoneType" />
+          <field name="ZoneType" type="IasZoneType" />
           <field name="IEEEAddress" type="EUI64" />
           <field name="ZoneLabel" type="string" />
         </fields>
@@ -168,7 +141,7 @@
       <command id="03" name="ZoneStatusChanged" required="true" >
         <fields>
           <field name="ZoneID" type="uint8" />
-          <field name="ZoneStatus" type="IasaceZoneStatus" />
+          <field name="ZoneStatus" type="IasZoneStatus" />
           <field name="AudibleNotification" type="IasaceAudibleNotification" />
           <field name="ZoneLabel" type="string" />
         </fields>
@@ -211,7 +184,7 @@
       <command id="08" name="GetZoneStatusResponse" required="true" >
         <fields>
           <field name="ZoneStatusComplete" type="bool" />
-          <field name="ZoneStatusRecord" type="IasaceZoneStatusRecord" />
+          <field name="ZoneStatusRecord" type="IasaceZoneStatusRecord" array="true" />
         </fields>
       </command>
     </commands>
