@@ -47,6 +47,8 @@
       <element name="Thu" type="bool" mask="10" shiftRight="4" />
       <element name="Fri" type="bool" mask="20" shiftRight="5" />
       <element name="Sat" type="bool" mask="40" shiftRight="6" />
+      <!-- Bit 7: reserved for SetWeekdaySchedule; Enable for GetWeekdayScheduleResponse.  -->
+      <element name="Enable" type="bool" mask="80" shiftRight="7" />
     </bitmap>
   </type:type>
 
@@ -63,6 +65,16 @@
       <type:enumeration name="GeneralFailure" value="01"/>
       <type:enumeration name="MemoryFull" value="02"/>
       <type:enumeration name="DuplicateCode" value="03"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="DrlkOperEventSource" name="DrlkOperationEventSource" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:enumeration name="Keypad" value="00"/>
+      <type:enumeration name="RF" value="01"/>
+      <type:enumeration name="Manual" value="02"/>
+      <type:enumeration name="RFID" value="03"/>
+      <type:enumeration name="Indeterminate" value="FF"/>
     </restriction>
   </type:type>
 
@@ -482,8 +494,14 @@
         <fields>
           <field name="LogEntryID" type="uint16" />
           <field name="Timestamp" type="uint32" />
-          <field name="EventType" type="enum8" />
-          <field name="SourceOperationEvent" type="uint8" />
+          <field name="EventType" type="enum8" >
+            <restriction>
+              <type:enumeration name="Operation" value="00"/>
+              <type:enumeration name="Programming" value="01"/>
+              <type:enumeration name="Alarm" value="02"/>
+            </restriction>
+          </field>
+          <field name="SourceOperationEvent" type="DrlkOperEventSource" />
           <field name="EventIDOrAlarmCode" type="uint8" />
           <field name="UserID" type="uint16" />
           <field name="PIN" type="octstr" />
@@ -532,33 +550,33 @@
         <fields>
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
-          <field name="Status" type="uint8" />
-          <field name="DaysMask" type="DrlkDaysMask" />
+          <field name="Status" type="zclStatus" />
+          <field name="DaysMask" type="DrlkDaysMask" presentIf="Status = 0" />
           <!--
             ZCL7 specifies constraint that StartHour <= EndHour;
             and if they are equal, then StartMinute < EndMinute.
             Result: StartHour/Minute strictly less than EndHour/Minute.
             The restrictions below don't quite accomplish that.
           -->
-          <field name="StartHour" type="uint8" >
+          <field name="StartHour" type="uint8" presentIf="Status = 0" >
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="23" />
             </restriction>
           </field>
-          <field name="StartMinute" type="uint8" >
+          <field name="StartMinute" type="uint8" presentIf="Status = 0" >
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
             </restriction>
           </field>
-          <field name="EndHour" type="uint8" >
+          <field name="EndHour" type="uint8" presentIf="Status = 0" >
             <restriction>
               <type:minInclusiveRef ref="StartHour" />
               <type:maxInclusive value="23" />
             </restriction>
           </field>
-          <field name="EndMinute" type="uint8" >
+          <field name="EndMinute" type="uint8" presentIf="Status = 0" >
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
@@ -580,9 +598,9 @@
         <fields>
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
-          <field name="Status" type="uint8" />
-          <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" >
+          <field name="Status" type="zclStatus" />
+          <field name="LocalStartTime" type="uint32" presentIf="Status = 0" />
+          <field name="LocalEndTime" type="uint32" presentIf="Status = 0" >
             <restriction>
               <type:minExclusiveRef ref="LocalStartTime" />
             </restriction>
@@ -602,14 +620,14 @@
       <command id="12" name="GetHolidayScheduleResponse">
         <fields>
           <field name="HolidayScheduleID" type="uint8" />
-          <field name="Status" type="uint8" />
-          <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" >
+          <field name="Status" type="zclStatus" />
+          <field name="LocalStartTime" type="uint32" presentIf="Status = 0" />
+          <field name="LocalEndTime" type="uint32" presentIf="Status = 0"  >
             <restriction>
               <type:minExclusiveRef ref="LocalStartTime" />
             </restriction>
           </field>
-          <field name="OperatingModeDuringHoliday" type="DrlkOperMode" />
+          <field name="OperatingModeDuringHoliday" type="DrlkOperMode" presentIf="Status = 0" />
         </fields>
       </command>
       <command id="13" name="ClearHolidayScheduleResponse" >
@@ -653,15 +671,7 @@
       </command>
       <command id="20" name="OperatingEventNotification" >
         <fields>
-          <field name="OperationEventSource" type="uint8" >
-            <restriction>
-              <type:enumeration name="Keypad" value="00"/>
-              <type:enumeration name="RF" value="01"/>
-              <type:enumeration name="Manual" value="02"/>
-              <type:enumeration name="RFID" value="03"/>
-              <type:enumeration name="Indeterminate" value="FF"/>
-            </restriction>
-          </field>
+          <field name="OperationEventSource" type="DrlkOperEventSource" />
           <field name="OperationEventCode" type="uint8" >
             <restriction>
               <type:enumeration name="UnknownOrMS" value="00"/>
