@@ -205,25 +205,65 @@ Inside a command definition, a series of fields followed by tag definitions is p
 
 Each field is defined with the following attributes in XML
 
-| Attribute       | Required | Description                                                    |
-|-----------------|----------|----------------------------------------------------------------|
-| name            | true     | The name of the command, as per the Naming section above       | 
-| type            | true     | The short name of the field type                               |
-| array           | false    | If the field is an array. Defaults to false                    |
-| arrayLengthSize | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. |
-| presentIf       | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
+| Attribute        | Required | Description                                                    |
+|------------------|----------|----------------------------------------------------------------|
+| name             | true     | The name of the command, as per the Naming section above       | 
+| type             | true     | The short name of the field type                               |
+| array            | false    | If the field is an array. Defaults to false                    |
+| arrayLengthSize  | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. |
+| arrayLengthField | false    | When the number of elements in an array field is specified by another field which does not immediately proceed an array field, that field may be referenced using this attribute. | 
+| presentIf        | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
 | requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
 
+Arrays
+======
+Conversion of an array in a command field is done using the following process.
+
+1. Identify the type of each element in the array. It may be necessary to create
+   a type which contains other types using the sequence restriction.
+2. Identify how the number of elements in the array is determined. This could be
+   through a count field that immediately proceeds the elements, a count field 
+   that exists elsewhere in the command, or implicitly (i.e., the rest of the 
+   frame is consumed by array elements)
+3. If the array elements are immediately proceeded by a count field (which is 
+   not a component of a bitmap), then the array should be defined by an entry 
+   for the elements with array="true". If the size counter was not 8 bits, then 
+   the arrayLengthSize should also be set to the number of octets. For example, 
+   an array of 8 bit unsigned integers with a 16-bit length would be defined as 
+   follows:
+```xml
+<field name="MyArray" type="uint8" array="true" arrayLengthSize="2" />
+```
+4. If the field that specifies the number of elements in the array is elsewhere
+   in the command, it must be specified properly as a numeric type and then
+   referenced by the array field in the XML. The element may be part of a bitmap
+   or a separate field.
+```xml
+<field name="MyBitmap" type="map8">
+  <bitmap>
+    <element name="TransitionCount" type="uint8" mask="0f" />
+    ...
+  </bitmap>
+</field>
+<field name="Transitions" type="TransitionType" array="true" arrayLengthField="MyBitmap.NumberOfTransitions" />
+```
+5. If there is no field that specifies the number of entries, then this means 
+   that they must consume the rest of the message. This is indicated by setting 
+   the arrayLengthSize to 0.
+```xml
+<field name="MyArray" type="uint8" array="true" arrayLengthSize="0" />
+```
+   
 Expressions
 ===========
 Logical expressions in the XML SHALL be expressed using the operators specified in [XPath 1.0](https://www.w3.org/TR/1999/REC-xpath-19991116/#section-Expressions). Specifically, section 3. This provides the operators or, and, =, !=, <=, <, >=, >. References to other fields in a command are done through name. Sub-elements in a bitmap may also be referenced using dot notation (ie, field.bitmapItem). 
 
 In addition, the following functions are available for expressions
 
-| Function      | Description                                                                                |
-| implements(X) | Returns true when a specific implementation implements the attribute or command named by X |
+| Function      | Description                                                                                                           |
+| implements(X) | Returns true when a specific implementation implements the attribute or command named by X. Uses the name, not the id |
 
 Fields in a Command
 -------------------
