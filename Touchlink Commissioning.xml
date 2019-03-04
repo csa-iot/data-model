@@ -1,12 +1,233 @@
 ﻿<?xml version="1.0"?>
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+<zcl:cluster
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="1000" revision="0" name="Touchlink Commissioning">
+  id="1000" revision="2" name="Touchlink Commissioning">
   <classification hierarchy="base" role="utility" picsCode="TL" />
   <server>
-    <attributes />
+    <commands>
+      <command id="00" name="ScanRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="ZigbeeInformation" type="map8">
+            <bitmap>
+              <element name="LogicalType" type="uint8" mask="03" />
+              <element name="RxOnWhenIdle" type="bool" mask="04" shiftRight="02" />
+            </bitmap>
+          </field>
+          <field name="TouchlinkInformation" type="map8">
+            <bitmap>
+              <element name="FactoryNew" type="bool" mask="01" />
+              <element name="AddressAssignment" type="bool" mask="02" shiftRight="01" />
+              <element name="LinkInitiator" type="bool" mask="10" shiftRight="04" />
+              <element name="Undefined" type="bool" mask="20" shiftRight="05" />
+              <element name="ProfileInterop" type="bool" mask="80" shiftRight="07" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="02" name="DeviceInformationRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="StartIndex" type="uint8" />
+        </fields>
+      </command>
+      <command id="06" name="IdentifyRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="IdentifyDuration" type="uint16" />
+        </fields>
+      </command>
+      <command id="07" name="ResetToactoryNewRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+        </fields>
+      </command>
+      <command id="10" name="NetworkStartRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="ExtendedPANIdentifier" type="EUI64" />
+          <field name="KeyIndex" type="uint8" />
+          <field name="EncryptedNetworkKey" type="key128" />
+          <field name="LogicalChannel" type="uint8" />
+          <field name="PANIdentifier" type="uint16" />
+          <field name="NetworkAddress" type="uint16" />
+          <field name="GroupIdentifiersBegin" type="uint16" />
+          <field name="GroupIdentifiersEnd" type="uint16" />
+          <field name="FreeNetworkAddressRangeBegin" type="uint16" />
+          <field name="FreeNetworkAddressRangeEnd" type="uint16" />
+          <field name="FreeGroupIdentifierRangeBegin" type="uint16" />
+          <field name="FreeGroupIdentifierRangeEnd" type="uint16" />
+          <field name="InitiatorIEEEAddress" type="EUI64" />
+          <field name="InitiatorNetworkAddress" type="uint16" />
+        </fields>
+      </command>
+      <command id="12" name="NetworkJoinRouterRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="ExtendedPANIdentifier" type="EUI64" />
+          <field name="KeyIndex" type="uint8" />
+          <field name="EncryptedNetworkKey" type="key128" />
+          <field name="LogicalChannel" type="uint8" />
+          <field name="PANIdentifier" type="uint16" />
+          <field name="NetworkAddress" type="uint16" />
+          <field name="GroupIdentifiersBegin" type="uint16" />
+          <field name="GroupIdentifiersEnd" type="uint16" />
+          <field name="FreeNetworkAddressRangeBegin" type="uint16" />
+          <field name="FreeNetworkAddressRangeEnd" type="uint16" />
+          <field name="FreeGroupIdentifierRangeBegin" type="uint16" />
+          <field name="FreeGroupIdentifierRangeEnd" type="uint16" />
+        </fields>
+      </command>
+      <command id="14" name="NetworkJoinEndDeviceRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="ExtendedPANIdentifier" type="EUI64" />
+          <field name="KeyIndex" type="uint8" />
+          <field name="EncryptedNetworkKey" type="key128" />
+          <field name="LogicalChannel" type="uint8" />
+          <field name="PANIdentifier" type="uint16" />
+          <field name="NetworkAddress" type="uint16" />
+          <field name="GroupIdentifiersBegin" type="uint16" />
+          <field name="GroupIdentifiersEnd" type="uint16" />
+          <field name="FreeNetworkAddressRangeBegin" type="uint16" />
+          <field name="FreeNetworkAddressRangeEnd" type="uint16" />
+          <field name="FreeGroupIdentifierRangeBegin" type="uint16" />
+          <field name="FreeGroupIdentifierRangeEnd" type="uint16" />
+        </fields>
+      </command>
+      <command id="16" name="NetworkUpdateRequest" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="ExtendedPANIdentifier" type="EUI64" />
+          <field name="NetworkUpdateIdentifier" type="uint8" />
+          <field name="LogicalChannel" type="uint8" />
+          <field name="PANIdentifier" type="uint16" />
+          <field name="NetworkAddress" type="uint16" />
+        </fields>
+      </command>
+      <command id="41" name="GetGroupIdentifiersRequest">
+        <fields>
+          <field name="StartIndex" type="uint8" />
+        </fields>
+      </command>
+      <command id="42" name="GetEndpointListRequest">
+        <fields>
+          <field name="StartIndex" type="uint8" />
+        </fields>
+      </command>
+    </commands>
   </server>
+  <client>
+    <commands>
+      <command id="01" name="ScanResponse" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="RSSICorrection" type="uint8" />
+          <field name="ZigbeeInformation" type="map8">
+            <bitmap>
+              <element name="LogicalType" type="uint8" mask="03" />
+              <element name="RxOnWhenIdle" type="bool" mask="04" shiftRight="02" />
+            </bitmap>
+          </field>
+          <field name="TouchlinkInformation" type="map8">
+            <bitmap>
+              <element name="FactoryNew" type="bool" mask="01" />
+              <element name="AddressAssignment" type="bool" mask="02" shiftRight="01" />
+              <element name="TouchlinkInitiator" type="bool" mask="10" shiftRight="04" />
+              <element name="TouchlinkPriorityRequest" type="bool" mask="20" shiftRight="05" />
+              <element name="ProfileInterop" type="bool" mask="80" shiftRight="07" />
+            </bitmap>
+          </field>
+          <field name="KeyBitmask" type="map8">
+          </field>
+          <field name="ResponseIdentifier" type="uint32" />
+          <field name="ExtendedPANIdentifier" type="EUI64" />
+          <field name="NetworkUpdateIdentifier" type="uint8" />
+          <field name="LogicalChannel" type="uint8" />
+          <field name="PANIdentifier" type="uint16" />
+          <field name="NetworkAddress" type="uint16" />
+          <field name="NumberOfSubDevices" type="uint8" />
+          <field name="TotalGroupIdentifiers" type="uint8" />
+          <field name="EndpointIdentifier" type="uint8" />
+          <field name="ProfileIdentifier" type="uint16" />
+          <field name="DeviceIdentifier" type="uint16" />
+          <field name="Version" type="uint8" />
+          <field name="GroupIdentifierCount" type="uint8" />
+        </fields>
+      </command>
+      <command id="03" name="DeviceInformationResponse" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="NumberOfSubDevices" type="uint8" />
+          <field name="StartIndex" type="uint8" />
+          <field name="DeviceinformationRecord" type="DeviceInformationRecord" array="true" />
+        </fields>
+      </command>
+      <command id="11" name="NetworkStartResponse" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="Status" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Success" />
+              <type:enumeration value="01" name="Failure" />
+            </restriction>
+          </field>
+          <field name="ExtendedPANIdentifier" type="EUI64" />
+          <field name="NetworkUpdateIdentifier" type="uint8" />
+          <field name="LogicalChannel" type="uint8" />
+          <field name="PANIdentifier" type="uint16" />
+        </fields>
+      </command>
+      <command id="13" name="NetworkJoinRouterResponse" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="Status" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Success" />
+              <type:enumeration value="01" name="Failure" />
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="15" name="NetworkJoinEndDeviceResponse" required="true">
+        <fields>
+          <field name="InterPANTransactionIdentifier" type="uint32" />
+          <field name="Status" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Success" />
+              <type:enumeration value="01" name="Failure" />
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="40" name="EndpointInformation">
+        <fields>
+          <field name="IEEEAddress" type="EUI64" />
+          <field name="NetworkAddress" type="uint16" />
+          <field name="EndpointIdentifier" type="uint8" />
+          <field name="ProfileIdentifier" type="uint16" />
+          <field name="DeviceIdentifier" type="uint16" />
+          <field name="Version" type="uint8" />
+        </fields>
+      </command>
+      <command id="41" name="GetGroupIdentifiersResponse">
+        <fields>
+          <field name="Total" type="uint8" />
+          <field name="StartIndex" type="uint8" />
+          <field name="GroupInformationRecordList" type="GroupInformationRecord" array="true" />
+        </fields>
+      </command>
+      <command id="42" name="GetEndpointListResponse">
+        <fields>
+          <field name="Total" type="uint8" />
+          <field name="StartIndex" type="uint8" />
+          <field name="EndpointInformationRecordList" type="EndpointInformationRecord" array="true" />
+        </fields>
+      </command>
+    </commands>
+  </client>
 </zcl:cluster>
