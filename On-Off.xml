@@ -28,7 +28,7 @@
       <command id="02" name="Toggle" required="true" />
       <command id="40" name="OffWithEffect">
         <fields>
-          <field name="EffectIdentifier" type="enum8">
+          <field name="EffectIdentifier" type="uint8">
             <restriction>
               <type:enumeration value="00" name="DelayedAllOff" />
               <type:enumeration value="01" name="DyingLight" />
@@ -40,7 +40,7 @@
       <command id="41" name="OnWithRecallGlobalScene" />
       <command id="42" name="OnWithTimedOff">
         <fields>
-          <field name="OnOffControl" type="map8">
+          <field name="OnOffControl" type="uint8">
             <bitmap>
               <element name="AcceptOnlyWhenOn" type="bool" mask="01" />
             </bitmap>
