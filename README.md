@@ -233,9 +233,9 @@ Conversion of an array in a command field is done using the following process.
    the arrayLengthSize should also be set to the number of octets. For example, 
    an array of 8 bit unsigned integers with a 16-bit length would be defined as 
    follows:
-```xml
-<field name="MyArray" type="uint8" array="true" arrayLengthSize="2" />
-```
+   ```xml
+   <field name="MyArray" type="uint8" array="true" arrayLengthSize="2" />
+   ```
 4. If the field that specifies the number of elements in the array is elsewhere
    in the command, it must be specified properly as a numeric type and then
    referenced by the array field in the XML. The element may be part of a bitmap
