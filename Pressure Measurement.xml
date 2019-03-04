@@ -25,29 +25,28 @@
         </restriction>
       </attribute>
       <attribute id="0003" name="Tolerance" type="uint16" max="2048" />
-      <attribute id="0010" name="ScaledValue" type="int16" default="0" >
+      <attribute id="0010" name="ScaledValue" type="int16" default="0"
+                 requiredIf="implements(MinScaledValue) or implements(MaxScaledValue) or implements(Scale) or implements(ScaledTolerance)" >
         <restriction>
           <type:minInclusiveRef ref="MinScaledValue" />
           <type:maxInclusiveRef ref="MaxScaledValue" />
         </restriction>
       </attribute>
-      <attribute id="0011" name="MinScaledValue" type="int16" min="-32767" max="32766" default="-32768" >
+      <attribute id="0011" name="MinScaledValue" type="int16" min="-32767" max="32766" default="-32768"
+                 requiredIf="implements(ScaledValue) or implements(MaxScaledValue) or implements(Scale) or implements(ScaledTolerance)" >
        <restriction>
           <type:maxExclusiveRef ref="MaxScaledValue" />
         </restriction>
       </attribute>
-      <attribute id="0012" name="MaxScaledValue" type="int16" min="-32766" max="32767" default="-32768" >
+      <attribute id="0012" name="MaxScaledValue" type="int16" min="-32766" max="32767" default="-32768"
+                 requiredIf="implements(ScaledValue) or implements(MinScaledValue) or implements(Scale) or implements(ScaledTolerance)" >
        <restriction>
           <type:minExclusiveRef ref="MinScaledValue" />
         </restriction>
       </attribute>
       <attribute id="0013" name="ScaledTolerance" type="uint16" max="2048" />
-      <attribute id="0014" name="Scale" type="int8" min="-127" max="127" />
-      <!--
-            Implementation interdependencies for optional attributes 0010-0014:
-            1. If any one of 0010, 0011, 0012, 0014 are implemented, all four of those must be implemented.
-            2. If 0013 is implemented, the other four must also be implemented.
-      -->
+      <attribute id="0014" name="Scale" type="int8" min="-127" max="127"
+                 requiredIf="implements(ScaledValue) or implements(MinScaledValue) or implements(MaxScaledValue) or implements(ScaledTolerance)" />
     </attributes>
   </server>
 </zcl:cluster>
