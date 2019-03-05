@@ -267,11 +267,11 @@ Conversion of an array in a command field is done using the following process.
          </command>
 
 2. Identify how the number of elements in the array is determined. This could 
-   be through a count field that immediately proceeds the elements, a count 
+   be through a count field that immediately precedes the elements, a count 
    field that exists elsewhere in the command, or implicitly 
    (i.e., the rest of the frame is consumed by array elements)
 
-3. If the array elements are immediately proceeded by a count field (which is 
+3. If the array elements are immediately preceded by a count field (which is 
    not a component of a bitmap), then the array should be defined by an entry 
    for the elements with array="true". If the size counter was not 8 bits, then 
    the arrayLengthSize should also be set to the number of octets. For example, 
