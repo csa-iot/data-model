@@ -158,7 +158,7 @@ any hierarchy information.
 | base               | false    | The base cluster id for the cluster from which this is defined.       |
 | role               | true     | The role that the cluster takes (application or utility).             |
 | picsCode           | true     | The code which is used for PICS items relating to this cluster        |
-| primaryTransaction | false    | For applicaiton clusters, the primary transaction type. Defaults to 1 |
+| primaryTransaction | false    | For application clusters, the primary transaction type. Defaults to 1 |
 
 Attributes
 ----------
@@ -235,7 +235,7 @@ Each field is defined with the following attributes in XML
 | type             | true     | The short name of the field type                               |
 | array            | false    | If the field is an array. Defaults to false                    |
 | arrayLengthSize  | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. |
-| arrayLengthField | false    | When the number of elements in an array field is specified by another field which does not immediately proceed an array field, that field may be referenced using this attribute. | 
+| arrayLengthField | false    | When the number of elements in an array field is specified by another field which does not immediately precede an array field, that field may be referenced using this attribute. | 
 | presentIf        | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
 | requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
 | deprecated     | false    | Indicates that a command field has been deprecated               |
@@ -247,7 +247,18 @@ Arrays
 Conversion of an array in a command field is done using the following process.
 
 1. Identify the type of each element in the array. It may be necessary to create
-   a type which contains other types using the sequence restriction.
+   a record-like type which contains other types using the sequence restriction.
+   An example of this can be seen in:
+   
+   	    <type:type id="ff" short="readAttributeResponseRecord" name="Read Attributes Status Record">
+		    <restriction>
+			    <type:sequence>
+				    <field name="AttributeIdentifier" type="attribId" />
+				    <field name="Status" type="zclStatus" />
+				    <field name="Atttribute" type="anyType" presentIf="Status=0" />
+			    </type:sequence>
+		    </restriction>
+	    </type:type>
 
 2. Identify how the number of elements in the array is determined. This could 
    be through a count field that immediately proceeds the elements, a count 
