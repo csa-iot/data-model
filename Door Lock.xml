@@ -139,9 +139,8 @@
       <attribute id="0020" name="EnableLogging" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0021" name="Language" type="string" writable="true" writeOptional="true" reportRequired="true" default="" >
         <restriction>
-          <type:minLength value="2" />
-          <type:maxLength value="2" />
-        </restriction>
+          <type:length value="2" />
+         </restriction>
       </attribute>
       <attribute id="0022" name="LEDSettings" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" >
         <restriction>
