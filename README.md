@@ -259,6 +259,12 @@ Conversion of an array in a command field is done using the following process.
 			    </type:sequence>
 		    </restriction>
 	    </type:type>
+	    
+         <command id="01" name="ReadAttributesResponse" required="true">
+	         <fields>
+                 <field name="ReadAttributeRecord" type="readAttributeResponseRecord" array="true" arrayLengthSize="0" />
+             </fields>
+         </command>
 
 2. Identify how the number of elements in the array is determined. This could 
    be through a count field that immediately proceeds the elements, a count 
