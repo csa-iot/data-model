@@ -20,8 +20,7 @@
       </attribute>
       <attribute id="0002" name="MaxMeasuredValue" type="uint16" required="true" default="65535">
         <restriction>
-          <!-- MinMeasuredValue+1 ?? how to do this -->
-          <type:minInclusiveRef ref="MinMeasuredValue" />
+          <type:minExclusiveRef ref="MinMeasuredValue" />
           <type:maxInclusiveRef ref="65534" />
         </restriction>
       </attribute>
