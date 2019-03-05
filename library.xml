@@ -269,7 +269,7 @@
 		</restriction>
 	</type:type>
   
-    <type:type id="30" short="profileIntervalPeriod" name="Profile Interval Period" discrete="true" inheritsFrom="enum8">
+    <type:type id="30" short="ProfileIntervalPeriod" name="Profile Interval Period" discrete="true" inheritsFrom="enum8">
       <restriction>
         <type:enumeration value="00" name="Daily" />
         <type:enumeration value="01" name="60Minutes" />

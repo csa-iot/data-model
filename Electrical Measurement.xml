@@ -78,12 +78,12 @@
       </attribute>
       <!-- DC Formatting (02xx) -->
       <!-- If a multiplier or divisor attribute is present, its corresponding divisor or multiplier attribute shall be implemented as well. -->
-      <attribute id="0200" name="DCVoltageMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(DCVoltageDivisor)" />
-      <attribute id="0201" name="DCVoltageDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(DCVoltageMultiplier)" />
-      <attribute id="0202" name="DCCurrentMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(DCCurrentDivisor)" />
-      <attribute id="0203" name="DCCurrentDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(DCCurrentMultiplier)" />
-      <attribute id="0204" name="DCPowerMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(DCPowerDivisor)" />
-      <attribute id="0205" name="DCPowerDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(DCPowerMultiplier)" />
+      <attribute id="0200" name="DCVoltageMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCVoltageDivisor)" />
+      <attribute id="0201" name="DCVoltageDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCVoltageMultiplier)" />
+      <attribute id="0202" name="DCCurrentMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCCurrentDivisor)" />
+      <attribute id="0203" name="DCCurrentDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCCurrentMultiplier)" />
+      <attribute id="0204" name="DCPowerMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCPowerDivisor)" />
+      <attribute id="0205" name="DCPowerDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCPowerMultiplier)" />
       <!-- AC (Non-phase Specific) Measurements (03xx) -->
       <attribute id="0300" name="ACFrequency" type="uint16" max="65535" default="65535" reportRequired="true" >
         <restriction>
@@ -118,10 +118,10 @@
       <attribute id="0311" name="MeasuredPhase9thHarmonicCurrent" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="0312" name="MeasuredPhase11thHarmonicCurrent" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <!-- AC (Non-phase Specific) Formatting (04xx) -->
-      <attribute id="0400" name="ACFrequencyMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACFrequencyDivisor)" />
-      <attribute id="0401" name="ACFrequencyDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACFrequencyMultiplier)" />
-      <attribute id="0402" name="PowerMultiplier" type="uint32" max="16777215" default="1" reportRequired="true" requiredIf="implemented(PowerDivisor)" />
-      <attribute id="0403" name="PowerDivisor" type="uint32" max="16777215" default="1" reportRequired="true" requiredIf="implemented(PowerMultiplier)" />
+      <attribute id="0400" name="ACFrequencyMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACFrequencyDivisor)" />
+      <attribute id="0401" name="ACFrequencyDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACFrequencyMultiplier)" />
+      <attribute id="0402" name="PowerMultiplier" type="uint32" max="16777215" default="1" reportRequired="true" requiredIf="implements(PowerDivisor)" />
+      <attribute id="0403" name="PowerDivisor" type="uint32" max="16777215" default="1" reportRequired="true" requiredIf="implements(PowerMultiplier)" />
       <attribute id="0404" name="HarmonicCurrentMultiplier" type="int8" min="-127" max="127" default="0" reportRequired="true" />
       <attribute id="0405" name="PhaseHarmonicCurrentMultiplier" type="int8" min="-127" max="127" default="0" reportRequired="true" />
       <!-- AC (Single Phase or Phase A) Measurements (05xx) -->
@@ -187,12 +187,12 @@
       <attribute id="0516" name="RMSVoltageSagPeriod" type="uint16" max="65535" default="0" writable="true" reportRequired="true" />
       <attribute id="0517" name="RMSVoltageSwellPeriod" type="uint16" max="65535" default="0" writable="true" reportRequired="true" />
       <!-- AC Formatting (06xx) -->
-      <attribute id="0600" name="ACVoltageMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACVoltageDivisor)" />
-      <attribute id="0601" name="ACVoltageDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACVoltageMultiplier)" />
-      <attribute id="0602" name="ACCurrentMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACCurrentDivisor)" />
-      <attribute id="0603" name="ACCurrentDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACCurrentMultiplier)" />
-      <attribute id="0604" name="ACPowerMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACPowerDivisor)" />
-      <attribute id="0605" name="ACPowerDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implemented(ACPowerMultiplier)" />
+      <attribute id="0600" name="ACVoltageMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACVoltageDivisor)" />
+      <attribute id="0601" name="ACVoltageDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACVoltageMultiplier)" />
+      <attribute id="0602" name="ACCurrentMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACCurrentDivisor)" />
+      <attribute id="0603" name="ACCurrentDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACCurrentMultiplier)" />
+      <attribute id="0604" name="ACPowerMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACPowerDivisor)" />
+      <attribute id="0605" name="ACPowerDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(ACPowerMultiplier)" />
       <!-- DC Manufacturer Threshold Alarms (07xx) -->
       <attribute id="0700" name="DCOverloadAlarmsMask" type="map8" default="0" writable="true" reportRequired="true" >
         <bitmap>
@@ -356,7 +356,7 @@
       <command id="00" name="GetProfileInfoResponse">
         <fields>
           <field name="ProfileCount" type="uint8" />
-          <field name="ProfileIntervalPeriod" type="profileIntervalPeriod" />
+          <field name="ProfileIntervalPeriod" type="ProfileIntervalPeriod" />
           <field name="MaxNumberOfIntervals" type="uint8" />
           <field name="ListOfAttributes" type="attribId" array="true" arrayLengthSize="0" />
         </fields>
@@ -373,7 +373,7 @@
               <type:enumeration value="04" name="NoIntervalsAvailableForTheRequestedTime" />
             </restriction>
           </field>
-          <field name="ProfileIntervalPeriod" type="profileIntervalPeriod" />
+          <field name="ProfileIntervalPeriod" type="ProfileIntervalPeriod" />
           <field name="NumberOfIntervalsDelivered" type="uint8" />
           <field name="AttributeId" type="attribId" /> 
           <field name="Intervals" type="unk" array="true" arrayLengthSize="0" />
