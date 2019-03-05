@@ -19,7 +19,7 @@
           <type:maxExclusiveRef ref="MaxMeasuredValue" />
         </restriction>
        </attribute>
-      <attribute id="0002" name="MaxMeasuredValue" type="uint16" required="true" default="65535" >
+      <attribute id="0002" name="MaxMeasuredValue" type="uint16" required="true" max="65534" default="65535" >
        <restriction>
           <type:minExclusiveRef ref="MinMeasuredValue" />
         </restriction>
