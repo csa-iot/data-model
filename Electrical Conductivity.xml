@@ -24,7 +24,7 @@
           <type:minExclusiveRef ref="MinMeasuredValue" />
         </restriction>
        </attribute>
-      <attribute id="0003" name="Tolerance" type="uint16" max="100" default="" />
+      <attribute id="0003" name="Tolerance" type="uint16" max="100" />
     </attributes>
   </server>
 </zcl:cluster>
