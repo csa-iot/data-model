@@ -28,54 +28,15 @@
         </bitmap>
       </attribute>
       <!-- DC Measurement (01xx) -->
-      <attribute id="0100" name="DCVoltage" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="DCVoltageMax" />
-          <type:minInclusiveRef ref="DCVoltageMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0101" name="DCVoltageMin" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="DCVoltageMax" />
-        </restriction>
-      </attribute>
-      <attribute id="0102" name="DCVoltageMax" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true">
-        <restriction>
-          <type:minInclusiveRef ref="DCVoltageMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0103" name="DCCurrent" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="DCCurrentMax" />
-          <type:minInclusiveRef ref="DCCurrentMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0104" name="DCCurrentMin" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="DCCurrentMax" />
-        </restriction>
-      </attribute>
-      <attribute id="0105" name="DCCurrentMax" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="DCCurrentMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0106" name="DCPower" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="DCPowerMax" />
-          <type:minInclusiveRef ref="DCPowerMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0107" name="DCPowerMin" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="DCPowerMax" />
-        </restriction>
-      </attribute>
-      <attribute id="0108" name="DCPowerMax" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="DCPowerMin" />
-        </restriction>
-      </attribute>
+      <attribute id="0100" name="DCVoltage" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0101" name="DCVoltageMin" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0102" name="DCVoltageMax" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0103" name="DCCurrent" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0104" name="DCCurrentMin" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0105" name="DCCurrentMax" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0106" name="DCPower" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0107" name="DCPowerMin" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0108" name="DCPowerMax" type="int16" min="-32767" max="32767" default="-32768" reportRequired="true" />
       <!-- DC Formatting (02xx) -->
       <!-- If a multiplier or divisor attribute is present, its corresponding divisor or multiplier attribute shall be implemented as well. -->
       <attribute id="0200" name="DCVoltageMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCVoltageDivisor)" />
@@ -85,22 +46,9 @@
       <attribute id="0204" name="DCPowerMultiplier" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCPowerDivisor)" />
       <attribute id="0205" name="DCPowerDivisor" type="uint16" min="1" max="65535" default="1" reportRequired="true" requiredIf="implements(DCPowerMultiplier)" />
       <!-- AC (Non-phase Specific) Measurements (03xx) -->
-      <attribute id="0300" name="ACFrequency" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ACFrequencyMax" />
-          <type:minInclusiveRef ref="ACFrequencyMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0301" name="ACFrequencyMin" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ACFrequencyMax" />
-        </restriction>
-      </attribute>
-      <attribute id="0302" name="ACFrequencyMax" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="ACFrequencyMin" />
-        </restriction>
-      </attribute>
+      <attribute id="0300" name="ACFrequency" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0301" name="ACFrequencyMin" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0302" name="ACFrequencyMax" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0303" name="NeutralCurrent" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0304" name="TotalActivePower" type="int32" min="-8388607" max="8388607" reportRequired="true" />
       <attribute id="0305" name="TotalReactivePower" type="int32" min="-8388607" max="8388607" reportRequired="true" />
@@ -128,54 +76,15 @@
       <attribute id="0501" name="LineCurrent" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0502" name="ActiveCurrent" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="0503" name="ReactiveCurrent" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
-      <attribute id="0505" name="RMSVoltage" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSVoltageMax" />
-          <type:minInclusiveRef ref="RMSVoltageMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0506" name="RMSVoltageMin" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSVoltageMax" />
-        </restriction>
-      </attribute>
-      <attribute id="0507" name="RMSVoltageMax" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="RMSVoltageMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0508" name="RMSCurrent" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSCurrentMax" />
-          <type:minInclusiveRef ref="RMSCurrentMin" />
-        </restriction>
-      </attribute>
-      <attribute id="0509" name="RMSCurrentMin" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSCurrentMax" />
-        </restriction>
-      </attribute>
-      <attribute id="050a" name="RMSCurrentMax" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="RMSCurrentMin" />
-        </restriction>
-      </attribute>
-      <attribute id="050b" name="ActivePower" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ActivePowerMax" />
-          <type:minInclusiveRef ref="ActivePowerMin" />
-        </restriction>
-      </attribute>
-      <attribute id="050c" name="ActivePowerMin" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ActivePowerMax" />
-        </restriction>
-      </attribute>
-      <attribute id="050d" name="ActivePowerMax" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="ActivePowerMin" />
-        </restriction>
-      </attribute>
+      <attribute id="0505" name="RMSVoltage" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0506" name="RMSVoltageMin" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0507" name="RMSVoltageMax" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0508" name="RMSCurrent" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0509" name="RMSCurrentMin" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="050a" name="RMSCurrentMax" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="050b" name="ActivePower" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="050c" name="ActivePowerMin" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="050d" name="ActivePowerMax" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="050e" name="ReactivePower" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="050f" name="ApparentPower" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0510" name="PowerFactor" type="int8" min="-100" max="100" default="0" reportRequired="true" />
@@ -231,54 +140,15 @@
       <attribute id="0901" name="LineCurrentPhB" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0902" name="ActiveCurrentPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="0903" name="ReactiveCurrentPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
-      <attribute id="0905" name="RMSVoltagePhB" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSVoltageMaxPhB" />
-          <type:minInclusiveRef ref="RMSVoltageMinPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="0906" name="RMSVoltageMinPhB" type="uint16" max="65535" default="32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSVoltageMaxPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="0907" name="RMSVoltageMaxPhB" type="uint16" max="65535" default="32768" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="RMSVoltageMinPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="0908" name="RMSCurrentPhB" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSCurrentMaxPhB" />
-          <type:minInclusiveRef ref="RMSCurrentMinPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="0909" name="RMSCurrentMinPhB" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSCurrentMaxPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="090a" name="RMSCurrentMaxPhB" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="RMSCurrentMinPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="090b" name="ActivePowerPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ActivePowerMaxPhB" />
-          <type:minInclusiveRef ref="ActivePowerMinPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="090c" name="ActivePowerMinPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ActivePowerMaxPhB" />
-        </restriction>
-      </attribute>
-      <attribute id="090d" name="ActivePowerMaxPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="ActivePowerMinPhB" />
-        </restriction>
-      </attribute>
+      <attribute id="0905" name="RMSVoltagePhB" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0906" name="RMSVoltageMinPhB" type="uint16" max="65535" default="32768" reportRequired="true" />
+      <attribute id="0907" name="RMSVoltageMaxPhB" type="uint16" max="65535" default="32768" reportRequired="true" />
+      <attribute id="0908" name="RMSCurrentPhB" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0909" name="RMSCurrentMinPhB" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="090a" name="RMSCurrentMaxPhB" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="090b" name="ActivePowerPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="090c" name="ActivePowerMinPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="090d" name="ActivePowerMaxPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="090e" name="ReactivePowerPhB" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="090f" name="ApparentPowerPhB" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0910" name="PowerFactorPhB" type="int8" min="-100" max="100" default="0" reportRequired="true" />
@@ -293,54 +163,15 @@
       <attribute id="0a01" name="LineCurrentPhC" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0a02" name="ActiveCurrentPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="0a03" name="ReactiveCurrentPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
-      <attribute id="0a05" name="RMSVoltagePhC" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSVoltageMaxPhC" />
-          <type:minInclusiveRef ref="RMSVoltageMinPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a06" name="RMSVoltageMinPhC" type="uint16" max="65535" default="32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSVoltageMaxPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a07" name="RMSVoltageMaxPhC" type="uint16" max="65535" default="32768" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="RMSVoltageMinPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a08" name="RMSCurrentPhC" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSCurrentMaxPhC" />
-          <type:minInclusiveRef ref="RMSCurrentMinPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a09" name="RMSCurrentMinPhC" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="RMSCurrentMaxPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a0a" name="RMSCurrentMaxPhC" type="uint16" max="65535" default="65535" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="RMSCurrentMinPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a0b" name="ActivePowerPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ActivePowerMaxPhC" />
-          <type:minInclusiveRef ref="ActivePowerMinPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a0c" name="ActivePowerMinPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:maxInclusiveRef ref="ActivePowerMaxPhC" />
-        </restriction>
-      </attribute>
-      <attribute id="0a0d" name="ActivePowerMaxPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" >
-        <restriction>
-          <type:minInclusiveRef ref="ActivePowerMinPhC" />
-        </restriction>
-      </attribute>
+      <attribute id="0a05" name="RMSVoltagePhC" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0a06" name="RMSVoltageMinPhC" type="uint16" max="65535" default="32768" reportRequired="true" />
+      <attribute id="0a07" name="RMSVoltageMaxPhC" type="uint16" max="65535" default="32768" reportRequired="true" />
+      <attribute id="0a08" name="RMSCurrentPhC" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0a09" name="RMSCurrentMinPhC" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0a0a" name="RMSCurrentMaxPhC" type="uint16" max="65535" default="65535" reportRequired="true" />
+      <attribute id="0a0b" name="ActivePowerPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0a0c" name="ActivePowerMinPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
+      <attribute id="0a0d" name="ActivePowerMaxPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="0a0e" name="ReactivePowerPhC" type="int16" min="-32768" max="32767" default="-32768" reportRequired="true" />
       <attribute id="0a0f" name="ApparentPowerPhC" type="uint16" max="65535" default="65535" reportRequired="true" />
       <attribute id="0a10" name="PowerFactorPhC" type="int8" min="-100" max="100" default="0" reportRequired="true" />
