@@ -104,6 +104,7 @@ Restrictions
 There are a number of restrictions available for types. These build the basis of the typing system and are as follows
 
 * enumeration - see the Enumerations section below
+* enumeratedRange - see the Enumerations section below
 * minExclusive - sets a minimum that doesn't include the value specified, i.e. a field of this type must be strictly greater than the value
 * minExclusiveRef - sets a minimum that is based on the value of the referenced attribute. The value of the referenced attribute is excluded from the range
 * minInclusive - sets a minimum that includes the value specified, i.e. a field of this type must be greater than or equal than the value
@@ -118,11 +119,23 @@ There are a number of restrictions available for types. These build the basis of
 * minLength - specifies the minimum length that a type must take, generally used for a string
 * maxLength - specifies the maximum length that a type must take, generally used for a string
 * pattern - specifies a regular expression pattern which a string must match
-* sequence - specifies a sequence of fields, should only be used for restrictions on command fields 
+* sequence - specifies a sequence of fields, should only be used for restrictions on command fields
+* special - specifies a special value, see the Special Values section below
+* invalid - species an invalid value as defined in the Zigbee specification
 
 Enumerations
 ------------
 Enumerations are defined as a value and a short name. The short name is intended to be such that it could be used as a constant name in code. Verbose descriptions are not permitted, and instead a descriptive name should be used. The value is specified as a HexBinary, which means that it's specified in Hex, and must be expressed as a multiple of two hexadecimal characters.
+
+In some cases, the spec defines a range of enumeration values for use by a manufacturer. Sometimes this is a significant range which cannot easily be represented by making multiple enumeration statements. In this case, the enumeratedRange restriction can be used to specify a min and max value of the range along with a name. 
+
+Special Values
+--------------
+In some cases, a special value is defined by the Zigbee specification. In these cases, the special value along with a descriptor should be defined using this tag
+
+Invalid Values
+--------------
+For some data types of fields, a specific value is defined to indicate the data contained is invalid.
 
 anyType
 -------
