@@ -9,18 +9,18 @@
   <classification hierarchy="base" role="application" picsCode="TMP" primaryTransaction="2" />
   <server>
     <attributes>
-      <attribute id="0000" name="MeasuredValue" type="int16" reportRequired="true" default="-1" required="true">
+      <attribute id="0000" name="MeasuredValue" type="int16" reportRequired="true" default="-32768" required="true">
         <restriction>
           <type:minInclusiveRef ref="MinMeasuredValue" />
           <type:maxInclusiveRef ref="MaxMeasuredValue" />
         </restriction>
       </attribute>
-      <attribute id="0001" name="MinMeasuredValue" type="int16" min="-27315" max="32766" default="32768" required="true">
+      <attribute id="0001" name="MinMeasuredValue" type="int16" min="-27315" max="32766" default="-32768" required="true">
         <restriction>
           <type:maxExclusiveRef ref="MaxMeasuredValue" />
         </restriction>
       </attribute>
-      <attribute id="0002" name="MaxMeasuredValue" type="int16" min="-27314" max="32767" default="32768" required="true">
+      <attribute id="0002" name="MaxMeasuredValue" type="int16" min="-27314" max="32767" default="-32768" required="true">
         <restriction>
           <type:minExclusiveRef ref="MinMeasuredValue" />
         </restriction>
