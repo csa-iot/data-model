@@ -94,6 +94,8 @@
 		<xs:attribute name="max" type="xs:integer" use="optional" />
 		<xs:attribute name="default" type="xs:string" /><!-- Should 
 			This Be Mandatory -->
+        <xs:attribute name="deprecated" type="xs:boolean" use="optional" 
+            default="false" />
 	</xs:complexType>
 
 	<xs:complexType name="AttributeList">
@@ -117,6 +119,8 @@
 		<xs:attribute name="required" type="xs:boolean"
 			default="false" />
         <xs:attribute name="requiredIf" type="type:DependencyExpression"
+            default="false" />
+        <xs:attribute name="deprecated" type="xs:boolean" use="optional" 
             default="false" />
 	</xs:complexType>
 
@@ -188,6 +192,8 @@
 				type="xs:unsignedShort" use="required" />
 			<xs:attribute name="name" type="type:NamedElement"
 				use="required" />
+            <xs:attribute name="manufacturer" type="type:ManufacturerId"
+                use="optional" />
 			<xs:attribute ref="xml:base" />
 		</xs:complexType>
 		<xs:keyref name="tagKeyRef" refer="zcl:tagKey">

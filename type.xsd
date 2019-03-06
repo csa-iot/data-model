@@ -29,6 +29,12 @@
       <xs:length value="1" />
     </xs:restriction>
   </xs:simpleType>
+  
+  <xs:simpleType name="ManufacturerId">
+    <xs:restriction base="xs:hexBinary">
+      <xs:length value="2" />
+    </xs:restriction>
+  </xs:simpleType>
 
   <xs:complexType name="BitmapDefinition">
     <xs:sequence>
@@ -60,6 +66,7 @@
      -->
     <xs:attribute name="arrayLengthField" type="zclType:NamedElement" use="optional" default="" />
     <xs:attribute name="presentIf" type="zclType:DependencyExpression" use="optional" default="true" />
+    <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
 
   <xs:complexType name="CommandFieldList">
