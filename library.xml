@@ -111,8 +111,8 @@
 	</type:type>
 	<type:type id="2d" short="int48" name="Signed 48-bit integer">
 		<restriction>
-			<type:minInclusive value="-549755813887"/>
-			<type:maxInclusive value="549755813887"/>
+			<type:minInclusive value="-140737488355327"/>
+			<type:maxInclusive value="140737488355327"/>
 		</restriction>
 	</type:type>
 	<type:type id="2e" short="int56" name="Signed 56-bit integer">
