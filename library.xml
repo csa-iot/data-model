@@ -316,6 +316,7 @@
     <xi:include href="Diagnostics.xml" parse="xml" />
     <xi:include href="Poll Control.xml" parse="xml" />
     <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
+  <xi:include href="Temperature Measurement.xml" parse="xml" />
 	<xi:include href="Pressure Measurement.xml" parse="xml" />
 	<xi:include href="Flow Measurement.xml" parse="xml" />
 	<xi:include href="Water Content Measurement.xml" parse="xml" />
