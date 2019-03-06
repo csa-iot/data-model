@@ -10,12 +10,12 @@
   <server>
     <attributes>
       <attribute id="0000" name="MeasuredValue" type="uint16" max="65535" reportRequired="true" default="0" required="true" />
-      <attribute id="0001" name="MinMeasuredValue" type="uint16" min="1" required="true">
+      <attribute id="0001" name="MinMeasuredValue" type="uint16" min="1" max="65533" required="true">
         <restriction>
           <type:maxExclusiveRef ref="MaxMeasuredValue">
         </restriction>
       </attribute>
-      <attribute id="0002" name="MaxMeasuredValue" type="uint16" max="65534" required="true">
+      <attribute id="0002" name="MaxMeasuredValue" type="uint16" min="2" max="65534" required="true">
         <restriction>
           <type:minExclusiveRef ref="MinMeasuredValue">
         </restriction>
