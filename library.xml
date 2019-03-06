@@ -111,8 +111,8 @@
 	</type:type>
 	<type:type id="2d" short="int48" name="Signed 48-bit integer">
 		<restriction>
-			<type:minInclusive value="-549755813887"/>
-			<type:maxInclusive value="549755813887"/>
+			<type:minInclusive value="-140737488355327"/>
+			<type:maxInclusive value="140737488355327"/>
 		</restriction>
 	</type:type>
 	<type:type id="2e" short="int56" name="Signed 56-bit integer">
@@ -156,13 +156,36 @@
 		</restriction>
 	</type:type>
 	<!-- Identifiers -->
+    <type:type id="e8" short="clusterId" name="Cluster ID" discrete="true">
+      <restriction>
+        <type:minInclusive value="0"/>
+        <type:maxInclusive value="65535"/>
+      </restriction>
+    </type:type>
 	<type:type id="e9" short="attribId" name="Attribute ID" discrete="true">
 		<restriction>
 			<type:minInclusive value="0"/>
 			<type:maxInclusive value="65535"/>
 		</restriction>
 	</type:type>
+    <type:type id="ea" short="bacOID" name="BACnet OID" discrete="true">
+      <restriction>
+        <type:minInclusive value="0"/>
+        <type:maxInclusive value="4294967295"/>
+      </restriction>
+    </type:type>
 	<!-- Misc -->
+    <type:type id="f0" short="EUI64" name="IEEE address" discrete="true">
+      <restriction>
+        <type:length value="8" />
+      </restriction>
+    </type:type>
+    <type:type id="f1" short="key128" name="128-bit security key" discrete="true">
+      <restriction>
+        <type:length value="16"/>
+      </restriction>
+    </type:type>
+    <!-- Opaque? -->
 	<!-- Unknown -->
 	<type:type id="ff" short="unk" name="Unknown" />
 
@@ -268,14 +291,39 @@
 			<type:enumeration name="LIMIT_REACHED" value="c4"/><!-- 0xc4 -->
 		</restriction>
 	</type:type>
+  
+    <type:type id="30" short="ProfileIntervalPeriod" name="Profile Interval Period" discrete="true" inheritsFrom="enum8">
+      <restriction>
+        <type:enumeration value="00" name="Daily" />
+        <type:enumeration value="01" name="60Minutes" />
+        <type:enumeration value="02" name="30Minutes" />
+        <type:enumeration value="03" name="15Minutes" />
+        <type:enumeration value="04" name="10Minutes" />
+        <type:enumeration value="05" name="7dot5Minutes" />
+        <type:enumeration value="06" name="5Minutes" />
+        <type:enumeration value="07" name="2dot5Minutes" />
+      </restriction>
+    </type:type>
 	
 	<xi:include href="global.xml" parse="xml" />
 	<xi:include href="Basic.xml" parse="xml" />
     <xi:include href="Power Configuration.xml" parse="xml" />
 	<xi:include href="Identify.xml" parse="xml" />
 	<xi:include href="Groups.xml" parse="xml" />
+  <xi:include href="On-Off.xml" parse="xml" />
+	<xi:include href="Alarms.xml" parse="xml" />
 	<xi:include href="Time.xml" parse="xml" />
-  <xi:include href="Diagnostics.xml" parse="xml" />
+    <xi:include href="Diagnostics.xml" parse="xml" />
     <xi:include href="Poll Control.xml" parse="xml" />
+    <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
+  <xi:include href="Temperature Measurement.xml" parse="xml" />
+	<xi:include href="Pressure Measurement.xml" parse="xml" />
+	<xi:include href="Flow Measurement.xml" parse="xml" />
+	<xi:include href="Water Content Measurement.xml" parse="xml" />
+    <xi:include href="Occupancy Sensing.xml" parse="xml" />
+    <xi:include href="Pump Configuration and Control.xml" parse="xml" />
+    <xi:include href="Thermostat.xml" parse="xml" />
+	<xi:include href="Fan Control.xml" parse="xml" />
+    <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
 	
 </zcl:library>
