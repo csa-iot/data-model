@@ -29,6 +29,20 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:complexType name="ClusterIdAlias">
+		<xs:attribute name="id" type="type:ClusterId"
+			use="required" />
+		<xs:attribute name="name" type="type:NamedElement"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ClusterIdAliasList">
+		<xs:sequence>
+			<xs:element name="alias" type="zcl:ClusterIdAlias"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:complexType name="Classification">
 		<xs:attribute name="hierarchy" type="xs:string"
 			use="required" />
@@ -73,11 +87,15 @@
 			default="false" />
 		<xs:attribute name="required" type="xs:boolean"
 			default="false" />
+        <xs:attribute name="requiredIf" type="type:DependencyExpression"
+            default="false" />      
 		<xs:attribute name="min" type="xs:integer" default="0"
 			use="optional" />
 		<xs:attribute name="max" type="xs:integer" use="optional" />
 		<xs:attribute name="default" type="xs:string" /><!-- Should 
 			This Be Mandatory -->
+        <xs:attribute name="deprecated" type="xs:boolean" use="optional" 
+            default="false" />
 	</xs:complexType>
 
 	<xs:complexType name="AttributeList">
@@ -100,6 +118,10 @@
 			use="required" />
 		<xs:attribute name="required" type="xs:boolean"
 			default="false" />
+        <xs:attribute name="requiredIf" type="type:DependencyExpression"
+            default="false" />
+        <xs:attribute name="deprecated" type="xs:boolean" use="optional" 
+            default="false" />
 	</xs:complexType>
 
 	<xs:complexType name="CommandList">
@@ -151,6 +173,8 @@
 	<xs:element name="cluster">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element name="aliases" type="zcl:ClusterIdAliasList"
+					minOccurs="0" maxOccurs="1" />
 				<xs:element name="classification"
 					type="zcl:Classification" />
 				<xs:element ref="type:type" minOccurs="0"
@@ -168,6 +192,8 @@
 				type="xs:unsignedShort" use="required" />
 			<xs:attribute name="name" type="type:NamedElement"
 				use="required" />
+            <xs:attribute name="manufacturer" type="type:ManufacturerId"
+                use="optional" />
 			<xs:attribute ref="xml:base" />
 		</xs:complexType>
 		<xs:keyref name="tagKeyRef" refer="zcl:tagKey">
