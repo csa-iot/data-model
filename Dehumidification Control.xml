@@ -10,9 +10,8 @@
     <attributes>
       <!-- Dehumidification Information -->
       <attribute id="0000" name="RelativeHumidity" type="uint8" max="100" />
-      <attribute id="0001" name="DehumidificationCooling" type="uint8" required="true">
+      <attribute id="0001" name="DehumidificationCooling" type="uint8" required="true" reportRequired="true">
         <restriction>
-          <type:minInclusive value="0" />
           <type:maxInclusiveRef ref="DehumidificationMaxCool"/>
         </restriction>
       </attribute>
