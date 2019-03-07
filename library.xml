@@ -315,6 +315,7 @@
 	<xi:include href="Time.xml" parse="xml" />
     <xi:include href="Diagnostics.xml" parse="xml" />
     <xi:include href="Poll Control.xml" parse="xml" />
+  <xi:include href="Illuminance Measurement.xml" parse="xml" />
     <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
   <xi:include href="Temperature Measurement.xml" parse="xml" />
 	<xi:include href="Pressure Measurement.xml" parse="xml" />
