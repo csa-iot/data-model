@@ -4,7 +4,7 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="040A" revision="1" name="ElectricalConductivity">
+  id="040A" revision="1" name="ElectricalConductivityMeasurement">
   <classification hierarchy="base" role="application" picsCode="EC" primaryTransaction="2" />
   <server>
     <attributes>
