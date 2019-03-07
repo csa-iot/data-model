@@ -131,11 +131,11 @@ In some cases, the spec defines a range of enumeration values for use by a manuf
 
 Special Values
 --------------
-In some cases, a special value is defined by the Zigbee specification. In these cases, the special value along with a descriptor should be defined using this tag
+In some cases, a special value is defined by the Zigbee specification. In these cases, the special value along with a descriptor should be defined using this tag. Special values take precedence over other restrictions imposed (e.g. a special value may fall outside the min/max range for the attribute). 
 
 Invalid Values
 --------------
-For some data types of fields, a specific value is defined to indicate the data contained is invalid.
+For some data types of fields, a specific value is defined to indicate the data contained is invalid / unused / absent / ignored.
 
 anyType
 -------
