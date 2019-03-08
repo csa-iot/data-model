@@ -4,8 +4,8 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0009" revision="0" name="Alarms">
-  <classification hierarchy="base" role="application" picsCode="ALM" primaryTransaction="" />
+  id="0009" revision="1" name="Alarms">
+  <classification hierarchy="base" role="application" picsCode="ALM" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="AlarmCount" type="uint16" default="0" />
@@ -32,10 +32,10 @@
       </command>
       <command id="01" name="GetAlarmResponse">
         <fields>
-          <field name="Status" type="enum8" />
-          <field name="AlarmCode" type="enum8" />
-          <field name="ClusterIdentifier" type="clusterId" />
-          <field name="TimeStamp" type="uint32" />
+          <field name="Status" type="zclStatus" />
+          <field name="AlarmCode" type="enum8" presentIf="Status = 0" />
+          <field name="ClusterIdentifier" type="clusterId" presentIf="Status = 0" />
+          <field name="TimeStamp" type="uint32" presentIf="Status = 0" />
         </fields>
       </command>
     </commands>
