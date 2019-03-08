@@ -123,7 +123,7 @@
       </attribute>
       <attribute id="4010" name="StartUpColorTemperatureMireds" type="uint16" max="65535" writable="true" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
         <restriction>
-          <type:enumerationRange min="0000" max="ffef" />
+          <type:enumeratedRange min="0000" max="ffef" />
           <type:special value="ffff" name="SetColorTempToPreviousValue" />
         </restriction>
       </attribute>
@@ -139,7 +139,7 @@
       <attribute id="0017" name="Primary2Intensity" type="uint8" requiredIf="NumberOfPrimaries > 1" />
       <attribute id="0018" name="Reserved" type="-" />
       <attribute id="0019" name="Primary3X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 2" />
-      <attribute id="001A" name="Primary3Y" type="uint16" rmax="65279" requiredIf="NumberOfPrimaries > 2" />
+      <attribute id="001A" name="Primary3Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 2" />
       <attribute id="001B" name="Primary3Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 2" />
       <!-- Additional Defined Primaries Information Attribute Set -->
       <attribute id="0020" name="Primary4X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 3" />
