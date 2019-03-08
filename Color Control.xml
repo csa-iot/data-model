@@ -61,7 +61,7 @@
       <attribute id="0007" name="ColorTemperatureMireds" type="uint16" max="65279" reportRequired="true" sceneRequired="true" default="250" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
         <restriction>
           <type:special value="0000" name="Undefined" />
-          <type:enumerationRange min="0001" max="feff" />
+          <type:enumeratedRange min="0001" max="feff" />
         </restriction>
       </attribute>
       <attribute id="0008" name="ColorMode" type="enum8" default="1" required="true">
@@ -132,12 +132,9 @@
       <attribute id="0011" name="Primary1X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 0" />
       <attribute id="0012" name="Primary1Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 0" />
       <attribute id="0013" name="Primary1Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 0" />
-      <!-- Should we just leave these out? -->
-      <attribute id="0014" name="Reserved" type="-" />
       <attribute id="0015" name="Primary2X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 1" />
       <attribute id="0016" name="Primary2Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 1" />
       <attribute id="0017" name="Primary2Intensity" type="uint8" requiredIf="NumberOfPrimaries > 1" />
-      <attribute id="0018" name="Reserved" type="-" />
       <attribute id="0019" name="Primary3X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 2" />
       <attribute id="001A" name="Primary3Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 2" />
       <attribute id="001B" name="Primary3Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 2" />
@@ -145,11 +142,9 @@
       <attribute id="0020" name="Primary4X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 3" />
       <attribute id="0021" name="Primary4Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 3" />
       <attribute id="0022" name="Primary4Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 3" />
-      <attribute id="0023" name="Reserved" type="-" />
       <attribute id="0024" name="Primary5X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 4" />
       <attribute id="0025" name="Primary5Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 4" />
       <attribute id="0026" name="Primary5Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 4" />
-      <attribute id="0027" name="Reserved" type="-" />
       <attribute id="0028" name="Primary6X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 5" />
       <attribute id="0029" name="Primary6Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 5" />
       <attribute id="002A" name="Primary6Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 5" />
@@ -159,11 +154,9 @@
       <attribute id="0032" name="ColorPointRX" type="uint16" max="65279" writable="true" />
       <attribute id="0033" name="ColorPointRY" type="uint16" max="65279" writable="true" />
       <attribute id="0034" name="ColorPointRIntensity" type="uint8" max="255" writable="true" />
-      <attribute id="0035" name="Reserved" type="-" />
       <attribute id="0036" name="ColorPointGX" type="uint16" max="65279" writable="true" />
       <attribute id="0037" name="ColorPointGY" type="uint16" max="65279" writable="true" />
       <attribute id="0038" name="ColorPointGIntensity" type="uint8" max="255" writable="true" />
-      <attribute id="0039" name="Reserved" type="-" />
       <attribute id="003A" name="ColorPointBX" type="uint16" max="65279" writable="true" />
       <attribute id="003B" name="ColorPointBY" type="uint16" max="65279" writable="true" />
       <attribute id="003C" name="ColorPointBIntensity" type="uint8" max="255" writable="true" />
