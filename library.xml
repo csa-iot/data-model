@@ -383,6 +383,7 @@
   <xi:include href="Time.xml" parse="xml" />
   <xi:include href="Diagnostics.xml" parse="xml" />
   <xi:include href="Poll Control.xml" parse="xml" />
+  <xi:include href="Illuminance Measurement.xml" parse="xml" />
   <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
   <xi:include href="Temperature Measurement.xml" parse="xml" />
   <xi:include href="Pressure Measurement.xml" parse="xml" />
@@ -390,6 +391,8 @@
   <xi:include href="Water Content Measurement.xml" parse="xml" />
   <xi:include href="Occupancy Sensing.xml" parse="xml" />
   <xi:include href="Electrical Conductivity Measurement.xml" parse="xml" />
+  <xi:include href="pH Measurement.xml" parse="xml" />
+  <xi:include href="Wind Speed Measurement.xml" parse="xml" />
   <xi:include href="Ballast Configuration.xml" parse="xml" />
   <xi:include href="Pump Configuration and Control.xml" parse="xml" />
   <xi:include href="Thermostat.xml" parse="xml" />
