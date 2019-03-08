@@ -19,10 +19,26 @@
         </bitmap>
       </attribute>
       <!-- Ballast Settings Attribute Set -->
-      <attribute id="0010" name="MinLevel" type="uint8" min="1" max="254" writable="true" default="PhysicalMinLevel" required="true" />
-      <attribute id="0011" name="MaxLevel" type="uint8" min="1" max="254" writable="true" default="PhysicalMaxLevel" required="true" />
+      <attribute id="0010" name="MinLevel" type="uint8" min="1" max="254" writable="true" required="true">
+        <restriction>
+          <type:defaultRef ref="PhysicalMinLevel" />
+          <type:minInclusiveRef ref="PhysicalMinLevel" />
+          <type:maxInclusiveRef ref="MaxLevel" />
+        </restriction>
+      </attribute>
+      <attribute id="0011" name="MaxLevel" type="uint8" min="1" max="254" writable="true" required="true">
+        <restriction>
+          <type:defaultRef ref="PhysicalMaxLevel" />
+          <type:minInclusiveRef ref="MinLevel" />
+          <type:maxInclusiveRef ref="PhysicalMaxLevel" />
+        </restriction>
+      </attribute>
       <!-- PowerOnLevel is deprecated -->
-      <attribute id="0012" name="PowerOnLevel" type="uint8" writable="true" max="254" default="PhysicalMaxLevel" deprecated="true" />
+      <attribute id="0012" name="PowerOnLevel" type="uint8" writable="true" max="254" deprecated="true">
+        <restriction>
+          <type:defaultRef ref="PhysicalMaxLevel" />
+        </restriction>
+      </attribute>
       <!-- PowerOnFadeTime is deprecated -->
       <attribute id="0013" name="PowerOnFadeTime" type="uint16" writable="true" max="65534" default="0" deprecated="true" />
       <attribute id="0014" name="IntrinsicBallastFactor" type="uint8" max="254" writable="true" />
