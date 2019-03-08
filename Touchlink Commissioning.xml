@@ -206,7 +206,7 @@
             <bitmap>
               <element name="DevelopmentKey" type="bool" mask="0001" />
               <element name="MasterKey" type="bool" mask="0010" shiftRight="4" />
-              <element name="CertificationKey" type="bool" mask="1000" shiftRight="15" />
+              <element name="CertificationKey" type="bool" mask="8000" shiftRight="15" />
             </bitmap>
           </field>
           <field name="ResponseIdentifier" type="uint32" />
