@@ -353,7 +353,7 @@
       <type:enumeration name="StandardWarningDevice" value="0225"/>
       <type:enumeration name="GlassBreakSensor" value="0226"/>
       <type:enumeration name="SecurityRepeater" value="0229"/>
-      <!-- 8000-FFFE are manufacturer specific types -->
+      <type:enumeratedRange name="ManufacturerSpecific" min="8000" max="FFFE" />
       <type:enumeration name="Invalid" value="FFFF"/>
     </restriction>
   </type:type>
