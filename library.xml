@@ -356,6 +356,7 @@
 	<xi:include href="Water Content Measurement.xml" parse="xml" />
     <xi:include href="Occupancy Sensing.xml" parse="xml" />
     <xi:include href="Electrical Conductivity Measurement.xml" parse="xml" />
+  <xi:include href="Ballast Configuration.xml" parse="xml" />
     <xi:include href="Pump Configuration and Control.xml" parse="xml" />
     <xi:include href="Thermostat.xml" parse="xml" />
 	<xi:include href="Fan Control.xml" parse="xml" />
