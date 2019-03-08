@@ -11,7 +11,7 @@
     <restriction>
       <type:enumeration name="Mute" value="00"/>
       <type:enumeration name="DefaultSound" value="01"/>
-      <!-- 0x80-0xFF are manufacturer specific. -->
+      <type:enumeratedRange name="ManufacturerSpecificRange" min="80" max="FF"/>
     </restriction>
   </type:type>
   <type:type short="IasaceAlarmStatus" name="IasaceAlarmStatus" id="30" inheritsFrom="enum8">
