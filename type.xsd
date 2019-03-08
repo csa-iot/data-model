@@ -29,6 +29,12 @@
       <xs:length value="1" />
     </xs:restriction>
   </xs:simpleType>
+  
+  <xs:simpleType name="ManufacturerId">
+    <xs:restriction base="xs:hexBinary">
+      <xs:length value="2" />
+    </xs:restriction>
+  </xs:simpleType>
 
   <xs:complexType name="BitmapDefinition">
     <xs:sequence>
@@ -55,7 +61,12 @@
     <xs:attribute name="type" type="xs:string" use="required" />
     <xs:attribute name="array" type="xs:boolean" use="optional" default="false" />
     <xs:attribute name="arrayLengthSize" type="xs:unsignedByte" use="optional" default="1" />
+    <!-- The use of this is discouraged, and should not be used in the case
+     the count and array are adjacent
+     -->
+    <xs:attribute name="arrayLengthField" type="zclType:NamedElement" use="optional" default="" />
     <xs:attribute name="presentIf" type="zclType:DependencyExpression" use="optional" default="true" />
+    <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
 
   <xs:complexType name="CommandFieldList">
@@ -187,6 +198,22 @@
       <xs:documentation source="http://www.w3.org/TR/xmlschema11-2/#element-maxLength" />
     </xs:annotation>
   </xs:element>
+  
+  <xs:element name="special" id="special" substitutionGroup="zclType:facet">
+    <xs:annotation>
+      <xs:documentation source="http://www.w3.org/TR/xmlschema11-2/#element-maxInclusive" />
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:restriction base="zclType:abstractFacet">
+          <xs:attribute name="value" use="required" />
+          <xs:attribute name="name" type="xs:string" use="required" />
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="invalid" type="zclType:facet" id="invalid" substitutionGroup="zclType:facet" />
 
   <xs:element name="enumeration" type="zclType:enumerationType" id="enumeration"
     substitutionGroup="zclType:facet">
@@ -205,6 +232,71 @@
           <xs:attribute name="value" type="xs:string" use="required" />
         </xs:restriction>
       </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="enumeratedRange" id="enumeratedRange" 
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:restriction base="zclType:abstractFacet">
+          <xs:attribute name="value" use="prohibited" />
+          <xs:attribute name="min" type="xs:hexBinary" use="required" />
+          <xs:attribute name="max" type="xs:hexBinary" use="required" />
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="minInclusiveRef" id="minInclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="minExclusiveRef" id="minExclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="maxInclusiveRef" id="maxInclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="maxExclusiveRef" id="maxExclusiveRef"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:restriction base="zclType:abstractFacet">
+                <xs:attribute name="value" use="prohibited" />
+                <xs:attribute name="ref" type="xs:string"
+                use="required" />
+            </xs:restriction>
+        </xs:complexContent>
     </xs:complexType>
   </xs:element>
 
