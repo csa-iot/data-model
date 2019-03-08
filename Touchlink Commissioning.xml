@@ -17,7 +17,13 @@
   </type:type>
   <type:type short="ZigbeeInformation" name="ZigbeeInformation" id="18" inheritsFrom="map8">
     <bitmap>
-      <element name="LogicalType" type="uint8" mask="03" />
+      <element name="LogicalType" type="enum8" mask="03">
+        <restriction>
+          <type:enumeration name="Coordinator" value="00" />
+          <type:enumeration name="Router" value="01" />
+          <type:enumeration name="EndDevice" value="02" />
+        </restriction>
+      </element>
       <element name="RxOnWhenIdle" type="bool" mask="04" shiftRight="02" />
     </bitmap>
   </type:type>
@@ -92,7 +98,13 @@
       <command id="06" name="IdentifyRequest" required="true">
         <fields>
           <field name="InterPANTransactionIdentifier" type="uint32" />
-          <field name="IdentifyDuration" type="uint16" />
+          <field name="IdentifyDuration" type="uint16">
+            <restriction>
+              <type:special value="0000" name="ExitIdentifyMode" />
+              <type:enumerationRange min="0001" max="fffe" />
+              <type:special value="ffff" name="IdentifyForReceiverKnownTime" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="07" name="ResetToactoryNewRequest" required="true">
