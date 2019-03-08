@@ -27,13 +27,13 @@
           <field name="SirenConfiguration" type="map8" >
             <bitmap>
               <element name="SirenLevel" type="IaswdLevel" mask="03" shiftRight="0" />
-              <element name="Strobe" type="enum" mask="0C" shiftRight="2" >
+              <element name="Strobe" type="enum8" mask="0C" shiftRight="2" >
                 <restriction>
                   <type:enumeration name="NoStrobe" value="00"/>
                   <type:enumeration name="UseStrobe" value="01"/>
                 </restriction>
               </element>
-              <element name="WarningMode" type="enum" mask="F0" shiftRight="4" >
+              <element name="WarningMode" type="enum8" mask="F0" shiftRight="4" >
                 <restriction>
                   <type:enumeration name="Stop" value="00"/>
                   <type:enumeration name="Burgler" value="01"/>
@@ -64,7 +64,7 @@
               <element name="SquawkLevel" type="IaswdLevel" mask="03" shiftRight="0" />
               <!-- Bit 2 is undefined. -->
               <element name="SquawkStrobeActive" type="bool" mask="04" shiftRight="3" />
-              <element name="SquawkMode" type="enum" mask="F0" shiftRight="4" >
+              <element name="SquawkMode" type="enum8" mask="F0" shiftRight="4" >
                 <restriction>
                   <type:enumeration name="SoundForSystemIsArmed" value="00"/>
                   <type:enumeration name="SoundForSystemIsDisarmed" value="01"/>
