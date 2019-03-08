@@ -77,7 +77,7 @@
 
   <xs:complexType name="AttributeList">
     <xs:sequence>
-      <xs:element name="attribute" type="zcl:Attribute" minOccurs="1" maxOccurs="unbounded"></xs:element>
+      <xs:element name="attribute" type="zcl:Attribute" minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
 
