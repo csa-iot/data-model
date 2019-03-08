@@ -14,6 +14,14 @@
       <type:maxLength value="16" />
     </restriction>
   </type:type>
+  <type:type short="ExtensionFieldSetList" name="ExtensionFieldSetList" id="ff">
+    <restriction>
+      <type:sequence>
+        <field name="ClusterId" type="uint16" />
+        <field name="ExtensionFieldSet" type="octstr" array="true" />
+      </type:sequence>
+    </restriction>
+  </type:type>
   
   <server>
     <attributes>
@@ -35,7 +43,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="Variable" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
         </fields>
       </command>
       <command id="01" name="ViewScene" required="true">
@@ -79,7 +87,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="Variable" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
         </fields>
       </command>
       <command id="41" name="EnhancedViewScene">
@@ -119,7 +127,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="Variable" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
         </fields>
       </command>
       <command id="02" name="RemoveSceneResponse" required="true">
@@ -171,7 +179,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="Variable" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
         </fields>
       </command>
       <command id="42" name="CopySceneResponse">
