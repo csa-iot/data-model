@@ -86,7 +86,6 @@
           <field name="InterPANTransactionIdentifier" type="uint32" />
           <field name="ZigbeeInformation" type="ZigbeeInformation" />
           <field name="TouchlinkInformation" type="TouchlinkInformation" />
-          </field>
         </fields>
       </command>
       <command id="02" name="DeviceInformationRequest" required="true">
@@ -101,7 +100,7 @@
           <field name="IdentifyDuration" type="uint16">
             <restriction>
               <type:special value="0000" name="ExitIdentifyMode" />
-              <type:enumerationRange min="0001" max="fffe" />
+              <type:enumeratedRange min="0001" max="fffe" />
               <type:special value="ffff" name="IdentifyForReceiverKnownTime" />
             </restriction>
           </field>
@@ -124,7 +123,7 @@
             <restriction>
               <type:minInclusive value="1" />
               <type:maxInclusive value="65527" />
-            <restriction>
+            </restriction>
           </field>
           <field name="GroupIdentifiersBegin" type="uint16" />
           <field name="GroupIdentifiersEnd" type="uint16" />
