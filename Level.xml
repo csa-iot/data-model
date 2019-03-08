@@ -66,7 +66,13 @@
       <attribute id="0013" name="OffTransitionTime" type="uint16" max="65534" writable="true" default="65535" />
       <attribute id="0014" name="DefaultMoveRate" type="uint16" max="254" writable="true" />
       <attribute id="000F" name="Options" type="LevelOptions" writable="true" default="0" />
-      <attribute id="4000" name="StartUpCurrentLevel" type="uint8" max="255" writable="true" />
+      <attribute id="4000" name="StartUpCurrentLevel" type="uint8" max="255" writable="true">
+        <restriction>
+          <type:special value="00" name="MinimumDeviceValuePermitted" />
+          <type:enumeratedRange min="01" max="fe" />
+          <type:special value="ff" name="SetToPreviousValue" />
+        </restriction>
+      </attribute>
     </attributes>
     <commands>
       <command id="00" name="MoveToLevel" required="true">
@@ -131,7 +137,7 @@
           <field name="OptionsOverride" type="LevelOptions" />
         </fields>
       </command>
-      <command id="08" name="MoveToClosestFrequency">
+      <command id="08" name="MoveToClosestFrequency" requiredIf="defined(CurrentFrequency)">
         <fields>
           <field name="Frequency" type="uint16" />
         </fields>
