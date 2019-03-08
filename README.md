@@ -205,6 +205,7 @@ An attribute may be specified using the following attributes in the XML.
 | min            | false    | A decimal integer specifying the min value (inclusive). Not for use on strings, use minLength restriction instead. Defaults to 0 |
 | max            | false    | A decimal integer specifiying the max value (inclusive). Not for use on strings, use maxLength restriction instead. No Default. |
 | default        | false    | Specifies the default value of an attribute. No Default        |
+| defaultRef     | false    | Specifies that the default value of the attribute takes the value of the referenced attribute. Must be another attriibute in this cluster. Referenced by name, schema forces this during validation. |
 | deprecated     | false    | Indicates that an attribute has been deprecated                |
 
 Inside an attribute definition, either a bitmap or a series of restrictions may be specified. An example of restrictions can be seen in the example attribute definition for `GenericDevice-Class`. For an example of bitmap definitions, see the Bitmaps section.
