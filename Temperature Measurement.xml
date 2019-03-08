@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0402" revision="2" name="Temperature Measurement">
+  id="0402" revision="2" name="TemperatureMeasurement">
   <classification hierarchy="base" role="application" picsCode="TMP" primaryTransaction="2" />
   <server>
     <attributes>
