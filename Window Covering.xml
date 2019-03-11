@@ -13,8 +13,8 @@
         <restriction>
           <type:enumeration value="00" name="Rollershade"/>
           <type:enumeration value="01" name="Rollershade2Motor"/>
-          <type:enumeration value="02" name="RollershadeExternal"/>
-          <type:enumeration value="03" name="RollershadeExternal2Motor"/>
+          <type:enumeration value="02" name="RollershadeExterior"/>
+          <type:enumeration value="03" name="RollershadeExterior2Motor"/>
           <type:enumeration value="04" name="Drapery"/>
           <type:enumeration value="05" name="Awning"/>
           <type:enumeration value="06" name="Shutter"/>
