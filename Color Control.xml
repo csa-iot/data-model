@@ -61,7 +61,6 @@
       <attribute id="0007" name="ColorTemperatureMireds" type="uint16" max="65279" reportRequired="true" sceneRequired="true" default="250" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
         <restriction>
           <type:special value="0000" name="Undefined" />
-          <type:enumeratedRange min="0001" max="feff" />
         </restriction>
       </attribute>
       <attribute id="0008" name="ColorMode" type="enum8" default="1" required="true">
@@ -121,9 +120,8 @@
           <type:maxInclusiveRef ref="ColorTemperatureMireds" />
         </restriction>
       </attribute>
-      <attribute id="4010" name="StartUpColorTemperatureMireds" type="uint16" max="65535" writable="true" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
+      <attribute id="4010" name="StartUpColorTemperatureMireds" type="uint16" max="65279" writable="true" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
         <restriction>
-          <type:enumeratedRange min="0000" max="ffef" />
           <type:special value="ffff" name="SetColorTempToPreviousValue" />
         </restriction>
       </attribute>
