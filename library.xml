@@ -362,5 +362,5 @@
   <xi:include href="Fan Control.xml" parse="xml" />
   <xi:include href="Dehumidification Control.xml" parse="xml" />
   <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
-
+  <xi:include href="Window Covering.xml" parse="xml" />
 </zcl:library>
