@@ -116,8 +116,8 @@ There are a number of restrictions available for types. These build the basis of
 * totalDigits - see http://www.w3.org/TR/xmlschema11-2/#element-totalDigits
 * fractionDigits - see http://www.w3.org/TR/xmlschema11-2/#element-fractionDigits
 * length - specifies an exact length, generally used for a string.
-* minLength - specifies the minimum length that a type must take, generally used for a string
-* maxLength - specifies the maximum length that a type must take, generally used for a string
+* minLength - specifies the minimum length that a type must take, generally used for a string or a list/array
+* maxLength - specifies the maximum length that a type must take, generally used for a string or a list/array
 * pattern - specifies a regular expression pattern which a string must match
 * sequence - specifies a sequence of fields, should only be used for restrictions on command fields
 * special - specifies a special value, see the Special Values section below

@@ -32,6 +32,7 @@
       <element name="FactoryNew" type="bool" mask="01" />
       <element name="AddressAssignment" type="bool" mask="02" shiftRight="01" />
       <element name="LinkInitiator" type="bool" mask="10" shiftRight="04" />
+      <!-- In the scan request command this is undefined and can be set to either 0 or 1 -->
       <element name="TouchlinkPriorityRequest" type="bool" mask="20" shiftRight="05" />
       <element name="ProfileInterop" type="bool" mask="80" shiftRight="07" />
     </bitmap>
@@ -247,7 +248,12 @@
           <field name="InterPANTransactionIdentifier" type="uint32" />
           <field name="NumberOfSubDevices" type="uint8" />
           <field name="StartIndex" type="uint8" />
-          <field name="DeviceInformationRecordList" type="TLDeviceInformationRecord" array="true" />
+          <field name="DeviceInformationRecordList" type="TLDeviceInformationRecord" array="true">
+            <restriction>
+              <type:minLength value="0" />
+              <type:maxLength value="5" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="11" name="NetworkStartResponse" required="true">
