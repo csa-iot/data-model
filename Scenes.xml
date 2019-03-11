@@ -43,7 +43,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" array="true" arrayLengthSize="0" />
         </fields>
       </command>
       <command id="01" name="ViewScene" required="true">
@@ -87,7 +87,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" array="true" arrayLengthSize="0" />
         </fields>
       </command>
       <command id="41" name="EnhancedViewScene">
@@ -127,7 +127,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" array="true" arrayLengthSize="0" />
         </fields>
       </command>
       <command id="02" name="RemoveSceneResponse" required="true">
@@ -179,7 +179,7 @@
           <field name="SceneID" type="uint8" />
           <field name="TransitionTime" type="uint16" />
           <field name="SceneName" type="SceneName" />
-          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" />
+          <field name="ExtensionFieldSets" type="ExtensionFieldSetList" array="true" arrayLengthSize="0" />
         </fields>
       </command>
       <command id="42" name="CopySceneResponse">
