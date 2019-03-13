@@ -379,6 +379,7 @@
   <xi:include href="Identify.xml" parse="xml" />
   <xi:include href="Groups.xml" parse="xml" />
   <xi:include href="On-Off.xml" parse="xml" />
+  <xi:include href="Level.xml" parse="xml" />
   <xi:include href="Alarms.xml" parse="xml" />
   <xi:include href="Time.xml" parse="xml" />
   <xi:include href="Diagnostics.xml" parse="xml" />
@@ -402,5 +403,6 @@
   <xi:include href="IAS Zone.xml" parse="xml" />
   <xi:include href="IAS ACE.xml" parse="xml" />
   <xi:include href="IAS WD.xml" parse="xml" />
+  <xi:include href="Touchlink Commissioning.xml" parse="xml">
 
 </zcl:library>
