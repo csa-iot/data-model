@@ -259,7 +259,7 @@
       <command id="11" name="NetworkStartResponse" required="true">
         <fields>
           <field name="InterPANTransactionIdentifier" type="uint32" />
-          <field name="Status" type="Status" />
+          <field name="Status" type="TLStatus" />
           <field name="ExtendedPANIdentifier" type="EUI64" />
           <field name="NetworkUpdateIdentifier" type="uint8" />
           <field name="LogicalChannel" type="uint8" />
