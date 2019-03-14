@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0300" revision="0" name="Color Control">
-  <classification hierarchy="base" role="application" picsCode="CC" primaryTransaction="" />
+  <classification role="application" picsCode="CC" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="CurrentHue" type="uint8" required="true" max="254" default="0" />

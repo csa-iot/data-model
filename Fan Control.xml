@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0202" revision="1" name="FanControl">
-  <classification hierarchy="base" role="application" picsCode="FAN" primaryTransaction="1" />
+  <classification role="application" picsCode="FAN" primaryTransaction="1" />
   <server>
     <attributes>
       <attribute id="0000" name="FanMode" type="enum8" writable="true" required="true" default="5">

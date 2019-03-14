@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0500" revision="0" name="IAS Zone">
-  <classification hierarchy="base" role="application" picsCode="IASZ" primaryTransaction="" />
+  <classification role="application" picsCode="IASZ" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="ZoneState" type="enum8" required="true" default="0">

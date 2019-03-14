@@ -6,7 +6,7 @@
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0406" revision="2" name="OccupancySensing">
-  <classification hierarchy="base" role="application" picsCode="OCC" primaryTransaction="2" />
+  <classification role="application" picsCode="OCC" primaryTransaction="2" />
   <server>
     <attributes>
       <!-- Occupancy Sensor Information Set -->

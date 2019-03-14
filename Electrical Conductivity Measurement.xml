@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="040A" revision="1" name="ElectricalConductivityMeasurement">
-  <classification hierarchy="base" role="application" picsCode="EC" primaryTransaction="2" />
+  <classification role="application" picsCode="EC" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="MeasuredValue" type="uint16" reportRequired="true" required="true" default="65535" >

@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0102" revision="0" name="Window Covering">
-  <classification hierarchy="base" role="application" picsCode="WNCV" primaryTransaction="" />
+  <classification role="application" picsCode="WNCV" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="WindowCoveringType" type="enum8" required="true" default="0" />

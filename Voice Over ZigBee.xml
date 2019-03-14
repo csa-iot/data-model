@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0904" revision="0" name="Voice Over ZigBee">
-  <classification hierarchy="base" role="application" picsCode="VOZ" primaryTransaction="" />
+  <classification role="application" picsCode="VOZ" primaryTransaction="" />
   <server>
     <attributes />
     <commands>
