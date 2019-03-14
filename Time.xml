@@ -4,11 +4,11 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="000A" revision="0" name="Time">
+  id="000A" revision="1" name="Time">
   <classification hierarchy="base" role="application" picsCode="T" />
   <server>
     <attributes>
-      <attribute id="0000" name="Time" type="UTC" writable="true" max="4294967294" required="true" default="4294967295" />
+      <attribute id="0000" name="Time" type="UTC" writable="true" required="true" max="4294967294" default="4294967295" />
       <attribute id="0001" name="TimeStatus" type="map8" writable="true" required="true" default="0">
         <bitmap>
           <element name="Master" type="bool" mask="01" />
