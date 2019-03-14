@@ -251,7 +251,8 @@
         <xs:element ref="type:type" minOccurs="0" maxOccurs="unbounded" />
         <xs:element ref="zcl:global" minOccurs="1" maxOccurs="1" />
         <xs:choice minOccurs="1" maxOccurs="unbounded">
-          <xs:element ref="zcl:cluster" minOccurs="1" maxOccurs="unbounded" />
+          <xs:element ref="zcl:cluster" />
+          <xs:element ref="zcl:derivedCluster" />
         </xs:choice>
       </xs:sequence>
     </xs:complexType>
@@ -266,6 +267,17 @@
         xpath=".//zcl:cluster/server/commands/command/fields/field | .//zcl:cluster/client/commands/command/fields/field | .//zcl:global/commands/command/fields/field | .//zcl:global/commands/command/fields/field" />
       <xs:field xpath="@type"></xs:field>
     </xs:keyref>
+    
+    <xs:keyref name="derivedClusterNameRef" refer="zcl:clusterName">
+      <xs:selector
+        xpath=".//zcl:derivedCluster" />
+      <xs:field xpath="@inheritsFrom" />
+    </xs:keyref>
+    <xs:key name="clusterName">
+      <xs:selector xpath=".//zcl:cluster" />
+      <xs:field xpath="@name" />  
+    </xs:key>
+    
     <xs:keyref name="tagDataTypeRef" refer="zcl:dataType">
       <xs:selector xpath=".//zcl:cluster/tags/tag" />
       <xs:field xpath="@type"></xs:field>
@@ -279,5 +291,10 @@
       <xs:selector xpath=".//type:type | .//zcl:cluster/type | .//zcl:global/type" />
       <xs:field xpath="@inheritsFrom"></xs:field>
     </xs:keyref>
+    
+    <xs:unique name="picsCode">
+      <xs:selector xpath=".//zcl:cluster/classification | .//zcl:derivedCluster/classification" />
+      <xs:field xpath="@picsCode" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

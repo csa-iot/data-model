@@ -35,7 +35,7 @@ Duplicate the line for Basic.xml for your cluster, and insert it into the correc
 
 Clusters
 --------
-Each cluster is defined with the following basic structure
+Each base cluster is defined with the following basic structure
 
 ```xml
 <zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
@@ -44,7 +44,7 @@ Each cluster is defined with the following basic structure
              xmlns:xi="http://www.w3.org/2001/XInclude" 
              xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
              id="0000" revision="0" name="Basic">
-  <classification hierarchy="base" role="utility" picsCode="B" />
+  <classification role="utility" picsCode="B" />
   <type:type />
   <server>...</server>
   <client>...</client>
@@ -52,13 +52,34 @@ Each cluster is defined with the following basic structure
 </zcl:cluster>
 ```
 
-The classification element is required, all of the others can be omitted if there is no content. The classification information is given in the ZCL document and must include the hierarchy, role and picsCode.
+The classification element is required, all of the others can be omitted if there is no content. The classification information is given in the ZCL document and must include the role and picsCode. It may also include the primaryTransaction if the role is application.
 
 The type:type definition allows for the definition of complex types, or types which are used by multiple attributes and/or commands. This must be used whenever an enumeration, bitmap, etc. is reused. For more information see the Types section below.
 
 The server and client define the attributes and commands that comprise the respective server and client sides of a cluster. For more information see the Clusters section below.
 
 The tags section allows for the definition of tags at the cluster level which are then referenced by the commands which the tag may be used to extend. For more information see the Tags section below.
+
+Derived Clusters
+----------------
+Each derived cluster is defined with the following basic structure
+
+```xml
+<zcl:derivedCluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:type="http://zigbee.org/zcl/types" 
+             xmlns:xi="http://www.w3.org/2001/XInclude" 
+             xmlns:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+             id="001c" revision="0" name="PulseWidthModulation" inheritsFrom="Level">
+  <classification picsCode="PWM" />
+  <server>...</server>
+  <client>...</client>
+</zcl:derivedCluster>
+```
+
+The classification element is required, all of the others can be omitted if there is no content. The classification information is given in the ZCL document and must include the picsCode.
+
+The server and client allow the attributes and commands that are modified by the respective server and client sides of a cluster to be expressed. For more information see the Derived Clusters section below.
 
 Naming
 ------
@@ -107,12 +128,16 @@ There are a number of restrictions available for types. These build the basis of
 * enumeratedRange - see the Enumerations section below
 * minExclusive - sets a minimum that doesn't include the value specified, i.e. a field of this type must be strictly greater than the value
 * minExclusiveRef - sets a minimum that is based on the value of the referenced attribute. The value of the referenced attribute is excluded from the range
+* minExclusiveExpression - sets a minimum that is based on an expression. The value returned by the expression is excluded from the range. This construct may only be used if no other mechanism will meet the needs. 
 * minInclusive - sets a minimum that includes the value specified, i.e. a field of this type must be greater than or equal than the value
 * minInclusiveRef - sets a minimum that is based on the value of the referenced attribute. The value of the referenced attribute is included in the range
+* minInclusiveExpression - sets a minimum that is based on an expression. The value returned by the expression is included from the range. This construct may only be used if no other mechanism will meet the needs.
 * maxExclusive - sets a maximum that doesn't include the value specified, i.e. a field of this type must be strictly less than the value
 * maxExclusiveRef - sets a maximum that is based on the value of the referenced attribute. The value of the referenced attribute is excluded from the range
+* maxExclusiveExpression - sets a maximum that is based on an expression. The value returned by the expression is excluded from the range. This construct may only be used if no other mechanism will meet the needs.
 * maxInclusive - sets a maximum that includes the value specified, i.e. a field of this type must be less than or equal to the value
 * maxInclusiveRef - sets a maximum that is based on the value of the referenced attribute.
+* maxInclusiveExpression - sets a maximum that is based on an expression. The value returned by the expression is included from the range. This construct may only be used if no other mechanism will meet the needs.
 * totalDigits - see http://www.w3.org/TR/xmlschema11-2/#element-totalDigits
 * fractionDigits - see http://www.w3.org/TR/xmlschema11-2/#element-fractionDigits
 * length - specifies an exact length, generally used for a string.
@@ -167,8 +192,6 @@ any hierarchy information.
 
 | Attribute          | Required | Description                                                           | 
 |--------------------|----------|-----------------------------------------------------------------------|
-| hierarchy          | true     | Indicates if the cluster is a base cluster or derived from another.   |
-| base               | false    | The base cluster id for the cluster from which this is defined.       |
 | role               | true     | The role that the cluster takes (application or utility).             |
 | picsCode           | true     | The code which is used for PICS items relating to this cluster        |
 | primaryTransaction | false    | For application clusters, the primary transaction type. Defaults to 1 |
@@ -210,10 +233,9 @@ An attribute may be specified using the following attributes in the XML.
 
 Inside an attribute definition, either a bitmap or a series of restrictions may be specified. An example of restrictions can be seen in the example attribute definition for `GenericDevice-Class`. For an example of bitmap definitions, see the Bitmaps section.
 
-
 Commands
 --------
-Commands definitions look like the following.
+Derived Commands modifications look like the following.
 
 ```xml
 <commands>
@@ -222,9 +244,9 @@ Commands definitions look like the following.
       <field name="GroupId" type="uint16" />
       <field name="GroupName" type="string" />
     </fields>
-    <tag ref="1" />
-    <tag ref="2" />
-    <tag ref="3" />
+    <tag ref="AddressAssignmentMode" />
+    <tag ref="MulticastIPv6Address" />
+    <tag ref="GroupPort" />
   </command>
   <command id="04" name="RemoveAllGroups" required="true" />
 </commands>
@@ -232,12 +254,13 @@ Commands definitions look like the following.
 
 A command may be specified using the following attributes in XML
 
-| Attribute      | Required | Description                                                    |
-|----------------|----------|----------------------------------------------------------------|
-| id             | true     | The Zigbee command id, as a HexBinary (ie, 2 hex characters)   |
-| name           | true     | The name of the command, as per the Naming section above       | 
-| required       | false    | If the command is mandatory. Defaults to false                 |
-| deprecated     | false    | Indicates that a command has been deprecated                   |
+| Attribute      | Required | Description                                                                                                                  |
+|----------------|----------|------------------------------------------------------------------------------------------------------------------------------|
+| id             | true     | The Zigbee command id, as a HexBinary (ie, 2 hex characters)                                                                 |
+| name           | true     | The name of the command, as per the Naming section above                                                                     | 
+| required       | false    | If the command is mandatory. Defaults to false                                                                               |
+| requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which a command is mandatory. Defaults to false |
+| deprecated     | false    | Indicates that a command has been deprecated                                                                                 |
 
 Inside a command definition, a series of fields followed by tag definitions is permitted. 
 
@@ -255,6 +278,78 @@ Each field is defined with the following attributes in XML
 | deprecated     | false    | Indicates that a command field has been deprecated               |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
+
+Derived Clusters
+========
+Each derived cluster is defined as a client / server pair. Inside each side of these pairs exists modifiers to the base cluster set of attributes and/or commands. Additional attributes and commands may not be defined, but must be added to the base cluster. See the Derived Attributes and Derived Commands sections below for more information.
+
+A cluster also has some additional information such as id, name, and how it is 
+classified.
+
+| Attribute      | Required | Description                                                        |
+|----------------|----------|--------------------------------------------------------------------|
+| id             | true     | The Zigbee cluster id, as a HexBinary (ie, 4 hex characters)       |
+| name           | true     | The name of the cluster, as per the Naming section above           |
+| revision       | true     | The cluster revision described by this document                    |
+| inheritsFrom   | true     | Specifies the name of the cluster from which this cluster inherits |
+
+Classification
+--------------
+The classification tag contains information about the role the cluster takes and 
+any hierarchy information.  
+
+| Attribute          | Required | Description                                                           | 
+|--------------------|----------|-----------------------------------------------------------------------|
+| role               | true     | The role that the cluster takes (application or utility).             |
+| picsCode           | true     | The code which is used for PICS items relating to this cluster        |
+| primaryTransaction | false    | For application clusters, the primary transaction type. Defaults to 1 |
+
+
+Derived Attributes
+------------------
+Derived attribute modifications look like the following.
+
+```xml
+<attributes>
+  <attribute ref="GenericDevice-Class" required="true" />
+</attributes>
+```
+
+An attribute may be specified using the following attributes in the XML.
+
+| Attribute      | Required | Description                                                                                                                     |
+|----------------|----------|---------------------------------------------------------------------------------------------------------------------------------|
+| ref            | true     | The name of the attribute in the base cluster which is being modified, as per the Naming section above                          |
+| reportRequired | false    | If attribute is required to be reportable. Defaults to false                                                                    |
+| sceneRequired  | false    | If attribute is required to be part of the scene extensions. Defaults to false                                                  |
+| required       | false    | If the attribute is mandatory. Defaults to false                                                                                |
+| requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which an attribute is mandatory. Defaults to false |
+
+
+Derived Commands
+----------------
+Derived commands definitions look like the following.
+
+```xml
+<commands>
+  <command ref="AddGroup" required="true">
+    <tag ref="AddressAssignmentMode" />
+    <tag ref="MulticastIPv6Address" />
+    <tag ref="GroupPort" />
+  </command>
+</commands>
+```
+
+A derived command may modify a command in the cluster using the following attributes in XML
+
+| Attribute      | Required | Description                                                                                                                  |
+|----------------|----------|------------------------------------------------------------------------------------------------------------------------------|
+| ref            | true     | The name of the command in the base cluster which is being modified, as per the Naming section above                         | 
+| required       | false    | If the command is mandatory. Defaults to false                                                                               |
+| requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which a command is mandatory. Defaults to false |
+
+A derived command may specify additional tags which may be included and if they are required.
+
 
 Arrays
 ======
@@ -319,8 +414,33 @@ Logical expressions in the XML SHALL be expressed using the operators specified 
 
 In addition, the following functions are available for expressions
 
-| Function      | Description                                                                                                           |
-| implements(X) | Returns true when a specific implementation implements the attribute or command named by X. Uses the name, not the id |
+| Function       | Description                                                                                                           |
+| implements(X)  | Returns true when a specific implementation implements the attribute or command named by X. Uses the name, not the id |
+| min(X, Y, ...) | Returns the minimum value of the provided arguments. May take numeric literals or attribute names as references.      |
+| max(X, Y, ...) | Returns the maximum value of the provided arguments. May take numeric literals or attribute names as references.      |
+
+Patterns
+========
+
+Sets of dependent attributes / commands
+---------------------------------------
+In some clusters, there are a number of optional attributes or commands that are 
+specified as having to be implemented together when implemented. The prodcudure 
+used to capture this in XML is as follows.
+
+1. Identify all attributes and commands that are grouped together
+2. Select one attribute as the key attribute or command
+3. Add a requiredIf statement to the key attribute which uses the implements() 
+   function for all the other attributes and commands which were identified in
+   the first step. These are added using the or keyword
+       
+       <attribute id="0000" name="Attribute1" ... requiredIf="implements(Attribute2) or implements(Attribute3)" />
+       
+4. For each remaining attribute and command (ie, not the key attribute or 
+   command), add a required if pointing to the key attribute or command using
+   the implements() function.
+    
+       <attribute id="0001" name="Attribute2" ... requiredIf="implements(Attribute1)" />       
 
 Fields in a Command
 -------------------
