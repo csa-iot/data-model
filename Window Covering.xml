@@ -40,8 +40,8 @@
           <element name="TiltEncoderControlled" type="bool" mask="40" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0008" name="CurrentPositionLiftPercentage" type="uint8" required="true" reportRequired="true" sceneRequired="true" max="100" default="0" />
-      <attribute id="0009" name="CurrentPositionTiltPercentage" type="uint8" required="true" reportRequired="true" sceneRequired="true" max="100" default="0" />
+      <attribute id="0008" name="CurrentPositionLiftPercentage" type="uint8" requiredIf="ConfigOrStatus.LiftClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="0" />
+      <attribute id="0009" name="CurrentPositionTiltPercentage" type="uint8" requiredIf="ConfigOrStatus.TiltClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="0" />
       
        <!-- Window Covering Settings Attribute Set -->
       <attribute id="0100" name="InstalledOpenLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="0" />
