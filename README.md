@@ -176,8 +176,7 @@ Clusters
 ========
 Each cluster is defined as a client / server pair. Inside each side of these pairs exists a set of attributes and/or commands. Each side is required to implement several global attributes. There may be additional attributes and commands defined. See the Attributes and Commands sections below for more information.
 
-A cluster also has some additional information such as id, name, and how it is 
-classified.
+A cluster also has some additional information such as id, name, and how it is classified.
 
 | Attribute      | Required | Description                                                    |
 |----------------|----------|----------------------------------------------------------------|
@@ -187,8 +186,7 @@ classified.
 
 Classification
 ---------
-The classification tag contains information about the role the cluster takes and 
-any hierarchy information.  
+The classification tag contains information about the role the cluster takes and any hierarchy information.  
 
 | Attribute          | Required | Description                                                           | 
 |--------------------|----------|-----------------------------------------------------------------------|
@@ -294,8 +292,7 @@ A cluster also has some additional information such as id, name, and how it is c
 
 Classification
 --------------
-The classification tag contains information about the role the cluster takes and 
-any hierarchy information.  
+The classification tag contains information about the role the cluster takes and any hierarchy information.  
 
 | Attribute          | Required | Description                                                           | 
 |--------------------|----------|-----------------------------------------------------------------------|
@@ -354,9 +351,7 @@ Arrays
 ======
 Conversion of an array in a command field is done using the following process.
 
-1. Identify the type of each element in the array. It may be necessary to create
-   a record-like type which contains other types using the sequence restriction.
-   An example of this can be seen in:
+1. Identify the type of each element in the array. It may be necessary to create a record-like type which contains other types using the sequence restriction. An example of this can be seen in:
    
    	    <type:type id="ff" short="readAttributeResponseRecord" name="Read Attributes Status Record">
 		    <restriction>
@@ -374,24 +369,13 @@ Conversion of an array in a command field is done using the following process.
              </fields>
          </command>
 
-2. Identify how the number of elements in the array is determined. This could 
-   be through a count field that immediately precedes the elements, a count 
-   field that exists elsewhere in the command, or implicitly 
-   (i.e., the rest of the frame is consumed by array elements)
+2. Identify how the number of elements in the array is determined. This could be through a count field that immediately precedes the elements, a count field that exists elsewhere in the command, or implicitly (i.e., the rest of the frame is consumed by array elements)
 
-3. If the array elements are immediately preceded by a count field (which is 
-   not a component of a bitmap), then the array should be defined by an entry 
-   for the elements with array="true". If the size counter was not 8 bits, then 
-   the arrayLengthSize should also be set to the number of octets. For example, 
-   an array of 8 bit unsigned integers with a 16-bit length would be defined as 
-   follows: 
+3. If the array elements are immediately preceded by a count field (which is not a component of a bitmap), then the array should be defined by an entry for the elements with array="true". If the size counter was not 8 bits, then the arrayLengthSize should also be set to the number of octets. For example, an array of 8 bit unsigned integers with a 16-bit length would be defined as follows: 
 
 		<field name="MyArray" type="uint8" array="true" arrayLengthSize="2" />
 
-4. If the field that specifies the number of elements in the array is elsewhere
-   in the command, it must be specified properly as a numeric type and then
-   referenced by the array field in the XML. The element may be part of a bitmap
-   or a separate field.
+4. If the field that specifies the number of elements in the array is elsewhere in the command, it must be specified properly as a numeric type and then referenced by the array field in the XML. The element may be part of a bitmap or a separate field.
 
 		<field name="MyBitmap" type="map8">
 		     <bitmap>
@@ -401,9 +385,7 @@ Conversion of an array in a command field is done using the following process.
 		</field>
 		<field name="Transitions" type="TransitionType" array="true" arrayLengthField="MyBitmap.NumberOfTransitions" />
    
-5. If there is no field that specifies the number of entries, then this means 
-   that they must consume the rest of the message. This is indicated by setting 
-   the arrayLengthSize to 0.
+5. If there is no field that specifies the number of entries, then this means that they must consume the rest of the message. This is indicated by setting the arrayLengthSize to 0.
 
 		<field name="MyArray" type="uint8" array="true" arrayLengthSize="0" />
    
