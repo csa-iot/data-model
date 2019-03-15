@@ -344,7 +344,7 @@ A derived command may modify a command in the cluster using the following attrib
 | required       | false    | If the command is mandatory. Defaults to the value specified for the command in the base cluster     |
 | requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which a command is mandatory. Defaults to the value specified in the base cluster. |
 
-A derived command may specify additional tags which may be included and if they are required (by default tags are optional).
+A derived command may specify additional tags which may be included. It may also specify that they are required (by default tags are optional).
 
 
 Arrays
