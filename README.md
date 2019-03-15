@@ -283,8 +283,7 @@ Derived Clusters
 ========
 Each derived cluster is defined as a client / server pair. Inside each side of these pairs exists modifiers to the base cluster set of attributes and/or commands. Additional attributes and commands may not be defined, but must be added to the base cluster. See the Derived Attributes and Derived Commands sections below for more information.
 
-A cluster also has some additional information such as id, name, and how it is 
-classified.
+A cluster also has some additional information such as id, name, and how it is classified.
 
 | Attribute      | Required | Description                                                        |
 |----------------|----------|--------------------------------------------------------------------|
@@ -342,13 +341,13 @@ Derived commands definitions look like the following.
 
 A derived command may modify a command in the cluster using the following attributes in XML
 
-| Attribute      | Required | Description                                                                                                                  |
-|----------------|----------|------------------------------------------------------------------------------------------------------------------------------|
-| ref            | true     | The name of the command in the base cluster which is being modified, as per the Naming section above                         | 
-| required       | false    | If the command is mandatory. Defaults to false                                                                               |
-| requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which a command is mandatory. Defaults to false |
+| Attribute      | Required | Description                                                                                          |
+|----------------|----------|------------------------------------------------------------------------------------------------------|
+| ref            | true     | The name of the command in the base cluster which is being modified, as per the Naming section above | 
+| required       | false    | If the command is mandatory. Defaults to the value specified for the command in the base cluster     |
+| requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which a command is mandatory. Defaults to the value specified in the base cluster. |
 
-A derived command may specify additional tags which may be included and if they are required.
+A derived command may specify additional tags which may be included and if they are required (by default tags are optional).
 
 
 Arrays
@@ -424,21 +423,15 @@ Patterns
 
 Sets of dependent attributes / commands
 ---------------------------------------
-In some clusters, there are a number of optional attributes or commands that are 
-specified as having to be implemented together when implemented. The prodcudure 
-used to capture this in XML is as follows.
+In some clusters, there are a number of optional attributes or commands that are specified as having to be implemented together when implemented. The procedure used to capture this in XML is as follows.
 
 1. Identify all attributes and commands that are grouped together
 2. Select one attribute as the key attribute or command
-3. Add a requiredIf statement to the key attribute which uses the implements() 
-   function for all the other attributes and commands which were identified in
-   the first step. These are added using the or keyword
+3. Add a requiredIf statement to the key attribute which uses the implements() function for all the other attributes and commands which were identified in the first step. These are added using the or keyword
        
        <attribute id="0000" name="Attribute1" ... requiredIf="implements(Attribute2) or implements(Attribute3)" />
        
-4. For each remaining attribute and command (ie, not the key attribute or 
-   command), add a required if pointing to the key attribute or command using
-   the implements() function.
+4. For each remaining attribute and command (ie, not the key attribute or command), add a requiredIf pointing to the key attribute or command using the implements() function.
     
        <attribute id="0001" name="Attribute2" ... requiredIf="implements(Attribute1)" />       
 
