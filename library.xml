@@ -335,6 +335,44 @@
     </restriction>
   </type:type>
 
+  <!-- IAS types used by both IAS Zone and IAS ACE clusters. -->
+  <type:type short="IasZoneType" name="IasZoneType" id="31" inheritsFrom="enum16">
+    <restriction>
+      <type:enumeration name="StandardCIE" value="0000"/>
+      <type:enumeration name="MotionSensor" value="000D"/>
+      <type:enumeration name="ContactSwitch" value="0015"/>
+      <type:enumeration name="DoorOrWindowHandle" value="0016"/>
+      <type:enumeration name="FireSensor" value="0028"/>
+      <type:enumeration name="WaterSensor" value="002A"/>
+      <type:enumeration name="CarbonMonoxideSensor" value="002B"/>
+      <type:enumeration name="PersonalEmergencyDevice" value="002C"/>
+      <type:enumeration name="VibrationOrMovementSensor" value="002D"/>
+      <type:enumeration name="RemoteControl" value="010F"/>
+      <type:enumeration name="KeyFob" value="0115"/>
+      <type:enumeration name="Keypad" value="021D"/>
+      <type:enumeration name="StandardWarningDevice" value="0225"/>
+      <type:enumeration name="GlassBreakSensor" value="0226"/>
+      <type:enumeration name="SecurityRepeater" value="0229"/>
+      <type:enumeratedRange name="ManufacturerSpecific" min="8000" max="FFFE" />
+      <type:enumeration name="Invalid" value="FFFF"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="IasZoneStatus" name="IasZoneStatus" id="19" inheritsFrom="map16">
+    <bitmap>
+      <element name="Alarm1" type="bool" mask="0001" shiftRight="0" />
+      <element name="Alarm2" type="bool" mask="0002" shiftRight="1" />
+      <element name="Tamper" type="bool" mask="0004" shiftRight="2" />
+      <element name="BatteryLow" type="bool" mask="0008" shiftRight="3" />
+      <element name="SupervisionNotify" type="bool" mask="0010" shiftRight="4" />
+      <element name="RestoreNotify" type="bool" mask="0020" shiftRight="5" />
+      <element name="Trouble" type="bool" mask="0040" shiftRight="6" />
+      <element name="ACMainsFault" type="bool" mask="0080" shiftRight="7" />
+      <element name="Test" type="bool" mask="0100" shiftRight="8" />
+      <element name="BatteryDefect" type="bool" mask="0200" shiftRight="9" />
+    </bitmap>
+  </type:type>
+
   <xi:include href="global.xml" parse="xml" />
   <xi:include href="Basic.xml" parse="xml" />
   <xi:include href="Power Configuration.xml" parse="xml" />
@@ -353,6 +391,7 @@
   <xi:include href="Flow Measurement.xml" parse="xml" />
   <xi:include href="Water Content Measurement.xml" parse="xml" />
   <xi:include href="Occupancy Sensing.xml" parse="xml" />
+  <xi:include href="Electrical Measurement.xml" parse="xml" />
   <xi:include href="Electrical Conductivity Measurement.xml" parse="xml" />
   <xi:include href="pH Measurement.xml" parse="xml" />
   <xi:include href="Wind Speed Measurement.xml" parse="xml" />
@@ -363,6 +402,9 @@
   <xi:include href="Dehumidification Control.xml" parse="xml" />
   <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
   <xi:include href="Window Covering.xml" parse="xml" />
+  <xi:include href="IAS Zone.xml" parse="xml" />
+  <xi:include href="IAS ACE.xml" parse="xml" />
+  <xi:include href="IAS WD.xml" parse="xml" />
   <xi:include href="Touchlink Commissioning.xml" parse="xml" />
 
 </zcl:library>
