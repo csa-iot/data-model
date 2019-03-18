@@ -63,7 +63,7 @@
             <bitmap>
               <element name="SquawkLevel" type="IaswdLevel" mask="03" shiftRight="0" />
               <!-- Bit 2 is undefined. -->
-              <element name="SquawkStrobeActive" type="bool" mask="04" shiftRight="3" />
+              <element name="SquawkStrobeActive" type="bool" mask="08" shiftRight="3" />
               <element name="SquawkMode" type="enum8" mask="F0" shiftRight="4" >
                 <restriction>
                   <type:enumeration name="SoundForSystemIsArmed" value="00"/>
