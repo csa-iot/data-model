@@ -31,9 +31,9 @@
   
   <server>
     <attributes>
-      <attribute id="0000" name="SceneCount" type="uint8" max="255" default="0" required="true" />
-      <attribute id="0001" name="CurrentScene" type="uint8" max="255" default="0" required="true" />
-      <attribute id="0002" name="CurrentGroup" type="SGroupId" max="65527" default="0" required="true" />
+      <attribute id="0000" name="SceneCount" type="uint8" default="0" required="true" />
+      <attribute id="0001" name="CurrentScene" type="uint8" default="0" required="true" />
+      <attribute id="0002" name="CurrentGroup" type="SGroupId" default="0" required="true" />
       <attribute id="0003" name="SceneValid" type="bool" default="0" required="true" />
       <attribute id="0004" name="NameSupport" type="map8" required="true">
         <bitmap>
