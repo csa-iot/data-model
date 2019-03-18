@@ -187,12 +187,12 @@
     <!-- Type Requirements -->
     <xs:keyref name="attributeDataTypeRef" refer="zcl:dataType">
       <xs:selector
-        xpath=".//zcl:cluster/server/attributes/attribute | .//zcl:cluster/client/attributes/attribute | .//zcl:global/attributes/attribute | .//zcl:global/attributes/attribute" />
+        xpath=".//zcl:cluster/server/attributes/attribute | .//zcl:cluster/client/attributes/attribute | .//zcl:global/attributes/attribute" />
       <xs:field xpath="@type"></xs:field>
     </xs:keyref>
     <xs:keyref name="commandDataTypeRef" refer="zcl:dataType">
       <xs:selector
-        xpath=".//zcl:cluster/server/commands/command/fields/field | .//zcl:cluster/client/commands/command/fields/field | .//zcl:global/commands/command/fields/field | .//zcl:global/commands/command/fields/field" />
+        xpath=".//zcl:cluster/server/commands/command/fields/field | .//zcl:cluster/client/commands/command/fields/field | .//zcl:global/commands/command/fields/field" />
       <xs:field xpath="@type"></xs:field>
     </xs:keyref>
     <xs:keyref name="tagDataTypeRef" refer="zcl:dataType">
