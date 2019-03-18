@@ -121,8 +121,16 @@
           <element name="ColorTemperatureSupported" type="bool" mask="0010" shiftRight="4" />
         </bitmap>
       </attribute>
-      <attribute id="400B" name="ColorTempPhysicalMinMireds" type="uint16" max="65279" default="0" requiredIf="ColorCapabilities.ColorTemperatureSupported = true" />
-      <attribute id="400C" name="ColorTempPhysicalMaxMireds" type="uint16" max="65279" default="65279" requiredIf="ColorCapabilities.ColorTemperatureSupported = true" />
+      <attribute id="400B" name="ColorTempPhysicalMinMireds" type="uint16" max="65279" default="0" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
+        <restriction>
+          <type:maxInclusiveRef ref="ColorTempPhysicalMaxMireds" />
+        </restriction>
+      </attribute>
+      <attribute id="400C" name="ColorTempPhysicalMaxMireds" type="uint16" max="65279" default="65279" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
+        <restriction>
+          <type:minInclusiveRef ref="ColorTempPhysicalMinMireds" />
+        </restriction>
+      </attribute>
       <attribute id="400D" name="CoupleColorTempToLevelMinMireds" type="uint16" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
         <restriction>
           <type:minInclusiveRef ref="ColorTempPhysicalMinMireds" />
@@ -156,8 +164,8 @@
       <attribute id="0029" name="Primary6Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 5" />
       <attribute id="002A" name="Primary6Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 5" />
       <!-- Defined Color Points Settings Attribute Set -->
-      <attribute id="0030" name="WhitePointX" type="uint16" max="65279" writable="true" />
-      <attribute id="0031" name="WhitePointY" type="uint16" max="65279" writable="true" />
+      <attribute id="0030" name="WhitePointX" type="uint16" max="65279" writable="true" requiredIf="implements(WhitePointY)" />
+      <attribute id="0031" name="WhitePointY" type="uint16" max="65279" writable="true" requiredIf="implements(WhitePointX)" />
       <attribute id="0032" name="ColorPointRX" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRY) or implements(ColorPointRIntensity) or implements(ColorPointGX) or implements(ColorPointGY) or implements(ColorPointGIntensity) or implements(ColorPointBX) or implements(ColorPointBY) or implements(ColorPointBIntensity)" />
       <attribute id="0033" name="ColorPointRY" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
       <attribute id="0034" name="ColorPointRIntensity" type="uint8" max="255" writable="true" requiredIf="implements(ColorPointRX)" />
