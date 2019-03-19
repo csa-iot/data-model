@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0403" revision="2" name="PressureMeasurement">
-  <classification hierarchy="base" role="application" picsCode="PRS" primaryTransaction="2" />
+  <classification role="application" picsCode="PRS" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="MeasuredValue" type="int16" reportRequired="true" required="true" default="-32768" >

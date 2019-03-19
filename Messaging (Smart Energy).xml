@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0703" revision="0" name="Messaging (Smart Energy)">
-  <classification hierarchy="base" role="application" picsCode="SEMS" primaryTransaction="" />
+  <classification role="application" picsCode="SEMS" primaryTransaction="" />
   <server>
     <attributes />
   </server>
