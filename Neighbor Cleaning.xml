@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0023" revision="0" name="Neighbor Cleaning">
-  <classification hierarchy="base" role="utility" picsCode="NBCLEAN" />
+  <classification role="utility" picsCode="NBCLEAN" />
   <server>
     <attributes />
     <commands>

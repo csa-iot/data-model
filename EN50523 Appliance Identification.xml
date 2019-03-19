@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0B00" revision="0" name="EN50523 Appliance Identification">
-  <classification hierarchy="base" role="application" picsCode="APLNCID" primaryTransaction="" />
+  <classification role="application" picsCode="APLNCID" primaryTransaction="" />
   <server>
     <attributes />
   </server>

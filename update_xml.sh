@@ -18,3 +18,4 @@ sed -i '' 's/xmlns:schemaLocation/xsi:schemaLocation/g' *.xml
 sed -i '' 's/ xmlns:zcl="http:\/\/zigbee.org\/zcl\/clusters">/>/g' *.xml
 sed -i '' 's/<classification role="\([^"]*\)" picsCode="\([^"]*\)" \/>/<classification hierarchy="base" role="\1" picsCode="\2" \/>/g' *.xml
 sed -i '' 's/<classification hierarchy="\([^"]*\)" role="application" picsCode="\([^"]*\)" \/>/<classification hierarchy="\1" role="application" picsCode="\2" primaryTransaction="" \/>/g' *.xml
+sed -i '' 's/<classification hierarchy="base"/<classification/g' *.xml

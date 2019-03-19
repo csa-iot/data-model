@@ -5,7 +5,7 @@
              xmlns:xi="http://www.w3.org/2001/XInclude" 
              xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
              id="0B04" revision="2" name="ElectricalMeasurement">
-  <classification hierarchy="base" role="application" picsCode="EMR" />
+  <classification role="application" picsCode="EMR" primaryTransaction="1" />
   <!--  For any measurement cluster with MeasuredValue, MinMeasuredValue and MaxMeasuredValue attributes, the 
         following SHALL be always be true:
           If both are defined, then MaxMeasuredValue SHALL be greater than MinMeasuredValue.

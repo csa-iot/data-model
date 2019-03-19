@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0005" revision="0" name="Scenes">
-  <classification hierarchy="base" role="application" picsCode="S" primaryTransaction="" />
+  <classification role="application" picsCode="S" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="SceneCount" type="uint8" required="true" max="255" default="0" />

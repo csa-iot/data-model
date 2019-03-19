@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0101" revision="2" name="DoorLock">
-  <classification hierarchy="base" role="application" picsCode="DRLK" primaryTransaction="2" />
+  <classification role="application" picsCode="DRLK" primaryTransaction="2" />
 
   <type:type short="DrlkUserStatus" name="DrlkUserStatus" id="20" inheritsFrom="uint8">
     <restriction>
