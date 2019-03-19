@@ -1,0 +1,53 @@
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+  id="0703" revision="2" name="MessagingSmartEnergy">
+  <classification hierarchy="Base" role="application" picsCode="SEMS"/>
+  <server>
+    <commands>
+      <command id="00" name="GetLastMessage" required="true"/>
+      <command id="01" name="MessageConfirmation" required="true">
+        <fields>
+          <field name="MessageIDM" type="uint32"/>
+          <field name="ConfirmationTimeM" type="UTC"/>
+          <field name="MessageConfirmationControlO" type="map8"/>
+          <field name="MessageConfirmationResponseO" type="octstr"/>
+        </fields>
+      </command>
+      <command id="02" name="GetMessageCancellation">
+        <fields>
+          <field name="EarliestImplementationTimeM" type="UTC"/>
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="DisplayMessage" required="true">
+        <fields>
+          <field name="MessageIDM" type="uint32"/>
+          <field name="MessageControlM" type="map8"/>
+          <field name="StartTimeM" type="UTC"/>
+          <field name="DurationInMinutesM" type="uint16"/>
+          <field name="MessageM" type="string"/>
+          <field name="ExtendedMessageControlO" type="map8"/>
+        </fields>
+      </command>
+      <command id="01" name="CancelMessage" required="true">
+        <fields>
+          <field name="MessageIDM" type="uint32"/>
+          <field name="MessageControlM" type="map8"/>
+        </fields>
+      </command>
+      <command id="02" name="DisplayProtectedMessage"/>
+      <command id="03" name="CancelAllMessages">
+        <fields>
+          <field name="ImplementationDateTimeM" type="UTC"/>
+        </fields>
+      </command>
+    </commands>
+  </client>
+</zcl:cluster>

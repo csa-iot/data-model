@@ -1,0 +1,57 @@
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0701" revision="2" name="DemandResponseAndLoadControl">
+  <classification hierarchy="Base" role="application" picsCode="DRLC"/>
+  <server>
+    <commands>
+      <command id="00" name="ReportEventStatus" required="true">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="EventStatusM" type="uint8"/>
+          <field name="EventStatusTimeM" type="UTC"/>
+          <field name="CriticalityLevelAppliedM" type="uint8"/>
+          <field name="CoolingTemperatureSetPointAppliedO" type="uint16"/>
+          <field name="HeatingTemperatureSetPointAppliedO" type="uint16"/>
+        </fields>
+      </command>
+      <command id="01" name="GetScheduledEvents" required="true">
+        <fields>
+          <field name="StartTimeM" type="UTC"/>
+          <field name="NumberOfEventsM" type="uint8"/>
+          <field name="IssuerEventIDO" type="uint32"/>
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <attributes>
+      <attribute id="0000" name="UtilityEnrollmentGroup" type="uint8" writable="true" required="true" max="255" default="0"/>
+      <attribute id="0001" name="StartRandomizationMinutes" type="uint8" writable="true" required="true" max="3" default="30"/>
+      <attribute id="0002" name="DurationRandomizationMinutes" type="uint8" writable="true" required="true" max="3" default="0"/>
+      <attribute id="0003" name="DeviceClassValue" type="uint16" writable="true" required="true" max="65535"/>
+    </attributes>
+    <commands>
+      <command id="00" name="LoadControlEvent" required="true">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="DeviceClassM" type="map16"/>
+          <field name="UtilityEnrollmentGroupM" type="uint8"/>
+          <field name="StartTimeM" type="UTC"/>
+          <field name="DurationInMinutesM" type="uint16"/>
+          <field name="CriticalityLevelM" type="uint8"/>
+          <field name="CoolingTemperatureOffsetO" type="uint8"/>
+        </fields>
+      </command>
+      <command id="01" name="CancelLoadControlEvent" required="true"/>
+      <command id="02" name="CancelAllLoadControlEvents" required="true">
+        <fields>
+          <field name="CancelControl" type="map8"/>
+        </fields>
+      </command>
+    </commands>
+  </client>
+</zcl:cluster>
