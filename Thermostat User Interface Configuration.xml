@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0204" revision="1" name="ThermostatUserInterfaceConfiguration">
-  <classification hierarchy="base" role="application" picsCode="TSUIC" primaryTransaction="1" />
+  <classification role="application" picsCode="TSUIC" primaryTransaction="1" />
   <server>
     <attributes>
       <attribute id="0000" name="TemperatureDisplayMode" type="enum8" writable="true" required="true" default="0">

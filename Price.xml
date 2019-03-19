@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0700" revision="0" name="Price">
-  <classification hierarchy="base" role="application" picsCode="SEPR" primaryTransaction="" />
+  <classification role="application" picsCode="SEPR" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="Tier1PriceLabel" type="octstr" writable="true" default="“Tier 1”">

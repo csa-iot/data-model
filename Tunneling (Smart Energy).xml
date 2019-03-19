@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0704" revision="0" name="Tunneling (Smart Energy)">
-  <classification hierarchy="base" role="application" picsCode="SETUN" primaryTransaction="" />
+  <classification role="application" picsCode="SETUN" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="CloseTunnelTimeout" type="uint16" required="true" default="65535" />

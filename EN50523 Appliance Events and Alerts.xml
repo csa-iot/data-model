@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="B002" revision="0" name="EN50523 Appliance Events and Alerts">
-  <classification hierarchy="base" role="application" picsCode="APPLEV" primaryTransaction="" />
+  <classification role="application" picsCode="APPLEV" primaryTransaction="" />
   <server>
     <attributes />
     <commands>

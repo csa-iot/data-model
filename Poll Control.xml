@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0020" revision="2" name="PollControl">
-  <classification hierarchy="base" role="utility" picsCode="POLL" />
+  <classification role="utility" picsCode="POLL" />
   <server>
     <attributes>
       <attribute id="0000" name="CheckInInterval" type="uint32" writable="true" required="true" max="7208960" default="14400" />
