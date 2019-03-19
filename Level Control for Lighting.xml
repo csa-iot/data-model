@@ -15,8 +15,8 @@
           <type:maxInclusive value="fe" />
         </restriction>
       </attribute>
-      <attribute ref="MinFrequency" requiredif="implements(CurrentFrequency)" />
-      <attribute ref="MaxFrequency" requiredif="implements(CurrentFrequency)" />
+      <attribute ref="MinFrequency" requiredIf="implements(CurrentFrequency)" />
+      <attribute ref="MaxFrequency" requiredIf="implements(CurrentFrequency)" />
       <attribute ref="Options" required="true">
         <bitmap>
           <element name="CoupleColorTempToLevel" type="bool" mask="02" shiftRight="1" />
