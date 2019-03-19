@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0200" revision="1" name="PumpConfigurationAndControl">
-  <classification hierarchy="base" role="application" picsCode="PCC" primaryTransaction="2" />
+  <classification role="application" picsCode="PCC" primaryTransaction="2" />
   
   <type:type short="PumpOperationMode" name="PumpOperationMode" id="30">
     <restriction>

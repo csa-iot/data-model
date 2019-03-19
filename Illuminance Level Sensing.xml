@@ -6,7 +6,7 @@
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0401" revision="1" name="IlluminanceLevelSensing">
-  <classification hierarchy="base" role="application" picsCode="ILLVL" primaryTransaction="2" />
+  <classification role="application" picsCode="ILLVL" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="LevelStatus" type="enum8" reportRequired="true" required="true">

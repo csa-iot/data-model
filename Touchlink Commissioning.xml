@@ -6,7 +6,7 @@
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="1000" revision="2" name="TouchlinkCommissioning">
-  <classification hierarchy="base" role="utility" picsCode="TL" />
+  <classification role="utility" picsCode="TL" />
   
   <type:type short="TLKeyIndex" name="TLKeyIndex" id="20" inheritsFrom="uint8">
     <restriction>

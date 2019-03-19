@@ -9,7 +9,7 @@
     <alias id="0407" name="LeafWetness" />
     <alias id="0408" name="SoilMoisture" />
   </aliases>
-  <classification hierarchy="base" role="application" picsCode="RH" primaryTransaction="2" />
+  <classification role="application" picsCode="RH" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="MeasuredValue" type="uint16" reportRequired="true" required="true" default="65535" >
