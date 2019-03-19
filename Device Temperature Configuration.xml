@@ -4,56 +4,38 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0002" revision="0" name="Device Temperature Configuration">
-  <classification hierarchy="base" role="utility" picsCode="DTMP" />
+  id="0002" revision="1" name="DeviceTemperatureConfiguration">
+  <classification role="utility" picsCode="DTMP" />
   <server>
     <attributes>
       <!-- Device Temperature Information -->    
-      <attribute id="0000" name="CurrentTemperature" type="int16" required="true" default="-" >
-          <restriction>
-            <type:minInclusive value="-200" />
-            <type:maxInclusive value="200" />
-            <type:invalid value="-201" />
-          </restriction>
-      </attribute>
-      <attribute id="0001" name="MinTempExperienced" type="int16" default="-" >
-          <restriction>
-            <type:minInclusive value="-200" />
-            <type:maxInclusive value="200" />
-            <type:invalid value="-201" />
-          </restriction>
-      </attribute>
-      <attribute id="0002" name="MaxTempExperienced" type="int16" default="-" >
-          <restriction>
-            <type:minInclusive value="-200" />
-            <type:maxInclusive value="200" />
-            <type:invalid value="-201" />
-          </restriction>
-      </attribute>
+      <attribute id="0000" name="CurrentTemperature" type="int16" min="-200" max="200" required="true" />
+      <attribute id="0001" name="MinTempExperienced" type="int16" min="-200" max="200" />
+      <attribute id="0002" name="MaxTempExperienced" type="int16" min="-200" max="200" />
       <attribute id="0003" name="OverTempTotalDwell" type="uint16" max="65535" default="0" />
       <!-- Device Temperature Settings -->          
-      <attribute id="0010" name="DeviceTempAlarmMask" type="map8" writable="true" default="0000 0000">
+      <attribute id="0010" name="DeviceTempAlarmMask" type="map8" writable="true" default="0">
         <bitmap>
-          <element name="DeviceTemperaturetoolow" type="bool" mask="01" />
-          <element name="DeviceTemperaturetoohigh" type="bool" mask="02" shiftRight="1" />
+          <element name="DeviceTemperatureTooLow" type="bool" mask="01" />
+          <element name="DeviceTemperatureTooHigh" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
-      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" default="-" >
+      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" >
           <restriction>
             <type:minInclusive value="-200" />
             <type:maxInclusive value="200" />
             <type:invalid value="-201" />
           </restriction>
       </attribute>    
-      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" default="-" >
+      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" >
           <restriction>
             <type:minInclusive value="-200" />
             <type:maxInclusive value="200" />
             <type:invalid value="-201" />
           </restriction>
       </attribute>      
-      <attribute id="0013" name="LowTempDwellTripPoint" type="uint24" writable="true" max="16777215" default="-" />
-      <attribute id="0014" name="HighTempDwellTripPoint" type="uint24" writable="true" max="16777215" default="-" />
+      <attribute id="0013" name="LowTempDwellTripPoint" type="uint24" writable="true" max="16777215" />
+      <attribute id="0014" name="HighTempDwellTripPoint" type="uint24" writable="true" max="16777215" />
     </attributes>
   </server>
 </zcl:cluster>
