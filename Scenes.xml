@@ -6,7 +6,7 @@
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
 	id="0005" revision="2" name="Scenes">
-  <classification hierarchy="base" role="application" picsCode="S" primaryTransaction="1" />
+  <classification role="application" picsCode="S" primaryTransaction="1" />
   
   <type:type short="SSceneName" name="SSceneName" id="42" inheritsFrom="string">
     <restriction>
