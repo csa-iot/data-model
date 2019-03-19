@@ -60,9 +60,9 @@ The server and client define the attributes and commands that comprise the respe
 
 The tags section allows for the definition of tags at the cluster level which are then referenced by the commands which the tag may be used to extend. For more information see the Tags section below.
 
-Derived Clusters
-----------------
-Each derived cluster is defined with the following basic structure
+Cluster Inheritance
+-------------------
+Clusters may inherit from a base cluster. Each derived cluster is defined with the following basic structure
 
 ```xml
 <zcl:derivedCluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
@@ -233,7 +233,7 @@ Inside an attribute definition, either a bitmap or a series of restrictions may 
 
 Commands
 --------
-Derived Commands modifications look like the following.
+Command definitions look like the following.
 
 ```xml
 <commands>
@@ -278,7 +278,7 @@ Each field is defined with the following attributes in XML
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
 
 Derived Clusters
-========
+================
 Each derived cluster is defined as a client / server pair. Inside each side of these pairs exists modifiers to the base cluster set of attributes and/or commands. Additional attributes and commands may not be defined, but must be added to the base cluster. See the Derived Attributes and Derived Commands sections below for more information.
 
 A cluster also has some additional information such as id, name, and how it is classified.
