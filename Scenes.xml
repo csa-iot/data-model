@@ -114,8 +114,8 @@
             </bitmap>
           </field>
           <field name="GroupIdentifierFrom" type="SGroupId" />
-          <field name="SceneIdentifierFrom" type="SGroupId" />
-          <field name="GroupIdentifierTo" type="uint16" />
+          <field name="SceneIdentifierFrom" type="uint8" />
+          <field name="GroupIdentifierTo" type="SGroupId" />
           <field name="SceneIdentifierTo" type="uint8" />
         </fields>
       </command>
@@ -166,7 +166,8 @@
           <field name="Capacity" type="uint8">
             <restriction>
               <type:special value="00" name="NoFurtherScenesMayBeAdded" />
-              <type:enumeratedRange min="01" max="fd" />
+              <type:minInclusive value="01" />
+              <type:maxInclusive value="fd" />
               <type:special value="fe" name="AtLeastOneFurtherSceneMayBeAdded" />
               <type:special value="ff" name="Unknown" />
             </restriction>
