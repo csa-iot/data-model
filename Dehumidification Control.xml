@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0203" revision="1" name="DehumidificationControl">
-  <classification hierarchy="base" role="application" picsCode="DHUM" primaryTransaction="1" />
+  <classification role="application" picsCode="DHUM" primaryTransaction="1" />
   <server>
     <attributes>
       <!-- Dehumidification Information -->

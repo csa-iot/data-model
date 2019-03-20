@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="B003" revision="0" name="EN50523 Appliance Statistics">
-  <classification hierarchy="base" role="application" picsCode="APPLST" primaryTransaction="" />
+  <classification role="application" picsCode="APPLST" primaryTransaction="" />
   <server>
     <attributes />
   </server>

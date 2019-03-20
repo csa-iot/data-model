@@ -37,15 +37,29 @@
       <xs:element name="alias" type="zcl:ClusterIdAlias" minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="Classification">
-    <xs:attribute name="hierarchy" type="xs:string" use="required" />
-    <xs:attribute name="base" type="type:ClusterId" />
-    <xs:attribute name="role" type="zcl:ClusterRole" use="required" />
+  
+  <xs:complexType name="AbstractClassification">
+    <xs:attribute name="role" type="zcl:ClusterRole" use="optional" />
     <xs:attribute name="picsCode" type="xs:string" use="required" />
     <xs:attribute name="primaryTransaction" type="zcl:PrimaryTransactionType" use="optional" default="1" />
-    <!-- xs:assert test="(@hierarchy eq 'base') or (@hierarchy neq 'base' and base)" / -->
   </xs:complexType>
+  
+  <xs:complexType name="Classification">
+    <xs:complexContent>
+      <xs:restriction base="zcl:AbstractClassification">
+        <xs:attribute name="role" type="zcl:ClusterRole" use="required" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="DerivedClassification">
+    <xs:complexContent>
+      <xs:restriction base="zcl:AbstractClassification">
+        <xs:attribute name="role" use="prohibited" />
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  
 
   <xs:simpleType name="TagId">
     <xs:restriction base="xs:unsignedInt">
@@ -74,8 +88,22 @@
     <xs:attribute name="defaultRef" type="type:NamedElement" />
     <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
+  
+  <xs:complexType name="DerivedAttribute">
+    <xs:attribute name="ref" type="type:NamedElement" use="required" />
+    <xs:attribute name="reportRequired" type="xs:boolean" default="false" />
+    <xs:attribute name="sceneRequired" type="xs:boolean" default="false" />
+    <xs:attribute name="required" type="xs:boolean" default="false" />
+    <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />    
+  </xs:complexType>
 
-  <xs:complexType name="AttributeList">
+  <xs:complexType name="DerivedAttributeList">
+    <xs:sequence>
+      <xs:element name="attribute" type="zcl:DerivedAttribute" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+    <xs:complexType name="AttributeList">
     <xs:sequence>
       <xs:element name="attribute" type="zcl:Attribute" minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
@@ -92,10 +120,25 @@
     <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />
     <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
+  
+  <xs:complexType name="DerivedCommand">
+    <xs:sequence>
+      <xs:element name="tag" type="zcl:TagRef" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>  
+    <xs:attribute name="ref" type="type:NamedElement" use="required" />
+    <xs:attribute name="required" type="xs:boolean" default="false" />
+    <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />        
+  </xs:complexType>
 
   <xs:complexType name="CommandList">
     <xs:sequence>
       <xs:element name="command" type="zcl:Command" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DerivedCommandList">
+    <xs:sequence>
+      <xs:element name="command" type="zcl:DerivedCommand" minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
 
@@ -105,6 +148,13 @@
       <xs:element name="commands" type="zcl:CommandList" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
     <xs:attribute ref="xml:base" />
+  </xs:complexType>
+  
+  <xs:complexType name="DerivedClusterSide">
+    <xs:sequence>
+      <xs:element name="attributes" type="zcl:DerivedAttributeList" minOccurs="0" maxOccurs="1" />
+      <xs:element name="commands" type="zcl:DerivedCommandList" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="Tag">
@@ -125,7 +175,9 @@
   </xs:complexType>
 
   <xs:complexType name="TagRef">
-    <xs:attribute name="ref" type="zcl:TagId" use="required" />
+    <xs:attribute name="ref" type="type:NamedElement" use="required" />
+    <xs:attribute name="required" type="xs:boolean" default="false" />
+    <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />
   </xs:complexType>
 
   <xs:complexType name="ClusterType">
@@ -153,7 +205,7 @@
     </xs:keyref>
     <xs:key name="tagKey">
       <xs:selector xpath=".//tags/tag" />
-      <xs:field xpath="@id"></xs:field>
+      <xs:field xpath="@name"></xs:field>
     </xs:key>
     <xs:keyref name="defaultRef" refer="zcl:attributeKey">
       <xs:selector xpath=".//server/attributes/attribute | .//client/attributes/attribute" />
@@ -163,6 +215,23 @@
       <xs:selector xpath=".//server/attributes/attribute | .//client/attributes/attribute" />
       <xs:field xpath="@name" />
     </xs:key>
+  </xs:element>
+  
+  <xs:element name="derivedCluster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="aliases" type="zcl:ClusterIdAliasList" minOccurs="0" maxOccurs="1" />
+        <xs:element name="classification" type="zcl:DerivedClassification" />
+        <xs:element name="server" type="zcl:DerivedClusterSide" minOccurs="0" maxOccurs="1" />
+        <xs:element name="client" type="zcl:DerivedClusterSide" minOccurs="0" maxOccurs="1" />      
+      </xs:sequence>
+      <xs:attribute name="id" type="type:ClusterId" use="required" />
+      <xs:attribute name="revision" type="xs:unsignedShort" use="required" />
+      <xs:attribute name="name" type="type:NamedElement" use="required" />
+      <xs:attribute name="manufacturer" type="type:ManufacturerId" use="optional" />
+      <xs:attribute name="inheritsFrom" type="type:NamedElement" use="required" />
+      <xs:attribute ref="xml:base" />
+    </xs:complexType>
   </xs:element>
 
   <xs:element name="global">
@@ -181,7 +250,10 @@
       <xs:sequence>
         <xs:element ref="type:type" minOccurs="0" maxOccurs="unbounded" />
         <xs:element ref="zcl:global" minOccurs="1" maxOccurs="1" />
-        <xs:element ref="zcl:cluster" minOccurs="1" maxOccurs="unbounded" />
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+          <xs:element ref="zcl:cluster" />
+          <xs:element ref="zcl:derivedCluster" />
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
     <!-- Type Requirements -->
@@ -195,6 +267,17 @@
         xpath=".//zcl:cluster/server/commands/command/fields/field | .//zcl:cluster/client/commands/command/fields/field | .//zcl:global/commands/command/fields/field" />
       <xs:field xpath="@type"></xs:field>
     </xs:keyref>
+    
+    <xs:keyref name="derivedClusterNameRef" refer="zcl:clusterName">
+      <xs:selector
+        xpath=".//zcl:derivedCluster" />
+      <xs:field xpath="@inheritsFrom" />
+    </xs:keyref>
+    <xs:key name="clusterName">
+      <xs:selector xpath=".//zcl:cluster" />
+      <xs:field xpath="@name" />  
+    </xs:key>
+    
     <xs:keyref name="tagDataTypeRef" refer="zcl:dataType">
       <xs:selector xpath=".//zcl:cluster/tags/tag" />
       <xs:field xpath="@type"></xs:field>
@@ -208,5 +291,10 @@
       <xs:selector xpath=".//type:type | .//zcl:cluster/type | .//zcl:global/type" />
       <xs:field xpath="@inheritsFrom"></xs:field>
     </xs:keyref>
+    
+    <xs:unique name="picsCode">
+      <xs:selector xpath=".//zcl:cluster/classification | .//zcl:derivedCluster/classification" />
+      <xs:field xpath="@picsCode" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

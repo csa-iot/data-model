@@ -4,7 +4,7 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="040B" revision="1" name="WindSpeedMeasurement">
-  <classification hierarchy="base" role="application" picsCode="WSPD" primaryTransaction="2" />
+  <classification role="application" picsCode="WSPD" primaryTransaction="2" />
   <server>
     <attributes>
       <attribute id="0000" name="MeasuredValue" type="uint16" required="true" reportRequired="true" default="65535">

@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="000B" revision="0" name="RSSI">
-  <classification hierarchy="base" role="utility" picsCode="RSSI" />
+  <classification role="utility" picsCode="RSSI" />
   <server>
     <attributes>
       <attribute id="0000" name="LocationType" type="data8" writable="true" required="true" default="-" />

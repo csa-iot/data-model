@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
   id="0003" revision="1" name="Identify">
-  <classification hierarchy="base" role="utility" picsCode="I" />
+  <classification role="utility" picsCode="I" />
   <server>
     <attributes>
       <attribute id="0000" name="IdentifyTime" type="uint16" writable="true" required="true" max="65535"

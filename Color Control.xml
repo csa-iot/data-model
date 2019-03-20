@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <zcl:cluster
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:type="http://zigbee.org/zcl/types"
@@ -6,7 +6,7 @@
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0300" revision="2" name="ColorControl">
-  <classification hierarchy="base" role="application" picsCode="CC" primaryTransaction="1" />
+  <classification role="application" picsCode="CC" primaryTransaction="1" />
   
   <type:type short="CCColorOptions" name="CCColorOptions" id="18" inheritsFrom="map8">
     <bitmap>
