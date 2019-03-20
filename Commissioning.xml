@@ -25,7 +25,7 @@
           <type:enumeration value="02" name="ZigbeeProStackProfile" />
         </restriction>
       </attribute>
-      <attribute id="0006" name="StartupControl" type="enum8" writeable="true" required="true">
+      <attribute id="0006" name="StartupControl" type="enum8" writable="true" required="true">
         <restriction>
           <type:enumeration value="00" name="OnANetwork" />
           <type:enumeration value="01" name="FormNetwork" />
