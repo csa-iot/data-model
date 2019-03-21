@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="001A" revision="0" name="Power Profile">
-  <classification hierarchy="base" role="utility" picsCode="PWR" />
+  <classification role="utility" picsCode="PWR" />
   <server>
     <attributes>
       <attribute id="0000" name="TotalProfileNum" type="uint8" required="true" min="1" max="254" default="1" />

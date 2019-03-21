@@ -5,7 +5,7 @@
              xmlns:xi="http://www.w3.org/2001/XInclude" 
              xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
              id="0004" revision="2" name="Groups">
-  <classification hierarchy="base" role="utility" picsCode="G" />
+  <classification role="utility" picsCode="G" />
   <server>
     <attributes>
       <attribute id="0000" name="NameSupport" type="map8" required="true">
@@ -20,9 +20,9 @@
           <field name="GroupId" type="uint16" />
           <field name="GroupName" type="string" />
         </fields>
-        <tag ref="1" />
-        <tag ref="2" />
-        <tag ref="3" />
+        <tag ref="AddressAssignmentMode" />
+        <tag ref="MulticastIPv6Address" />
+        <tag ref="GroupPort" />
       </command>
       <command id="01" name="ViewGroup" required="true">
         <fields>
@@ -45,9 +45,9 @@
           <field name="GroupId" type="uint16" />
           <field name="GroupName" type="string" />
         </fields>
-        <tag ref="1" />
-        <tag ref="2" />
-        <tag ref="3" />        
+        <tag ref="AddressAssignmentMode" />
+        <tag ref="MulticastIPv6Address" />
+        <tag ref="GroupPort" />        
       </command>
     </commands>
   </server>
@@ -65,9 +65,9 @@
           <field name="GroupId" type="uint16" />
           <field name="GroupName" type="string" />
         </fields>
-        <tag ref="1" />
-        <tag ref="2" />
-        <tag ref="3" />        
+        <tag ref="AddressAssignmentMode" />
+        <tag ref="MulticastIPv6Address" />
+        <tag ref="GroupPort" />        
       </command>
       <command id="02" name="GetGroupMembershipResponse" required="true">
         <fields>

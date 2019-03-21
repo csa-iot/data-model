@@ -299,6 +299,34 @@
         </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  
+  <xs:element name="minInclusiveExpression" id="minInclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>
+  
+  <xs:element name="maxInclusiveExpression" id="maxInclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>  
+  
+  <xs:element name="minExclusiveExpression" id="minExclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>
+  
+  <xs:element name="maxExclusiveExpression" id="maxExclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>  
 
   <xs:element name="sequence" id="sequence" substitutionGroup="zclType:facet">
     <xs:complexType>

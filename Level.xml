@@ -6,7 +6,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0008" revision="2" name="Level">
-  <classification hierarchy="base" role="application" picsCode="LVL" primaryTransaction="1" />
+  <classification role="application" picsCode="LVL" primaryTransaction="1" />
 
   <type:type short="LevelOptions" name="LevelOptions" id="18" inheritsFrom="map8">
     <bitmap>

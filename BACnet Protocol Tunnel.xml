@@ -5,7 +5,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0601" revision="0" name="BACnet Protocol Tunnel">
-  <classification hierarchy="base" role="application" picsCode="BACTUN" primaryTransaction="" />
+  <classification role="application" picsCode="BACTUN" primaryTransaction="" />
   <server>
     <attributes />
   </server>
