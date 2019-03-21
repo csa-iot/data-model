@@ -20,18 +20,14 @@
           <element name="DeviceTemperatureTooHigh" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
-      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" >
+      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" min="-200" max="200" >
           <restriction>
-            <type:minInclusive value="-200" />
-            <type:maxInclusive value="200" />
-            <type:invalid value="-201" />
-          </restriction>
+             <type:maxExclusiveRef ref="HighTempThreshold" />
+         </restriction>
       </attribute>    
-      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" >
+      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" min="-200" max="200" >
           <restriction>
-            <type:minInclusive value="-200" />
-            <type:maxInclusive value="200" />
-            <type:invalid value="-201" />
+            <type:minExclusiveRef ref="LowTempThreshold" />
           </restriction>
       </attribute>      
       <attribute id="0013" name="LowTempDwellTripPoint" type="uint24" writable="true" max="16777215" />
