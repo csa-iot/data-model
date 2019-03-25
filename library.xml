@@ -408,5 +408,7 @@
   <xi:include href="IAS ACE.xml" parse="xml" />
   <xi:include href="IAS WD.xml" parse="xml" />
   <xi:include href="Touchlink Commissioning.xml" parse="xml" />
+  <xi:include href="Device Temperature Configuration.xml" parse="xml" />
+  <xi:include href="OTA Upgrade.xml" parse="xml" />
 
 </zcl:library>
