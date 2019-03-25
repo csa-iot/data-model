@@ -6,6 +6,12 @@
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="0100" revision="1" name="ShadeConfiguration">
   <classification role="application" picsCode="SHDCFG" primaryTransaction="2" />
+  <type:type short="SHDCFGDirection" name="Direction" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="Closing" value="00" />
+      <type:enumeration name="Opening" value="01"/>
+    </restriction>
+  </type:type>
   <server>
     <attributes>
       <!-- Shade Information Attribute Set -->
@@ -15,18 +21,9 @@
         <bitmap>
           <element name="ShadeOperational" type="bool" mask="01" />
           <element name="ShadeAdjusting" type="bool" mask="02" shiftRight="1" />
-          <element name="ShadeDirection" type="enum8" mask="04" shiftRight="2">
-            <restriction>
-              <type:enumeration name="Closing" value="00" />
-              <type:enumeration name="Opening" value="01"/>
-            </restriction>
-          </element>
-          <element name="ForwardDirectionOfMotor" type="enum8" mask="08" shiftRight="3">
-            <restriction>
-              <type:enumeration name="Closing" value="00" />
-              <type:enumeration name="Opening" value="01"/>
-            </restriction>
-          </element>
+          <element name="ShadeDirection" type="SHDCFGDirection" mask="04" shiftRight="2" />
+          <!-- The ForwardDirectionOfMotor is currently the only field in the bitmap which is writable. -->
+          <element name="ForwardDirectionOfMotor" type="SHDCFGDirection" mask="08" shiftRight="3" />
         </bitmap>
       </attribute>
       <!-- Shade Settings Attribute Set -->
