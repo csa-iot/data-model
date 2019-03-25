@@ -408,6 +408,7 @@
   <xi:include href="IAS Zone.xml" parse="xml" />
   <xi:include href="IAS ACE.xml" parse="xml" />
   <xi:include href="IAS WD.xml" parse="xml" />
+  <xi:include href="Commissioning.xml" parse="xml" />
   <xi:include href="Touchlink Commissioning.xml" parse="xml" />
 
 </zcl:library>
