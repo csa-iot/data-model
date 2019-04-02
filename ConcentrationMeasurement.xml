@@ -5,6 +5,40 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="040C" revision="1" name="ConcentrationMeasurement">
+    <aliases>
+      <alias id="040c" name="CarbonMonoxide"/>
+      <alias id="040d" name="CarbonDioxide"/>
+      <alias id="040e" name="Ethylene"/>
+      <alias id="040f" name="EthyleneOxide"/>
+      <alias id="0410" name="Hydrogen"/>
+      <alias id="0411" name="HydrogenSulfide"/>
+      <alias id="0412" name="NitricOxide"/>
+      <alias id="0413" name="NitrogenDioxide"/>
+      <alias id="0414" name="Oxygen"/>
+      <alias id="0415" name="Ozone"/>
+      <alias id="0416" name="SulfurDioxide"/>
+      <alias id="0417" name="DissolvedOxygen"/>
+      <alias id="0418" name="Bromate"/>
+      <alias id="0419" name="Chloramines"/>
+      <alias id="041a" name="Chlorine"/>
+      <alias id="041b" name="FecalColiformAndEColi"/>
+      <alias id="041b" name="Fluoride"/>
+      <alias id="041d" name="HaloaceticAcids"/>
+      <alias id="041e" name="TotalTrihalomethanes"/>
+      <alias id="041f" name="TotalColiformBacteria"/>
+      <alias id="0420" name="Turbidity"/>
+      <alias id="0421" name="Copper"/>
+      <alias id="0422" name="Lead"/>
+      <alias id="0423" name="Manganese"/>
+      <alias id="0424" name="Sulfate"/>
+      <alias id="0425" name="Bromodichloromethane"/>
+      <alias id="0426" name="Bromoform"/>
+      <alias id="0427" name="Chlorodibromomethane"/>
+      <alias id="0428" name="Chloroform"/>
+      <alias id="0429" name="Sodium"/>
+      <alias id="042A" name="PM25"/>
+      <alias id="042B" name="Formaldehyde"/>
+  </aliases>
   <classification role="application" picsCode="CONC" primaryTransaction="2" />
   <server>
     <attributes>
