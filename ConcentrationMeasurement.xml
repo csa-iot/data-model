@@ -6,10 +6,10 @@
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="040C" revision="1" name="CarbonMonoxide">
   <aliases>
-      <alias id="040c" name="CarbonMonoxide" />
-      <alias id="040d" name="CarbonDioxide" />
-      <alias id="040e" name="Ethylene" />
-      <alias id="040f" name="EthyleneOxide" />
+      <alias id="040C" name="CarbonMonoxide" />
+      <alias id="040D" name="CarbonDioxide" />
+      <alias id="040E" name="Ethylene" />
+      <alias id="040F" name="EthyleneOxide" />
       <alias id="0410" name="Hydrogen" />
       <alias id="0411" name="HydrogenSulfide" />
       <alias id="0412" name="NitricOxide" />
@@ -20,12 +20,12 @@
       <alias id="0417" name="DissolvedOxygen" />
       <alias id="0418" name="Bromate" />
       <alias id="0419" name="Chloramines" />
-      <alias id="041a" name="Chlorine" />
-      <alias id="041b" name="FecalColiformAndEColi" />
-      <alias id="041b" name="Fluoride" />
-      <alias id="041d" name="HaloaceticAcids" />
-      <alias id="041e" name="TotalTrihalomethanes" />
-      <alias id="041f" name="TotalColiformBacteria" />
+      <alias id="041A" name="Chlorine" />
+      <alias id="041B" name="FecalColiformAndEColi" />
+      <alias id="041C" name="Fluoride" />
+      <alias id="041D" name="HaloaceticAcids" />
+      <alias id="041E" name="TotalTrihalomethanes" />
+      <alias id="041F" name="TotalColiformBacteria" />
       <alias id="0420" name="Turbidity" />
       <alias id="0421" name="Copper" />
       <alias id="0422" name="Lead" />
