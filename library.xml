@@ -411,5 +411,7 @@
   <xi:include href="IAS WD.xml" parse="xml" />
   <xi:include href="Commissioning.xml" parse="xml" />
   <xi:include href="Touchlink Commissioning.xml" parse="xml" />
+  <xi:include href="Touchlink Commissioning.xml" parse="xml" />
+  <xi:include href="ConcentrationMeasurement" parse="xml"/>
 
 </zcl:library>
