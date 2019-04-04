@@ -153,12 +153,6 @@
     </restriction>
   </type:type>
   
-  <!-- String Discrete -->
-  <type:type id="41" short="octstr" name="Octet string" discrete="true" />
-  <type:type id="42" short="string" name="Character string" discrete="true" />
-  <type:type id="43" short="octstr16" name="Long octet string" discrete="true" />
-  <type:type id="44" short="string16" name="Long character string" discrete="true" />
-  
   <!-- Floating Point -->
 
   <!-- Analog -->
@@ -168,6 +162,12 @@
       <type:maxInclusive value="3.402823E+38"/>
     </restriction>
   </type:type>
+
+  <!-- String Discrete -->
+  <type:type id="41" short="octstr" name="Octet string" discrete="true" />
+  <type:type id="42" short="string" name="Character string" discrete="true" />
+  <type:type id="43" short="octstr16" name="Long octet string" discrete="true" />
+  <type:type id="44" short="string16" name="Long character string" discrete="true" />
 
   <!-- Sequences -->
   <!-- Collections -->
