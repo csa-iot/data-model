@@ -17,11 +17,7 @@
       </attribute>
       <attribute ref="MinFrequency" requiredIf="implements(CurrentFrequency)" />
       <attribute ref="MaxFrequency" requiredIf="implements(CurrentFrequency)" />
-      <attribute ref="Options" required="true">
-        <bitmap>
-          <element name="CoupleColorTempToLevel" type="bool" mask="02" shiftRight="1" />
-        </bitmap>
-      </attribute>
+      <attribute ref="Options" required="true" />
     </attributes>
   </server>
 </zcl:derivedCluster>

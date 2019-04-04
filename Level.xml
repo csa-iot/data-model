@@ -11,6 +11,8 @@
   <type:type short="LevelOptions" name="LevelOptions" id="18" inheritsFrom="map8">
     <bitmap>
       <element name="ExecuteIfOff" type="bool" mask="01" />
+      <!-- Used in Level Control for Lighting -->
+      <element name="CoupleColorTempToLevel" type="bool" mask="02" shiftRight="1" />
     </bitmap>
   </type:type>
   <type:type short="MoveStepMode" name="MoveStepMode" id="30" inheritsFrom="enum8">
