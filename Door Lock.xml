@@ -120,11 +120,17 @@
       <attribute id="0006" name="OpenPeriod" type="uint16" writable="true" />
       <!--  User / PIN / Schedule Information Attribute Set -->
       <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" default="0" />
-      <!--
-        ZCL7 states that NumberOfTotalUsersSupported is equal to the higher of subsequent
-        ...PINUsers...and ...RFIDUsers... attribute values. How to phrase restriction?
-      -->
-      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" />
+      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" >
+        <restriction>
+          <!--
+            ZCL7 states that NumberOfTotalUsersSupported is equal to the higher of subsequent
+            ...PINUsers... and ...RFIDUsers... attribute values. But this constraint is removed
+            in feature set ballot for door lock.
+          -->
+          <type:minInclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
+          <type:maxExclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
+        </restriction>
+      </attribute>
       <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" default="0" />
       <attribute id="0013" name="NumberOfRFIDUsersSupported" type="uint16" default="0" />
       <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" />
@@ -555,7 +561,6 @@
             ZCL7 specifies constraint that StartHour <= EndHour;
             and if they are equal, then StartMinute < EndMinute.
             Result: StartHour/Minute strictly less than EndHour/Minute.
-            The restrictions below don't quite accomplish that.
           -->
           <field name="StartHour" type="uint8" presentIf="Status = 0" >
             <restriction>
@@ -567,18 +572,24 @@
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
+              <!-- StartHour:StartMinute can't be 23:59, else no higher value for EndHour:EndMinute possible. -->
+              <type:complexConstraint expression="StartHour &lt; 23 or StartMinute &lt; 59" />
             </restriction>
           </field>
           <field name="EndHour" type="uint8" presentIf="Status = 0" >
             <restriction>
-              <type:minInclusiveRef ref="StartHour" />
+              <type:minInclusive value="0" />
               <type:maxInclusive value="23" />
+              <!-- EndHour equal to StartHour only if StartMinute is less than 59, else no higher value for EndMinute possible. -->
+              <type:complexConstraint expression="StartHour &lt; EndHour or (StartHour = EndHour and StartMinute &lt; 59)" />
             </restriction>
           </field>
           <field name="EndMinute" type="uint8" presentIf="Status = 0" >
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
+              <!-- EndMinute any value unless StartHour == EndHour, then must be strictly greater than StartMinute. -->
+              <type:complexConstraint expression="StartHour &lt; EndHour or (StartHour = EndHour and StartMinute &lt; EndMinute)" />
             </restriction>
           </field>
         </fields>

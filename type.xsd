@@ -328,6 +328,13 @@
     </xs:complexType>  
   </xs:element>  
 
+  <xs:element name="complexConstraint" id="complexConstraint"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>
+  </xs:element>
+
   <xs:element name="sequence" id="sequence" substitutionGroup="zclType:facet">
     <xs:complexType>
       <xs:complexContent>
