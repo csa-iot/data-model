@@ -4,20 +4,34 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0100" revision="0" name="Shade Configuration">
-  <classification role="application" picsCode="SHDCFG" primaryTransaction="" />
+  id="0100" revision="1" name="ShadeConfiguration">
+  <classification role="application" picsCode="SHDCFG" primaryTransaction="2" />
+  <type:type short="SHDCFGDirection" name="Direction" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="Closing" value="00" />
+      <type:enumeration name="Opening" value="01" />
+    </restriction>
+  </type:type>
   <server>
     <attributes>
-      <attribute id="0000" name="PhysicalClosedLimit" type="uint16" min="1" max="65534" default="-" />
-      <attribute id="0001" name="MotorStepSize" type="uint8" max="254" default="-" />
-      <attribute id="0002" name="Status" type="map8" writable="true" required="true" default="0000 0000">
-        <bitmap />
+      <!-- Shade Information Attribute Set -->
+      <attribute id="0000" name="PhysicalClosedLimit" type="uint16" min="1" />
+      <attribute id="0001" name="MotorStepSize" type="uint8" max="254" />
+      <attribute id="0002" name="Status" type="map8" writable="true" required="true" default="0">
+        <bitmap>
+          <element name="ShadeOperational" type="bool" mask="01" />
+          <element name="ShadeAdjusting" type="bool" mask="02" shiftRight="1" />
+          <element name="ShadeDirection" type="SHDCFGDirection" mask="04" shiftRight="2" />
+          <!-- The ForwardDirectionOfMotor is currently the only field in the bitmap which is writable. -->
+          <element name="ForwardDirectionOfMotor" type="SHDCFGDirection" mask="08" shiftRight="3" />
+        </bitmap>
       </attribute>
-      <attribute id="0010" name="ClosedLimit" type="uint16" writable="true" required="true" min="1" max="65534" default="1" />
+      <!-- Shade Settings Attribute Set -->
+      <attribute id="0010" name="ClosedLimit" type="uint16" writable="true" required="true" min="1" default="1" />
       <attribute id="0011" name="Mode" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Normal" />
-          <type:enumeration value="01" name="Configure" />
+          <type:enumeration name="Normal" value="00" />
+          <type:enumeration name="Configure" value="01" />
         </restriction>
       </attribute>
     </attributes>
