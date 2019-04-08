@@ -152,11 +152,23 @@
       <type:invalid value="65535" />
     </restriction>
   </type:type>
+  
   <!-- Floating Point -->
+
+  <!-- Analog -->
+  <type:type id="39" short="single" name="Single precision">
+    <restriction>
+      <type:minInclusive value="-3.402823E+38"/>
+      <type:maxInclusive value="3.402823E+38"/>
+    </restriction>
+  </type:type>
+
+  <!-- String Discrete -->
   <type:type id="41" short="octstr" name="Octet string" discrete="true" />
   <type:type id="42" short="string" name="Character string" discrete="true" />
   <type:type id="43" short="octstr16" name="Long octet string" discrete="true" />
   <type:type id="44" short="string16" name="Long character string" discrete="true" />
+
   <!-- Sequences -->
   <!-- Collections -->
   <!-- Time -->
@@ -412,5 +424,6 @@
   <xi:include href="Commissioning.xml" parse="xml" />
   <xi:include href="Touchlink Commissioning.xml" parse="xml" />
   <xi:include href="OTA Upgrade.xml" parse="xml" />
+  <xi:include href="ConcentrationMeasurement.xml" parse="xml"/>
 
 </zcl:library>
