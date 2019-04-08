@@ -418,6 +418,7 @@
   <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
   <xi:include href="Shade Configuration.xml" parse="xml" />
   <xi:include href="Window Covering.xml" parse="xml" />
+  <xi:include href="Barrier Control.xml" parse="xml" />
   <xi:include href="IAS Zone.xml" parse="xml" />
   <xi:include href="IAS ACE.xml" parse="xml" />
   <xi:include href="IAS WD.xml" parse="xml" />
