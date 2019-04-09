@@ -219,6 +219,7 @@ An attribute may be specified using the following attributes in the XML.
 | readable       | false    | If the attribute is readable OTA. Defaults to true             |
 | writable       | false    | If the attribute is writable OTA. Defaults to false.           |
 | writeOptional  | false    | If the attribute is specified as writable this indicates if the write is required. Defaults to false. |
+| writableIf     | false    | Indicates an expression that specifies the writability of the attribute. Defaults to true. |
 | reportRequired | false    | If attribute is required to be reportable. Defaults to false   |
 | sceneRequired  | false    | If attribute is required to be part of the scene extensions. Defaults to false |
 | required       | false    | If the attribute is mandatory. Defaults to false               |
