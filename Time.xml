@@ -8,7 +8,7 @@
   <classification role="application" picsCode="T" />
   <server>
     <attributes>
-      <attribute id="0000" name="Time" type="UTC" writable="true" required="true" max="4294967294" default="4294967295" />
+      <attribute id="0000" name="Time" type="UTC" writable="true" writableIf="!TimeStatus.Master" required="true" max="4294967294" default="4294967295" />
       <attribute id="0001" name="TimeStatus" type="map8" writable="true" required="true" default="0">
         <bitmap>
           <element name="Master" type="bool" mask="01" />
@@ -17,10 +17,10 @@
           <element name="Superseding" type="bool" mask="08" shiftRight="3" />
         </bitmap>
       </attribute>
-      <attribute id="0002" name="TimeZone" type="int32" writable="true" min="-86400" max="86400" default="0" />
-      <attribute id="0003" name="DstStart" type="uint32" writable="true" max="4294967294" default="4294967295" />
-      <attribute id="0004" name="DstEnd" type="uint32" writable="true" max="4294967294" default="4294967295" />
-      <attribute id="0005" name="DstShift" type="int32" writable="true" min="-86400" max="86400" default="0" />
+      <attribute id="0002" name="TimeZone" type="int32" writable="true" writableIf="!TimeStatus.MasterZoneDst" min="-86400" max="86400" default="0" />
+      <attribute id="0003" name="DstStart" type="uint32" writable="true" writableIf="!TimeStatus.MasterZoneDst" max="4294967294" default="4294967295" />
+      <attribute id="0004" name="DstEnd" type="uint32" writable="true" writableIf="!TimeStatus.MasterZoneDst" max="4294967294" default="4294967295" />
+      <attribute id="0005" name="DstShift" type="int32" writable="true" writableIf="!TimeStatus.MasterZoneDst" min="-86400" max="86400" default="0" />
       <attribute id="0006" name="StandardTime" type="uint32" max="4294967294" default="4294967295" />
       <attribute id="0007" name="LocalTime" type="uint32" max="4294967294" default="4294967295" />
       <attribute id="0008" name="LastSetTime" type="UTC" default="4294967295" />
