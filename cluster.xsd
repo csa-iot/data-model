@@ -78,7 +78,7 @@
     <xs:attribute name="readable" type="xs:boolean" default="true" />
     <xs:attribute name="writable" type="xs:boolean" default="false" />
     <xs:attribute name="writeOptional" type="xs:boolean" default="false" />
-    <xs:attribute name="writableIf" type="type:DependencyExpression" default="writable" />
+    <xs:attribute name="writableIf" type="type:DependencyExpression" default="true" />
     <xs:attribute name="reportRequired" type="xs:boolean" default="false" />
     <xs:attribute name="sceneRequired" type="xs:boolean" default="false" />
     <xs:attribute name="required" type="xs:boolean" default="false" />

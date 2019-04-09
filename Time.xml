@@ -8,7 +8,7 @@
   <classification role="application" picsCode="T" />
   <server>
     <attributes>
-      <attribute id="0000" name="Time" type="UTC" writable="true" required="true" max="4294967294" default="4294967295" />
+      <attribute id="0000" name="Time" type="UTC" writable="true" writableIf="!TimeStatus.Master" required="true" max="4294967294" default="4294967295" />
       <attribute id="0001" name="TimeStatus" type="map8" writable="true" required="true" default="0">
         <bitmap>
           <element name="Master" type="bool" mask="01" />
