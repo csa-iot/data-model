@@ -4,7 +4,7 @@
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-  id="0103" revision="2" name="BarrierControl">
+  id="0103" revision="1" name="BarrierControl">
   <classification role="application" picsCode="BAR" primaryTransaction="1" />
   <server>
     <attributes>
@@ -34,9 +34,9 @@
       <attribute id="0007" name="CommandCloseEvents" type="uint16" writable="true" default="0" />
       <attribute id="0008" name="OpenPeriod" type="uint16" writable="true" />
       <attribute id="0009" name="ClosePeriod" type="uint16" writable="true" />
-      <attribute id="000a" name="BarrierPosition" type="uint8" max="100" reportRequired="true" sceneRequired="true" required="true">
+      <attribute id="000A" name="BarrierPosition" type="uint8" max="100" reportRequired="true" sceneRequired="true" required="true">
         <restriction>
-          <type:special value="ff" name="PositionUnknown" />
+          <type:special value="FF" name="PositionUnknown" />
         </restriction>
       </attribute>
     </attributes>
