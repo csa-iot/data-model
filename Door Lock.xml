@@ -17,6 +17,14 @@
     </restriction>
   </type:type>
 
+  <type:type short="DrlkSettableUserStatus" name="DrlkSettableUserStatus" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:enumeration value="01" name="OccupiedEnabled" />
+      <!--  02 is not defined. -->
+      <type:enumeration value="03" name="OccupiedDisabled" />
+    </restriction>
+  </type:type>
+
   <type:type short="DrlkUserType" name="DrlkUserType" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="00" name="UnrestrictedUser" />
@@ -78,9 +86,47 @@
     </restriction>
   </type:type>
 
+  <type:type short="DrlkPINUserID" name="DrlkPinUserID" id="21" inheritsFrom="uint16">
+    <restriction>
+      <type:maxInclusiveRef ref="NumberOfPINUsersSupported"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="DrlkRFIDUserID" name="DrlkRFIDUserID" id="21" inheritsFrom="uint16">
+    <restriction>
+      <type:maxInclusiveRef ref="NumberOfRFIDUsersSupported"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="DrlkTotalUserID" name="DrlkTotalUserID" id="21" inheritsFrom="uint16">
+    <restriction>
+      <type:maxInclusiveRef ref="NumberOfTotalUsersSupported"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="DrlkWeekDayScheduleID" name="DrlkWeekDayScheduleID" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:maxInclusiveRef ref="NumberOfWeekDaySchedulesSupportedPerUser"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="DrlkYearDayScheduleID" name="DrlkYearDayScheduleID" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:maxInclusiveRef ref="NumberOfYearDaySchedulesSupportedPerUser"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="DrlkHolidayScheduleID" name="DrlkHolidayScheduleID" id="20" inheritsFrom="uint8">
+    <restriction>
+      <type:maxInclusiveRef ref="NumberOfHolidaySchedulesSupported"/>
+    </restriction>
+  </type:type>
+
   <server>
     <attributes>
+
       <!--  Basic Information Attribute Set -->
+
       <attribute id="0000" name="LockState" type="enum8" reportRequired="true" required="true" >
         <restriction>
           <type:enumeration value="00" name="NotFullyLocked" />
@@ -118,7 +164,9 @@
       <attribute id="0004" name="DoorOpenEvents" type="uint32" writable="true" />
       <attribute id="0005" name="DoorClosedEvents" type="uint32" writable="true" />
       <attribute id="0006" name="OpenPeriod" type="uint16" writable="true" />
+
       <!--  User / PIN / Schedule Information Attribute Set -->
+
       <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" default="0" />
       <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" >
         <restriction>
@@ -136,12 +184,14 @@
       <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" />
       <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" default="0" />
       <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" default="0" />
-      <!--  ZCL7 does not spec a relationship between these next two Max/Min attribute pairs; add restriction? -->
+      <!--  ZCL7 does not state a relationship between these next two sets of Max/Min attribute pairs. -->
       <attribute id="0017" name="MaxPINCodeLength" type="uint8" default="8" />
       <attribute id="0018" name="MinPINCodeLength" type="uint8" default="4" />
       <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" default="20" />
       <attribute id="001A" name="MinRFIDCodeLength" type="uint8" default="8" />
+
       <!--  Operational Settings Attribute Set -->
+
       <attribute id="0020" name="EnableLogging" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0021" name="Language" type="string" writable="true" writeOptional="true" reportRequired="true" default="" >
         <restriction>
@@ -155,7 +205,11 @@
           <type:enumeration value="02" name="UseLEDForAllEvents" />
         </restriction>
       </attribute>
-      <attribute id="0023" name="AutoRelockTime" type="uint32" writable="true" writeOptional="true" reportRequired="true" max="4294967295" default="0" />
+      <attribute id="0023" name="AutoRelockTime" type="uint32" writable="true" writeOptional="true" reportRequired="true" default="0" >
+        <restriction>
+          <type:special name="Disabled" value="0"/>
+        </restriction>
+      </attribute>
       <attribute id="0024" name="SoundVolume" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" >
         <restriction>
           <type:enumeration value="00" name="SilentMode" />
@@ -188,9 +242,11 @@
       <attribute id="0029" name="EnableOneTouchLocking" type="bool" writable="true" reportRequired="true" default="0" />
       <attribute id="002A" name="EnableInsideStatusLED" type="bool" writable="true" reportRequired="true" default="0" />
       <attribute id="002B" name="EnablePrivacyModeButton" type="bool" writable="true" reportRequired="true" default="0" />
+
       <!--  Security Settings Attribute Set -->
-      <attribute id="0030" name="WrongCodeEntryLimit" type="uint8" writable="true" writeOptional="true" reportRequired="true" max="255" default="0" />
-      <attribute id="0031" name="UserCodeTemporaryDisableTime" type="uint8" writable="true" writeOptional="true" reportRequired="true" max="255" default="0" />
+
+      <attribute id="0030" name="WrongCodeEntryLimit" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
+      <attribute id="0031" name="UserCodeTemporaryDisableTime" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0032" name="SendPINOverTheAir" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0033" name="RequirePINforRFOperation" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0034" name="SecurityLevel" type="enum8" reportRequired="true" default="0" >
@@ -199,7 +255,9 @@
           <type:enumeration value="01" name="APS" />
         </restriction>
       </attribute>
+
       <!--  Alarm and Event Masks Attribute Set -->
+
       <attribute id="0040" name="AlarmMask" type="map16" writable="true" reportRequired="true" default="0" >
         <bitmap>
           <element name="DeadboltJammed" type="bool" mask="0001" />
@@ -289,6 +347,7 @@
         </bitmap>
       </attribute>
     </attributes>
+
     <commands>
       <command id="00" name="LockDoor" required="true">
         <fields>
@@ -313,49 +372,55 @@
       </command>
       <command id="04" name="GetLogRecord">
         <fields>
-          <field name="LogIndex" type="uint16" />
+          <field name="LogIndex" type="uint16" >
+            <restriction>
+              <type:special name="MostRecent" value="0"/>
+              <!-- Note: No other restriction; Response command description states
+                   that "if an invalid log entry ID was requested, it is set to 0
+                   and the most recent log entry will be returned".  -->
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="05" name="SetPINCode">
         <fields>
-          <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="UserID" type="DrlkPINUserID" />
+          <field name="UserStatus" type="DrlkSettableUserStatus" />
           <field name="UserType" type="DrlkUserType" />
           <field name="PIN" type="octstr" />
         </fields>
       </command>
       <command id="06" name="GetPINCode">
         <fields>
-          <field name="UserID" type="uint16" />
+          <field name="UserID" type="DrlkPINUserID" />
         </fields>
       </command>
       <command id="07" name="ClearPINCode">
         <fields>
-          <field name="UserID" type="uint16" />
+          <field name="UserID" type="DrlkPINUserID" />
         </fields>
       </command>
       <command id="08" name="ClearAllPINCodes" />
       <command id="09" name="SetUserStatus">
         <fields>
-          <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="UserID" type="DrlkTotalUserID" />
+          <field name="UserStatus" type="DrlkSettableUserStatus" />
         </fields>
       </command>
       <command id="0A" name="GetUserStatus">
         <fields>
-          <field name="UserID" type="uint16" />
+          <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
       <command id="0B" name="SetWeekdaySchedule">
         <fields>
-          <field name="ScheduleID" type="uint8" />
-          <field name="UserID" type="uint16" />
+          <field name="ScheduleID" type="DrlkWeekDayScheduleID" />
+          <field name="UserID" type="DrlkTotalUserID" />
           <field name="DaysMask" type="DrlkDaysMask" />
           <!--
             ZCL7 specifies constraint that StartHour <= EndHour;
             and if they are equal, then StartMinute < EndMinute.
             Result: StartHour/Minute strictly less than EndHour/Minute.
-            The restrictions below don't quite accomplish that.
           -->
           <field name="StartHour" type="uint8" >
             <restriction>
@@ -367,38 +432,44 @@
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
+              <!-- StartHour:StartMinute can't be 23:59, else no higher value for EndHour:EndMinute possible. -->
+              <type:complexConstraint expression="StartHour &lt; 23 or StartMinute &lt; 59" />
             </restriction>
           </field>
           <field name="EndHour" type="uint8" >
             <restriction>
-              <type:minInclusiveRef ref="StartHour" />
+              <type:minInclusive value="0" />
               <type:maxInclusive value="23" />
+              <!-- EndHour equal to StartHour only if StartMinute is less than 59, else no higher value for EndMinute possible. -->
+              <type:complexConstraint expression="StartHour &lt; EndHour or (StartHour = EndHour and StartMinute &lt; 59)" />
             </restriction>
           </field>
           <field name="EndMinute" type="uint8" >
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
+              <!-- EndMinute any value unless StartHour == EndHour, then must be strictly greater than StartMinute. -->
+              <type:complexConstraint expression="StartHour &lt; EndHour or (StartHour = EndHour and StartMinute &lt; EndMinute)" />
             </restriction>
           </field>
         </fields>
       </command>
       <command id="0C" name="GetWeekdaySchedule">
         <fields>
-          <field name="ScheduleID" type="uint8" />
-          <field name="UserID" type="uint16" />
+          <field name="ScheduleID" type="DrlkWeekDayScheduleID" />
+          <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
       <command id="0D" name="ClearWeekdaySchedule">
         <fields>
-          <field name="ScheduleID" type="uint8" />
-          <field name="UserID" type="uint16" />
+          <field name="ScheduleID" type="DrlkWeekDayScheduleID" />
+          <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
       <command id="0E" name="SetYearDaySchedule">
         <fields>
-          <field name="ScheduleID" type="uint8" />
-          <field name="UserID" type="uint16" />
+          <field name="ScheduleID" type="DrlkYearDayScheduleID" />
+          <field name="UserID" type="DrlkTotalUserID" />
           <field name="LocalStartTime" type="uint32" />
           <field name="LocalEndTime" type="uint32" >
             <restriction>
@@ -409,19 +480,19 @@
       </command>
       <command id="0F" name="GetYearDaySchedule">
         <fields>
-          <field name="ScheduleID" type="uint8" />
-          <field name="UserID" type="uint16" />
+          <field name="ScheduleID" type="DrlkYearDayScheduleID" />
+          <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
       <command id="10" name="ClearYearDaySchedule">
         <fields>
-          <field name="ScheduleID" type="uint8" />
-          <field name="UserID" type="uint16" />
+          <field name="ScheduleID" type="DrlkYearDayScheduleID" />
+          <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
       <command id="11" name="SetHolidaySchedule">
         <fields>
-          <field name="HolidayScheduleID" type="uint8" />
+          <field name="HolidayScheduleID" type="DrlkHolidayScheduleID" />
           <field name="LocalStartTime" type="uint32" />
           <field name="LocalEndTime" type="uint32" >
             <restriction>
@@ -433,41 +504,41 @@
       </command>
       <command id="12" name="GetHolidaySchedule">
         <fields>
-          <field name="HolidayScheduleID" type="uint8" />
+          <field name="HolidayScheduleID" type="DrlkHolidayScheduleID" />
         </fields>
       </command>
       <command id="13" name="ClearHolidaySchedule">
         <fields>
-          <field name="HolidayScheduleID" type="uint8" />
+          <field name="HolidayScheduleID" type="DrlkHolidayScheduleID" />
         </fields>
       </command>
       <command id="14" name="SetUserType">
         <fields>
-          <field name="UserID" type="uint16" />
+          <field name="UserID" type="DrlkTotalUserID" />
           <field name="UserType" type="DrlkUserType" />
         </fields>
       </command>
       <command id="15" name="GetUserType">
         <fields>
-          <field name="UserID" type="uint16" />
+          <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
       <command id="16" name="SetRFIDCode">
         <fields>
-          <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="UserID" type="DrlkRFIDUserID" />
+          <field name="UserStatus" type="DrlkSettableUserStatus" />
           <field name="UserType" type="DrlkUserType" />
           <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
       <command id="17" name="GetRFIDCode">
         <fields>
-          <field name="UserID" type="uint16" />
+          <field name="UserID" type="DrlkRFIDUserID" />
         </fields>
       </command>
       <command id="18" name="ClearRFIDCode">
         <fields>
-          <field name="UserID" type="uint16" />
+          <field name="UserID" type="DrlkRFIDUserID" />
         </fields>
       </command>
       <command id="19" name="ClearAllRFIDCodes" />
