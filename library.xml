@@ -154,23 +154,36 @@
   </type:type>
   
   <!-- Floating Point -->
-
-  <!-- Analog -->
+  <type:type id="38" short="semi" name="Semi-precision">
+    <!-- Not sure how to restrict as it's not really a standard type -->
+  </type:type>
   <type:type id="39" short="single" name="Single precision">
     <restriction>
-      <type:minInclusive value="-3.402823E+38"/>
-      <type:maxInclusive value="3.402823E+38"/>
+      <type:minInclusive value="-3.402823E+38" />
+      <type:maxInclusive value="3.402823E+38" />
     </restriction>
   </type:type>
-
+  <type:type id="3a" short="double" name="Double precision">
+    <restriction>
+      <type:minInclusive value="-1.80E+308" />
+      <type:maxInclusive value="1.80E+308" />
+    </restriction>
+  </type:type>
+  
   <!-- String Discrete -->
   <type:type id="41" short="octstr" name="Octet string" discrete="true" />
   <type:type id="42" short="string" name="Character string" discrete="true" />
   <type:type id="43" short="octstr16" name="Long octet string" discrete="true" />
   <type:type id="44" short="string16" name="Long character string" discrete="true" />
 
-  <!-- Sequences -->
+  <!-- Sequences (Not Used By Standard Zigbee Clusters, unavailable in ZCL over IP) -->
+  <type:type id="48" short="array" name="Array" discrete="true" />
+  <type:type id="49" short="struct" name="Structure" discrete="true" />
+  
   <!-- Collections -->
+  <type:type id="50" short="set" name="Set" discrete="true" />
+  <type:type id="51" short="bag" name="Bag" discrete="true" />
+  
   <!-- Time -->
   <type:type id="e0" short="ToD" name="Time of day">
     <restriction>
@@ -226,7 +239,7 @@
       <type:length value="16" />
     </restriction>
   </type:type>
-  <!-- Opaque? -->
+  <!-- Opaque (not defined since there is no ID -->
   <!-- Unknown -->
   <type:type id="ff" short="unk" name="Unknown" />
 
@@ -289,6 +302,14 @@
       <type:enumeration name="EUI64" value="f0" />
       <type:enumeration name="key128" value="f1" />
       <type:enumeration name="unk" value="ff" />
+    </restriction>
+  </type:type>
+  
+  <!-- AttributeReportingStatus Enum Values -->
+  <type:type id="30" short="attributeReportingStatus" name="Attribute Reporting Status" discrete="true" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="Pending" value="00" />
+      <type:enumeration name="Complete" value="01"/>
     </restriction>
   </type:type>
 
