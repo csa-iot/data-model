@@ -398,6 +398,7 @@
   <xi:include href="Time.xml" parse="xml" />
   <xi:include href="Diagnostics.xml" parse="xml" />
   <xi:include href="Poll Control.xml" parse="xml" />
+  <xi:include href="Level Control for Lighting.xml" parse="xml" />
   <xi:include href="Illuminance Measurement.xml" parse="xml" />
   <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
   <xi:include href="Temperature Measurement.xml" parse="xml" />
@@ -417,7 +418,9 @@
   <xi:include href="Dehumidification Control.xml" parse="xml" />
   <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
   <xi:include href="Shade Configuration.xml" parse="xml" />
+  <xi:include href="Door Lock.xml" parse="xml" />
   <xi:include href="Window Covering.xml" parse="xml" />
+  <xi:include href="Barrier Control.xml" parse="xml" />
   <xi:include href="IAS Zone.xml" parse="xml" />
   <xi:include href="IAS ACE.xml" parse="xml" />
   <xi:include href="IAS WD.xml" parse="xml" />

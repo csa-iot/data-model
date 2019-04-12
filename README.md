@@ -138,6 +138,7 @@ There are a number of restrictions available for types. These build the basis of
 * maxInclusive - sets a maximum that includes the value specified, i.e. a field of this type must be less than or equal to the value
 * maxInclusiveRef - sets a maximum that is based on the value of the referenced attribute.
 * maxInclusiveExpression - sets a maximum that is based on an expression. The value returned by the expression is included from the range. This construct may only be used if no other mechanism will meet the needs.
+* complexConstraint - specifies a logical expression that must evaluate to true for the attribute value or command field value to be considered valid. Used to describe more complex interdependencies than cannot be expressed by other restriction types. This construct may only be used if no other mechanism will meet the needs.
 * totalDigits - see http://www.w3.org/TR/xmlschema11-2/#element-totalDigits
 * fractionDigits - see http://www.w3.org/TR/xmlschema11-2/#element-fractionDigits
 * length - specifies an exact length, generally used for a string.
