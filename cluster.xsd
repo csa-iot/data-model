@@ -98,7 +98,9 @@
     <xs:attribute name="reportRequired" type="xs:boolean" default="false" />
     <xs:attribute name="sceneRequired" type="xs:boolean" default="false" />
     <xs:attribute name="required" type="xs:boolean" default="false" />
-    <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />    
+    <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />
+    <xs:attribute name="default" type="xs:string" />
+    <xs:attribute name="defaultRef" type="type:NamedElement" />
   </xs:complexType>
 
   <xs:complexType name="DerivedAttributeList">
