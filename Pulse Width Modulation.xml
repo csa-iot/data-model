@@ -10,7 +10,11 @@
   <server>
     <attributes>
       <attribute ref="MinLevel" required="true" />
-      <attribute ref="MaxLevel" required="true" />
+      <attribute ref="MaxLevel" default="100" required="true">
+        <restriction>
+          <type:maxInclusive value="100" />
+        </restriction>
+      </attribute>
       <attribute ref="CurrentFrequency" required="true" />
       <attribute ref="MinFrequency" required="true" />
       <attribute ref="MaxFrequency" required="true" />
