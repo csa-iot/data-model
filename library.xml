@@ -406,6 +406,7 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="Diagnostics.xml" parse="xml" />
   <xi:include href="Poll Control.xml" parse="xml" />
   <xi:include href="Level Control for Lighting.xml" parse="xml" />
+  <xi:include href="Pulse Width Modulation.xml" parse="xml" />
   <xi:include href="Illuminance Measurement.xml" parse="xml" />
   <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
   <xi:include href="Temperature Measurement.xml" parse="xml" />
