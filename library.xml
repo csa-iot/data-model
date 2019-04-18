@@ -160,7 +160,7 @@
       <type:minInclusive value="-6.5504E+04"/>
       <type:maxInclusive value="6.5504E+04"/>
       <type:enumeratedRange max="7fff" min="7c01" name="NaN" />
-      <type:enumeratedRange max="ffff" min="fc01" name="NaN" />
+      <type:enumeratedRange max="ffff" min="fc01" name="NegativeNaN" />
       <type:special name="Infinity" value="7c00" />
       <type:special name="NegativeInfinity" value="fc00" />
     </restriction>
@@ -169,12 +169,20 @@
     <restriction>
       <type:minInclusive value="-3.402823E+38" />
       <type:maxInclusive value="3.402823E+38" />
+      <type:enumeratedRange max="7fffffff" min="7f800001" name="NaN" />
+      <type:enumeratedRange max="ffffffff" min="ff800001" name="NegativeNaN" />
+      <type:special name="Infinity" value="7f800000" />
+      <type:special name="NegativeInfinity" value="ff800000" />
     </restriction>
   </type:type>
   <type:type id="3a" short="double" name="Double precision">
     <restriction>
       <type:minInclusive value="-1.80E+308" />
       <type:maxInclusive value="1.80E+308" />
+      <type:enumeratedRange max="7fffffffffffffff" min="fff0000000000001" name="NaN" />
+      <type:enumeratedRange max="ffffffffffffffff" min="fff0000000000001" name="NegativeNaN" />
+      <type:special name="Infinity" value="7ff0000000000000" />
+      <type:special name="NegativeInfinity" value="fff0000000000000" />
     </restriction>
   </type:type>
   
