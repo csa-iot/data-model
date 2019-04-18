@@ -156,6 +156,14 @@
   <!-- Floating Point -->
   <type:type id="38" short="semi" name="Semi-precision">
     <!-- Not sure how to restrict as it's not really a standard type -->
+    <restriction>
+      <type:minInclusive value="-6.5504E+04"/>
+      <type:maxInclusive value="6.5504E+04"/>
+      <type:enumeratedRange max="7fff" min="7c01" name="NaN" />
+      <type:enumeratedRange max="ffff" min="fc01" name="NaN" />
+      <type:special name="Infinity" value="7c00" />
+      <type:special name="NegativeInfinity" value="fc00" />
+    </restriction>
   </type:type>
   <type:type id="39" short="single" name="Single precision">
     <restriction>
