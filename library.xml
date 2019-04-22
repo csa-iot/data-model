@@ -376,6 +376,13 @@ applicable to this document can be found in the LICENSE.md file.
       <type:enumeration name="LIMIT_REACHED" value="c4" /><!-- 0xc4 -->
     </restriction>
   </type:type>
+  
+  <type:type id="30" short="AttributeReportingStatusEnum" name="Attribute Reporting Status" discrete="true" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="Pending" value="00"/>
+      <type:enumeration name="AttributeReportingComplete" value="01"/>
+    </restriction>
+  </type:type>
 
   <type:type id="30" short="ProfileIntervalPeriod" name="Profile Interval Period" discrete="true"
     inheritsFrom="enum8">
