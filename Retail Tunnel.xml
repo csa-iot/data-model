@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,17 +6,20 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0617" revision="0" name="Retail Tunnel">
+<zcl:cluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0617" name="Retail Tunnel" revision="0" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="RTUN" primaryTransaction="" />
   <server>
     <attributes>
       <attribute id="0000" name="ManufacturerCode" type="uint16" required="true" min="4096" max="4351" default="-" />
       <attribute id="0001" name="MSProfile" type="uint16" required="true" default="-" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
   </server>
+<client>
+    <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
+  </client>
 </zcl:cluster>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0101" revision="2" name="DoorLock">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0101" name="DoorLock" revision="2" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="DRLK" primaryTransaction="2" />
 
   <type:type short="DrlkUserStatus" name="DrlkUserStatus" id="20" inheritsFrom="uint8">
@@ -76,56 +71,56 @@ applicable to this document can be found in the LICENSE.md file.
 
   <type:type short="DrlkSetCodeStatus" name="DrlkSetCodeStatus" id="20" inheritsFrom="uint8">
     <restriction>
-      <type:enumeration name="Success" value="00"/>
-      <type:enumeration name="GeneralFailure" value="01"/>
-      <type:enumeration name="MemoryFull" value="02"/>
-      <type:enumeration name="DuplicateCode" value="03"/>
+      <type:enumeration name="Success" value="00" />
+      <type:enumeration name="GeneralFailure" value="01" />
+      <type:enumeration name="MemoryFull" value="02" />
+      <type:enumeration name="DuplicateCode" value="03" />
     </restriction>
   </type:type>
 
   <type:type short="DrlkOperEventSource" name="DrlkOperationEventSource" id="20" inheritsFrom="uint8">
     <restriction>
-      <type:enumeration name="Keypad" value="00"/>
-      <type:enumeration name="RF" value="01"/>
-      <type:enumeration name="Manual" value="02"/>
-      <type:enumeration name="RFID" value="03"/>
-      <type:enumeration name="Indeterminate" value="FF"/>
+      <type:enumeration name="Keypad" value="00" />
+      <type:enumeration name="RF" value="01" />
+      <type:enumeration name="Manual" value="02" />
+      <type:enumeration name="RFID" value="03" />
+      <type:enumeration name="Indeterminate" value="FF" />
     </restriction>
   </type:type>
 
   <type:type short="DrlkPINUserID" name="DrlkPinUserID" id="21" inheritsFrom="uint16">
     <restriction>
-      <type:maxInclusiveRef ref="NumberOfPINUsersSupported"/>
+      <type:maxInclusiveRef ref="NumberOfPINUsersSupported" />
     </restriction>
   </type:type>
 
   <type:type short="DrlkRFIDUserID" name="DrlkRFIDUserID" id="21" inheritsFrom="uint16">
     <restriction>
-      <type:maxInclusiveRef ref="NumberOfRFIDUsersSupported"/>
+      <type:maxInclusiveRef ref="NumberOfRFIDUsersSupported" />
     </restriction>
   </type:type>
 
   <type:type short="DrlkTotalUserID" name="DrlkTotalUserID" id="21" inheritsFrom="uint16">
     <restriction>
-      <type:maxInclusiveRef ref="NumberOfTotalUsersSupported"/>
+      <type:maxInclusiveRef ref="NumberOfTotalUsersSupported" />
     </restriction>
   </type:type>
 
   <type:type short="DrlkWeekDayScheduleID" name="DrlkWeekDayScheduleID" id="20" inheritsFrom="uint8">
     <restriction>
-      <type:maxInclusiveRef ref="NumberOfWeekDaySchedulesSupportedPerUser"/>
+      <type:maxInclusiveRef ref="NumberOfWeekDaySchedulesSupportedPerUser" />
     </restriction>
   </type:type>
 
   <type:type short="DrlkYearDayScheduleID" name="DrlkYearDayScheduleID" id="20" inheritsFrom="uint8">
     <restriction>
-      <type:maxInclusiveRef ref="NumberOfYearDaySchedulesSupportedPerUser"/>
+      <type:maxInclusiveRef ref="NumberOfYearDaySchedulesSupportedPerUser" />
     </restriction>
   </type:type>
 
   <type:type short="DrlkHolidayScheduleID" name="DrlkHolidayScheduleID" id="20" inheritsFrom="uint8">
     <restriction>
-      <type:maxInclusiveRef ref="NumberOfHolidaySchedulesSupported"/>
+      <type:maxInclusiveRef ref="NumberOfHolidaySchedulesSupported" />
     </restriction>
   </type:type>
 
@@ -134,7 +129,7 @@ applicable to this document can be found in the LICENSE.md file.
 
       <!--  Basic Information Attribute Set -->
 
-      <attribute id="0000" name="LockState" type="enum8" reportRequired="true" required="true" >
+      <attribute id="0000" name="LockState" type="enum8" reportRequired="true" required="true">
         <restriction>
           <type:enumeration value="00" name="NotFullyLocked" />
           <type:enumeration value="01" name="Locked" />
@@ -142,7 +137,7 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="FF" name="Undefined" />
         </restriction>
       </attribute>
-      <attribute id="0001" name="LockType" type="enum8" required="true" >
+      <attribute id="0001" name="LockType" type="enum8" required="true">
         <restriction>
           <type:enumeration value="00" name="DeadBolt" />
           <type:enumeration value="01" name="Magnetic" />
@@ -158,7 +153,7 @@ applicable to this document can be found in the LICENSE.md file.
         </restriction>
       </attribute>
       <attribute id="0002" name="ActuatorEnabled" type="bool" required="true" />
-      <attribute id="0003" name="DoorState" type="enum8" reportRequired="true" >
+      <attribute id="0003" name="DoorState" type="enum8" reportRequired="true">
         <restriction>
           <type:enumeration value="00" name="Open" />
           <type:enumeration value="01" name="Closed" />
@@ -175,7 +170,7 @@ applicable to this document can be found in the LICENSE.md file.
       <!--  User / PIN / Schedule Information Attribute Set -->
 
       <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" default="0" />
-      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" >
+      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0">
         <restriction>
           <!--
             ZCL7 states that NumberOfTotalUsersSupported is equal to the higher of subsequent
@@ -200,24 +195,24 @@ applicable to this document can be found in the LICENSE.md file.
       <!--  Operational Settings Attribute Set -->
 
       <attribute id="0020" name="EnableLogging" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0021" name="Language" type="string" writable="true" writeOptional="true" reportRequired="true" default="" >
+      <attribute id="0021" name="Language" type="string" writable="true" writeOptional="true" reportRequired="true" default="">
         <restriction>
           <type:length value="2" />
          </restriction>
       </attribute>
-      <attribute id="0022" name="LEDSettings" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" >
+      <attribute id="0022" name="LEDSettings" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0">
         <restriction>
           <type:enumeration value="00" name="NeverUseLED" />
           <type:enumeration value="01" name="UseLEDExceptForAccessAllowed" />
           <type:enumeration value="02" name="UseLEDForAllEvents" />
         </restriction>
       </attribute>
-      <attribute id="0023" name="AutoRelockTime" type="uint32" writable="true" writeOptional="true" reportRequired="true" default="0" >
+      <attribute id="0023" name="AutoRelockTime" type="uint32" writable="true" writeOptional="true" reportRequired="true" default="0">
         <restriction>
-          <type:special name="Disabled" value="0"/>
+          <type:special name="Disabled" value="0" />
         </restriction>
       </attribute>
-      <attribute id="0024" name="SoundVolume" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" >
+      <attribute id="0024" name="SoundVolume" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0">
         <restriction>
           <type:enumeration value="00" name="SilentMode" />
           <type:enumeration value="01" name="LowVolume" />
@@ -225,7 +220,7 @@ applicable to this document can be found in the LICENSE.md file.
         </restriction>
       </attribute>
       <attribute id="0025" name="OperatingMode" type="DrlkOperMode" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" >
+      <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1">
         <bitmap>
           <element name="NormalModeSupported" type="bool" mask="0001" />
           <element name="VacationModeSupported" type="bool" mask="0002" shiftRight="1" />
@@ -234,7 +229,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="PassageModeSupported" type="bool" mask="0010" shiftRight="4" />
         </bitmap>
       </attribute>
-      <attribute id="0027" name="DefaultConfigurationRegister" type="map16" reportRequired="true" default="0" >
+      <attribute id="0027" name="DefaultConfigurationRegister" type="map16" reportRequired="true" default="0">
         <bitmap>
           <element name="DefaultEnableLocalProgrammingAttributeIsEnabled" type="bool" mask="0001" />
           <element name="DefaultKeypadInterfaceIsEnabled" type="bool" mask="0002" shiftRight="1" />
@@ -256,7 +251,7 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0031" name="UserCodeTemporaryDisableTime" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0032" name="SendPINOverTheAir" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
       <attribute id="0033" name="RequirePINforRFOperation" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0034" name="SecurityLevel" type="enum8" reportRequired="true" default="0" >
+      <attribute id="0034" name="SecurityLevel" type="enum8" reportRequired="true" default="0">
         <restriction>
           <type:enumeration value="00" name="Network" />
           <type:enumeration value="01" name="APS" />
@@ -265,7 +260,7 @@ applicable to this document can be found in the LICENSE.md file.
 
       <!--  Alarm and Event Masks Attribute Set -->
 
-      <attribute id="0040" name="AlarmMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0040" name="AlarmMask" type="map16" writable="true" reportRequired="true" default="0">
         <bitmap>
           <element name="DeadboltJammed" type="bool" mask="0001" />
           <element name="LockResetToFactoryDefaults" type="bool" mask="0002" shiftRight="1" />
@@ -276,7 +271,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="ForcedDoorOpenUnderDoorLockedCondition" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0041" name="KeypadOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0041" name="KeypadOperationEventMask" type="map16" writable="true" reportRequired="true" default="0">
         <bitmap>
           <element name="KeypadOpUnknownOrMS" type="bool" mask="0001" />
           <element name="KeypadOpLock" type="bool" mask="0002" shiftRight="1" />
@@ -288,7 +283,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="KeypadOpNonAccessUser" type="bool" mask="0080" shiftRight="7" />
         </bitmap>
       </attribute>
-      <attribute id="0042" name="RFOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0042" name="RFOperationEventMask" type="map16" writable="true" reportRequired="true" default="0">
         <bitmap>
           <element name="RFOpUnknownOrMS" type="bool" mask="0001" />
           <element name="RFOpLock" type="bool" mask="0002" shiftRight="1" />
@@ -299,7 +294,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="RFOpUnlockInvalidSchedule" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0043" name="ManualOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0043" name="ManualOperationEventMask" type="map16" writable="true" reportRequired="true" default="0">
         <bitmap>
           <element name="ManualOpUnknownOrMS" type="bool" mask="0001" />
           <element name="ManualOpThumbturnLock" type="bool" mask="0002" shiftRight="1" />
@@ -314,7 +309,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="ManualOpUnlock" type="bool" mask="0400" shiftRight="10" />
         </bitmap>
       </attribute>
-      <attribute id="0044" name="RFIDOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0044" name="RFIDOperationEventMask" type="map16" writable="true" reportRequired="true" default="0">
         <bitmap>
           <element name="RFIDOpUnknownOrMS" type="bool" mask="0001" />
           <element name="RFIDOpLock" type="bool" mask="0002" shiftRight="1" />
@@ -325,7 +320,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="RFIDOpUnlockErrorInvalidSchedule" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0045" name="KeypadProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0045" name="KeypadProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0">
         <bitmap>
           <element name="KeypadProgUnknownOrMS" type="bool" mask="0001" />
           <element name="KeypadProgMasterCodeChanged" type="bool" mask="0002" shiftRight="1" />
@@ -334,7 +329,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="KeypadProgPINChanged" type="bool" mask="0010" shiftRight="4" />
         </bitmap>
       </attribute>
-      <attribute id="0046" name="RFProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0046" name="RFProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0">
         <bitmap>
           <element name="RFProgUnknownOrMS" type="bool" mask="0001" />
           <!--  Bit 1 not defined.  -->
@@ -345,7 +340,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="RFProgRFIDDeleted" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0047" name="RFIDProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0047" name="RFIDProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0">
          <bitmap>
           <element name="RFIDProgUnknownOrMS" type="bool" mask="0001" />
           <!--  Bits 1-4 not defined. -->
@@ -353,6 +348,8 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="RFIDProgRFIDDeleted" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
 
     <commands>
@@ -379,9 +376,9 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
       <command id="04" name="GetLogRecord">
         <fields>
-          <field name="LogIndex" type="uint16" >
+          <field name="LogIndex" type="uint16">
             <restriction>
-              <type:special name="MostRecent" value="0"/>
+              <type:special name="MostRecent" value="0" />
               <!-- Note: No other restriction; Response command description states
                    that "if an invalid log entry ID was requested, it is set to 0
                    and the most recent log entry will be returned".  -->
@@ -429,13 +426,13 @@ applicable to this document can be found in the LICENSE.md file.
             and if they are equal, then StartMinute < EndMinute.
             Result: StartHour/Minute strictly less than EndHour/Minute.
           -->
-          <field name="StartHour" type="uint8" >
+          <field name="StartHour" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="23" />
             </restriction>
           </field>
-          <field name="StartMinute" type="uint8" >
+          <field name="StartMinute" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
@@ -443,7 +440,7 @@ applicable to this document can be found in the LICENSE.md file.
               <type:complexConstraint expression="StartHour &lt; 23 or StartMinute &lt; 59" />
             </restriction>
           </field>
-          <field name="EndHour" type="uint8" >
+          <field name="EndHour" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="23" />
@@ -451,7 +448,7 @@ applicable to this document can be found in the LICENSE.md file.
               <type:complexConstraint expression="StartHour &lt; EndHour or (StartHour = EndHour and StartMinute &lt; 59)" />
             </restriction>
           </field>
-          <field name="EndMinute" type="uint8" >
+          <field name="EndMinute" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
@@ -478,7 +475,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="ScheduleID" type="DrlkYearDayScheduleID" />
           <field name="UserID" type="DrlkTotalUserID" />
           <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" >
+          <field name="LocalEndTime" type="uint32">
             <restriction>
               <type:minExclusiveRef ref="LocalStartTime" />
             </restriction>
@@ -501,7 +498,7 @@ applicable to this document can be found in the LICENSE.md file.
         <fields>
           <field name="HolidayScheduleID" type="DrlkHolidayScheduleID" />
           <field name="LocalStartTime" type="uint32" />
-          <field name="LocalEndTime" type="uint32" >
+          <field name="LocalEndTime" type="uint32">
             <restriction>
               <type:minExclusiveRef ref="LocalStartTime" />
             </restriction>
@@ -553,22 +550,22 @@ applicable to this document can be found in the LICENSE.md file.
   </server>
   <client>
     <commands>
-      <command id="00" name="LockDoorResponse" required="true" >
+      <command id="00" name="LockDoorResponse" required="true">
         <fields>
           <field name="Status" type="zclStatus" />
         </fields>
       </command>
-      <command id="01" name="UnlockDoorResponse" required="true" >
+      <command id="01" name="UnlockDoorResponse" required="true">
         <fields>
           <field name="Status" type="zclStatus" />
         </fields>
       </command>
-      <command id="02" name="ToggleResponse" >
+      <command id="02" name="ToggleResponse">
         <fields>
           <field name="Status" type="zclStatus" />
         </fields>
       </command>
-      <command id="03" name="UnlockWithTimeoutResponse" >
+      <command id="03" name="UnlockWithTimeoutResponse">
         <fields>
           <field name="Status" type="zclStatus" />
         </fields>
@@ -577,11 +574,11 @@ applicable to this document can be found in the LICENSE.md file.
         <fields>
           <field name="LogEntryID" type="uint16" />
           <field name="Timestamp" type="uint32" />
-          <field name="EventType" type="enum8" >
+          <field name="EventType" type="enum8">
             <restriction>
-              <type:enumeration name="Operation" value="00"/>
-              <type:enumeration name="Programming" value="01"/>
-              <type:enumeration name="Alarm" value="02"/>
+              <type:enumeration name="Operation" value="00" />
+              <type:enumeration name="Programming" value="01" />
+              <type:enumeration name="Alarm" value="02" />
             </restriction>
           </field>
           <field name="SourceOperationEvent" type="DrlkOperEventSource" />
@@ -603,17 +600,17 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Code" type="octstr" />
         </fields>
       </command>
-      <command id="07" name="ClearPINCodeResponse" >
+      <command id="07" name="ClearPINCodeResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="08" name="ClearAllPINCodesResponse" >
+      <command id="08" name="ClearAllPINCodesResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="09" name="SetUserStatusResponse" >
+      <command id="09" name="SetUserStatusResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
@@ -624,7 +621,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="UserStatus" type="DrlkUserStatus" />
         </fields>
       </command>
-      <command id="0B" name="SetWeekdayScheduleResponse" >
+      <command id="0B" name="SetWeekdayScheduleResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
@@ -640,13 +637,13 @@ applicable to this document can be found in the LICENSE.md file.
             and if they are equal, then StartMinute < EndMinute.
             Result: StartHour/Minute strictly less than EndHour/Minute.
           -->
-          <field name="StartHour" type="uint8" presentIf="Status = 0" >
+          <field name="StartHour" type="uint8" presentIf="Status = 0">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="23" />
             </restriction>
           </field>
-          <field name="StartMinute" type="uint8" presentIf="Status = 0" >
+          <field name="StartMinute" type="uint8" presentIf="Status = 0">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
@@ -654,7 +651,7 @@ applicable to this document can be found in the LICENSE.md file.
               <type:complexConstraint expression="StartHour &lt; 23 or StartMinute &lt; 59" />
             </restriction>
           </field>
-          <field name="EndHour" type="uint8" presentIf="Status = 0" >
+          <field name="EndHour" type="uint8" presentIf="Status = 0">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="23" />
@@ -662,7 +659,7 @@ applicable to this document can be found in the LICENSE.md file.
               <type:complexConstraint expression="StartHour &lt; EndHour or (StartHour = EndHour and StartMinute &lt; 59)" />
             </restriction>
           </field>
-          <field name="EndMinute" type="uint8" presentIf="Status = 0" >
+          <field name="EndMinute" type="uint8" presentIf="Status = 0">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="59" />
@@ -672,12 +669,12 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="0D" name="ClearWeekdayScheduleResponse" >
+      <command id="0D" name="ClearWeekdayScheduleResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="0E" name="SetYearDayScheduleResponse" >
+      <command id="0E" name="SetYearDayScheduleResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
@@ -688,19 +685,19 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="UserID" type="uint16" />
           <field name="Status" type="zclStatus" />
           <field name="LocalStartTime" type="uint32" presentIf="Status = 0" />
-          <field name="LocalEndTime" type="uint32" presentIf="Status = 0" >
+          <field name="LocalEndTime" type="uint32" presentIf="Status = 0">
             <restriction>
               <type:minExclusiveRef ref="LocalStartTime" />
             </restriction>
           </field>
         </fields>
       </command>
-      <command id="10" name="ClearYearDayScheduleResponse" >
+      <command id="10" name="ClearYearDayScheduleResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="11" name="SetHolidayScheduleResponse" >
+      <command id="11" name="SetHolidayScheduleResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
@@ -710,7 +707,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="HolidayScheduleID" type="uint8" />
           <field name="Status" type="zclStatus" />
           <field name="LocalStartTime" type="uint32" presentIf="Status = 0" />
-          <field name="LocalEndTime" type="uint32" presentIf="Status = 0"  >
+          <field name="LocalEndTime" type="uint32" presentIf="Status = 0">
             <restriction>
               <type:minExclusiveRef ref="LocalStartTime" />
             </restriction>
@@ -718,12 +715,12 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="OperatingModeDuringHoliday" type="DrlkOperMode" presentIf="Status = 0" />
         </fields>
       </command>
-      <command id="13" name="ClearHolidayScheduleResponse" >
+      <command id="13" name="ClearHolidayScheduleResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="14" name="SetUserTypeResponse" >
+      <command id="14" name="SetUserTypeResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
@@ -747,37 +744,37 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="18" name="ClearRFIDCodeResponse" >
+      <command id="18" name="ClearRFIDCodeResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="19" name="ClearAllRFIDCodesResponse" >
+      <command id="19" name="ClearAllRFIDCodesResponse">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="20" name="OperatingEventNotification" >
+      <command id="20" name="OperatingEventNotification">
         <fields>
           <field name="OperationEventSource" type="DrlkOperEventSource" />
-          <field name="OperationEventCode" type="uint8" >
+          <field name="OperationEventCode" type="uint8">
             <restriction>
-              <type:enumeration name="UnknownOrMS" value="00"/>
-              <type:enumeration name="Lock" value="01"/>
-              <type:enumeration name="Unlock" value="02"/>
-              <type:enumeration name="LockFailureInvalidPINOrID" value="03"/>
-              <type:enumeration name="LockFailureInvalidSchedule" value="04"/>
-              <type:enumeration name="UnlockFailureInvalidPINOrID" value="05"/>
-              <type:enumeration name="UnlockFailureInvalidSchedule" value="06"/>
-              <type:enumeration name="OneTouchLock" value="07"/>
-              <type:enumeration name="KeyLock" value="08"/>
-              <type:enumeration name="KeyUnlock" value="09"/>
-              <type:enumeration name="AutoLock" value="0A"/>
-              <type:enumeration name="ScheduleLock" value="0B"/>
-              <type:enumeration name="ScheduleUnlock" value="0C"/>
-              <type:enumeration name="ManualLock" value="0D"/>
-              <type:enumeration name="ManualUnlock" value="0E"/>
-              <type:enumeration name="NonAccessUserOperationalEvent" value="0E"/>
+              <type:enumeration name="UnknownOrMS" value="00" />
+              <type:enumeration name="Lock" value="01" />
+              <type:enumeration name="Unlock" value="02" />
+              <type:enumeration name="LockFailureInvalidPINOrID" value="03" />
+              <type:enumeration name="LockFailureInvalidSchedule" value="04" />
+              <type:enumeration name="UnlockFailureInvalidPINOrID" value="05" />
+              <type:enumeration name="UnlockFailureInvalidSchedule" value="06" />
+              <type:enumeration name="OneTouchLock" value="07" />
+              <type:enumeration name="KeyLock" value="08" />
+              <type:enumeration name="KeyUnlock" value="09" />
+              <type:enumeration name="AutoLock" value="0A" />
+              <type:enumeration name="ScheduleLock" value="0B" />
+              <type:enumeration name="ScheduleUnlock" value="0C" />
+              <type:enumeration name="ManualLock" value="0D" />
+              <type:enumeration name="ManualUnlock" value="0E" />
+              <type:enumeration name="NonAccessUserOperationalEvent" value="0E" />
             </restriction>
           </field>
           <field name="UserID" type="uint16" />
@@ -788,24 +785,24 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
       <command id="21" name="ProgrammingEventNotification">
         <fields>
-          <field name="ProgramEventSource" type="uint8" >
+          <field name="ProgramEventSource" type="uint8">
             <restriction>
-              <type:enumeration name="Keypad" value="00"/>
-              <type:enumeration name="RF" value="01"/>
+              <type:enumeration name="Keypad" value="00" />
+              <type:enumeration name="RF" value="01" />
               <!-- 02 reserved, corresponds to Manual for Operation Event Source -->
-              <type:enumeration name="RFID" value="03"/>
-              <type:enumeration name="Indeterminate" value="FF"/>
+              <type:enumeration name="RFID" value="03" />
+              <type:enumeration name="Indeterminate" value="FF" />
             </restriction>
           </field>
-          <field name="ProgramEventCode" type="uint8" >
+          <field name="ProgramEventCode" type="uint8">
             <restriction>
-              <type:enumeration name="UnknownOrMS" value="00"/>
-              <type:enumeration name="MasterCodeChanged" value="01"/>
-              <type:enumeration name="PINCodeAdded" value="02"/>
-              <type:enumeration name="PINCodeDeleted" value="03"/>
-              <type:enumeration name="PINCodeChanged" value="04"/>
-              <type:enumeration name="RFIDCodeAdded" value="05"/>
-              <type:enumeration name="RFIDCodeDeleted" value="06"/>
+              <type:enumeration name="UnknownOrMS" value="00" />
+              <type:enumeration name="MasterCodeChanged" value="01" />
+              <type:enumeration name="PINCodeAdded" value="02" />
+              <type:enumeration name="PINCodeDeleted" value="03" />
+              <type:enumeration name="PINCodeChanged" value="04" />
+              <type:enumeration name="RFIDCodeAdded" value="05" />
+              <type:enumeration name="RFIDCodeDeleted" value="06" />
             </restriction>
           </field>
           <field name="UserID" type="uint16" />
@@ -817,5 +814,9 @@ applicable to this document can be found in the LICENSE.md file.
         </fields>
       </command>
     </commands>
+  <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
   </client>
 </zcl:cluster>

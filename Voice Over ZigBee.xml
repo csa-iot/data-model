@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,15 +6,12 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0904" revision="0" name="Voice Over ZigBee">
+<zcl:cluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0904" name="Voice Over ZigBee" revision="0" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="VOZ" primaryTransaction="" />
   <server>
-    <attributes />
+    <attributes><attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
     <commands>
       <command id="00" name="EstablishmentRequest" required="true" />
       <command id="01" name="VoiceTransmission" required="true">
@@ -54,5 +51,9 @@ applicable to this document can be found in the LICENSE.md file.
         </fields>
       </command>
     </commands>
+  <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
   </client>
 </zcl:cluster>

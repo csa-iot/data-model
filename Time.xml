@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="000A" revision="1" name="Time">
+<zcl:cluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="000A" name="Time" revision="1" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="T" primaryTransaction="" />
   <server>
     <attributes>
@@ -32,6 +27,14 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0007" name="LocalTime" type="uint32" max="4294967294" default="4294967295" />
       <attribute id="0008" name="LastSetTime" type="UTC" default="4294967295" />
       <attribute id="0009" name="ValidUntilTime" type="UTC" writable="true" default="4294967295" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
   </server>
+<client>
+    <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
+  </client>
 </zcl:cluster>

@@ -6,13 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:derivedCluster
-  xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="001C" revision="1" name="PulseWidthModulation" inheritsFrom="Level">
+<zcl:derivedCluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="001C" inheritsFrom="Level" name="PulseWidthModulation" revision="1" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification picsCode="PWM" />
   <server>
     <attributes>

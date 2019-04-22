@@ -19,8 +19,11 @@ sed -i '' 's/ xmlns:zcl="http:\/\/zigbee.org\/zcl\/clusters">/>/g' *.xml
 sed -i '' 's/<classification role="\([^"]*\)" picsCode="\([^"]*\)" \/>/<classification hierarchy="base" role="\1" picsCode="\2" \/>/g' *.xml
 sed -i '' 's/<classification hierarchy="\([^"]*\)" role="application" picsCode="\([^"]*\)" \/>/<classification hierarchy="\1" role="application" picsCode="\2" primaryTransaction="" \/>/g' *.xml
 sed -i '' 's/<classification hierarchy="base"/<classification/g' *.xml
+python2.7 add_global_attributes.py
 
 for filename in *.xml; do
+	sed -i '' '1s/<zcl/<?xml version="1.0"?>\
+<zcl/' "$filename"
 	sed -i '' '$!N;s/<?xml version="1.0"?>\n<zcl/<?xml version="1.0"?>\
 <!-- \
 Zigbee Alliance owns the copyright to the text and content displayed or \

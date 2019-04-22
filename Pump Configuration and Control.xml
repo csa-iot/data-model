@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0200" revision="1" name="PumpConfigurationAndControl">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0200" name="PumpConfigurationAndControl" revision="1" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="PCC" primaryTransaction="2" />
   
   <type:type short="PumpOperationMode" name="PumpOperationMode" id="30">
@@ -76,7 +71,7 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0021" name="ControlMode" type="PumpControlMode" writable="true" default="0" />
       <attribute id="0022" name="AlarmMask" type="map16">
         <bitmap>
-          <element name="SupplyVoltageTooLow" type="bool" mask="0001"  />
+          <element name="SupplyVoltageTooLow" type="bool" mask="0001" />
           <element name="SupplyVoltageTooHigh" type="bool" mask="0002" shiftRight="1" />
           <element name="PowerMissingPhase" type="bool" mask="0004" shiftRight="2" />
           <element name="SystemPressureTooLow" type="bool" mask="0008" shiftRight="3" />
@@ -92,6 +87,14 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="GeneralFault" type="bool" mask="2000" shiftRight="13" />
         </bitmap>
       </attribute>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
   </server>
+<client>
+    <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
+  </client>
 </zcl:cluster>

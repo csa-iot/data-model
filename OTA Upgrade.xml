@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,28 +6,23 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-  id="0019" revision="3" name="OTAUpgrade">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0019" name="OTAUpgrade" revision="3" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="utility" picsCode="OTA" />
   <type:type short="OTAImageType" name="Image Type Id" id="21" inheritsFrom="uint16">
     <restriction>
-      <type:maxInclusive value="65471"/>
-      <type:special name="Wildcard" value="65535"/>
+      <type:maxInclusive value="65471" />
+      <type:special name="Wildcard" value="65535" />
     </restriction>
   </type:type>
   <type:type short="OTADeviceSpecificImageType" name="Image Type Id (Device Specific)" id="21" inheritsFrom="uint16">
     <restriction>
       <type:minInclusive value="65472" />
-      <type:maxInclusive value="65534"/>
-      <type:enumeration name="ClientSecurityCredentials" value="ffc0"/>
+      <type:maxInclusive value="65534" />
+      <type:enumeration name="ClientSecurityCredentials" value="ffc0" />
       <type:enumeration name="ClientConfiguration" value="ffc1" />
       <type:enumeration name="ServerLog" value="ffc2" />
       <type:enumeration name="Picture" value="ffc3" />
-      <type:special name="Wildcard" value="65535"/>
+      <type:special name="Wildcard" value="65535" />
     </restriction>
   </type:type>
   <server>
@@ -97,6 +92,10 @@ applicable to this document can be found in the LICENSE.md file.
         </fields>
       </command>
     </commands>
+  <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="3" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
   </server>
   <client>
     <attributes>
@@ -133,6 +132,8 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="01" name="DoNotApplyUpgradeAfterTimeout" />
         </restriction>
       </attribute>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="3" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
       <command id="00" name="ImageNotify">
@@ -146,15 +147,15 @@ applicable to this document can be found in the LICENSE.md file.
             </restriction>
           </field>
           <field name="QueryJitter" type="uint8" />
-          <field name="ManufacturerCode" type="uint16" presentIf="PayloadType >= 1" />
-          <field name="ImageType" type="uint16" presentIf="PayloadType >= 2" />
-          <field name="NewFileVersion" type="uint32" presentIf="PayloadType >= 3" />
+          <field name="ManufacturerCode" type="uint16" presentIf="PayloadType &gt;= 1" />
+          <field name="ImageType" type="uint16" presentIf="PayloadType &gt;= 2" />
+          <field name="NewFileVersion" type="uint32" presentIf="PayloadType &gt;= 3" />
         </fields>
       </command>
       <command id="02" name="QueryNextImageResponse" required="true">
         <fields>
           <field name="Status" type="zclStatus" />
-          <field name="ManufacturerCode" type="uint16" presentIf="Status=0"/>
+          <field name="ManufacturerCode" type="uint16" presentIf="Status=0" />
           <field name="ImageType" type="OTAImageType" presentIf="Status=0" />
           <field name="FileVersion" type="uint32" presentIf="Status=0" />
           <field name="ImageSize" type="uint32" presentIf="Status=0" />
@@ -164,7 +165,7 @@ applicable to this document can be found in the LICENSE.md file.
         <fields>
           <field name="Status" type="zclStatus" />
           <!-- Success Fields -->
-          <field name="ManufacturerCode" type="uint16" presentIf="Status=0"/>
+          <field name="ManufacturerCode" type="uint16" presentIf="Status=0" />
           <field name="ImageType" type="OTAImageType" presentIf="Status=0" />
           <field name="FileVersion" type="uint32" presentIf="Status=0" />
           <field name="FileOffset" type="uint32" presentIf="Status=0" />
@@ -187,7 +188,7 @@ applicable to this document can be found in the LICENSE.md file.
       <command id="09" name="QueryDeviceSpecificFileResponse">
         <fields>
           <field name="Status" type="zclStatus" />
-          <field name="ManufacturerCode" type="uint16" presentIf="Status=0"/>
+          <field name="ManufacturerCode" type="uint16" presentIf="Status=0" />
           <field name="ImageType" type="OTADeviceSpecificImageType" presentIf="Status=0" />
           <field name="FileVersion" type="uint32" presentIf="Status=0" />
           <field name="ImageSize" type="uint32" presentIf="Status=0" />

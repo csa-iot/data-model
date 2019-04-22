@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="000B" revision="0" name="RSSI">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="000B" name="RSSI" revision="0" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="utility" picsCode="RSSI" />
   <server>
     <attributes>
@@ -36,6 +31,8 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0015" name="ReportingPeriod" type="uint16" writable="true" max="65535" default="-" />
       <attribute id="0016" name="CalculationPeriod" type="uint16" writable="true" max="65535" default="-" />
       <attribute id="0017" name="NumberRSSIMeasurements" type="uint8" writable="true" required="true" min="1" max="255" default="-" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
       <command id="00" name="SetAbsoluteLocation" required="true">
@@ -136,5 +133,9 @@ applicable to this document can be found in the LICENSE.md file.
         </fields>
       </command>
     </commands>
+  <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
   </client>
 </zcl:cluster>

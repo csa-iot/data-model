@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-  id="0103" revision="1" name="BarrierControl">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0103" name="BarrierControl" revision="1" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="BAR" primaryTransaction="1" />
   <server>
     <attributes>
@@ -46,6 +41,8 @@ applicable to this document can be found in the LICENSE.md file.
           <type:special value="FF" name="PositionUnknown" />
         </restriction>
       </attribute>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
       <command id="00" name="GoToPercent" required="true">
@@ -61,4 +58,10 @@ applicable to this document can be found in the LICENSE.md file.
       <command id="01" name="Stop" required="true" />
     </commands>
   </server>
+<client>
+    <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
+  </client>
 </zcl:cluster>

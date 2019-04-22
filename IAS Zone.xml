@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0500" revision="2" name="IASZone">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0500" name="IASZone" revision="2" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="IASZ" primaryTransaction="2" />
 
   <server>
@@ -30,46 +25,52 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0011" name="ZoneID" type="uint8" required="true" max="255" default="255" />
       <attribute id="0012" name="NumberOfZoneSensitivityLevelsSupported" type="uint8" min="2" max="255" default="2" />
       <attribute id="0013" name="CurrentZoneSensitivityLevel" type="uint8" writable="true" max="255" default="0" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
-      <command id="00" name="ZoneEnrollResponse" required="true" >
+      <command id="00" name="ZoneEnrollResponse" required="true">
         <fields>
           <field name="EnrollResponseCode" type="enum8">
             <restriction>
-              <type:enumeration name="Success" value="00"/>
-              <type:enumeration name="NotSupported" value="01"/>
-              <type:enumeration name="NoEnrollPermit" value="02"/>
-              <type:enumeration name="TooManyZones" value="03"/>
+              <type:enumeration name="Success" value="00" />
+              <type:enumeration name="NotSupported" value="01" />
+              <type:enumeration name="NoEnrollPermit" value="02" />
+              <type:enumeration name="TooManyZones" value="03" />
             </restriction>
           </field>
-          <field name="ZoneID" type="uint8"/>
+          <field name="ZoneID" type="uint8" />
         </fields>
       </command>
       <command id="01" name="InitiateNormalOperationMode" />
-      <command id="02" name="InitiateTestMode" >
+      <command id="02" name="InitiateTestMode">
        <fields>
-          <field name="TestModeDuration" type="uint8"/>
-          <field name="CurrentZoneSensitivityLevel" type="uint8"/>
+          <field name="TestModeDuration" type="uint8" />
+          <field name="CurrentZoneSensitivityLevel" type="uint8" />
         </fields>
       </command>
     </commands>
   </server>
   <client>
     <commands>
-      <command id="00" name="ZoneStatusChangeNotification" required="true" >
+      <command id="00" name="ZoneStatusChangeNotification" required="true">
         <fields>
-          <field name="ZoneStatus" type="IasZoneStatus"/>
-          <field name="ExtendedStatus" type="map8"/>
-          <field name="ZoneID" type="uint8"/>
-          <field name="Delay" type="uint16"/>
+          <field name="ZoneStatus" type="IasZoneStatus" />
+          <field name="ExtendedStatus" type="map8" />
+          <field name="ZoneID" type="uint8" />
+          <field name="Delay" type="uint16" />
         </fields>
       </command>
-      <command id="01" name="ZoneEnrollRequest" required="true" >
+      <command id="01" name="ZoneEnrollRequest" required="true">
        <fields>
-          <field name="ZoneType" type="IasZoneType"/>
-          <field name="ManufacturerCode" type="uint16"/>
+          <field name="ZoneType" type="IasZoneType" />
+          <field name="ManufacturerCode" type="uint16" />
         </fields>
       </command>
     </commands>
+  <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
   </client>
 </zcl:cluster>

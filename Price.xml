@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,100 +6,95 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0700" revision="0" name="Price">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0700" name="Price" revision="0" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="SEPR" primaryTransaction="" />
   <server>
     <attributes>
-      <attribute id="0000" name="Tier1PriceLabel" type="octstr" writable="true" default="“Tier 1”">
+      <attribute id="0000" name="Tier1PriceLabel" type="octstr" writable="true" default="&#8220;Tier 1&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0001" name="Tier2PriceLabel" type="octstr" writable="true" default="“Tier 2”">
+      <attribute id="0001" name="Tier2PriceLabel" type="octstr" writable="true" default="&#8220;Tier 2&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0002" name="Tier3PriceLabel" type="octstr" writable="true" default="“Tier 3”">
+      <attribute id="0002" name="Tier3PriceLabel" type="octstr" writable="true" default="&#8220;Tier 3&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0003" name="Tier4PriceLabel" type="octstr" writable="true" default="“Tier 4”">
+      <attribute id="0003" name="Tier4PriceLabel" type="octstr" writable="true" default="&#8220;Tier 4&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0004" name="Tier5PriceLabel" type="octstr" writable="true" default="“Tier 5”">
+      <attribute id="0004" name="Tier5PriceLabel" type="octstr" writable="true" default="&#8220;Tier 5&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0005" name="Tier6PriceLabel" type="octstr" writable="true" default="“Tier 6”">
+      <attribute id="0005" name="Tier6PriceLabel" type="octstr" writable="true" default="&#8220;Tier 6&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0006" name="Tier7PriceLabel" type="octstr" default="“Tier 7”">
+      <attribute id="0006" name="Tier7PriceLabel" type="octstr" default="&#8220;Tier 7&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0007" name="Tier8PriceLabel" type="octstr" default="“Tier 8”">
+      <attribute id="0007" name="Tier8PriceLabel" type="octstr" default="&#8220;Tier 8&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0008" name="Tier9PriceLabel" type="octstr" default="“Tier 9”">
+      <attribute id="0008" name="Tier9PriceLabel" type="octstr" default="&#8220;Tier 9&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="0009" name="Tier10PriceLabel" type="octstr" default="“Tier 10”">
+      <attribute id="0009" name="Tier10PriceLabel" type="octstr" default="&#8220;Tier 10&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="000A" name="Tier11PriceLabel" type="octstr" default="“Tier 11”">
+      <attribute id="000A" name="Tier11PriceLabel" type="octstr" default="&#8220;Tier 11&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="000B" name="Tier12PriceLabel" type="octstr" default="“Tier 12”">
+      <attribute id="000B" name="Tier12PriceLabel" type="octstr" default="&#8220;Tier 12&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="000C" name="Tier13PriceLabel" type="octstr" default="“Tier 13”">
+      <attribute id="000C" name="Tier13PriceLabel" type="octstr" default="&#8220;Tier 13&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="000D" name="Tier14PriceLabel" type="octstr" default="“Tier 14”">
+      <attribute id="000D" name="Tier14PriceLabel" type="octstr" default="&#8220;Tier 14&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
         </restriction>
       </attribute>
-      <attribute id="000E" name="Tier15PriceLabel" type="octstr" default="“Tier 15”">
+      <attribute id="000E" name="Tier15PriceLabel" type="octstr" default="&#8220;Tier 15&#8221;">
         <restriction>
           <type:minLength value="1" />
           <type:maxLength value="13" />
@@ -139,57 +134,59 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0000" name="NoTierBlock1Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0001" name="NoTierBlock2Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0002" name="NoTierBlock3Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="NoTierBlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="NoTierBlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="000F" name="NoTierBlock16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0010" name="Tier1Block1Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0011" name="Tier1Block2Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0012" name="Tier1Block3Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier1BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier1BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="001F" name="Tier1Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0020" name="Tier2Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier2BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier2BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="002F" name="Tier2Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0030" name="Tier3Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier3BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier3BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="003F" name="Tier3Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0040" name="Tier4Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier4BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier4BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="004F" name="Tier4Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0050" name="Tier5Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier5BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier5BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="005F" name="Tier5Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0060" name="Tier6Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier6BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier6BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="006F" name="Tier6Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0070" name="Tier7Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier7BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier7BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="007F" name="Tier7Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0080" name="Tier8Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier8BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier8BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="008F" name="Tier8Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0090" name="Tier9Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier9BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier9BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="009F" name="Tier9Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="00A0" name="Tier10Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier10BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier10BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="00AF" name="Tier10Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="00B0" name="Tier11Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier11BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier11BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="00BF" name="Tier11Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="00C0" name="Tier12Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier12BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier12BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="00CF" name="Tier12Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="00D0" name="Tier13Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier13BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier13BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="00DF" name="Tier13Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="00E0" name="Tier14Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier14BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier14BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="00EF" name="Tier14Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="00F0" name="Tier15Block1Price" type="uint32" max="4294967295" default="-" />
-      <attribute id="0000" name="Tier15BlockN+1Price…" type="uint32" max="4294967295" default="-" />
+      <attribute id="0000" name="Tier15BlockN+1Price&#8230;" type="uint32" max="4294967295" default="-" />
       <attribute id="00FF" name="Tier15Block16Price" type="uint32" max="4294967295" default="-" />
       <attribute id="0000" name="CurrentBillingPeriodStart" type="UTC" default="-" />
       <attribute id="0001" name="CurrentBillingPeriodDuration" type="uint24" max="16777215" default="-" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
       <command id="00" name="GetCurrentPrice" required="true">
@@ -272,5 +269,9 @@ applicable to this document can be found in the LICENSE.md file.
         </fields>
       </command>
     </commands>
+  <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
   </client>
 </zcl:cluster>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,16 +6,11 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0B01" revision="1" name="MeterIdentification">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0B01" name="MeterIdentification" revision="1" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="MTRID" primaryTransaction="2" />
   <server>
     <attributes>
-      <attribute id="0000" name="CompanyName" type="string" required="true" >
+      <attribute id="0000" name="CompanyName" type="string" required="true">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
@@ -42,43 +37,43 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="0003" name="NotCertifiedData" />
         </restriction>
       </attribute>
-      <attribute id="0005" name="CustomerName" type="string" writable="true" >
+      <attribute id="0005" name="CustomerName" type="string" writable="true">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
         </restriction>
       </attribute>
-      <attribute id="0006" name="Model" type="octstr" >
+      <attribute id="0006" name="Model" type="octstr">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
         </restriction>
       </attribute>
-      <attribute id="0007" name="PartNumber" type="octstr" >
+      <attribute id="0007" name="PartNumber" type="octstr">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
         </restriction>
       </attribute>
-      <attribute id="0008" name="ProductRevision" type="octstr" >
+      <attribute id="0008" name="ProductRevision" type="octstr">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="6" />
         </restriction>
       </attribute>
-      <attribute id="000A" name="SoftwareRevision" type="octstr" >
+      <attribute id="000A" name="SoftwareRevision" type="octstr">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="6" />
         </restriction>
       </attribute>
-      <attribute id="000B" name="UtilityName" type="string" >
+      <attribute id="000B" name="UtilityName" type="string">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
         </restriction>
       </attribute>
-      <attribute id="000C" name="POD" type="string" required="true" >
+      <attribute id="000C" name="POD" type="string" required="true">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
@@ -86,6 +81,14 @@ applicable to this document can be found in the LICENSE.md file.
       </attribute>
       <attribute id="000D" name="AvailablePower" type="int24" required="true" />
       <attribute id="000E" name="PowerThreshold" type="int24" required="true" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
   </server>
+<client>
+    <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
+  </client>
 </zcl:cluster>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0002" revision="1" name="DeviceTemperatureConfiguration">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0002" name="DeviceTemperatureConfiguration" revision="1" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="utility" picsCode="DTMP" />
   <server>
     <attributes>
@@ -27,18 +22,26 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="DeviceTemperatureTooHigh" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
-      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" requiredIf="implements(LowTempDwellTripPoint)" min="-200" max="200" >
+      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" requiredIf="implements(LowTempDwellTripPoint)" min="-200" max="200">
           <restriction>
              <type:maxExclusiveRef ref="HighTempThreshold" />
          </restriction>
       </attribute>    
-      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" requiredIf="implements(HighTempDwellTripPoint)" min="-200" max="200" >
+      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" requiredIf="implements(HighTempDwellTripPoint)" min="-200" max="200">
           <restriction>
             <type:minExclusiveRef ref="LowTempThreshold" />
           </restriction>
       </attribute>      
       <attribute id="0013" name="LowTempDwellTripPoint" type="uint24" writable="true" requiredIf="implements(LowTempThreshold)" max="16777215" />
       <attribute id="0014" name="HighTempDwellTripPoint" type="uint24" writable="true" requiredIf="implements(HighTempThreshold)" max="16777215" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
   </server>
+<client>
+    <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="1" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
+  </client>
 </zcl:cluster>

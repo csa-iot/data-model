@@ -6,12 +6,7 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-             xmlns:type="http://zigbee.org/zcl/types" 
-             xmlns:xi="http://www.w3.org/2001/XInclude" 
-             xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-             id="0B04" revision="2" name="ElectricalMeasurement">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0B04" name="ElectricalMeasurement" revision="2" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="EMR" primaryTransaction="1" />
   <!--  For any measurement cluster with MeasuredValue, MinMeasuredValue and MaxMeasuredValue attributes, the 
         following SHALL be always be true:
@@ -21,7 +16,7 @@ applicable to this document can be found in the LICENSE.md file.
   <server>
     <attributes>
       <!-- Basic Information (00xx) -->
-      <attribute id="0000" name="MeasurementType" type="map32" required="true" default="00000000" >
+      <attribute id="0000" name="MeasurementType" type="map32" required="true" default="00000000">
         <bitmap>
           <element name="ActiveMeasurementAC" type="bool" mask="00000001" />
           <element name="ReactiveMeasurementAC" type="bool" mask="00000002" shiftRight="1" />
@@ -110,7 +105,7 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0604" name="ACPowerMultiplier" type="uint16" min="1" default="1" reportRequired="true" requiredIf="implements(ACPowerDivisor)" />
       <attribute id="0605" name="ACPowerDivisor" type="uint16" min="1" default="1" reportRequired="true" requiredIf="implements(ACPowerMultiplier)" />
       <!-- DC Manufacturer Threshold Alarms (07xx) -->
-      <attribute id="0700" name="DCOverloadAlarmsMask" type="map8" default="0" writable="true" >
+      <attribute id="0700" name="DCOverloadAlarmsMask" type="map8" default="0" writable="true">
         <bitmap>
           <element name="VoltageOverload" type="bool" mask="01" />
           <element name="CurrentOverload" type="bool" mask="02" shiftRight="1" />
@@ -119,7 +114,7 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0701" name="DCVoltageOverload" type="int16" default="-1" />
       <attribute id="0702" name="DCCurrentOverload" type="int16" default="-1" />
       <!-- AC Manufacturer Threshold Alarms (08xx) -->
-      <attribute id="0800" name="ACAlarmsMask" type="map16" default="0000" writable="true" >
+      <attribute id="0800" name="ACAlarmsMask" type="map16" default="0000" writable="true">
         <bitmap>
           <element name="VoltageOverload" type="bool" mask="0001" />
           <element name="CurrentOverload" type="bool" mask="0002" shiftRight="1" />
@@ -189,6 +184,8 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0a15" name="RMSExtremeUnderVoltagePeriodPhC" type="uint16" default="0" writable="true" />
       <attribute id="0a16" name="RMSVoltageSagPeriodPhC" type="uint16" default="0" writable="true" />
       <attribute id="0a17" name="RMSVoltageSwellPeriodPhC" type="uint16" default="0" writable="true" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
       <command id="00" name="GetProfileInfoResponse">
@@ -199,10 +196,10 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="ListOfAttributes" type="attribId" array="true" arrayLengthSize="0" />
         </fields>
       </command>
-      <command id="01" name="GetMeasurementProfileResponse" >
+      <command id="01" name="GetMeasurementProfileResponse">
         <fields>
           <field name="StartTime" type="UTC" />
-          <field name="Status" type="enum8" >
+          <field name="Status" type="enum8">
             <restriction>
               <type:enumeration value="00" name="Success" />
               <type:enumeration value="01" name="AttributeProfileNotSupported" />
@@ -222,7 +219,7 @@ applicable to this document can be found in the LICENSE.md file.
   <client>
     <commands>
       <command id="00" name="GetProfileInfo" />
-      <command id="01" name="GetMeasurementProfile" >
+      <command id="01" name="GetMeasurementProfile">
         <fields>
           <field name="AttributeID" type="attribId" /> 
           <field name="StartTime" type="UTC" /> 
@@ -230,5 +227,9 @@ applicable to this document can be found in the LICENSE.md file.
         </fields>
       </command>
     </commands>
+  <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
   </client>
 </zcl:cluster>

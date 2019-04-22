@@ -6,25 +6,20 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:type="http://zigbee.org/zcl/types"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0102" revision="2" name="WindowCovering">
+<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0102" name="WindowCovering" revision="2" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
   <classification role="application" picsCode="WNCV" primaryTransaction="1" />
   <server>
     <attributes>
       <!-- Window Covering Information Attribute Set -->
       <attribute id="0000" name="WindowCoveringType" type="enum8" required="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Rollershade"/>
-          <type:enumeration value="01" name="Rollershade2Motor"/>
-          <type:enumeration value="02" name="RollershadeExterior"/>
-          <type:enumeration value="03" name="RollershadeExterior2Motor"/>
-          <type:enumeration value="04" name="Drapery"/>
-          <type:enumeration value="05" name="Awning"/>
-          <type:enumeration value="06" name="Shutter"/>
+          <type:enumeration value="00" name="Rollershade" />
+          <type:enumeration value="01" name="Rollershade2Motor" />
+          <type:enumeration value="02" name="RollershadeExterior" />
+          <type:enumeration value="03" name="RollershadeExterior2Motor" />
+          <type:enumeration value="04" name="Drapery" />
+          <type:enumeration value="05" name="Awning" />
+          <type:enumeration value="06" name="Shutter" />
           <type:enumeration value="07" name="TiltBlindTiltOnly" />
           <type:enumeration value="08" name="TiltBlindLiftAndTilt" />
           <type:enumeration value="09" name="ProjectorScreen" />
@@ -68,6 +63,8 @@ applicable to this document can be found in the LICENSE.md file.
       </attribute>
       <attribute id="0108" name="IntermediateSetpointsLift" type="octstr" default="1,0x0000" />
       <attribute id="0109" name="IntermediateSetpointsTilt" type="octstr" default="1,0x0000" />
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
       <command id="00" name="UpOrOpen" required="true" />
@@ -113,4 +110,10 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
     </commands>
   </server>
+<client>
+    <attributes>
+      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
+      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
+    </attributes>
+  </client>
 </zcl:cluster>
