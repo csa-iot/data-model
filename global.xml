@@ -163,7 +163,7 @@ applicable to this document can be found in the LICENSE.md file.
 
 	<attributes>
 		<attribute id="fffd" name="ClusterRevision" type="uint16"
-			min="1" max="65534" required="true" default="1" />
+			min="1" max="65534" required="true" default="revision()" />
 		<attribute id="fffe" name="AttributeReportingStatus" type="enum8">
 			<restriction>
 				<type:enumeration value="00" name="Pending" />

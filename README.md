@@ -1,3 +1,7 @@
+Releases
+========
+Releases are tied to a specific revision of the Zigbee Cluster Library (ZCL). These files are released from a git repo which is tagged based on the release version of the ZCL. At the time of the initial conversion, the ZCL document was at release 7. Multiple releases of the XML files may be made against a single ZCL version. the tagging mechanism is designed to handle this and follows the format zcl<ZCL Version>.<XML Release Version> where ZCL Version is the version of the ZCL document and the XML Release Version is a counter based on the source document which starts from 0. This means the initial release tag for ZCLr7 is zcl7.0. Subsequent releases of XML against ZCLr7 will be zcl7.1, zcl7.2, etc. When a new ZCL, such as ZCLr8 is released, the tags will be come zcl8.0, zcl8.1, etc.
+
 Eclipse Setup
 =============
 To configure eclipse to properly work with the XML files you'll need a version of eclipse that supports the XML Editors and Tools. You can [compare different versions](https://www.eclipse.org/downloads/packages/compare). Once installed, follow the instructions below to get set up for validation. These assume you've already got a local copy of the GIT repo checked out.
@@ -401,6 +405,7 @@ In addition, the following functions are available for expressions
 | implements(X)  | Returns true when a specific implementation implements the attribute or command named by X. Uses the name, not the id |
 | min(X, Y, ...) | Returns the minimum value of the provided arguments. May take numeric literals or attribute names as references.      |
 | max(X, Y, ...) | Returns the maximum value of the provided arguments. May take numeric literals or attribute names as references.      |
+| revision()     | Returns the revision of the cluster for which an attribute is implemented. In the global context, this is interpreted as the value of the specific cluster into which the global attribute or command has been inserted. |
 
 Patterns
 ========

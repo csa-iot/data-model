@@ -21,6 +21,8 @@ sed -i '' 's/<classification hierarchy="\([^"]*\)" role="application" picsCode="
 sed -i '' 's/<classification hierarchy="base"/<classification/g' *.xml
 
 for filename in *.xml; do
+	sed -i '' '1s/<zcl/<?xml version="1.0"?>\
+<zcl/' "$filename"
 	sed -i '' '$!N;s/<?xml version="1.0"?>\n<zcl/<?xml version="1.0"?>\
 <!-- \
 Zigbee Alliance owns the copyright to the text and content displayed or \
