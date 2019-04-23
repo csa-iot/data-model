@@ -6,7 +6,13 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:type="http://zigbee.org/zcl/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0300" name="ColorControl" revision="2" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
+<zcl:cluster
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0300" revision="2" name="ColorControl">
   <classification role="application" picsCode="CC" primaryTransaction="1" />
   
   <type:type short="CCColorOptions" name="CCColorOptions" id="18" inheritsFrom="map8">
@@ -145,25 +151,25 @@ applicable to this document can be found in the LICENSE.md file.
       </attribute>
       <!-- Defined Primaries Information Attribute Set -->
       <attribute id="0010" name="NumberOfPrimaries" type="uint8" max="6" required="true" />
-      <attribute id="0011" name="Primary1X" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 0" />
-      <attribute id="0012" name="Primary1Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 0" />
-      <attribute id="0013" name="Primary1Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries &gt; 0" />
-      <attribute id="0015" name="Primary2X" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 1" />
-      <attribute id="0016" name="Primary2Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 1" />
-      <attribute id="0017" name="Primary2Intensity" type="uint8" requiredIf="NumberOfPrimaries &gt; 1" />
-      <attribute id="0019" name="Primary3X" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 2" />
-      <attribute id="001A" name="Primary3Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 2" />
-      <attribute id="001B" name="Primary3Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries &gt; 2" />
+      <attribute id="0011" name="Primary1X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 0" />
+      <attribute id="0012" name="Primary1Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 0" />
+      <attribute id="0013" name="Primary1Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 0" />
+      <attribute id="0015" name="Primary2X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 1" />
+      <attribute id="0016" name="Primary2Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 1" />
+      <attribute id="0017" name="Primary2Intensity" type="uint8" requiredIf="NumberOfPrimaries > 1" />
+      <attribute id="0019" name="Primary3X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 2" />
+      <attribute id="001A" name="Primary3Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 2" />
+      <attribute id="001B" name="Primary3Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 2" />
       <!-- Additional Defined Primaries Information Attribute Set -->
-      <attribute id="0020" name="Primary4X" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 3" />
-      <attribute id="0021" name="Primary4Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 3" />
-      <attribute id="0022" name="Primary4Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries &gt; 3" />
-      <attribute id="0024" name="Primary5X" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 4" />
-      <attribute id="0025" name="Primary5Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 4" />
-      <attribute id="0026" name="Primary5Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries &gt; 4" />
-      <attribute id="0028" name="Primary6X" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 5" />
-      <attribute id="0029" name="Primary6Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries &gt; 5" />
-      <attribute id="002A" name="Primary6Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries &gt; 5" />
+      <attribute id="0020" name="Primary4X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 3" />
+      <attribute id="0021" name="Primary4Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 3" />
+      <attribute id="0022" name="Primary4Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 3" />
+      <attribute id="0024" name="Primary5X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 4" />
+      <attribute id="0025" name="Primary5Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 4" />
+      <attribute id="0026" name="Primary5Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 4" />
+      <attribute id="0028" name="Primary6X" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 5" />
+      <attribute id="0029" name="Primary6Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 5" />
+      <attribute id="002A" name="Primary6Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 5" />
       <!-- Defined Color Points Settings Attribute Set -->
       <attribute id="0030" name="WhitePointX" type="uint16" max="65279" writable="true" requiredIf="implements(WhitePointY)" />
       <attribute id="0031" name="WhitePointY" type="uint16" max="65279" writable="true" requiredIf="implements(WhitePointX)" />
@@ -176,8 +182,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="003A" name="ColorPointBX" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
       <attribute id="003B" name="ColorPointBY" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
       <attribute id="003C" name="ColorPointBIntensity" type="uint8" max="255" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
-      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
     <commands>
       <command id="00" name="MoveToHue" requiredIf="ColorCapabilities.HueSaturationSupported = true">
@@ -363,10 +367,4 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
     </commands>
   </server>
-<client>
-    <attributes>
-      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="2" />
-      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
-    </attributes>
-  </client>
 </zcl:cluster>

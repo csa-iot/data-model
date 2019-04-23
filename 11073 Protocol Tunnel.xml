@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <!-- 
 Zigbee Alliance owns the copyright to the text and content displayed or 
 included in this document (including in PDF, XML files and other formats) in 
@@ -6,7 +6,12 @@ all forms of media, which copyright is protected by the copyright laws of the
 United States and by international treaties.  Full text of licensing terms 
 applicable to this document can be found in the LICENSE.md file.
 -->
-<zcl:cluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zcl="http://zigbee.org/zcl/clusters" id="0614" name="11073 Protocol Tunnel" revision="0" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd">
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0614" revision="0" name="11073 Protocol Tunnel">
   <classification role="application" picsCode="T11073" primaryTransaction="" />
   <server>
     <attributes>
@@ -16,14 +21,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0003" name="Connected" type="bool" default="FALSE" />
       <attribute id="0004" name="Preemptible" type="bool" default="TRUE" />
       <attribute id="0005" name="IdleTimeout" type="uint16" min="1" max="65535" default="0" />
-      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
-      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
     </attributes>
   </server>
-<client>
-    <attributes>
-      <attribute id="fffd" name="ClusterRevision" type="uint16" required="true" min="1" default="0" />
-      <attribute id="fffe" name="AttributeReportingStatus" type="AttributeReportingStatusEnum" />
-    </attributes>
-  </client>
 </zcl:cluster>
