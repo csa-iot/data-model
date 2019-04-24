@@ -431,47 +431,47 @@ applicable to this document can be found in the LICENSE.md file.
 
   <xi:include href="global.xml" parse="xml" />
   <xi:include href="Basic.xml" parse="xml" />
-  <xi:include href="Power Configuration.xml" parse="xml" />
-  <xi:include href="Device Temperature Configuration.xml" parse="xml" />
+  <xi:include href="PowerConfiguration.xml" parse="xml" />
+  <xi:include href="DeviceTemperatureConfiguration.xml" parse="xml" />
   <xi:include href="Identify.xml" parse="xml" />
   <xi:include href="Groups.xml" parse="xml" />
   <xi:include href="Scenes.xml" parse="xml" />
-  <xi:include href="On-Off.xml" parse="xml" />
+  <xi:include href="OnOff.xml" parse="xml" />
   <xi:include href="Level.xml" parse="xml" />
   <xi:include href="Alarms.xml" parse="xml" />
   <xi:include href="Time.xml" parse="xml" />
   <xi:include href="Diagnostics.xml" parse="xml" />
-  <xi:include href="Poll Control.xml" parse="xml" />
-  <xi:include href="Level Control for Lighting.xml" parse="xml" />
-  <xi:include href="Pulse Width Modulation.xml" parse="xml" />
-  <xi:include href="Illuminance Measurement.xml" parse="xml" />
-  <xi:include href="Illuminance Level Sensing.xml" parse="xml" />
-  <xi:include href="Temperature Measurement.xml" parse="xml" />
-  <xi:include href="Pressure Measurement.xml" parse="xml" />
-  <xi:include href="Flow Measurement.xml" parse="xml" />
-  <xi:include href="Water Content Measurement.xml" parse="xml" />
-  <xi:include href="Occupancy Sensing.xml" parse="xml" />
-  <xi:include href="Electrical Measurement.xml" parse="xml" />
-  <xi:include href="Electrical Conductivity Measurement.xml" parse="xml" />
-  <xi:include href="pH Measurement.xml" parse="xml" />
-  <xi:include href="Wind Speed Measurement.xml" parse="xml" />
-  <xi:include href="Color Control.xml" parse="xml" />
-  <xi:include href="Ballast Configuration.xml" parse="xml" />
-  <xi:include href="Pump Configuration and Control.xml" parse="xml" />
+  <xi:include href="PollControl.xml" parse="xml" />
+  <xi:include href="LevelControlForLighting.xml" parse="xml" />
+  <xi:include href="PulseWidthModulation.xml" parse="xml" />
+  <xi:include href="IlluminanceMeasurement.xml" parse="xml" />
+  <xi:include href="IlluminanceLevelSensing.xml" parse="xml" />
+  <xi:include href="TemperatureMeasurement.xml" parse="xml" />
+  <xi:include href="PressureMeasurement.xml" parse="xml" />
+  <xi:include href="FlowMeasurement.xml" parse="xml" />
+  <xi:include href="WaterContentMeasurement.xml" parse="xml" />
+  <xi:include href="OccupancySensing.xml" parse="xml" />
+  <xi:include href="ElectricalMeasurement.xml" parse="xml" />
+  <xi:include href="ElectricalConductivityMeasurement.xml" parse="xml" />
+  <xi:include href="pHMeasurement.xml" parse="xml" />
+  <xi:include href="WindSpeedMeasurement.xml" parse="xml" />
+  <xi:include href="ColorControl.xml" parse="xml" />
+  <xi:include href="BallastConfiguration.xml" parse="xml" />
+  <xi:include href="PumpConfigurationandControl.xml" parse="xml" />
   <xi:include href="Thermostat.xml" parse="xml" />
-  <xi:include href="Fan Control.xml" parse="xml" />
-  <xi:include href="Dehumidification Control.xml" parse="xml" />
-  <xi:include href="Thermostat User Interface Configuration.xml" parse="xml" />
-  <xi:include href="Shade Configuration.xml" parse="xml" />
-  <xi:include href="Door Lock.xml" parse="xml" />
-  <xi:include href="Window Covering.xml" parse="xml" />
-  <xi:include href="Barrier Control.xml" parse="xml" />
-  <xi:include href="IAS Zone.xml" parse="xml" />
-  <xi:include href="IAS ACE.xml" parse="xml" />
-  <xi:include href="IAS WD.xml" parse="xml" />
+  <xi:include href="FanControl.xml" parse="xml" />
+  <xi:include href="DehumidificationControl.xml" parse="xml" />
+  <xi:include href="ThermostatUserInterfaceConfiguration.xml" parse="xml" />
+  <xi:include href="ShadeConfiguration.xml" parse="xml" />
+  <xi:include href="DoorLock.xml" parse="xml" />
+  <xi:include href="WindowCovering.xml" parse="xml" />
+  <xi:include href="BarrierControl.xml" parse="xml" />
+  <xi:include href="IASZone.xml" parse="xml" />
+  <xi:include href="IASACE.xml" parse="xml" />
+  <xi:include href="IASWD.xml" parse="xml" />
   <xi:include href="Commissioning.xml" parse="xml" />
-  <xi:include href="Touchlink Commissioning.xml" parse="xml" />
-  <xi:include href="OTA Upgrade.xml" parse="xml" />
+  <xi:include href="TouchlinkCommissioning.xml" parse="xml" />
+  <xi:include href="OTAUpgrade.xml" parse="xml" />
   <xi:include href="ConcentrationMeasurement.xml" parse="xml"/>
 
 </zcl:library>
