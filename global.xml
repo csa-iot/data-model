@@ -151,11 +151,11 @@ applicable to this document can be found in the LICENSE.md file.
 		</restriction>
 	</type:type>
 	
-	<type:type id="ff" short="discoverAtttributesExtendedResponseRecord" name="Discover Attributes Extended Response Record">
+	<type:type id="ff" short="discoverAttributesExtendedResponseRecord" name="Discover Attributes Extended Response Record">
 		<restriction>
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
-				<!-- TODO: Attribute Data Type -->
+				<field name="AttributeType" type="zclType" />
 				<field name="AccessControl" type="bitmap8" />
 			</type:sequence>
 		</restriction>
@@ -294,7 +294,7 @@ applicable to this document can be found in the LICENSE.md file.
 		<command id="16" name="DiscoverAttributesExtendedResponse" required="false">
 			<fields>
 				<field name="DiscoveryComplete" type="bool" />
-				<field name="AttributeRecord" type="discoverAtttributesExtendedResponseRecord" array="true" arrayLengthSize="0" />
+				<field name="AttributeRecord" type="discoverAttributesExtendedResponseRecord" array="true" arrayLengthSize="0" />
 			</fields>
 		</command>
 	</commands>
