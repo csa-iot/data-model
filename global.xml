@@ -93,13 +93,14 @@ applicable to this document can be found in the LICENSE.md file.
 	<type:type id="ff" short="readReportingConfigurationResponseRecord" name="Read Reporting Configuration Response Record">
 		<restriction>
 			<type:sequence>
+                <field name="Status" type="zclStatus"  />
 				<field name="Direction" type="reportingRole" />
 				<field name="AttributeIdentifier" type="attribId" />
-				<field name="AttributeType" type="zclType" presentIf="Direction = 0" />
-				<field name="MinimumReportingInterval" type="uint16" presentIf="Direction = 0" />
-				<field name="MaximumReportingInterval" type="uint16" presentIf="Direction = 0" />
-				<field name="ReportableChange" type="unk" presentIf="Direction = 0" />
-				<field name="Timeout" type="uint16" presentIf="Direction = 1" />
+				<field name="AttributeType" type="zclType" presentIf="Status=0 and Direction = 0" />
+				<field name="MinimumReportingInterval" type="uint16" presentIf="Status=0 and Direction = 0" />
+				<field name="MaximumReportingInterval" type="uint16" presentIf="Status=0 and Direction = 0" />
+				<field name="ReportableChange" type="unk" presentIf="Status=0 and Direction = 0" />
+				<field name="Timeout" type="uint16" presentIf="Status=0 and Direction = 1" />
 			</type:sequence>
 		</restriction>	
 	</type:type>
