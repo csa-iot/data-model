@@ -142,9 +142,9 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Status" type="zclStatus" />
           <field name="GroupID" type="SGroupId" />
           <field name="SceneID" type="uint8" />
-          <field name="TransitionTime" type="uint16" />
-          <field name="SceneName" type="SSceneName" />
-          <field name="ExtensionFieldSets" type="SExtensionFieldSetList" array="true" arrayLengthSize="0" />
+          <field name="TransitionTime" type="uint16" presentIf="Status = 0" />
+          <field name="SceneName" type="SSceneName" presentIf="Status = 0" />
+          <field name="ExtensionFieldSets" type="SExtensionFieldSetList" array="true" arrayLengthSize="0" presentIf="Status = 0" />
         </fields>
       </command>
       <command id="02" name="RemoveSceneResponse" required="true">
