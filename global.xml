@@ -88,13 +88,14 @@
     name="Read Reporting Configuration Response Record">
     <restriction>
       <type:sequence>
+        <field name="Status" type="zclStatus" />
         <field name="Direction" type="reportingRole" />
         <field name="AttributeIdentifier" type="attribId" />
-        <field name="AttributeType" type="zclType" presentIf="Direction = 0" />
-        <field name="MinimumReportingInterval" type="uint16" presentIf="Direction = 0" />
-        <field name="MaximumReportingInterval" type="uint16" presentIf="Direction = 0" />
-        <field name="ReportableChange" type="unk" presentIf="Direction = 0" />
-        <field name="Timeout" type="uint16" presentIf="Direction = 1" />
+        <field name="AttributeType" type="zclType" presentIf="Status=0 and Direction = 0" />
+        <field name="MinimumReportingInterval" type="uint16" presentIf="Status=0 and Direction = 0" />
+        <field name="MaximumReportingInterval" type="uint16" presentIf="Status=0 and Direction = 0" />
+        <field name="ReportableChange" type="unk" presentIf="Status=0 and Direction = 0" />
+        <field name="Timeout" type="uint16" presentIf="Status=0 and Direction = 1" />
       </type:sequence>
     </restriction>
   </type:type>
@@ -301,7 +302,8 @@
     <command id="16" name="DiscoverAttributesExtendedResponse" required="false">
       <fields>
         <field name="DiscoveryComplete" type="bool" />
-        <field name="AttributeRecord" type="discoverAttributesExtendedResponseRecord" array="true" arrayLengthSize="0" />
+        <field name="AttributeRecord" type="discoverAttributesExtendedResponseRecord" array="true"
+          arrayLengthSize="0" />
       </fields>
     </command>
   </commands>
