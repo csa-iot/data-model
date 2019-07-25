@@ -239,7 +239,7 @@ Inside an attribute definition, either a bitmap or a series of restrictions may 
 
 Commands
 --------
-Command definitions look like the following.
+The commands specified in a specific side of the cluster represent the commands received by that side of the cluster. Command definitions look like the following, which would be located on the server side of the groups cluster. 
 
 ```xml
 <commands>
