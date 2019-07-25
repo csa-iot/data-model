@@ -156,7 +156,13 @@ applicable to this document can be found in the LICENSE.md file.
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
 				<field name="AttributeType" type="zclType" />
-				<field name="AccessControl" type="bitmap8" />
+				<field name="AccessControl" type="bitmap8">
+                  <bitmap>
+                    <element name="Readable" type="bool" mask="01" />
+                    <element name="Writeable" type="bool" mask="02" shiftRight="1" />
+                    <element name="Reportable" type="bool" mask="04" shiftRight="2" />
+                  </bitmap>
+                </field>
 			</type:sequence>
 		</restriction>
 	</type:type>
