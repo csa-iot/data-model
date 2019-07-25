@@ -126,7 +126,7 @@ applicable to this document can be found in the LICENSE.md file.
 		<restriction>
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
-				<field name="Index" type="uint16" array="true" arrayLengthSize="0" /><!--  The Array Length Is Specified Here -->
+				<field name="Index" type="uint16" array="true" arrayLengthSize="1" /><!--  The Array Length Is Specified Here -->
 			</type:sequence>
 		</restriction>
 	</type:type>
