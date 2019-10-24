@@ -364,7 +364,7 @@ Conversion of an array in a command field is done using the following process.
 			    <type:sequence>
 				    <field name="AttributeIdentifier" type="attribId" />
 				    <field name="Status" type="zclStatus" />
-				    <field name="Atttribute" type="anyType" presentIf="Status=0" />
+				    <field name="Attribute" type="anyType" presentIf="Status=0" />
 			    </type:sequence>
 		    </restriction>
 	    </type:type>
