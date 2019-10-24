@@ -51,14 +51,14 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0009" name="CurrentPositionTiltPercentage" type="uint8" requiredIf="ConfigOrStatus.TiltClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="0" />
       
        <!-- Window Covering Settings Attribute Set -->
-      <attribute id="0100" name="InstalledOpenLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="0" />
-      <attribute id="0101" name="InstalledClosedLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="65535" />
-      <attribute id="0102" name="InstalledOpenLimitTilt" type="uint16" requiredIf="ConfigOrStatus.TiltClosedLoop = true" default="0" />
-      <attribute id="0103" name="InstalledClosedLimitTilt" type="uint16" requiredIf="ConfigOrStatus.TiltClosedLoop = true" default="65535" />
-      <attribute id="0104" name="VelocityLift" type="uint16" writable="true" default="0" />
-      <attribute id="0105" name="AccelerationTimeLift" type="uint16" writable="true" default="0" />
-      <attribute id="0106" name="DecelerationTimeLift" type="uint16" writable="true" default="0" />
-      <attribute id="0107" name="Mode" type="map8" required="true" default="4">
+      <attribute id="0010" name="InstalledOpenLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="0" />
+      <attribute id="0011" name="InstalledClosedLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="65535" />
+      <attribute id="0012" name="InstalledOpenLimitTilt" type="uint16" requiredIf="ConfigOrStatus.TiltClosedLoop = true" default="0" />
+      <attribute id="0013" name="InstalledClosedLimitTilt" type="uint16" requiredIf="ConfigOrStatus.TiltClosedLoop = true" default="65535" />
+      <attribute id="0014" name="VelocityLift" type="uint16" writable="true" default="0" />
+      <attribute id="0015" name="AccelerationTimeLift" type="uint16" writable="true" default="0" />
+      <attribute id="0016" name="DecelerationTimeLift" type="uint16" writable="true" default="0" />
+      <attribute id="0017" name="Mode" type="map8" required="true" default="4">
         <bitmap>
           <element name="MotorDirectionReversed" type="bool" mask="01" />
           <element name="CalibrationMode" type="bool" mask="02" shiftRight="1" />
@@ -66,8 +66,8 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="LEDFeedback" type="bool" mask="08" shiftRight="3" />
         </bitmap>
       </attribute>
-      <attribute id="0108" name="IntermediateSetpointsLift" type="octstr" default="1,0x0000" />
-      <attribute id="0109" name="IntermediateSetpointsTilt" type="octstr" default="1,0x0000" />
+      <attribute id="0018" name="IntermediateSetpointsLift" type="octstr" default="1,0x0000" />
+      <attribute id="0019" name="IntermediateSetpointsTilt" type="octstr" default="1,0x0000" />
     </attributes>
     <commands>
       <command id="00" name="UpOrOpen" required="true" />
