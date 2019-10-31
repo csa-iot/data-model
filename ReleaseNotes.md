@@ -9,12 +9,26 @@ Commit(s): 50551dd
 
 Updated the spelling in global.xml and README.md correct the spelling.
 
+3026
+----
+CCB subject: Incorrect data-type
+Commit(s): f8608ce
+
+Updated the data type from uint8 to map8
+
 3027
 ----
 CCB subject: Attribute Ids incorrect	
 Commit(s): 52faae1
 
 Updated the attribute ids to match the specification and test spec.
+
+3029
+----
+CCB subject: NumberOfTransitions should be uint8
+Commit(s): f163a55
+
+Updated the NumberOfTransitions fields from enum8 to uint8
 
 7.1
 ===
