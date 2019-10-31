@@ -327,7 +327,7 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
       <command id="01" name="SetWeeklySchedule">
         <fields>
-          <field name="NumberOfTransitions" type="enum8">
+          <field name="NumberOfTransitions" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="10" />
@@ -353,7 +353,7 @@ applicable to this document can be found in the LICENSE.md file.
     <commands>
       <command id="00" name="GetWeeklyScheduleResponse">
         <fields>
-          <field name="NumberOfTransitions" type="enum8">
+          <field name="NumberOfTransitions" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="10" />
