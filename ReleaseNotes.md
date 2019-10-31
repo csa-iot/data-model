@@ -1,3 +1,21 @@
+7.2
+===
+This release covers several CCBs which are listed below:
+
+3025
+----
+CCB subject: Incorrect Spelling of Attribute	
+Commit(s): 50551dd
+
+Updated the spelling in global.xml and README.md correct the spelling.
+
+3027
+----
+CCB subject: Attribute Ids incorrect	
+Commit(s): 52faae1
+
+Updated the attribute ids to match the specification and test spec.
+
 7.1
 ===
 This release covers several CCBs which are listed below:

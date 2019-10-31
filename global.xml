@@ -20,7 +20,7 @@
       <type:sequence>
         <field name="AttributeIdentifier" type="attribId" />
         <field name="Status" type="zclStatus" />
-        <field name="Atttribute" type="anyType" presentIf="Status=0" />
+        <field name="Attribute" type="anyType" presentIf="Status=0" />
       </type:sequence>
     </restriction>
   </type:type>
@@ -100,7 +100,7 @@
     </restriction>
   </type:type>
 
-  <type:type id="ff" short="attributeReportRecord" name="Atttribute Report Record">
+  <type:type id="ff" short="attributeReportRecord" name="Attribute Report Record">
     <restriction>
       <type:sequence>
         <field name="AttributeIdentifier" type="attribId" />
@@ -109,7 +109,7 @@
     </restriction>
   </type:type>
 
-  <type:type id="ff" short="discoverAtttributesResponseRecord" name="Discover Attributes Response Record">
+  <type:type id="ff" short="discoverAttributesResponseRecord" name="Discover Attributes Response Record">
     <restriction>
       <type:sequence>
         <field name="AttributeIdentifier" type="attribId" />
@@ -118,7 +118,7 @@
     </restriction>
   </type:type>
 
-  <type:type id="ff" short="readStructuredRecord" name="Read Atttributes Structured Record">
+  <type:type id="ff" short="readStructuredRecord" name="Read Attributes Structured Record">
     <restriction>
       <type:sequence>
         <field name="AttributeIdentifier" type="attribId" />
@@ -251,7 +251,7 @@
     <command id="0d" name="DiscoverAttributesResponse" required="true">
       <fields>
         <field name="DiscoveryComplete" type="bool" />
-        <field name="AttributeRecord" type="discoverAtttributesResponseRecord" array="true" arrayLengthSize="0" />
+        <field name="AttributeRecord" type="discoverAttributesResponseRecord" array="true" arrayLengthSize="0" />
       </fields>
     </command>
     <command id="0e" name="ReadAttributesStructured" required="false">
