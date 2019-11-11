@@ -115,7 +115,7 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
       <command id="42" name="CopyScene">
         <fields>
-          <field name="Mode" type="uint8">
+          <field name="Mode" type="map8">
             <bitmap>
               <element name="CopyAllScenes" type="bool" mask="01" />
             </bitmap>
