@@ -2,10 +2,10 @@ Releases
 ========
 Releases are tied to a specific revision of the Zigbee Cluster Library (ZCL). These files are released from a git repo which is tagged based on the release version of the ZCL. At the time of the initial conversion, the ZCL document was at release 7. Multiple releases of the XML files may be made against a single ZCL version. the tagging mechanism is designed to handle this and follows the format zcl<ZCL Version>.<XML Release Version> where ZCL Version is the version of the ZCL document and the XML Release Version is a counter based on the source document which starts from 0. This means the initial release tag for ZCLr7 is zcl7.0. Subsequent releases of XML against ZCLr7 will be zcl7.1, zcl7.2, etc. When a new ZCL, such as ZCLr8 is released, the tags will be come zcl8.0, zcl8.1, etc.
 
-Joining Zigbee Alliance
+Joining the Zigbee Alliance
 =======================
 
-Information on becoming a member of Zigbee Alliance can be found at [www.zigbee.org](www.zigbee.org).
+Information on becoming a member of the Zigbee Alliance can be found at [www.zigbee.org](www.zigbee.org).
 
 Eclipse Setup
 =============
