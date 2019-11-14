@@ -57,6 +57,7 @@ applicable to this document can be found in the LICENSE.md file.
     <xs:attribute name="type" type="xs:string" use="required" />
     <xs:attribute name="mask" type="xs:hexBinary" use="required" />
     <xs:attribute name="shiftRight" type="xs:unsignedByte" use="optional" default="0" />
+    <xs:attribute name="default" type="xs:string" />
   </xs:complexType>
 
   <xs:complexType name="CommandField">
