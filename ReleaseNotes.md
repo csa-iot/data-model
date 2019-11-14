@@ -1,3 +1,49 @@
+7.2
+===
+This release covers several CCBs which are listed below:
+
+3025
+----
+CCB subject: Incorrect Spelling of Attribute	
+Commit(s): 50551dd
+
+Updated the spelling in global.xml and README.md correct the spelling.
+
+3026
+----
+CCB subject: Incorrect data-type
+Commit(s): f8608ce
+
+Updated the data type from uint8 to map8
+
+3027
+----
+CCB subject: Attribute Ids incorrect	
+Commit(s): 52faae1
+
+Updated the attribute ids to match the specification and test spec.
+
+3029
+----
+CCB subject: NumberOfTransitions should be uint8
+Commit(s): f163a55
+
+Updated the NumberOfTransitions fields from enum8 to uint8
+
+3047
+----
+CCB subject: Allow default values for sub-fields of a bitmap
+Commit(s): 472bb20
+
+Updated the definition of the BitmapField complexType to allow a default value. 
+
+3059
+----
+CCB subject: XML dotdot files	
+Commit(s): ac5dd22
+
+Updated the license to BSD 3-clause
+
 7.1
 ===
 This release covers several CCBs which are listed below:
