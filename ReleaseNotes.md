@@ -30,6 +30,20 @@ Commit(s): f163a55
 
 Updated the NumberOfTransitions fields from enum8 to uint8
 
+3047
+----
+CCB subject: Allow default values for sub-fields of a bitmap
+Commit(s): 472bb20
+
+Updated the definition of the BitmapField complexType to allow a default value. 
+
+3059
+----
+CCB subject: XML dotdot files	
+Commit(s): ac5dd22
+
+Updated the license to BSD 3-clause
+
 7.1
 ===
 This release covers several CCBs which are listed below:
