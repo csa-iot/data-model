@@ -183,7 +183,7 @@ applicable to this document can be found in the LICENSE.md file.
             in feature set ballot for door lock.
           -->
           <type:minInclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
-          <type:maxExclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
+          <type:maxInclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
         </restriction>
       </attribute>
       <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" default="0" />
