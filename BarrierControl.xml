@@ -41,7 +41,7 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0007" name="CommandCloseEvents" type="uint16" writable="true" default="0" />
       <attribute id="0008" name="OpenPeriod" type="uint16" writable="true" />
       <attribute id="0009" name="ClosePeriod" type="uint16" writable="true" />
-      <attribute id="000A" name="BarrierPosition" type="uint8" max="100" reportRequired="true" sceneRequired="true" required="true">
+      <attribute id="000A" name="BarrierPosition" type="uint8" max="100" reportRequired="true" sceneRequired="true" required="true" default="255">
         <restriction>
           <type:special value="FF" name="PositionUnknown" />
         </restriction>
