@@ -11,7 +11,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0101" revision="2" name="DoorLock">
+  id="0101" revision="3" name="DoorLock">
   <classification role="application" picsCode="DRLK" primaryTransaction="2" />
 
   <type:type short="DrlkUserStatus" name="DrlkUserStatus" id="20" inheritsFrom="uint8">
@@ -178,12 +178,12 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" >
         <restriction>
           <!--
-            ZCL7 states that NumberOfTotalUsersSupported is equal to the higher of subsequent
+            ZCL states that NumberOfTotalUsersSupported is equal to the higher of subsequent
             ...PINUsers... and ...RFIDUsers... attribute values. But this constraint is removed
             in feature set ballot for door lock.
           -->
           <type:minInclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
-          <type:maxExclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
+          <type:maxInclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
         </restriction>
       </attribute>
       <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" default="0" />
@@ -191,7 +191,7 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" />
       <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" default="0" />
       <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" default="0" />
-      <!--  ZCL7 does not state a relationship between these next two sets of Max/Min attribute pairs. -->
+      <!--  ZCL does not state a relationship between these next two sets of Max/Min attribute pairs. -->
       <attribute id="0017" name="MaxPINCodeLength" type="uint8" default="8" />
       <attribute id="0018" name="MinPINCodeLength" type="uint8" default="4" />
       <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" default="20" />
@@ -425,7 +425,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="UserID" type="DrlkTotalUserID" />
           <field name="DaysMask" type="DrlkDaysMask" />
           <!--
-            ZCL7 specifies constraint that StartHour <= EndHour;
+            ZCL specifies constraint that StartHour <= EndHour;
             and if they are equal, then StartMinute < EndMinute.
             Result: StartHour/Minute strictly less than EndHour/Minute.
           -->
@@ -636,7 +636,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Status" type="zclStatus" />
           <field name="DaysMask" type="DrlkDaysMask" presentIf="Status = 0" />
           <!--
-            ZCL7 specifies constraint that StartHour <= EndHour;
+            ZCL specifies constraint that StartHour <= EndHour;
             and if they are equal, then StartMinute < EndMinute.
             Result: StartHour/Minute strictly less than EndHour/Minute.
           -->
