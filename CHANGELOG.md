@@ -122,6 +122,9 @@ Thermostat.xml
 
 Time.xml
 ========
+- CCB 2544: Update the Time and TimeStatus attributes to be R*W from RW
+- CCB 2983: A partial update the spec indicating READ_ONLY status in case where
+            writableIf doesn't match. 
 
 TouchlinkCommissioning.xml
 ==========================
