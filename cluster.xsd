@@ -116,7 +116,7 @@ applicable to this document can be found in the LICENSE.md file.
     </xs:sequence>
   </xs:complexType>
   
-    <xs:complexType name="AttributeList">
+  <xs:complexType name="AttributeList">
     <xs:sequence>
       <xs:element name="attribute" type="zcl:Attribute" minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
