@@ -118,6 +118,8 @@ SubGhz.xml
 
 TemperatureMeasurement.xml
 ==========================
+- CCB 2823: corrects inconsistency in spec between attribute table and text for default value of int16; already correct in XML based on text, no change needed
+- Updated cluster revision number
 
 Thermostat.xml
 ==============
