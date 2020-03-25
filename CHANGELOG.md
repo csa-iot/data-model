@@ -27,6 +27,9 @@ Commissioning.xml
 
 ConcentrationMeasurement.xml
 ============================
+- CCB 2882: The editorial correction to Cluster ID for Fluoride was already reflected in this XML
+- Add missing defaults for single-precision Value, Min and Max, set to NaN as specified in ZCL8
+- Updated cluster revision number
 
 DemandResponseAndLoadControl.xml
 ================================
