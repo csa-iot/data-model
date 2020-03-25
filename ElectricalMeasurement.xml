@@ -11,7 +11,7 @@ applicable to this document can be found in the LICENSE.md file.
              xmlns:type="http://zigbee.org/zcl/types" 
              xmlns:xi="http://www.w3.org/2001/XInclude" 
              xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-             id="0B04" revision="2" name="ElectricalMeasurement">
+             id="0B04" revision="3" name="ElectricalMeasurement">
   <classification role="application" picsCode="EMR" primaryTransaction="1" />
   <!--  For any measurement cluster with MeasuredValue, MinMeasuredValue and MaxMeasuredValue attributes, the 
         following SHALL be always be true:
@@ -213,7 +213,7 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
           <field name="ProfileIntervalPeriod" type="ProfileIntervalPeriod" />
           <field name="NumberOfIntervalsDelivered" type="uint8" />
-          <field name="AttributeId" type="attribId" /> 
+          <field name="AttributeId" type="attribId" />
           <field name="Intervals" type="unk" array="true" arrayLengthSize="0" />
         </fields>
       </command>
@@ -224,9 +224,9 @@ applicable to this document can be found in the LICENSE.md file.
       <command id="00" name="GetProfileInfo" />
       <command id="01" name="GetMeasurementProfile" >
         <fields>
-          <field name="AttributeID" type="attribId" /> 
-          <field name="StartTime" type="UTC" /> 
-          <field name="NumberOfIntervals" type="uint8" /> 
+          <field name="AttributeID" type="attribId" />
+          <field name="StartTime" type="UTC" />
+          <field name="NumberOfIntervals" type="uint8" />
         </fields>
       </command>
     </commands>

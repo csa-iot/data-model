@@ -50,6 +50,9 @@ DoorLock.xml
 
 ElectricalMeasurement.xml
 =========================
+- CCB 2369: Textual clarification in ZCL8 spec, no XML change needed.
+- CCB 2817: Specified change already correctly reflected, no XML change needed.
+- Updated cluster revision number
 
 Events.xml
 ==========
