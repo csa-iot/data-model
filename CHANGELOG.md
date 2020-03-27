@@ -105,6 +105,9 @@ PulseWidthModulation.xml
 
 Scenes.xml
 ==========
+- CCB 2427: Clarification to spec text, no XML change needed.
+- CCB 3026: Change already reflected in XML, no further XML change needed.
+- Updated cluster revision number
 
 SmartEnergyMessaging.xml
 ========================
