@@ -40,6 +40,10 @@ DeviceTemperatureConfiguration.xml
 
 Diagnostics.xml
 ===============
+- CCB 2425: Duplicate of 2520
+- CCB 2520: Correction to spec text, no XML change needed
+- CCB 2521: Correction to spec text, no XML change needed
+- Updated cluster revision number
 
 DoorLock.xml
 ============
