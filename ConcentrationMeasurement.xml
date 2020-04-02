@@ -45,6 +45,9 @@ applicable to this document can be found in the LICENSE.md file.
       <alias id="0429" name="Sodium" />
       <alias id="042A" name="PM25" />
       <alias id="042B" name="Formaldehyde" />
+      <alias id="042C" name="PM1" />
+      <alias id="042D" name="PM10" />
+      <alias id="042E" name="VolatileOrganicCompounds" />
   </aliases>
   <classification role="application" picsCode="CONC" primaryTransaction="2" />
   <server>
