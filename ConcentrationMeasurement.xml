@@ -13,7 +13,6 @@ applicable to this document can be found in the LICENSE.md file.
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
   id="040C" revision="2" name="CarbonMonoxide">
   <aliases>
-      <alias id="040C" name="CarbonMonoxide" />
       <alias id="040D" name="CarbonDioxide" />
       <alias id="040E" name="Ethylene" />
       <alias id="040F" name="EthyleneOxide" />
