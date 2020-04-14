@@ -11,9 +11,8 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="040C" revision="1" name="CarbonMonoxide">
+  id="040C" revision="2" name="CarbonMonoxide">
   <aliases>
-      <alias id="040C" name="CarbonMonoxide" />
       <alias id="040D" name="CarbonDioxide" />
       <alias id="040E" name="Ethylene" />
       <alias id="040F" name="EthyleneOxide" />
@@ -45,22 +44,25 @@ applicable to this document can be found in the LICENSE.md file.
       <alias id="0429" name="Sodium" />
       <alias id="042A" name="PM25" />
       <alias id="042B" name="Formaldehyde" />
+      <alias id="042C" name="PM1" />
+      <alias id="042D" name="PM10" />
+      <alias id="042E" name="VolatileOrganicCompounds" />
   </aliases>
   <classification role="application" picsCode="CONC" primaryTransaction="2" />
   <server>
     <attributes>
-      <attribute id="0000" name="MeasuredValue" type="single" reportRequired="true" required="true" >
+      <attribute id="0000" name="MeasuredValue" type="single" reportRequired="true" required="true" default="NaN" >
         <restriction>
           <type:minInclusiveRef ref="MinMeasuredValue" />
           <type:maxInclusiveRef ref="MaxMeasuredValue" />
         </restriction>
        </attribute>
-      <attribute id="0001" name="MinMeasuredValue" type="single" required="true" min="0" >
+      <attribute id="0001" name="MinMeasuredValue" type="single" required="true" min="0" default="NaN" >
         <restriction>
           <type:maxExclusiveRef ref="MaxMeasuredValue" />
         </restriction>
        </attribute>
-      <attribute id="0002" name="MaxMeasuredValue" type="single" required="true" max="1" >
+      <attribute id="0002" name="MaxMeasuredValue" type="single" required="true" max="1" default="NaN" >
         <restriction>
           <type:minExclusiveRef ref="MinMeasuredValue" />
         </restriction>
