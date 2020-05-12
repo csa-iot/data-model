@@ -58,7 +58,7 @@
         <field name="AttributeType" type="zclType" presentIf="Direction = 0" />
         <field name="MinimumReportingInterval" type="uint16" presentIf="Direction = 0" />
         <field name="MaximumReportingInterval" type="uint16" presentIf="Direction = 0" />
-        <field name="ReportableChange" type="unk" presentIf="Direction = 0" />
+        <field name="ReportableChange" type="unk" presentIf="Direction = 0 and ((AttributeType &gt;= 0x20 and AttributeType &lt;= 0x2f) or (AttributeType &gt;= 0x38 and AttributeType &lt;= 0x3a) or (AttributeType &gt;= 0xe0 and AttributeType &lt;= 0xe2))" />
         <field name="Timeout" type="uint16" presentIf="Direction = 1" />
       </type:sequence>
     </restriction>
@@ -94,7 +94,7 @@
         <field name="AttributeType" type="zclType" presentIf="Status=0 and Direction = 0" />
         <field name="MinimumReportingInterval" type="uint16" presentIf="Status=0 and Direction = 0" />
         <field name="MaximumReportingInterval" type="uint16" presentIf="Status=0 and Direction = 0" />
-        <field name="ReportableChange" type="unk" presentIf="Status=0 and Direction = 0" />
+        <field name="ReportableChange" type="unk" presentIf="Status=0 and Direction = 0 and ((AttributeType &gt;= 0x20 and AttributeType &lt;= 0x2f) or (AttributeType &gt;= 0x38 and AttributeType &lt;= 0x3a) or (AttributeType &gt;= 0xe0 and AttributeType &lt;= 0xe2))" />
         <field name="Timeout" type="uint16" presentIf="Status=0 and Direction = 1" />
       </type:sequence>
     </restriction>
