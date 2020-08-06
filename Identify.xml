@@ -11,7 +11,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-  id="0003" revision="1" name="Identify">
+  id="0003" revision="2" name="Identify">
   <classification role="utility" picsCode="I" />
   <server>
     <attributes>
@@ -27,7 +27,7 @@ applicable to this document can be found in the LICENSE.md file.
       <command id="01" name="IdentifyQuery" required="true" />
       <command id="40" name="TriggerEffect">
         <fields>
-          <field name="EffectIdentifier" type="uint8">
+          <field name="EffectIdentifier" type="enum8">
             <restriction>
               <type:enumeration value="00" name="Blink" />
               <type:enumeration value="01" name="Breathe" />
@@ -37,7 +37,7 @@ applicable to this document can be found in the LICENSE.md file.
               <type:enumeration value="ff" name="StopEffect" />
             </restriction>
           </field>
-          <field name="EffectVariant" type="uint8">
+          <field name="EffectVariant" type="enum8">
             <restriction>
               <type:enumeration value="00" name="Default" />
             </restriction>
