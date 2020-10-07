@@ -12,7 +12,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0301" revision="2" name="BallastConfiguration">
+  id="0301" revision="3" name="BallastConfiguration">
   <classification role="application" picsCode="BALCFG" primaryTransaction="1" />
   <server>
     <attributes>

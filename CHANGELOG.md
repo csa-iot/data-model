@@ -3,6 +3,8 @@ ZCL8
 
 BallastConfiguration.xml
 ========================
+- CCB 2881: Correction to spec text, no XML change needed
+- Updated cluster revision number
 
 BarrierControl.xml
 ==================
