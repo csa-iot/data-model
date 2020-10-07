@@ -137,6 +137,14 @@ TemperatureMeasurement.xml
 
 Thermostat.xml
 ==============
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2560: Updated default value of occupancy to indicate occupied.
+- CCB 2773: Updated HVACSystemTypeConfiguration to R*W
+- CCB 2777: Updated MinSetpointDeadBand to R*W and changed min range to 0
+- CCB 2815: Added 00 = Unknown enumeration value to ACType, ACCapacity, ACRefrigerantType and ACCompressorType attributes
+- CCB 2816: Clarification to spec text, no XML change needed.
+- CCB 3029: Clarification to spec text, no XML change needed.
+- Updated cluster revision number
 
 Time.xml
 ========
