@@ -62,6 +62,11 @@ ElectricalMeasurement.xml
 - CCB 2817: Specified change already correctly reflected, no XML change needed.
 - Updated cluster revision number
 
+EN50523ApplianceEventsAndAlerts.xml
+===================================
+- XML validated against cluster specification.
+- Updated Cluster Revision
+
 EN50523ApplianceStatistics.xml
 ==============================
 - XML validated against cluster specificiation.
