@@ -144,6 +144,7 @@ Thermostat.xml
 - CCB 2815: Added 00 = Unknown enumeration value to ACType, ACCapacity, ACRefrigerantType and ACCompressorType attributes
 - CCB 2816: Clarification to spec text, no XML change needed.
 - CCB 3029: Clarification to spec text, no XML change needed.
+- Fixing missed defaults and scene requirements
 - Updated cluster revision number
 
 Time.xml

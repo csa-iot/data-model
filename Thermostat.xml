@@ -140,7 +140,7 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="05" name="CoolingAndHeating4PipesWithReheat" />
         </restriction>
       </attribute>
-      <attribute id="001C" name="SystemMode" type="enum8" writable="true" required="true" default="1">
+      <attribute id="001C" name="SystemMode" type="enum8" writable="true" required="true" sceneRequired="true" default="1">
         <restriction>
           <type:enumeration value="00" name="Off" />
           <type:enumeration value="01" name="Auto" />
@@ -181,8 +181,8 @@ applicable to this document can be found in the LICENSE.md file.
      	  <type:enumeration value="06" name="Sunday" />
       	</restriction>
       </attribute>
-      <attribute id="0021" name="NumberOfWeeklyTransitions" type="uint8" max="255" />
-      <attribute id="0022" name="NumberOfDailyTransitions" type="uint8" max="255" />
+      <attribute id="0021" name="NumberOfWeeklyTransitions" type="uint8" max="255" default="0" />
+      <attribute id="0022" name="NumberOfDailyTransitions" type="uint8" max="255" default="0" />
       <attribute id="0023" name="TemperatureSetpointHold" type="enum8" writable="true" default="0">
         <restriction>
           <type:enumeration value="00" name="SetpointHoldOff" />
@@ -308,7 +308,7 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="05" name="ThreeQuartersOpen" />
         </restriction>
       </attribute>
-      <attribute id="0046" name="ACCoilTemperature" type="int16" min="-27315" max="32767" />
+      <attribute id="0046" name="ACCoilTemperature" type="int16" min="-27315" max="32767" default="65535" />
       <attribute id="0047" name="ACCapacityFormat" type="enum8" writable="true" default="0">
         <restriction>
           <type:enumeration value="00" name="BTUh" />
