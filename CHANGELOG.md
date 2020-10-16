@@ -3,6 +3,7 @@ ZCL8
 
 BallastConfiguration.xml
 ========================
+- CCB 2700: PICS code changed to BC
 - CCB 2881: Correction to spec text, no XML change needed
 - Updated cluster revision number
 
