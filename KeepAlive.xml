@@ -16,7 +16,7 @@ applicable to this document can be found in the LICENSE.md file.
   <server>
     <attributes>
       <attribute id="0000" name="TCKeep-AliveBase" type="uint8" required="true" min="1" max="255" default="10" />
-      <attribute id="0001" name="TCKeep-AliveJitter" type="uint32" required="true" max="65535" default="300" />
+      <attribute id="0001" name="TCKeep-AliveJitter" type="uint16" required="true" max="65535" default="300" />
     </attributes>
   </server>
 </zcl:cluster>
