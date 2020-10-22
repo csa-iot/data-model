@@ -11,7 +11,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="B002" revision="1" name="EN50523ApplianceEventsAndAlerts">
+  id="0B02" revision="1" name="EN50523ApplianceEventsAndAlerts">
   <classification role="application" picsCode="APPLEV" primaryTransaction="2" />
   
   <type:type short="ApplevAlertStructure" name="ApplevAlertStructure" id="22" inheritsFrom="uint24">
