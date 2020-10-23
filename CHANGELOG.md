@@ -105,6 +105,10 @@ Metering.xml
 
 OTAUpgrade.xml
 ==============
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2519: Clarification to spec text, no XML change needed.
+- CCB 2873: Clarification to spec text, no XML change needed.
+- Updated cluster revision number
 
 PollControl.xml
 ===============
