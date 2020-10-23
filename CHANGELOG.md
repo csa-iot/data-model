@@ -108,6 +108,8 @@ OTAUpgrade.xml
 
 PollControl.xml
 ===============
+- CCB 3285: swapped the command sides to match what's in the ZCL document. This was a scraping issue which was missed during initial review.
+- Updated cluster revision number
 
 PowerConfiguration.xml
 ======================
