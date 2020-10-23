@@ -21,6 +21,14 @@ Calendar.xml
 
 ColorControl.xml
 ================
+- CCB 2501: Correction to spec text, no XML change needed
+- CCB 2814: Added default values to OptionsMask and OptionsOverride fields in MoveToHue, MoveHue, StepHue, MoveToSaturation, MoveSaturation, StepSaturation, MoveToHueAndSaturation, MoveToColor, MoveColor, StepColor, MoveToColorTemperature, EnhancedMoveToHue, EnhancedMoveHue, EnhancedStepHue, EnhancedMoveToHueAndSaturation,
+ColorLoopSet, StopMoveStep, MoveColorTemperature, and StepColorTemperature
+- CCB 2839: Correction to spec text, no XML change needed
+- CCB 2840: Correction to spec text, no XML change needed
+- CCB 2843: Correction to spec text, no XML change needed
+- CCB 2861: Correction to spec text, no XML change needed
+- Updated cluster revision number
 
 Commissioning.xml
 =================
@@ -97,9 +105,15 @@ Metering.xml
 
 OTAUpgrade.xml
 ==============
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2519: Clarification to spec text, no XML change needed.
+- CCB 2873: Clarification to spec text, no XML change needed.
+- Updated cluster revision number
 
 PollControl.xml
 ===============
+- CCB 3285: swapped the command sides to match what's in the ZCL document. This was a scraping issue which was missed during initial review.
+- Updated cluster revision number
 
 PowerConfiguration.xml
 ======================
@@ -146,6 +160,10 @@ Time.xml
 
 TouchlinkCommissioning.xml
 ==========================
+
+type.xsd
+========
+- added default and defaultRef for command fields.
 
 WindowCovering.xml
 ==================
