@@ -442,6 +442,7 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="Time.xml" parse="xml" />
   <xi:include href="Diagnostics.xml" parse="xml" />
   <xi:include href="PollControl.xml" parse="xml" />
+  <xi:include href="KeepAlive.xml" parse="xml" />
   <xi:include href="LevelControlForLighting.xml" parse="xml" />
   <xi:include href="PulseWidthModulation.xml" parse="xml" />
   <xi:include href="IlluminanceMeasurement.xml" parse="xml" />
