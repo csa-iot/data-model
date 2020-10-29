@@ -32,6 +32,10 @@ ColorLoopSet, StopMoveStep, MoveColorTemperature, and StepColorTemperature
 
 Commissioning.xml
 =================
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2862: Clarification to spec text, no XML change needed.
+- CCB 2870: Editorial in spec which was not in XML due to number formatting.
+- Updated cluster revision number
 
 ConcentrationMeasurement.xml
 ============================
@@ -119,6 +123,9 @@ PollControl.xml
 
 PowerConfiguration.xml
 ======================
+- Updated the default values based on the changes in the ZCL
+- CCB 2454: Updated the BatteryAlarmState1, BatteryAlarmState2, and BatteryAlarmState3 attributes to be reportable.
+- Updated cluster revision number
 
 Prepayment.xml
 ==============
