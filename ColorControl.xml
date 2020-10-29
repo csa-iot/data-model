@@ -12,7 +12,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0300" revision="2" name="ColorControl">
+  id="0300" revision="3" name="ColorControl">
   <classification role="application" picsCode="CC" primaryTransaction="1" />
   
   <type:type short="CCColorOptions" name="CCColorOptions" id="18" inheritsFrom="map8">
@@ -189,16 +189,16 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Hue" type="uint8" />
           <field name="Direction" type="CCDirection" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="01" name="MoveHue" requiredIf="ColorCapabilities.HueSaturationSupported = true">
         <fields>
           <field name="MoveMode" type="CCMoveMode" />
           <field name="Rate" type="uint8" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="02" name="StepHue" requiredIf="ColorCapabilities.HueSaturationSupported = true">
@@ -206,24 +206,24 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="StepMode" type="CCStepMode" />
           <field name="StepSize" type="uint8" />
           <field name="TransitionTime" type="uint8" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="03" name="MoveToSaturation" requiredIf="ColorCapabilities.HueSaturationSupported = true">
         <fields>
           <field name="Saturation" type="uint8" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="04" name="MoveSaturation" requiredIf="ColorCapabilities.HueSaturationSupported = true">
         <fields>
           <field name="MoveMode" type="CCMoveMode" />
           <field name="Rate" type="uint8" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="05" name="StepSaturation" requiredIf="ColorCapabilities.HueSaturationSupported = true">
@@ -231,8 +231,8 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="StepMode" type="CCStepMode" />
           <field name="StepSize" type="uint8" />
           <field name="TransitionTime" type="uint8" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="06" name="MoveToHueAndSaturation" requiredIf="ColorCapabilities.HueSaturationSupported = true">
@@ -240,8 +240,8 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Hue" type="uint8" />
           <field name="Saturation" type="uint8" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="07" name="MoveToColor" requiredIf="ColorCapabilities.XYSupported = true">
@@ -249,16 +249,16 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="ColorX" type="uint16" />
           <field name="ColorY" type="uint16" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="08" name="MoveColor" requiredIf="ColorCapabilities.XYSupported = true">
         <fields>
           <field name="RateX" type="int16" />
           <field name="RateY" type="int16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="09" name="StepColor" requiredIf="ColorCapabilities.XYSupported = true">
@@ -266,16 +266,16 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="StepX" type="int16" />
           <field name="StepY" type="int16" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="0A" name="MoveToColorTemperature" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
         <fields>
           <field name="ColorTemperatureMireds" type="uint16" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="40" name="EnhancedMoveToHue" requiredIf="ColorCapabilities.EnhancedHueSupported = true">
@@ -283,16 +283,16 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="EnhancedHue" type="uint16" />
           <field name="Direction" type="CCDirection" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="41" name="EnhancedMoveHue" requiredIf="ColorCapabilities.EnhancedHueSupported = true">
         <fields>
           <field name="MoveMode" type="CCMoveMode" />
           <field name="Rate" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="42" name="EnhancedStepHue" requiredIf="ColorCapabilities.EnhancedHueSupported = true">
@@ -300,8 +300,8 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="StepMode" type="CCStepMode" />
           <field name="StepSize" type="uint16" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="43" name="EnhancedMoveToHueAndSaturation" requiredIf="ColorCapabilities.EnhancedHueSupported = true">
@@ -309,8 +309,8 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="EnhancedHue" type="uint16" />
           <field name="Saturation" type="uint8" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="44" name="ColorLoopSet" requiredIf="ColorCapabilities.ColorLoopSupported = true">
@@ -333,15 +333,15 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Direction" type="CCColorLoopDirection" />
           <field name="Time" type="uint16" />
           <field name="StartHue" type="uint16" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <!-- StopMoveStep is always required as it is required by all color features specifies in the ColorCapabilities attribute.  Note that this command is also required for the color loop feature since the enhanced hue feature must also be supported. -->
       <command id="47" name="StopMoveStep" required="true">
         <fields>
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="4B" name="MoveColorTemperature" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
@@ -350,8 +350,8 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Rate" type="uint16" />
           <field name="ColorTemperatureMinimumMireds" type="CCMinMiredsField" />
           <field name="ColorTemperatureMaximumMireds" type="CCMaxMiredsField" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
       <command id="4C" name="StepColorTemperature" requiredIf="ColorCapabilities.ColorTemperatureSupported = true">
@@ -361,8 +361,8 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="TransitionTime" type="uint16" />
           <field name="ColorTemperatureMinimumMireds" type="CCMinMiredsField" />
           <field name="ColorTemperatureMaximumMireds" type="CCMaxMiredsField" />
-          <field name="OptionsMask" type="CCColorOptions" />
-          <field name="OptionsOverride" type="CCColorOptions" />
+          <field name="OptionsMask" type="CCColorOptions" default="0" />
+          <field name="OptionsOverride" type="CCColorOptions" default="0" />
         </fields>
       </command>
     </commands>
