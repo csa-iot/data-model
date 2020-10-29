@@ -32,6 +32,10 @@ ColorLoopSet, StopMoveStep, MoveColorTemperature, and StepColorTemperature
 
 Commissioning.xml
 =================
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2862: Clarification to spec text, no XML change needed.
+- CCB 2870: Editorial in spec which was not in XML due to number formatting.
+- Updated cluster revision number
 
 ConcentrationMeasurement.xml
 ============================
