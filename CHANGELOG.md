@@ -102,6 +102,8 @@ LevelControlForLighting.xml
 
 MeterIdentification.xml
 =======================
+- Validated scraped XML.
+- Updated cluster revision number
 
 Metering.xml
 ============

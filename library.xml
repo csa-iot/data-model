@@ -472,6 +472,7 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="IASWD.xml" parse="xml" />
   <xi:include href="Commissioning.xml" parse="xml" />
   <xi:include href="TouchlinkCommissioning.xml" parse="xml" />
+  <xi:include href="MeterIdentification.xml" parse="xml" />
   <xi:include href="OTAUpgrade.xml" parse="xml" />
   <xi:include href="ConcentrationMeasurement.xml" parse="xml"/>
 
