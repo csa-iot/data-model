@@ -53,6 +53,8 @@ DeviceManagement.xml
 
 DeviceTemperatureConfiguration.xml
 ==================================
+- Default values were updated to non on several clusters, no CCB reference in spec.
+- No update to the cluster revision in ZCL document.
 
 Diagnostics.xml
 ===============
