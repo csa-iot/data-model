@@ -242,6 +242,8 @@ An attribute may be specified using the following attributes in the XML.
 
 Inside an attribute definition, either a bitmap or a series of restrictions may be specified. An example of restrictions can be seen in the example attribute definition for `GenericDevice-Class`. For an example of bitmap definitions, see the Bitmaps section.
 
+A default value of non indicates that the invalid value for the data type should be used as the default value.
+
 Commands
 --------
 The commands specified in a specific side of the cluster represent the commands received by that side of the cluster. Command definitions look like the following, which would be located on the server side of the groups cluster. 
@@ -409,6 +411,7 @@ Logical expressions in the XML SHALL be expressed using the operators specified 
 In addition, the following functions are available for expressions
 
 | Function       | Description                                                                                                           |
+|----------------|-----------------------------------------------------------------------------------------------------------------------|
 | implements(X)  | Returns true when a specific implementation implements the attribute or command named by X. Uses the name, not the id |
 | min(X, Y, ...) | Returns the minimum value of the provided arguments. May take numeric literals or attribute names as references.      |
 | max(X, Y, ...) | Returns the maximum value of the provided arguments. May take numeric literals or attribute names as references.      |
