@@ -16,9 +16,9 @@ applicable to this document can be found in the LICENSE.md file.
   <server>
     <attributes>
       <!-- Device Temperature Information -->    
-      <attribute id="0000" name="CurrentTemperature" type="int16" min="-200" max="200" required="true" />
-      <attribute id="0001" name="MinTempExperienced" type="int16" min="-200" max="200" />
-      <attribute id="0002" name="MaxTempExperienced" type="int16" min="-200" max="200" />
+      <attribute id="0000" name="CurrentTemperature" type="int16" min="-200" max="200" default="non" required="true" />
+      <attribute id="0001" name="MinTempExperienced" type="int16" min="-200" max="200" default="non" />
+      <attribute id="0002" name="MaxTempExperienced" type="int16" min="-200" max="200" default="non" />
       <attribute id="0003" name="OverTempTotalDwell" type="uint16" max="65535" default="0" />
       <!-- Device Temperature Settings -->          
       <attribute id="0010" name="DeviceTempAlarmMask" type="map8" writable="true" requiredIf="implements(LowTempThreshold) or implements(HighTempThreshold)" default="0">
@@ -27,18 +27,18 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="DeviceTemperatureTooHigh" type="bool" mask="02" shiftRight="1" />
         </bitmap>
       </attribute>
-      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" requiredIf="implements(LowTempDwellTripPoint)" min="-200" max="200" >
+      <attribute id="0011" name="LowTempThreshold" type="int16" writable="true" requiredIf="implements(LowTempDwellTripPoint)" min="-200" max="200" default="non">
           <restriction>
              <type:maxExclusiveRef ref="HighTempThreshold" />
          </restriction>
       </attribute>    
-      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" requiredIf="implements(HighTempDwellTripPoint)" min="-200" max="200" >
+      <attribute id="0012" name="HighTempThreshold" type="int16" writable="true" requiredIf="implements(HighTempDwellTripPoint)" min="-200" max="200" default="non">
           <restriction>
             <type:minExclusiveRef ref="LowTempThreshold" />
           </restriction>
       </attribute>      
-      <attribute id="0013" name="LowTempDwellTripPoint" type="uint24" writable="true" requiredIf="implements(LowTempThreshold)" max="16777215" />
-      <attribute id="0014" name="HighTempDwellTripPoint" type="uint24" writable="true" requiredIf="implements(HighTempThreshold)" max="16777215" />
+      <attribute id="0013" name="LowTempDwellTripPoint" type="uint24" writable="true" requiredIf="implements(LowTempThreshold)" max="16777215" default="non"/>
+      <attribute id="0014" name="HighTempDwellTripPoint" type="uint24" writable="true" requiredIf="implements(HighTempThreshold)" max="16777215" default="non"/>
     </attributes>
   </server>
 </zcl:cluster>

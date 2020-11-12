@@ -22,6 +22,7 @@ IASZone.xml
 Identify.xml
 IlluminanceLevelSensing.xml
 IlluminanceMeasurement.xml
+KeepAlive.xml
 LICENSE.md
 Level.xml
 LevelControlForLighting.xml

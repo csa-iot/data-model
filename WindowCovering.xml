@@ -11,7 +11,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0102" revision="2" name="WindowCovering">
+  id="0102" revision="3" name="WindowCovering">
   <classification role="application" picsCode="WNCV" primaryTransaction="1" />
   <server>
     <attributes>
@@ -47,8 +47,8 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="TiltEncoderControlled" type="bool" mask="40" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0008" name="CurrentPositionLiftPercentage" type="uint8" requiredIf="ConfigOrStatus.LiftClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="0" />
-      <attribute id="0009" name="CurrentPositionTiltPercentage" type="uint8" requiredIf="ConfigOrStatus.TiltClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="0" />
+      <attribute id="0008" name="CurrentPositionLiftPercentage" type="uint8" requiredIf="ConfigOrStatus.LiftClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="non" />
+      <attribute id="0009" name="CurrentPositionTiltPercentage" type="uint8" requiredIf="ConfigOrStatus.TiltClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="non" />
       
        <!-- Window Covering Settings Attribute Set -->
       <attribute id="0010" name="InstalledOpenLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="0" />
