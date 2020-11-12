@@ -11,7 +11,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0020" revision="2" name="PollControl">
+  id="0020" revision="3" name="PollControl">
   <classification role="utility" picsCode="POLL" />
   <server>
     <attributes>
@@ -23,11 +23,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0005" name="LongPollIntervalMin" type="uint32" default="0" />
       <attribute id="0006" name="FastPollTimeoutMax" type="uint16" default="0" />
     </attributes>
-    <commands>
-      <command id="00" name="CheckIn" required="true" />
-    </commands>
-  </server>
-  <client>
     <commands>
       <command id="00" name="CheckInResponse" required="true">
         <fields>
@@ -47,5 +42,10 @@ applicable to this document can be found in the LICENSE.md file.
         </fields>
       </command>
     </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="CheckIn" required="true" />
+    </commands>  
   </client>
 </zcl:cluster>
