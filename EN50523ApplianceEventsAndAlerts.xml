@@ -14,6 +14,17 @@ applicable to this document can be found in the LICENSE.md file.
   id="0B02" revision="1" name="EN50523ApplianceEventsAndAlerts">
   <classification role="application" picsCode="APPLEV" primaryTransaction="2" />
   
+  <type:type short="ApplevAlertCount" name="ApplevAlertCount" id="18" inheritsFrom="map8">
+    <bitmap>
+      <element mask="0f" name="AlertCount" type="uint8" />
+      <element mask="f0" shiftRight="4" name="AlertType" type="enum8">
+        <restriction>
+          <type:enumeration name="Unstructured" value="00" />
+        </restriction>
+      </element> 
+    </bitmap>
+  </type:type>
+  
   <type:type short="ApplevAlertStructure" name="ApplevAlertStructure" id="22" inheritsFrom="uint24">
     <bitmap>
       <element mask="0000ff" shiftRight="0" name="AlertID" type="uint8">
@@ -48,7 +59,8 @@ applicable to this document can be found in the LICENSE.md file.
     <commands>
       <command id="00" name="GetAlertsResponse" required="true">
         <fields>
-          <field name="Alerts" type="ApplevAlertStructure" array="true" />
+          <field name="AlertsCount" type="ApplevAlertCount" />
+          <field name="Alerts" type="ApplevAlertStructure" array="true" arrayLengthField="AlertsCount" arrayLengthSubfield="AlertCount" />
         </fields>
       </command>
       <command id="01" name="AlertsNotification" required="true">
