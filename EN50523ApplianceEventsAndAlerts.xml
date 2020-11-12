@@ -16,7 +16,12 @@ applicable to this document can be found in the LICENSE.md file.
   
   <type:type short="ApplevAlertStructure" name="ApplevAlertStructure" id="22" inheritsFrom="uint24">
     <bitmap>
-      <element mask="0000ff" shiftRight="0" name="AlertID" type="uint8" />
+      <element mask="0000ff" shiftRight="0" name="AlertID" type="uint8">
+        <restriction>
+          <type:enumeratedRange min="01" max="3f" name="Standardized" />
+          <type:enumeratedRange min="80" max="ff" name="ManufacturerSpecific" />
+        </restriction>
+      </element>
       <element mask="000f00" shiftRight="8" name="Category" type="enum8">
         <restriction>
           <type:enumeration value="01" name="Warning" />
@@ -65,7 +70,7 @@ applicable to this document can be found in the LICENSE.md file.
               <type:enumeration value="04" name="TemperatureReached" />
               <type:enumeration value="05" name="EndOfCooking" />
               <type:enumeration value="06" name="SwitchingOff" />
-              <type:enumeratedRange max="f6" min="40" name="ManufacturerSpecific" />
+              <type:enumeratedRange max="f6" min="40" name="ManufacturerSpecific1" />
               <type:enumeration value="f7" name="WrongData" />
               <type:enumeratedRange max="ff" min="f8" name="ManufacturerSpecific2"/>
             </restriction>
