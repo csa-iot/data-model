@@ -9,10 +9,10 @@ applicable to this document can be found in the LICENSE.md file.
 <zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns:type="http://zigbee.org/zcl/types" 
-  xmlns:xi="http://www.w3.org/2001/XInclude" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" id="0004" revision="2" name="Groups">
+  xmlns:xi="http://www.w3.org/2001/XInclude" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" id="0004" revision="3" name="Groups">
   <classification role="utility" picsCode="G" />
 
-  <type:type short="GroupStatus" name="GroupStatus" id="20" inheritsFrom="uint8">
+  <type:type short="GGroupStatus" name="GGroupStatus" id="20" inheritsFrom="zclStatus">
     <restriction>
       <type:enumeration value="00" name="SUCCESS" />
       <type:enumeration value="8a" name="DUPLICATE_EXISTS" />
@@ -20,13 +20,19 @@ applicable to this document can be found in the LICENSE.md file.
     </restriction>
   </type:type>
 
-  <type:type short="ViewGroupRspStatus" name="ViewGroupRspStatus" id="20" inheritsFrom="uint8">
+  <type:type short="GViewGroupRspStatus" name="GViewGroupRspStatus" id="20" inheritsFrom="zclStatus">
     <restriction>
       <type:enumeration value="00" name="SUCCESS" />
       <type:enumeration value="8b" name="NOT_FOUND" />
     </restriction>
   </type:type>
 
+  <type:type short="GGroupId" name="GGroupId" id="21" inheritsFrom="uint16">
+    <restriction>
+      <type:minInclusive value="1"/>
+      <type:maxInclusive value="65527"/>
+    </restriction>
+  </type:type> 
 
   <server>
     <attributes>
@@ -39,7 +45,7 @@ applicable to this document can be found in the LICENSE.md file.
     <commands>
       <command id="00" name="AddGroup" required="true">
         <fields>
-          <field name="GroupId" type="uint16" />
+          <field name="GroupId" type="GGroupId" />
           <field name="GroupName" type="string" />
         </fields>
         <tag ref="AddressAssignmentMode" />
@@ -48,23 +54,23 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
       <command id="01" name="ViewGroup" required="true">
         <fields>
-          <field name="GroupId" type="uint16" />
+          <field name="GroupId" type="GGroupId" />
         </fields>
       </command>
       <command id="02" name="GetGroupMembership" required="true">
         <fields>
-          <field name="GroupList" type="uint16" array="true" />
+          <field name="GroupList" type="GGroupId" array="true" />
         </fields>
       </command>
       <command id="03" name="RemoveGroup" required="true">
         <fields>
-          <field name="GroupId" type="uint16" />
+          <field name="GroupId" type="GGroupId" />
         </fields>
       </command>
       <command id="04" name="RemoveAllGroups" required="true" />
       <command id="05" name="AddGroupIfIdentifying" required="true">
         <fields>
-          <field name="GroupId" type="uint16" />
+          <field name="GroupId" type="GGroupId" />
           <field name="GroupName" type="string" />
         </fields>
         <tag ref="AddressAssignmentMode" />
@@ -77,14 +83,14 @@ applicable to this document can be found in the LICENSE.md file.
     <commands>
       <command id="00" name="AddGroupResponse" required="true">
         <fields>
-          <field name="Status" type="GroupStatus" />
-          <field name="GroupId" type="uint16" />
+          <field name="Status" type="GGroupStatus" />
+          <field name="GroupId" type="GGroupId" />
         </fields>
       </command>
       <command id="01" name="ViewGroupResponse" required="true">
         <fields>
-          <field name="Status" type="ViewGroupRspStatus" />
-          <field name="GroupId" type="uint16" />
+          <field name="Status" type="GViewGroupRspStatus" />
+          <field name="GroupId" type="GGroupId" />
           <field name="GroupName" type="string" />
         </fields>
         <tag ref="AddressAssignmentMode" />
@@ -94,13 +100,13 @@ applicable to this document can be found in the LICENSE.md file.
       <command id="02" name="GetGroupMembershipResponse" required="true">
         <fields>
           <field name="Capacity" type="uint8" />
-          <field name="GroupList" type="uint16" array="true" />
+          <field name="GroupList" type="GGroupId" array="true" />
         </fields>
       </command>
       <command id="03" name="RemoveGroupResponse" required="true">
         <fields>
-          <field name="Status" type="ViewGroupRspStatus" />
-          <field name="GroupId" type="uint16" />
+          <field name="Status" type="GViewGroupRspStatus" />
+          <field name="GroupId" type="GGroupId" />
         </fields>
       </command>
     </commands>
