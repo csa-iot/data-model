@@ -437,6 +437,7 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="Groups.xml" parse="xml" />
   <xi:include href="Scenes.xml" parse="xml" />
   <xi:include href="OnOff.xml" parse="xml" />
+  <xi:include href="OnOffSwitchConfiguration.xml" parse="xml" />
   <xi:include href="Level.xml" parse="xml" />
   <xi:include href="Alarms.xml" parse="xml" />
   <xi:include href="Time.xml" parse="xml" />
