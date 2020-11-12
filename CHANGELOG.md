@@ -56,6 +56,8 @@ DeviceManagement.xml
 
 DeviceTemperatureConfiguration.xml
 ==================================
+- Default values were updated to non on several clusters, no CCB reference in spec.
+- No update to the cluster revision in ZCL document.
 
 Diagnostics.xml
 ===============
@@ -163,6 +165,15 @@ TemperatureMeasurement.xml
 
 Thermostat.xml
 ==============
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2560: Updated default value of occupancy to indicate occupied.
+- CCB 2773: Updated HVACSystemTypeConfiguration to R*W
+- CCB 2777: Updated MinSetpointDeadBand to R*W and changed min range to 0
+- CCB 2815: Added 00 = Unknown enumeration value to ACType, ACCapacity, ACRefrigerantType and ACCompressorType attributes
+- CCB 2816: Clarification to spec text, no XML change needed.
+- CCB 3029: Clarification to spec text, no XML change needed.
+- Fixing missed defaults and scene requirements
+- Updated cluster revision number
 
 Time.xml
 ========
@@ -179,5 +190,7 @@ type.xsd
 
 WindowCovering.xml
 ==================
+- CCB 2555: Update the default value for CurrentPositionLiftPercentage and CurrentPositionTiltPercentage
+- Updated cluster revision number
 
 
