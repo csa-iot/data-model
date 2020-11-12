@@ -11,7 +11,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0B01" revision="1" name="MeterIdentification">
+  id="0B01" revision="2" name="MeterIdentification">
   <classification role="application" picsCode="MTRID" primaryTransaction="2" />
   <server>
     <attributes>
