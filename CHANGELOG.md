@@ -3,6 +3,9 @@ ZCL8
 
 BallastConfiguration.xml
 ========================
+- CCB 2700: PICS code changed to BC
+- CCB 2881: Correction to spec text, no XML change needed
+- Updated cluster revision number
 
 BarrierControl.xml
 ==================
@@ -21,9 +24,21 @@ Calendar.xml
 
 ColorControl.xml
 ================
+- CCB 2501: Correction to spec text, no XML change needed
+- CCB 2814: Added default values to OptionsMask and OptionsOverride fields in MoveToHue, MoveHue, StepHue, MoveToSaturation, MoveSaturation, StepSaturation, MoveToHueAndSaturation, MoveToColor, MoveColor, StepColor, MoveToColorTemperature, EnhancedMoveToHue, EnhancedMoveHue, EnhancedStepHue, EnhancedMoveToHueAndSaturation,
+ColorLoopSet, StopMoveStep, MoveColorTemperature, and StepColorTemperature
+- CCB 2839: Correction to spec text, no XML change needed
+- CCB 2840: Correction to spec text, no XML change needed
+- CCB 2843: Correction to spec text, no XML change needed
+- CCB 2861: Correction to spec text, no XML change needed
+- Updated cluster revision number
 
 Commissioning.xml
 =================
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2862: Clarification to spec text, no XML change needed.
+- CCB 2870: Editorial in spec which was not in XML due to number formatting.
+- Updated cluster revision number
 
 ConcentrationMeasurement.xml
 ============================
@@ -41,6 +56,8 @@ DeviceManagement.xml
 
 DeviceTemperatureConfiguration.xml
 ==================================
+- Default values were updated to non on several clusters, no CCB reference in spec.
+- No update to the cluster revision in ZCL document.
 
 Diagnostics.xml
 ===============
@@ -90,6 +107,8 @@ LevelControlForLighting.xml
 
 MeterIdentification.xml
 =======================
+- Validated scraped XML.
+- Updated cluster revision number
 
 Metering.xml
 ============
@@ -97,12 +116,21 @@ Metering.xml
 
 OTAUpgrade.xml
 ==============
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2519: Clarification to spec text, no XML change needed.
+- CCB 2873: Clarification to spec text, no XML change needed.
+- Updated cluster revision number
 
 PollControl.xml
 ===============
+- CCB 3285: swapped the command sides to match what's in the ZCL document. This was a scraping issue which was missed during initial review.
+- Updated cluster revision number
 
 PowerConfiguration.xml
 ======================
+- Updated the default values based on the changes in the ZCL
+- CCB 2454: Updated the BatteryAlarmState1, BatteryAlarmState2, and BatteryAlarmState3 attributes to be reportable.
+- Updated cluster revision number
 
 Prepayment.xml
 ==============
@@ -137,6 +165,15 @@ TemperatureMeasurement.xml
 
 Thermostat.xml
 ==============
+- CCB 2477: Clarification to spec text, no XML change needed.
+- CCB 2560: Updated default value of occupancy to indicate occupied.
+- CCB 2773: Updated HVACSystemTypeConfiguration to R*W
+- CCB 2777: Updated MinSetpointDeadBand to R*W and changed min range to 0
+- CCB 2815: Added 00 = Unknown enumeration value to ACType, ACCapacity, ACRefrigerantType and ACCompressorType attributes
+- CCB 2816: Clarification to spec text, no XML change needed.
+- CCB 3029: Clarification to spec text, no XML change needed.
+- Fixing missed defaults and scene requirements
+- Updated cluster revision number
 
 Time.xml
 ========
@@ -147,7 +184,13 @@ Time.xml
 TouchlinkCommissioning.xml
 ==========================
 
+type.xsd
+========
+- added default and defaultRef for command fields.
+
 WindowCovering.xml
 ==================
+- CCB 2555: Update the default value for CurrentPositionLiftPercentage and CurrentPositionTiltPercentage
+- Updated cluster revision number
 
 
