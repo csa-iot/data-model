@@ -187,5 +187,7 @@ type.xsd
 
 WindowCovering.xml
 ==================
+- CCB 2555: Update the default value for CurrentPositionLiftPercentage and CurrentPositionTiltPercentage
+- Updated cluster revision number
 
 
