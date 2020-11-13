@@ -65,7 +65,8 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
       <command id="01" name="AlertsNotification" required="true">
         <fields>
-          <field name="Alerts" type="ApplevAlertStructure" array="true" />
+          <field name="AlertsCount" type="ApplevAlertCount" />
+          <field name="Alerts" type="ApplevAlertStructure" array="true" arrayLengthField="AlertsCount" arrayLengthSubfield="AlertCount" />
         </fields>
       </command>
       <command id="02" name="EventNotification" required="true">
