@@ -24,8 +24,8 @@ applicable to this document can be found in the LICENSE.md file.
       </attribute>
       <attribute id="0010" name="SwitchActions" type="enum8" writable="true" required="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="On" />
-          <type:enumeration value="01" name="Off" />
+          <type:enumeration value="00" name="OffToOn" />
+          <type:enumeration value="01" name="OnToOff" />
           <type:enumeration value="02" name="Toggle" />
         </restriction>
       </attribute>
