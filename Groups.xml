@@ -15,7 +15,7 @@ applicable to this document can be found in the LICENSE.md file.
   <type:type short="GGroupStatus" name="GGroupStatus" id="20" inheritsFrom="zclStatus">
     <restriction>
       <type:enumeration value="00" name="SUCCESS" />
-      <type:enumeration value="8a" name="DUPLICATE_EXISTS" />
+      <type:enumeration value="87" name="INVALID_VALUE" />
       <type:enumeration value="89" name="INSUFFICIENT_SPACE"/>
     </restriction>
   </type:type>
@@ -23,6 +23,7 @@ applicable to this document can be found in the LICENSE.md file.
   <type:type short="GViewGroupRspStatus" name="GViewGroupRspStatus" id="20" inheritsFrom="zclStatus">
     <restriction>
       <type:enumeration value="00" name="SUCCESS" />
+      <type:enumeration value="87" name="INVALID_VALUE" />
       <type:enumeration value="8b" name="NOT_FOUND" />
     </restriction>
   </type:type>
