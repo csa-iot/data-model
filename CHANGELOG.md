@@ -90,6 +90,9 @@ Events.xml
 
 Groups.xml
 ==========
+- CCB 2310: Cleanup of group id limits to be 0x0001 - 0xfff7
+- CCB 2704: Clarification of allowable status codes.
+- Updated cluster revision number
 
 Identify.xml
 ============
