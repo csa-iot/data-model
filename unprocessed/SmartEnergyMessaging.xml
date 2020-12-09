@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0703" revision="0" name="Messaging (Smart Energy)">
+  <classification role="application" picsCode="SEMS" primaryTransaction="" />
+  <server>
+    <attributes />
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="GetLastMessage" required="true" />
+      <command id="01" name="MessageConfirmation" required="true">
+        <fields>
+          <field name="MessageID" type="uint32" />
+          <field name="ConfirmationTime" type="UTC" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</zcl:cluster>

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
 <xsl:stylesheet version="1.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
 <xs:schema targetNamespace="http://zigbee.org/zcl/types" xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:zclType="http://zigbee.org/zcl/types">
 
@@ -29,6 +36,12 @@
       <xs:length value="1" />
     </xs:restriction>
   </xs:simpleType>
+  
+  <xs:simpleType name="ManufacturerId">
+    <xs:restriction base="xs:hexBinary">
+      <xs:length value="2" />
+    </xs:restriction>
+  </xs:simpleType>
 
   <xs:complexType name="BitmapDefinition">
     <xs:sequence>
@@ -44,6 +57,7 @@
     <xs:attribute name="type" type="xs:string" use="required" />
     <xs:attribute name="mask" type="xs:hexBinary" use="required" />
     <xs:attribute name="shiftRight" type="xs:unsignedByte" use="optional" default="0" />
+    <xs:attribute name="default" type="xs:string" />
   </xs:complexType>
 
   <xs:complexType name="CommandField">
@@ -60,6 +74,9 @@
      -->
     <xs:attribute name="arrayLengthField" type="zclType:NamedElement" use="optional" default="" />
     <xs:attribute name="presentIf" type="zclType:DependencyExpression" use="optional" default="true" />
+    <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="default" type="xs:string" />
+    <xs:attribute name="defaultRef" type="zclType:NamedElement" />    
   </xs:complexType>
 
   <xs:complexType name="CommandFieldList">
@@ -191,6 +208,22 @@
       <xs:documentation source="http://www.w3.org/TR/xmlschema11-2/#element-maxLength" />
     </xs:annotation>
   </xs:element>
+  
+  <xs:element name="special" id="special" substitutionGroup="zclType:facet">
+    <xs:annotation>
+      <xs:documentation source="http://www.w3.org/TR/xmlschema11-2/#element-maxInclusive" />
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:restriction base="zclType:abstractFacet">
+          <xs:attribute name="value" use="required" />
+          <xs:attribute name="name" type="xs:string" use="required" />
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="invalid" type="zclType:facet" id="invalid" substitutionGroup="zclType:facet" />
 
   <xs:element name="enumeration" type="zclType:enumerationType" id="enumeration"
     substitutionGroup="zclType:facet">
@@ -207,6 +240,19 @@
       <xs:complexContent>
         <xs:restriction base="zclType:noFixedFacet">
           <xs:attribute name="value" type="xs:string" use="required" />
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="enumeratedRange" id="enumeratedRange" 
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:restriction base="zclType:abstractFacet">
+          <xs:attribute name="value" use="prohibited" />
+          <xs:attribute name="min" type="xs:hexBinary" use="required" />
+          <xs:attribute name="max" type="xs:hexBinary" use="required" />
         </xs:restriction>
       </xs:complexContent>
     </xs:complexType>
@@ -261,6 +307,41 @@
                 use="required" />
             </xs:restriction>
         </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="minInclusiveExpression" id="minInclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>
+  
+  <xs:element name="maxInclusiveExpression" id="maxInclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>  
+  
+  <xs:element name="minExclusiveExpression" id="minExclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>
+  
+  <xs:element name="maxExclusiveExpression" id="maxExclusiveExpression"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
+    </xs:complexType>  
+  </xs:element>  
+
+  <xs:element name="complexConstraint" id="complexConstraint"
+    substitutionGroup="zclType:facet">
+    <xs:complexType>
+      <xs:attribute name="expression" type="zclType:DependencyExpression" />
     </xs:complexType>
   </xs:element>
 

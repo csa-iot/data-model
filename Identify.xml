@@ -1,11 +1,18 @@
 ﻿<?xml version="1.0"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
 <zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-  id="0003" revision="1" name="Identify">
-  <classification hierarchy="base" role="utility" picsCode="I" />
+  id="0003" revision="2" name="Identify">
+  <classification role="utility" picsCode="I" />
   <server>
     <attributes>
       <attribute id="0000" name="IdentifyTime" type="uint16" writable="true" required="true" max="65535"
@@ -20,7 +27,7 @@
       <command id="01" name="IdentifyQuery" required="true" />
       <command id="40" name="TriggerEffect">
         <fields>
-          <field name="EffectIdentifier" type="uint8">
+          <field name="EffectIdentifier" type="enum8">
             <restriction>
               <type:enumeration value="00" name="Blink" />
               <type:enumeration value="01" name="Breathe" />
@@ -30,7 +37,7 @@
               <type:enumeration value="ff" name="StopEffect" />
             </restriction>
           </field>
-          <field name="EffectVariant" type="uint8">
+          <field name="EffectVariant" type="enum8">
             <restriction>
               <type:enumeration value="00" name="Default" />
             </restriction>

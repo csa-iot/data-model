@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0023" revision="0" name="Neighbor Cleaning">
+  <classification role="utility" picsCode="NBCLEAN" />
+  <server>
+    <attributes />
+    <commands>
+      <command id="00" name="PurgeEntries" required="true" />
+    </commands>
+  </server>
+</zcl:cluster>

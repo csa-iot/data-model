@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0615" revision="0" name="ISO 7818 Protocol Tunnel">
+  <classification role="application" picsCode="T7816" primaryTransaction="" />
+  <server>
+    <attributes>
+      <attribute id="0001" name="Status" type="uint8" required="true" default="0" />
+    </attributes>
+    <commands>
+      <command id="00" name="TransferAPDU" required="true" />
+      <command id="01" name="InsertSmartCard" required="true" />
+      <command id="02" name="ExtractSmartCard" required="true" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="TransferAPDU" required="true" />
+    </commands>
+  </client>
+</zcl:cluster>

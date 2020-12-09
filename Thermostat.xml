@@ -1,11 +1,18 @@
 ﻿<?xml version="1.0"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
 <zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
              xmlns:type="http://zigbee.org/zcl/types" 
              xmlns:xi="http://www.w3.org/2001/XInclude" 
              xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-             id="0201" revision="2" name="Thermostat" >
-  <classification hierarchy="base" role="application" picsCode="TSTAT" primaryTransaction="2" />
+             id="0201" revision="3" name="Thermostat" >
+  <classification role="application" picsCode="TSTAT" primaryTransaction="2" />
   
   <!-- Note that this type has a dependency on the Mode field of 
   type TstatScheduleMode for any command it is used in -->
@@ -44,7 +51,7 @@
       <!-- Thermostat Information Attribute Set -->
       <attribute id="0000" name="LocalTemperature" type="int16" min="-27315" max="32767" reportRequired="true" required="true" />
       <attribute id="0001" name="OutdoorTemperature" type="int16" min="-27315" max="32767" />
-      <attribute id="0002" name="Occupancy" type="map8" default="0">
+      <attribute id="0002" name="Occupancy" type="map8" default="1">
       	<bitmap>
       	  <element name="Occupied" type="bool" mask="01" />
       	</bitmap>
@@ -55,7 +62,7 @@
       <attribute id="0006" name="AbsMaxCoolSetpointLimit" type="int16" min="-27315" max="32767" default="3200" />
       <attribute id="0007" name="PICoolingDemand" type="uint8" max="100" reportRequired="true" />
       <attribute id="0008" name="PIHeatingDemand" type="uint8" max="100" reportRequired="true" />
-      <attribute id="0009" name="HVACSystemTypeConfiguration" type="map8" writable="true" default="0">
+      <attribute id="0009" name="HVACSystemTypeConfiguration" type="map8" writeOptional="true" default="0">
         <bitmap>
           <element name="CoolingSystemStage" type="enum8" mask="03">
           	<restriction>
@@ -115,7 +122,7 @@
       <attribute id="0016" name="MaxHeatSetpointLimit" type="int16" min="-27315" max="32767" writable="true" default="3000" />
       <attribute id="0017" name="MinCoolSetpointLimit" type="int16" min="-27315" max="32767" writable="true" default="1600" />
       <attribute id="0018" name="MaxCoolSetpointLimit" type="int16" min="-27315" max="32767" writable="true" default="3200" />
-      <attribute id="0019" name="MinSetpointDeadBand" type="int8" writable="true" min="10" max="25" default="25" />
+      <attribute id="0019" name="MinSetpointDeadBand" type="int8" writeOptional="true" min="0" max="25" default="25" />
       <attribute id="001A" name="RemoteSensing" type="map8" writable="true" default="0">
         <bitmap>
           <element name="LocalTemperatureRemote" mask="01" type="bool" />
@@ -133,7 +140,7 @@
           <type:enumeration value="05" name="CoolingAndHeating4PipesWithReheat" />
         </restriction>
       </attribute>
-      <attribute id="001C" name="SystemMode" type="enum8" writable="true" required="true" default="1">
+      <attribute id="001C" name="SystemMode" type="enum8" writable="true" required="true" sceneRequired="true" default="1">
         <restriction>
           <type:enumeration value="00" name="Off" />
           <type:enumeration value="01" name="Auto" />
@@ -174,8 +181,8 @@
      	  <type:enumeration value="06" name="Sunday" />
       	</restriction>
       </attribute>
-      <attribute id="0021" name="NumberOfWeeklyTransitions" type="uint8" max="255" />
-      <attribute id="0022" name="NumberOfDailyTransitions" type="uint8" max="255" />
+      <attribute id="0021" name="NumberOfWeeklyTransitions" type="uint8" max="255" default="0" />
+      <attribute id="0022" name="NumberOfDailyTransitions" type="uint8" max="255" default="0" />
       <attribute id="0023" name="TemperatureSetpointHold" type="enum8" writable="true" default="0">
         <restriction>
           <type:enumeration value="00" name="SetpointHoldOff" />
@@ -259,6 +266,7 @@
       <!-- AC Information Attribute Set -->
       <attribute id="0040" name="ACType" type="enum8" writable="true" default="0">
         <restriction>
+          <type:enumeration value="00" name="Unknown" />
           <type:enumeration value="01" name="CoolingAndFixedSpeed" />
           <type:enumeration value="02" name="HeatPumpAndFixedSpeed" />
           <type:enumeration value="03" name="CoolingAndInverter" />
@@ -268,6 +276,7 @@
       <attribute id="0041" name="ACCapacity" type="uint16" writable="true" default="0" />
       <attribute id="0042" name="ACRefrigerantType" type="enum8" writable="true" default="0">
         <restriction>
+          <type:enumeration value="00" name="Unknown" />
           <type:enumeration value="01" name="R22" />
           <type:enumeration value="02" name="R410a" />
           <type:enumeration value="03" name="R407c" />
@@ -275,6 +284,7 @@
       </attribute>
       <attribute id="0043" name="ACCompressorType" type="enum8" writable="true" default="0">
         <restriction>
+          <type:enumeration value="00" name="Unknown" />
           <type:enumeration value="01" name="T1" />
           <type:enumeration value="02" name="T2" />
           <type:enumeration value="03" name="T3" />
@@ -298,7 +308,7 @@
           <type:enumeration value="05" name="ThreeQuartersOpen" />
         </restriction>
       </attribute>
-      <attribute id="0046" name="ACCoilTemperature" type="int16" min="-27315" max="32767" />
+      <attribute id="0046" name="ACCoilTemperature" type="int16" min="-27315" max="32767" default="65535" />
       <attribute id="0047" name="ACCapacityFormat" type="enum8" writable="true" default="0">
         <restriction>
           <type:enumeration value="00" name="BTUh" />
@@ -320,7 +330,7 @@
       </command>
       <command id="01" name="SetWeeklySchedule">
         <fields>
-          <field name="NumberOfTransitions" type="enum8">
+          <field name="NumberOfTransitions" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="10" />
@@ -346,7 +356,7 @@
     <commands>
       <command id="00" name="GetWeeklyScheduleResponse">
         <fields>
-          <field name="NumberOfTransitions" type="enum8">
+          <field name="NumberOfTransitions" type="uint8">
             <restriction>
               <type:minInclusive value="0" />
               <type:maxInclusive value="10" />
