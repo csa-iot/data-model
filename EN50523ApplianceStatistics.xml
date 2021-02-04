@@ -29,26 +29,26 @@ applicable to this document can be found in the LICENSE.md file.
   </server>
   <client>
     <commands>
-      <command id="00" name="LogNotification">
+      <command id="00" name="LogNotification" required="true">
         <fields>
           <field name="Timestamp" type="UTC" />
           <field name="LogID" type="uint32" />
           <field name="Logs" type="data8" array="true" />
         </fields>
       </command>
-      <command id="01" name="LogResponse">
+      <command id="01" name="LogResponse" required="true">
         <fields>
           <field name="Timestamp" type="UTC" />
           <field name="LogID" type="uint32" />
           <field name="Logs" type="data8" array="true" />
         </fields>
       </command>
-      <command id="02" name="LogQueueResponse">
+      <command id="02" name="LogQueueResponse" required="true">
         <fields>
           <field name="LogIDs" type="uint32" array="true" />
         </fields>
       </command>
-      <command id="03" name="StatisticsAvailable">
+      <command id="03" name="StatisticsAvailable" required="true">
         <fields>
           <field name="LogIDs" type="uint32" array="true" />
         </fields>
