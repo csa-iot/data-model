@@ -286,6 +286,7 @@ Each field is defined with the following attributes in XML
 | array            | false    | If the field is an array. Defaults to false                    |
 | arrayLengthSize  | false    | When an array is present, specifies the size (in octets) of the field that specifies the array length. Defaults to 1. |
 | arrayLengthField | false    | When the number of elements in an array field is specified by another field which does not immediately precede an array field, that field may be referenced using this attribute. | 
+| arrayLengthSubfield | false | When the number of elements in an array field is specified as a sub-element of a bitmap field, that sub-element may be referenced using this attribute |
 | presentIf        | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
 | requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
 | deprecated     | false    | Indicates that a command field has been deprecated               |
