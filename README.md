@@ -272,8 +272,6 @@ A command may be specified using the following attributes in XML
 | required       | false    | If the command is mandatory. Defaults to false                                                                               |
 | requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which a command is mandatory. Defaults to false |
 | deprecated     | false    | Indicates that a command has been deprecated                                                                                 |
-| default        | false    | Specifies the default value of a command field. No Default        |
-| defaultRef     | false    | Specifies that the default value of the command takes the value of the referenced attribute or command field. Must be an attriibute in this cluster or a field in this command. Referenced by name. |
 
 Inside a command definition, a series of fields followed by tag definitions is permitted. 
 
@@ -290,6 +288,8 @@ Each field is defined with the following attributes in XML
 | presentIf        | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
 | requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
 | deprecated     | false    | Indicates that a command field has been deprecated               |
+| default        | false    | Specifies the default value of a command field. No Default        |
+| defaultRef     | false    | Specifies that the default value of the command takes the value of the referenced attribute or command field. Must be an attriibute in this cluster or a field in this command. Referenced by name. |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
 
