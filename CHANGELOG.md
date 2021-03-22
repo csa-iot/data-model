@@ -200,6 +200,8 @@ Time.xml
 
 TouchlinkCommissioning.xml
 ==========================
+- CCB 2648: Clarification to spec text, no XML change needed.
+- Updated cluster revision number.
 
 type.xsd
 ========
