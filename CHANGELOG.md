@@ -104,6 +104,15 @@ KeyEstablishment.xml
 
 Level.xml
 =========
+- CCB 2574: Changed the type of DefaultMoveRate to uint8.
+- CCB 2616: Clarification to spec text, no XML change needed.
+- CCB 2659: Clarification to spec text, no XML change needed.
+- CCB 2702: Clarification to spec text, no XML change needed.
+- CCB 2814: Added default values for OptionsMask and OptionsOverride fields.
+- CCB 2818: Clarification to spec text, no XML change needed.
+- CCB 2819: Clarification to spec text, no XML change needed.
+- CCB 2898: Clarification to spec text, no XML change needed.
+- Updated cluster revision number.
 
 LevelControlForLighting.xml
 ===========================
