@@ -17,6 +17,7 @@ Basic.xml
 =========
 - CCB 2722: changed the ZCLVersion attribute value to reflect the library release number, ie. 8
 - CCB 2885: Fixed the cluster revision error 
+- CCB 3469: Updated second Office and Living Room entries to be "Secondary"
 
 Calendar.xml
 ============
