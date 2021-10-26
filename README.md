@@ -407,6 +407,7 @@ Logical expressions in the XML SHALL be expressed using the operators specified 
 In addition, the following functions are available for expressions
 
 | Function       | Description                                                                                                           |
+|----------------|-----------------------------------------------------------------------------------------------------------------------|
 | implements(X)  | Returns true when a specific implementation implements the attribute or command named by X. Uses the name, not the id |
 | min(X, Y, ...) | Returns the minimum value of the provided arguments. May take numeric literals or attribute names as references.      |
 | max(X, Y, ...) | Returns the maximum value of the provided arguments. May take numeric literals or attribute names as references.      |
