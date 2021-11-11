@@ -113,6 +113,7 @@ applicable to this document can be found in the LICENSE.md file.
     <xs:attribute name="value" use="optional" />
     <xs:attribute name="fixed" type="xs:boolean" default="false" use="optional" />
     <xs:attribute name="name" type="xs:string" use="optional" />
+    <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
     <xs:anyAttribute />
   </xs:complexType>
 

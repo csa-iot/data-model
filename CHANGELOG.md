@@ -177,6 +177,7 @@ Scenes.xml
 
 SmartEnergyMessaging.xml
 ========================
+- First import of ZCL8 version
 
 SmartEnergyTunneling.xml
 ========================
@@ -216,6 +217,7 @@ TouchlinkCommissioning.xml
 type.xsd
 ========
 - added default and defaultRef for command fields.
+- added capability to deprecate enumerations
 
 WindowCovering.xml
 ==================

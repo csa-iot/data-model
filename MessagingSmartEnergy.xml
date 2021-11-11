@@ -5,21 +5,32 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
   id="0703" revision="2" name="MessagingSmartEnergy">
-  <classification hierarchy="Base" role="application" picsCode="SEMS"/>
+  <classification role="application" picsCode="SEMS" primaryTransaction="1" />
   <server>
     <commands>
       <command id="00" name="GetLastMessage" required="true"/>
       <command id="01" name="MessageConfirmation" required="true">
         <fields>
-          <field name="MessageIDM" type="uint32"/>
-          <field name="ConfirmationTimeM" type="UTC"/>
-          <field name="MessageConfirmationControlO" type="map8"/>
-          <field name="MessageConfirmationResponseO" type="octstr"/>
+          <field name="MessageID" type="uint32"/>
+          <field name="ConfirmationTime" type="UTC"/>
+          <field name="MessageConfirmationControl" type="map8" default="00">
+            <bitmap>
+              <element mask="01" name="No" type="bool" />
+              <element mask="02" shiftRight="1" name="Yes" type="bool" />
+            </bitmap>
+          </field>
+          <field name="MessageConfirmationResponse" type="octstr" default="">
+            <restriction>
+              <!-- Restriction Length Covers The Contained Data, Not The Bytes Over The Wire -->
+              <type:minLength value="0" />
+              <type:maxLength value="20" />
+            </restriction>          
+          </field>
         </fields>
       </command>
       <command id="02" name="GetMessageCancellation">
         <fields>
-          <field name="EarliestImplementationTimeM" type="UTC"/>
+          <field name="EarliestImplementationTime" type="UTC"/>
         </fields>
       </command>
     </commands>
@@ -28,24 +39,81 @@
     <commands>
       <command id="00" name="DisplayMessage" required="true">
         <fields>
-          <field name="MessageIDM" type="uint32"/>
-          <field name="MessageControlM" type="map8"/>
-          <field name="StartTimeM" type="UTC"/>
-          <field name="DurationInMinutesM" type="uint16"/>
-          <field name="MessageM" type="string"/>
-          <field name="ExtendedMessageControlO" type="map8"/>
+          <field name="MessageID" type="uint32"/>
+          <field name="MessageControl" type="map8">
+            <bitmap>
+              <element mask="03" name="TransmissionType" type="enum8">
+                <restriction>
+                  <type:enumeration name="Normal" value="00" />
+                  <type:enumeration name="NormalAndInterpan" value="01" deprecated="true" />
+                  <type:enumeration name="Interpan" value="02" deprecated="true" />
+                </restriction>
+              </element>
+              <element mask="0C" shiftRight="2" name="Importance" type="enum8">
+                <restriction>
+                  <type:enumeration name="Low" value="00" />
+                  <type:enumeration name="Medium" value="01"/>
+                  <type:enumeration name="High" value="02"/>
+                  <type:enumeration name="Critical" value="03"/>
+                </restriction>
+              </element>
+              <element mask="20" shiftRight="5" name="EnhancedConfirmationRequired" type="bool" />
+              <element mask="80" shiftRight="7" name="MessageConfirmationRequired" type="bool" />
+            </bitmap>
+          </field>
+          <field name="StartTime" type="UTC" />
+          <field name="DurationInMinutes" type="uint16"/>
+          <field name="Message" type="string" />
+          <field name="ExtendedMessageControl" type="map8" default="00">
+            <bitmap>
+              <element mask="01" name="MessageConfirmationStatus" type="bool" />
+            </bitmap>
+          </field>
         </fields>
       </command>
       <command id="01" name="CancelMessage" required="true">
         <fields>
-          <field name="MessageIDM" type="uint32"/>
-          <field name="MessageControlM" type="map8"/>
+          <field name="MessageID" type="uint32"/>
+          <field name="MessageControl" type="map8" deprecated="true" default="00"/>
         </fields>
       </command>
-      <command id="02" name="DisplayProtectedMessage"/>
+      <command id="02" name="DisplayProtectedMessage">
+        <fields>
+          <field name="MessageID" type="uint32"/>
+          <field name="MessageControl" type="map8">
+            <bitmap>
+              <element mask="03" name="TransmissionType" type="enum8">
+                <restriction>
+                  <type:enumeration name="Normal" value="00" />
+                  <type:enumeration name="NormalAndInterpan" value="01" deprecated="true" />
+                  <type:enumeration name="Interpan" value="02" deprecated="true" />
+                </restriction>
+              </element>
+              <element mask="0C" shiftRight="2" name="Importance" type="enum8">
+                <restriction>
+                  <type:enumeration name="Low" value="00" />
+                  <type:enumeration name="Medium" value="01"/>
+                  <type:enumeration name="High" value="02"/>
+                  <type:enumeration name="Critical" value="03"/>
+                </restriction>
+              </element>
+              <element mask="20" shiftRight="5" name="EnhancedConfirmationRequired" type="bool" />
+              <element mask="80" shiftRight="7" name="MessageConfirmationRequired" type="bool" />
+            </bitmap>
+          </field>
+          <field name="StartTime" type="UTC" />
+          <field name="DurationInMinutes" type="uint16"/>
+          <field name="Message" type="string" />
+          <field name="ExtendedMessageControl" type="map8" default="00">
+            <bitmap>
+              <element mask="01" name="MessageConfirmationStatus" type="bool" />
+            </bitmap>
+          </field>
+        </fields>      
+      </command>
       <command id="03" name="CancelAllMessages">
         <fields>
-          <field name="ImplementationDateTimeM" type="UTC"/>
+          <field name="ImplementationDateTime" type="UTC" />
         </fields>
       </command>
     </commands>
