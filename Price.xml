@@ -14,6 +14,12 @@ applicable to this document can be found in the LICENSE.md file.
   id="0700" revision="2" name="Price">
   <classification role="application" picsCode="SEPR" primaryTransaction="1" />
 
+  <type:type short="SeprTrailingDigit" name="SeprTrailingDigit" id="18" inheritsFrom="map8" discrete="true">
+    <bitmap>
+      <element name="DigitsToRightOfDecimal" type="uint8" mask="F0" shiftRight="4" />
+    </bitmap>
+  </type:type>
+
   <type:type short="DurationType" name="DurationType" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="00" name="Minutes" />
@@ -1987,11 +1993,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="IssuerEventID" type="uint32"/>
           <field name="StartTime" type="UTC"/>
           <field name="ConversionFactor" type="uint32"/>
-          <field name="ConversionFactorTrailingDigit" type="map8">
-            <bitmap>
-              <element mask="F0" shiftRight="4" default="7" name="DigitsToRightOfDecimal" type="uint8" />
-            </bitmap>
-          </field>
+          <field name="ConversionFactorTrailingDigit" type="SeprTrailingDigit" />
         </fields>
       </command>
       <command id="03" name="PublishCalorificValue">
@@ -2000,11 +2002,52 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="StartTime" type="UTC"/>
           <field name="CalorificValue" type="uint32"/>
           <field name="CalorificValueUnit" type="CalorificValueUnit"/>
-          <field name="CalorificValueTrailingDigit" type="map8">
+          <field name="CalorificValueTrailingDigit" type="SeprTrailingDigit" />
+        </fields>
+      </command>
+      <command id="04" name="PublishTariffInformation">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="IssuerTariffID" type="uint32" />
+          <field name="StartTime" type="UTC" />
+          <field name="TariffTypeAndChargingScheme" type="map8">
             <bitmap>
-              <element mask="F0" shiftRight="4" default="7" name="DigitsToRightOfDecimal" type="uint8" />
+              <element mask="0f" name="TariffType" type="TariffType" />
+              <element mask="f0" shiftRight="4" name="ChargingScheme" type="enum8">
+                <restriction>
+                  <type:enumeration value="00" name="TOU" />
+                  <type:enumeration value="01" name="Block" />
+                  <type:enumeration value="02" name="CommonThresholdBlockAndTOU" />
+                  <type:enumeration value="03" name="TierSpecificThresholdBlockAndTOU" />
+                </restriction>
+              </element>
             </bitmap>
           </field>
+          <field name="TariffLabel" type="octstr">
+            <restriction>
+              <!-- Restriction is on data length, not bytes across the wire -->
+              <type:minLength value="0" />
+              <type:maxLength value="24"/>
+            </restriction>
+          </field>
+          <field name="NumberOfPriceTiersInUse" type="uint8">
+            <restriction>
+              <type:maxInclusive value="48"/>
+            </restriction>
+          </field>
+          <field name="NumberOfBlockTiersInUser" type="uint8">
+            <restriction>
+              <type:maxInclusive value="15"/>
+            </restriction>
+          </field>
+          <field name="UnitOfMeasure" type="EnergyPureBinaryUnitOfMeasure" />
+          <field name="Currency" type="uint16" />
+          <field name="PriceTrailingDigit" type="SeprTrailingDigit" />
+          <field name="StandingCharge" type="uint32" />
+          <field name="TierBlockMode" type="TierBlockMode" />
+          <field name="BlockThresholdMultiplier" type="uint24" />
+          <field name="BlockThresholdDivisor" type="uint24" />
         </fields>
       </command>
 
