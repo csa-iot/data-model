@@ -1,0 +1,2013 @@
+<?xml version="1.0"?>
+<!--
+Zigbee Alliance owns the copyright to the text and content displayed or
+included in this document (including in PDF, XML files and other formats) in
+all forms of media, which copyright is protected by the copyright laws of the
+United States and by international treaties.  Full text of licensing terms
+applicable to this document can be found in the LICENSE.md file.
+-->
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0700" revision="2" name="Price">
+  <classification role="application" picsCode="SEPR" primaryTransaction="1" />
+
+  <type:type short="DurationType" name="DurationType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="Minutes" />
+      <type:enumeration value="01" name="Days" />
+      <type:enumeration value="02" name="Weeks" />
+      <type:enumeration value="03" name="Months" />
+    </restriction>
+  </type:type>
+
+  <type:type short="TariffResolutionPeriod" name="TariffResolutionPeriod" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="NotDefined" />
+      <type:enumeration value="01" name="BlockPeriod" />
+      <type:enumeration value="02" name="OneDay" />
+    </restriction>
+  </type:type>
+
+  <type:type short="TierBlockMode" name="TierBlockMode" id="30" inheritsFrom="enum8">
+    <restriction>
+      <!-- TODO: Ian Needs To Give Short Names -->
+      <type:enumeration value="00" name="" />
+      <type:enumeration value="01" name="" />
+      <type:enumeration value="02" name="" />
+      <type:enumeration value="ff" name="NotUsed" />
+    </restriction>
+  </type:type>
+
+  <type:type short="CO2Unit" name="CO2Unit" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="01" name="kgperkWh"/>
+      <type:enumeration value="02" name="kgperGallonOfGasoline"/>
+      <type:enumeration value="03" name="kgperThermOfNaturalGas"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="TariffType" name="TariffType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="01" name="Delivered"/>
+      <type:enumeration value="02" name="Received"/>
+      <type:enumeration value="03" name="DeliveredAndReceived"/>
+    </restriction>
+  </type:type>
+
+  <type:type short="CPPAuthType" name="CPPAuthType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="Pending" />
+      <type:enumeration value="01" name="Accepted" />
+      <type:enumeration value="02" name="Rejected" />
+      <type:enumeration value="03" name="Forced" />
+    </restriction>
+  </type:type>
+
+  <type:type short="CalorificValueUnit" name="CalorificValueUnit" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="01" name="MJperm3"/>
+      <type:enumeration value="02" name="MJperkg"/>
+    </restriction>
+  </type:type>
+
+  <server>
+    <attributes>
+      <!-- Tier Label (Delivered) -->
+      <attribute id="0000" name="Tier1PriceLabel" type="octstr" default="Tier 1">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0001" name="Tier2PriceLabel" type="octstr" default="Tier 2">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0002" name="Tier3PriceLabel" type="octstr" default="Tier 3">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0003" name="Tier4PriceLabel" type="octstr" default="Tier 4">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0004" name="Tier5PriceLabel" type="octstr" default="Tier 5">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0005" name="Tier6PriceLabel" type="octstr" default="Tier 6">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0006" name="Tier7PriceLabel" type="octstr" default="Tier 7">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0007" name="Tier8PriceLabel" type="octstr" default="Tier 8">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0008" name="Tier9PriceLabel" type="octstr" default="Tier 9">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0009" name="Tier10PriceLabel" type="octstr" default="Tier 10">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="000a" name="Tier11PriceLabel" type="octstr" default="Tier 11">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="000b" name="Tier12PriceLabel" type="octstr" default="Tier 12">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="000c" name="Tier13PriceLabel" type="octstr" default="Tier 13">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="000d" name="Tier14PriceLabel" type="octstr" default="Tier 14">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="000e" name="Tier15PriceLabel" type="octstr" default="Tier 15">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="000f" name="Tier16PriceLabel" type="octstr" default="Tier 16">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0010" name="Tier17PriceLabel" type="octstr" default="Tier 17">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0011" name="Tier18PriceLabel" type="octstr" default="Tier 18">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0012" name="Tier19PriceLabel" type="octstr" default="Tier 19">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0013" name="Tier20PriceLabel" type="octstr" default="Tier 20">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0014" name="Tier21PriceLabel" type="octstr" default="Tier 21">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0015" name="Tier22PriceLabel" type="octstr" default="Tier 22">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0016" name="Tier23PriceLabel" type="octstr" default="Tier 23">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0017" name="Tier24PriceLabel" type="octstr" default="Tier 24">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0018" name="Tier25PriceLabel" type="octstr" default="Tier 25">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0019" name="Tier26PriceLabel" type="octstr" default="Tier 26">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="001a" name="Tier27PriceLabel" type="octstr" default="Tier 27">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="001b" name="Tier28PriceLabel" type="octstr" default="Tier 28">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="001c" name="Tier29PriceLabel" type="octstr" default="Tier 29">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="001d" name="Tier30PriceLabel" type="octstr" default="Tier 30">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="001e" name="Tier31PriceLabel" type="octstr" default="Tier 31">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="001f" name="Tier32PriceLabel" type="octstr" default="Tier 32">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0020" name="Tier33PriceLabel" type="octstr" default="Tier 33">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0021" name="Tier34PriceLabel" type="octstr" default="Tier 34">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0022" name="Tier35PriceLabel" type="octstr" default="Tier 35">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0023" name="Tier36PriceLabel" type="octstr" default="Tier 36">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0024" name="Tier37PriceLabel" type="octstr" default="Tier 37">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0025" name="Tier38PriceLabel" type="octstr" default="Tier 38">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0026" name="Tier39PriceLabel" type="octstr" default="Tier 39">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0027" name="Tier40PriceLabel" type="octstr" default="Tier 40">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0028" name="Tier41PriceLabel" type="octstr" default="Tier 41">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="0029" name="Tier42PriceLabel" type="octstr" default="Tier 42">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="002a" name="Tier43PriceLabel" type="octstr" default="Tier 43">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="002b" name="Tier44PriceLabel" type="octstr" default="Tier 44">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="002c" name="Tier45PriceLabel" type="octstr" default="Tier 45">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="002d" name="Tier46PriceLabel" type="octstr" default="Tier 46">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="002e" name="Tier47PriceLabel" type="octstr" default="Tier 47">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="002f" name="Tier48PriceLabel" type="octstr" default="Tier 48">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+
+      <!-- Block Threshold (Delivered) -->
+      <attribute id="0100" name="Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0101" name="Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0102" name="Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0103" name="Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0104" name="Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0105" name="Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0106" name="Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0107" name="Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0108" name="Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0109" name="Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="010a" name="Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="010b" name="Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="010c" name="Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="010d" name="Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="010e" name="Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="010f" name="BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0110" name="Tier1Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0111" name="Tier1Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0112" name="Tier1Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0113" name="Tier1Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0114" name="Tier1Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0115" name="Tier1Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0116" name="Tier1Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0117" name="Tier1Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0118" name="Tier1Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0119" name="Tier1Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="011a" name="Tier1Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="011b" name="Tier1Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="011c" name="Tier1Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="011d" name="Tier1Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="011e" name="Tier1Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="011f" name="Tier1BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0120" name="Tier2Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0121" name="Tier2Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0122" name="Tier2Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0123" name="Tier2Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0124" name="Tier2Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0125" name="Tier2Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0126" name="Tier2Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0127" name="Tier2Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0128" name="Tier2Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0129" name="Tier2Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="012a" name="Tier2Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="012b" name="Tier2Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="012c" name="Tier2Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="012d" name="Tier2Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="012e" name="Tier2Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="012f" name="Tier2BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0130" name="Tier3Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0131" name="Tier3Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0132" name="Tier3Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0133" name="Tier3Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0134" name="Tier3Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0135" name="Tier3Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0136" name="Tier3Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0137" name="Tier3Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0138" name="Tier3Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0139" name="Tier3Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="013a" name="Tier3Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="013b" name="Tier3Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="013c" name="Tier3Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="013d" name="Tier3Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="013e" name="Tier3Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="013f" name="Tier3BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0140" name="Tier4Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0141" name="Tier4Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0142" name="Tier4Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0143" name="Tier4Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0144" name="Tier4Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0145" name="Tier4Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0146" name="Tier4Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0147" name="Tier4Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0148" name="Tier4Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0149" name="Tier4Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="014a" name="Tier4Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="014b" name="Tier4Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="014c" name="Tier4Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="014d" name="Tier4Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="014e" name="Tier4Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="014f" name="Tier4BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0150" name="Tier5Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0151" name="Tier5Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0152" name="Tier5Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0153" name="Tier5Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0154" name="Tier5Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0155" name="Tier5Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0156" name="Tier5Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0157" name="Tier5Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0158" name="Tier5Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0159" name="Tier5Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="015a" name="Tier5Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="015b" name="Tier5Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="015c" name="Tier5Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="015d" name="Tier5Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="015e" name="Tier5Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="015f" name="Tier5BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0160" name="Tier6Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0161" name="Tier6Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0162" name="Tier6Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0163" name="Tier6Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0164" name="Tier6Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0165" name="Tier6Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0166" name="Tier6Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0167" name="Tier6Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0168" name="Tier6Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0169" name="Tier6Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="016a" name="Tier6Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="016b" name="Tier6Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="016c" name="Tier6Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="016d" name="Tier6Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="016e" name="Tier6Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="016f" name="Tier6BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0170" name="Tier7Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0171" name="Tier7Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0172" name="Tier7Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0173" name="Tier7Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0174" name="Tier7Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0175" name="Tier7Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0176" name="Tier7Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0177" name="Tier7Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0178" name="Tier7Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0179" name="Tier7Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="017a" name="Tier7Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="017b" name="Tier7Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="017c" name="Tier7Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="017d" name="Tier7Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="017e" name="Tier7Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="017f" name="Tier7BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0180" name="Tier8Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0181" name="Tier8Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0182" name="Tier8Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0183" name="Tier8Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0184" name="Tier8Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0185" name="Tier8Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0186" name="Tier8Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0187" name="Tier8Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0188" name="Tier8Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0189" name="Tier8Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="018a" name="Tier8Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="018b" name="Tier8Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="018c" name="Tier8Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="018d" name="Tier8Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="018e" name="Tier8Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="018f" name="Tier8BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="0190" name="Tier9Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0191" name="Tier9Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0192" name="Tier9Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0193" name="Tier9Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0194" name="Tier9Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0195" name="Tier9Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0196" name="Tier9Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0197" name="Tier9Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0198" name="Tier9Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="0199" name="Tier9Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="019a" name="Tier9Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="019b" name="Tier9Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="019c" name="Tier9Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="019d" name="Tier9Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="019e" name="Tier9Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="019f" name="Tier9BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="01a0" name="Tier10Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a1" name="Tier10Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a2" name="Tier10Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a3" name="Tier10Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a4" name="Tier10Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a5" name="Tier10Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a6" name="Tier10Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a7" name="Tier10Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a8" name="Tier10Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01a9" name="Tier10Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01aa" name="Tier10Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ab" name="Tier10Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ac" name="Tier10Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ad" name="Tier10Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ae" name="Tier10Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01af" name="Tier10BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="01b0" name="Tier11Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b1" name="Tier11Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b2" name="Tier11Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b3" name="Tier11Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b4" name="Tier11Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b5" name="Tier11Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b6" name="Tier11Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b7" name="Tier11Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b8" name="Tier11Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01b9" name="Tier11Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ba" name="Tier11Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01bb" name="Tier11Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01bc" name="Tier11Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01bd" name="Tier11Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01be" name="Tier11Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01bf" name="Tier11BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="01c0" name="Tier12Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c1" name="Tier12Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c2" name="Tier12Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c3" name="Tier12Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c4" name="Tier12Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c5" name="Tier12Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c6" name="Tier12Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c7" name="Tier12Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c8" name="Tier12Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01c9" name="Tier12Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ca" name="Tier12Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01cb" name="Tier12Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01cc" name="Tier12Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01cd" name="Tier12Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ce" name="Tier12Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01cf" name="Tier12BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="01d0" name="Tier13Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d1" name="Tier13Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d2" name="Tier13Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d3" name="Tier13Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d4" name="Tier13Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d5" name="Tier13Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d6" name="Tier13Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d7" name="Tier13Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d8" name="Tier13Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01d9" name="Tier13Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01da" name="Tier13Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01db" name="Tier13Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01dc" name="Tier13Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01dd" name="Tier13Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01de" name="Tier13Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01df" name="Tier13BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="01e0" name="Tier14Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e1" name="Tier14Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e2" name="Tier14Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e3" name="Tier14Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e4" name="Tier14Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e5" name="Tier14Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e6" name="Tier14Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e7" name="Tier14Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e8" name="Tier14Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01e9" name="Tier14Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ea" name="Tier14Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01eb" name="Tier14Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ec" name="Tier14Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ed" name="Tier14Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ee" name="Tier14Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ef" name="Tier14BlockThresholdCount" type="uint8" max="255" />
+      <attribute id="01f0" name="Tier15Block1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f1" name="Tier15Block2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f2" name="Tier15Block3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f3" name="Tier15Block4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f4" name="Tier15Block5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f5" name="Tier15Block6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f6" name="Tier15Block7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f7" name="Tier15Block8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f8" name="Tier15Block9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01f9" name="Tier15Block10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01fa" name="Tier15Block11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01fb" name="Tier15Block12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01fc" name="Tier15Block13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01fd" name="Tier15Block14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01fe" name="Tier15Block15Threshold" type="uint48" max="281474976710655" />
+      <attribute id="01ff" name="Tier15BlockThresholdCount" type="uint8" max="255" />
+
+      <!-- Block Period (Delivered) -->
+      <attribute id="0200" name="StartofBlockPeriod" type="UTC" />
+      <attribute id="0201" name="BlockPeriodDuration" type="uint24" max="16777215" />
+      <attribute id="0202" name="ThresholdMultiplier" type="uint24" max="16777215" />
+      <attribute id="0203" name="ThresholdDivisor" type="uint24" max="16777215" />
+      <attribute id="0204" name="BlockPeriodDurationType" type="DurationType" default="00" />
+
+      <!-- Commodity -->
+      <attribute id="0300" name="CommodityType" type="enum8"/>
+      <attribute id="0301" name="StandingCharge" type="uint32" max="4294967295"/>
+      <attribute id="0302" name="ConversionFactor" type="uint32" max="4294967295" default="268435456"/>
+      <attribute id="0303" name="ConversionFactorTrailingDigit" type="map8">
+        <bitmap>
+          <element mask="F0" shiftRight="4" default="7" name="DigitsToRightOfDecimal" type="uint8" />
+        </bitmap>
+      </attribute>
+      <attribute id="0304" name="CalorificValue" type="uint32" max="4294967295" default="40000000"/>
+      <attribute id="0305" name="CalorificValueUnit" type="CalorificValueUnit" default="01" />
+      <attribute id="0306" name="CalorificValueTrailingDigit" type="map8" default="96"/>
+
+      <!-- Block Price Information (Delivered) -->
+      <attribute id="0400" name="NoTierBlock1Price" type="uint32" max="4294967295" />
+      <attribute id="0401" name="NoTierBlock2Price" type="uint32" max="4294967295" />
+      <attribute id="0402" name="NoTierBlock3Price" type="uint32" max="4294967295" />
+      <attribute id="0403" name="NoTierBlock4Price" type="uint32" max="4294967295" />
+      <attribute id="0404" name="NoTierBlock5Price" type="uint32" max="4294967295" />
+      <attribute id="0405" name="NoTierBlock6Price" type="uint32" max="4294967295" />
+      <attribute id="0406" name="NoTierBlock7Price" type="uint32" max="4294967295" />
+      <attribute id="0407" name="NoTierBlock8Price" type="uint32" max="4294967295" />
+      <attribute id="0408" name="NoTierBlock9Price" type="uint32" max="4294967295" />
+      <attribute id="0409" name="NoTierBlock10Price" type="uint32" max="4294967295" />
+      <attribute id="040a" name="NoTierBlock11Price" type="uint32" max="4294967295" />
+      <attribute id="040b" name="NoTierBlock12Price" type="uint32" max="4294967295" />
+      <attribute id="040c" name="NoTierBlock13Price" type="uint32" max="4294967295" />
+      <attribute id="040d" name="NoTierBlock14Price" type="uint32" max="4294967295" />
+      <attribute id="040e" name="NoTierBlock15Price" type="uint32" max="4294967295" />
+      <attribute id="040f" name="NoTierBlock16Price" type="uint32" max="4294967295" />
+      <attribute id="0410" name="Tier1Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0411" name="Tier1Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0412" name="Tier1Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0413" name="Tier1Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0414" name="Tier1Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0415" name="Tier1Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0416" name="Tier1Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0417" name="Tier1Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0418" name="Tier1Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0419" name="Tier1Block10Price" type="uint32" max="4294967295" />
+      <attribute id="041a" name="Tier1Block11Price" type="uint32" max="4294967295" />
+      <attribute id="041b" name="Tier1Block12Price" type="uint32" max="4294967295" />
+      <attribute id="041c" name="Tier1Block13Price" type="uint32" max="4294967295" />
+      <attribute id="041d" name="Tier1Block14Price" type="uint32" max="4294967295" />
+      <attribute id="041e" name="Tier1Block15Price" type="uint32" max="4294967295" />
+      <attribute id="041f" name="Tier1Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0420" name="Tier2Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0421" name="Tier2Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0422" name="Tier2Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0423" name="Tier2Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0424" name="Tier2Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0425" name="Tier2Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0426" name="Tier2Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0427" name="Tier2Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0428" name="Tier2Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0429" name="Tier2Block10Price" type="uint32" max="4294967295" />
+      <attribute id="042a" name="Tier2Block11Price" type="uint32" max="4294967295" />
+      <attribute id="042b" name="Tier2Block12Price" type="uint32" max="4294967295" />
+      <attribute id="042c" name="Tier2Block13Price" type="uint32" max="4294967295" />
+      <attribute id="042d" name="Tier2Block14Price" type="uint32" max="4294967295" />
+      <attribute id="042e" name="Tier2Block15Price" type="uint32" max="4294967295" />
+      <attribute id="042f" name="Tier2Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0430" name="Tier3Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0431" name="Tier3Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0432" name="Tier3Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0433" name="Tier3Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0434" name="Tier3Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0435" name="Tier3Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0436" name="Tier3Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0437" name="Tier3Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0438" name="Tier3Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0439" name="Tier3Block10Price" type="uint32" max="4294967295" />
+      <attribute id="043a" name="Tier3Block11Price" type="uint32" max="4294967295" />
+      <attribute id="043b" name="Tier3Block12Price" type="uint32" max="4294967295" />
+      <attribute id="043c" name="Tier3Block13Price" type="uint32" max="4294967295" />
+      <attribute id="043d" name="Tier3Block14Price" type="uint32" max="4294967295" />
+      <attribute id="043e" name="Tier3Block15Price" type="uint32" max="4294967295" />
+      <attribute id="043f" name="Tier3Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0440" name="Tier4Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0441" name="Tier4Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0442" name="Tier4Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0443" name="Tier4Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0444" name="Tier4Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0445" name="Tier4Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0446" name="Tier4Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0447" name="Tier4Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0448" name="Tier4Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0449" name="Tier4Block10Price" type="uint32" max="4294967295" />
+      <attribute id="044a" name="Tier4Block11Price" type="uint32" max="4294967295" />
+      <attribute id="044b" name="Tier4Block12Price" type="uint32" max="4294967295" />
+      <attribute id="044c" name="Tier4Block13Price" type="uint32" max="4294967295" />
+      <attribute id="044d" name="Tier4Block14Price" type="uint32" max="4294967295" />
+      <attribute id="044e" name="Tier4Block15Price" type="uint32" max="4294967295" />
+      <attribute id="044f" name="Tier4Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0450" name="Tier5Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0451" name="Tier5Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0452" name="Tier5Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0453" name="Tier5Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0454" name="Tier5Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0455" name="Tier5Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0456" name="Tier5Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0457" name="Tier5Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0458" name="Tier5Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0459" name="Tier5Block10Price" type="uint32" max="4294967295" />
+      <attribute id="045a" name="Tier5Block11Price" type="uint32" max="4294967295" />
+      <attribute id="045b" name="Tier5Block12Price" type="uint32" max="4294967295" />
+      <attribute id="045c" name="Tier5Block13Price" type="uint32" max="4294967295" />
+      <attribute id="045d" name="Tier5Block14Price" type="uint32" max="4294967295" />
+      <attribute id="045e" name="Tier5Block15Price" type="uint32" max="4294967295" />
+      <attribute id="045f" name="Tier5Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0460" name="Tier6Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0461" name="Tier6Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0462" name="Tier6Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0463" name="Tier6Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0464" name="Tier6Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0465" name="Tier6Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0466" name="Tier6Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0467" name="Tier6Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0468" name="Tier6Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0469" name="Tier6Block10Price" type="uint32" max="4294967295" />
+      <attribute id="046a" name="Tier6Block11Price" type="uint32" max="4294967295" />
+      <attribute id="046b" name="Tier6Block12Price" type="uint32" max="4294967295" />
+      <attribute id="046c" name="Tier6Block13Price" type="uint32" max="4294967295" />
+      <attribute id="046d" name="Tier6Block14Price" type="uint32" max="4294967295" />
+      <attribute id="046e" name="Tier6Block15Price" type="uint32" max="4294967295" />
+      <attribute id="046f" name="Tier6Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0470" name="Tier7Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0471" name="Tier7Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0472" name="Tier7Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0473" name="Tier7Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0474" name="Tier7Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0475" name="Tier7Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0476" name="Tier7Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0477" name="Tier7Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0478" name="Tier7Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0479" name="Tier7Block10Price" type="uint32" max="4294967295" />
+      <attribute id="047a" name="Tier7Block11Price" type="uint32" max="4294967295" />
+      <attribute id="047b" name="Tier7Block12Price" type="uint32" max="4294967295" />
+      <attribute id="047c" name="Tier7Block13Price" type="uint32" max="4294967295" />
+      <attribute id="047d" name="Tier7Block14Price" type="uint32" max="4294967295" />
+      <attribute id="047e" name="Tier7Block15Price" type="uint32" max="4294967295" />
+      <attribute id="047f" name="Tier7Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0480" name="Tier8Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0481" name="Tier8Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0482" name="Tier8Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0483" name="Tier8Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0484" name="Tier8Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0485" name="Tier8Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0486" name="Tier8Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0487" name="Tier8Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0488" name="Tier8Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0489" name="Tier8Block10Price" type="uint32" max="4294967295" />
+      <attribute id="048a" name="Tier8Block11Price" type="uint32" max="4294967295" />
+      <attribute id="048b" name="Tier8Block12Price" type="uint32" max="4294967295" />
+      <attribute id="048c" name="Tier8Block13Price" type="uint32" max="4294967295" />
+      <attribute id="048d" name="Tier8Block14Price" type="uint32" max="4294967295" />
+      <attribute id="048e" name="Tier8Block15Price" type="uint32" max="4294967295" />
+      <attribute id="048f" name="Tier8Block16Price" type="uint32" max="4294967295" />
+      <attribute id="0490" name="Tier9Block1Price" type="uint32" max="4294967295" />
+      <attribute id="0491" name="Tier9Block2Price" type="uint32" max="4294967295" />
+      <attribute id="0492" name="Tier9Block3Price" type="uint32" max="4294967295" />
+      <attribute id="0493" name="Tier9Block4Price" type="uint32" max="4294967295" />
+      <attribute id="0494" name="Tier9Block5Price" type="uint32" max="4294967295" />
+      <attribute id="0495" name="Tier9Block6Price" type="uint32" max="4294967295" />
+      <attribute id="0496" name="Tier9Block7Price" type="uint32" max="4294967295" />
+      <attribute id="0497" name="Tier9Block8Price" type="uint32" max="4294967295" />
+      <attribute id="0498" name="Tier9Block9Price" type="uint32" max="4294967295" />
+      <attribute id="0499" name="Tier9Block10Price" type="uint32" max="4294967295" />
+      <attribute id="049a" name="Tier9Block11Price" type="uint32" max="4294967295" />
+      <attribute id="049b" name="Tier9Block12Price" type="uint32" max="4294967295" />
+      <attribute id="049c" name="Tier9Block13Price" type="uint32" max="4294967295" />
+      <attribute id="049d" name="Tier9Block14Price" type="uint32" max="4294967295" />
+      <attribute id="049e" name="Tier9Block15Price" type="uint32" max="4294967295" />
+      <attribute id="049f" name="Tier9Block16Price" type="uint32" max="4294967295" />
+      <attribute id="04a0" name="Tier10Block1Price" type="uint32" max="4294967295" />
+      <attribute id="04a1" name="Tier10Block2Price" type="uint32" max="4294967295" />
+      <attribute id="04a2" name="Tier10Block3Price" type="uint32" max="4294967295" />
+      <attribute id="04a3" name="Tier10Block4Price" type="uint32" max="4294967295" />
+      <attribute id="04a4" name="Tier10Block5Price" type="uint32" max="4294967295" />
+      <attribute id="04a5" name="Tier10Block6Price" type="uint32" max="4294967295" />
+      <attribute id="04a6" name="Tier10Block7Price" type="uint32" max="4294967295" />
+      <attribute id="04a7" name="Tier10Block8Price" type="uint32" max="4294967295" />
+      <attribute id="04a8" name="Tier10Block9Price" type="uint32" max="4294967295" />
+      <attribute id="04a9" name="Tier10Block10Price" type="uint32" max="4294967295" />
+      <attribute id="04aa" name="Tier10Block11Price" type="uint32" max="4294967295" />
+      <attribute id="04ab" name="Tier10Block12Price" type="uint32" max="4294967295" />
+      <attribute id="04ac" name="Tier10Block13Price" type="uint32" max="4294967295" />
+      <attribute id="04ad" name="Tier10Block14Price" type="uint32" max="4294967295" />
+      <attribute id="04ae" name="Tier10Block15Price" type="uint32" max="4294967295" />
+      <attribute id="04af" name="Tier10Block16Price" type="uint32" max="4294967295" />
+      <attribute id="04b0" name="Tier11Block1Price" type="uint32" max="4294967295" />
+      <attribute id="04b1" name="Tier11Block2Price" type="uint32" max="4294967295" />
+      <attribute id="04b2" name="Tier11Block3Price" type="uint32" max="4294967295" />
+      <attribute id="04b3" name="Tier11Block4Price" type="uint32" max="4294967295" />
+      <attribute id="04b4" name="Tier11Block5Price" type="uint32" max="4294967295" />
+      <attribute id="04b5" name="Tier11Block6Price" type="uint32" max="4294967295" />
+      <attribute id="04b6" name="Tier11Block7Price" type="uint32" max="4294967295" />
+      <attribute id="04b7" name="Tier11Block8Price" type="uint32" max="4294967295" />
+      <attribute id="04b8" name="Tier11Block9Price" type="uint32" max="4294967295" />
+      <attribute id="04b9" name="Tier11Block10Price" type="uint32" max="4294967295" />
+      <attribute id="04ba" name="Tier11Block11Price" type="uint32" max="4294967295" />
+      <attribute id="04bb" name="Tier11Block12Price" type="uint32" max="4294967295" />
+      <attribute id="04bc" name="Tier11Block13Price" type="uint32" max="4294967295" />
+      <attribute id="04bd" name="Tier11Block14Price" type="uint32" max="4294967295" />
+      <attribute id="04be" name="Tier11Block15Price" type="uint32" max="4294967295" />
+      <attribute id="04bf" name="Tier11Block16Price" type="uint32" max="4294967295" />
+      <attribute id="04c0" name="Tier12Block1Price" type="uint32" max="4294967295" />
+      <attribute id="04c1" name="Tier12Block2Price" type="uint32" max="4294967295" />
+      <attribute id="04c2" name="Tier12Block3Price" type="uint32" max="4294967295" />
+      <attribute id="04c3" name="Tier12Block4Price" type="uint32" max="4294967295" />
+      <attribute id="04c4" name="Tier12Block5Price" type="uint32" max="4294967295" />
+      <attribute id="04c5" name="Tier12Block6Price" type="uint32" max="4294967295" />
+      <attribute id="04c6" name="Tier12Block7Price" type="uint32" max="4294967295" />
+      <attribute id="04c7" name="Tier12Block8Price" type="uint32" max="4294967295" />
+      <attribute id="04c8" name="Tier12Block9Price" type="uint32" max="4294967295" />
+      <attribute id="04c9" name="Tier12Block10Price" type="uint32" max="4294967295" />
+      <attribute id="04ca" name="Tier12Block11Price" type="uint32" max="4294967295" />
+      <attribute id="04cb" name="Tier12Block12Price" type="uint32" max="4294967295" />
+      <attribute id="04cc" name="Tier12Block13Price" type="uint32" max="4294967295" />
+      <attribute id="04cd" name="Tier12Block14Price" type="uint32" max="4294967295" />
+      <attribute id="04ce" name="Tier12Block15Price" type="uint32" max="4294967295" />
+      <attribute id="04cf" name="Tier12Block16Price" type="uint32" max="4294967295" />
+      <attribute id="04d0" name="Tier13Block1Price" type="uint32" max="4294967295" />
+      <attribute id="04d1" name="Tier13Block2Price" type="uint32" max="4294967295" />
+      <attribute id="04d2" name="Tier13Block3Price" type="uint32" max="4294967295" />
+      <attribute id="04d3" name="Tier13Block4Price" type="uint32" max="4294967295" />
+      <attribute id="04d4" name="Tier13Block5Price" type="uint32" max="4294967295" />
+      <attribute id="04d5" name="Tier13Block6Price" type="uint32" max="4294967295" />
+      <attribute id="04d6" name="Tier13Block7Price" type="uint32" max="4294967295" />
+      <attribute id="04d7" name="Tier13Block8Price" type="uint32" max="4294967295" />
+      <attribute id="04d8" name="Tier13Block9Price" type="uint32" max="4294967295" />
+      <attribute id="04d9" name="Tier13Block10Price" type="uint32" max="4294967295" />
+      <attribute id="04da" name="Tier13Block11Price" type="uint32" max="4294967295" />
+      <attribute id="04db" name="Tier13Block12Price" type="uint32" max="4294967295" />
+      <attribute id="04dc" name="Tier13Block13Price" type="uint32" max="4294967295" />
+      <attribute id="04dd" name="Tier13Block14Price" type="uint32" max="4294967295" />
+      <attribute id="04de" name="Tier13Block15Price" type="uint32" max="4294967295" />
+      <attribute id="04df" name="Tier13Block16Price" type="uint32" max="4294967295" />
+      <attribute id="04e0" name="Tier14Block1Price" type="uint32" max="4294967295" />
+      <attribute id="04e1" name="Tier14Block2Price" type="uint32" max="4294967295" />
+      <attribute id="04e2" name="Tier14Block3Price" type="uint32" max="4294967295" />
+      <attribute id="04e3" name="Tier14Block4Price" type="uint32" max="4294967295" />
+      <attribute id="04e4" name="Tier14Block5Price" type="uint32" max="4294967295" />
+      <attribute id="04e5" name="Tier14Block6Price" type="uint32" max="4294967295" />
+      <attribute id="04e6" name="Tier14Block7Price" type="uint32" max="4294967295" />
+      <attribute id="04e7" name="Tier14Block8Price" type="uint32" max="4294967295" />
+      <attribute id="04e8" name="Tier14Block9Price" type="uint32" max="4294967295" />
+      <attribute id="04e9" name="Tier14Block10Price" type="uint32" max="4294967295" />
+      <attribute id="04ea" name="Tier14Block11Price" type="uint32" max="4294967295" />
+      <attribute id="04eb" name="Tier14Block12Price" type="uint32" max="4294967295" />
+      <attribute id="04ec" name="Tier14Block13Price" type="uint32" max="4294967295" />
+      <attribute id="04ed" name="Tier14Block14Price" type="uint32" max="4294967295" />
+      <attribute id="04ee" name="Tier14Block15Price" type="uint32" max="4294967295" />
+      <attribute id="04ef" name="Tier14Block16Price" type="uint32" max="4294967295" />
+      <attribute id="04f0" name="Tier15Block1Price" type="uint32" max="4294967295" />
+      <attribute id="04f1" name="Tier15Block2Price" type="uint32" max="4294967295" />
+      <attribute id="04f2" name="Tier15Block3Price" type="uint32" max="4294967295" />
+      <attribute id="04f3" name="Tier15Block4Price" type="uint32" max="4294967295" />
+      <attribute id="04f4" name="Tier15Block5Price" type="uint32" max="4294967295" />
+      <attribute id="04f5" name="Tier15Block6Price" type="uint32" max="4294967295" />
+      <attribute id="04f6" name="Tier15Block7Price" type="uint32" max="4294967295" />
+      <attribute id="04f7" name="Tier15Block8Price" type="uint32" max="4294967295" />
+      <attribute id="04f8" name="Tier15Block9Price" type="uint32" max="4294967295" />
+      <attribute id="04f9" name="Tier15Block10Price" type="uint32" max="4294967295" />
+      <attribute id="04fa" name="Tier15Block11Price" type="uint32" max="4294967295" />
+      <attribute id="04fb" name="Tier15Block12Price" type="uint32" max="4294967295" />
+      <attribute id="04fc" name="Tier15Block13Price" type="uint32" max="4294967295" />
+      <attribute id="04fd" name="Tier15Block14Price" type="uint32" max="4294967295" />
+      <attribute id="04fe" name="Tier15Block15Price" type="uint32" max="4294967295" />
+      <attribute id="04ff" name="Tier15Block16Price" type="uint32" max="4294967295" />
+
+      <!-- Extended Price Information (Delivered) -->
+      <attribute id="050f" name="PriceTier16" type="uint32" max="4294967295" />
+      <attribute id="0510" name="PriceTier17" type="uint32" max="4294967295" />
+      <attribute id="0511" name="PriceTier18" type="uint32" max="4294967295" />
+      <attribute id="0512" name="PriceTier19" type="uint32" max="4294967295" />
+      <attribute id="0513" name="PriceTier20" type="uint32" max="4294967295" />
+      <attribute id="0514" name="PriceTier21" type="uint32" max="4294967295" />
+      <attribute id="0515" name="PriceTier22" type="uint32" max="4294967295" />
+      <attribute id="0516" name="PriceTier23" type="uint32" max="4294967295" />
+      <attribute id="0517" name="PriceTier24" type="uint32" max="4294967295" />
+      <attribute id="0518" name="PriceTier25" type="uint32" max="4294967295" />
+      <attribute id="0519" name="PriceTier26" type="uint32" max="4294967295" />
+      <attribute id="051a" name="PriceTier27" type="uint32" max="4294967295" />
+      <attribute id="051b" name="PriceTier28" type="uint32" max="4294967295" />
+      <attribute id="051c" name="PriceTier29" type="uint32" max="4294967295" />
+      <attribute id="051d" name="PriceTier30" type="uint32" max="4294967295" />
+      <attribute id="051e" name="PriceTier31" type="uint32" max="4294967295" />
+      <attribute id="051f" name="PriceTier32" type="uint32" max="4294967295" />
+      <attribute id="0520" name="PriceTier33" type="uint32" max="4294967295" />
+      <attribute id="0521" name="PriceTier34" type="uint32" max="4294967295" />
+      <attribute id="0522" name="PriceTier35" type="uint32" max="4294967295" />
+      <attribute id="0523" name="PriceTier36" type="uint32" max="4294967295" />
+      <attribute id="0524" name="PriceTier37" type="uint32" max="4294967295" />
+      <attribute id="0525" name="PriceTier38" type="uint32" max="4294967295" />
+      <attribute id="0526" name="PriceTier39" type="uint32" max="4294967295" />
+      <attribute id="0527" name="PriceTier40" type="uint32" max="4294967295" />
+      <attribute id="0528" name="PriceTier41" type="uint32" max="4294967295" />
+      <attribute id="0529" name="PriceTier42" type="uint32" max="4294967295" />
+      <attribute id="052a" name="PriceTier43" type="uint32" max="4294967295" />
+      <attribute id="052b" name="PriceTier44" type="uint32" max="4294967295" />
+      <attribute id="052c" name="PriceTier45" type="uint32" max="4294967295" />
+      <attribute id="052d" name="PriceTier46" type="uint32" max="4294967295" />
+      <attribute id="052e" name="PriceTier47" type="uint32" max="4294967295" />
+      <attribute id="052f" name="PriceTier48" type="uint32" max="4294967295" />
+      <attribute id="05Fe" name="CPP1Price" type="uint32" max="4294967295" />
+      <attribute id="05Ff" name="CPP2Price" type="uint32" max="4294967295" />
+
+      <!-- Tariff Information Set (Delivered) -->
+      <attribute id="0610" name="TariffLabel" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="24"/>
+        </restriction>
+      </attribute>
+      <attribute id="0611" name="NumberOfPriceTiersInUse" type="uint8" min="0" max="15" />
+      <attribute id="0612" name="NumberOfBlockThresholdsInUse" type="uint8" min="0" max="15" />
+      <attribute id="0613" name="TierBlockMode" type="TierBlockMode" default="255" />
+      <attribute id="0615" name="UnitOfMeasure" type="EnergyPureBinaryUnitOfMeasure" />
+      <attribute id="0616" name="Currency" type="uint16" max="65535" />
+      <attribute id="0617" name="PriceTrailingDigit" type="map8">
+        <bitmap>
+          <element mask="f0" shiftRight="4" name="TrailingDigit" type="uint8" default="0" />
+        </bitmap>
+      </attribute>
+      <attribute id="0619" name="TariffResolutionPeriod" type="TariffResolutionPeriod" />
+      <attribute id="0620" name="CO2" type="uint32" max="4294967295" default="185" />
+      <attribute id="0621" name="CO2Unit" type="CO2Unit" default="1" />
+      <attribute id="0622" name="CO2TrailingDigit" type="map8">
+        <bitmap>
+          <element mask="f0" shiftRight="4" name="TrailingDigit" type="uint8" default="0" />
+        </bitmap>
+      </attribute>
+
+      <!-- Billing Information Set (Delivered) -->
+      <attribute id="0700" name="CurrentBillingPeriodStart" type="UTC" />
+      <attribute id="0701" name="CurrentBillingPeriodDuration" type="uint24" max="16777215" />
+      <attribute id="0702" name="LastBillingPeriodStart" type="UTC" />
+      <attribute id="0703" name="LastBillingPeriodDuration" type="uint24" max="16777215" />
+      <attribute id="0704" name="LastBillingPeriodConsolidatedBill" type="uint32" max="4294967295" />
+
+      <!-- Credit Payment Attribute Set -->
+      <attribute id="0800" name="CreditPaymentDueDate" type="UTC" />
+      <attribute id="0801" name="CreditPaymentStatus" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="Pending" />
+          <type:enumeration value="01" name="ReceivedOrPaid" />
+          <type:enumeration value="02" name="Overdue" />
+          <type:enumeration value="03" name="TwoPaymentsOverdue" />
+          <type:enumeration value="04" name="ThreePaymentsOverdue" />
+        </restriction>
+      </attribute>
+      <attribute id="0802" name="CreditPaymentOverdueAmount" type="int32" />
+      <attribute id="0803" name="PaymentDiscount" type="int32" />
+      <attribute id="0804" name="PaymentDiscountPeriod" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="CurrentBillingPeriod" />
+          <type:enumeration value="01" name="CurrentConsolidatedBill" />
+          <type:enumeration value="02" name="OneMonth" />
+          <type:enumeration value="03" name="OneQuarter" />
+          <type:enumeration value="04" name="OneYear" />
+        </restriction>
+      </attribute>
+      <attribute id="0810" name="CreditPayment1" type="uint32" max="4294967295" />
+      <attribute id="0811" name="CreditPaymentDate1" type="UTC" />
+      <attribute id="0812" name="CreditPaymentRef1" type="octstr">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="20"/>
+        </restriction>
+      </attribute>
+      <attribute id="0820" name="CreditPayment2" type="uint32" max="4294967295" />
+      <attribute id="0821" name="CreditPaymentDate2" type="UTC" />
+      <attribute id="0822" name="CreditPaymentRef2" type="octstr">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="20"/>
+        </restriction>
+      </attribute>
+      <attribute id="0830" name="CreditPayment3" type="uint32" max="4294967295" />
+      <attribute id="0831" name="CreditPaymentDate3" type="UTC" />
+      <attribute id="0832" name="CreditPaymentRef3" type="octstr">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="20"/>
+        </restriction>
+      </attribute>
+      <attribute id="0840" name="CreditPayment4" type="uint32" max="4294967295" />
+      <attribute id="0841" name="CreditPaymentDate4" type="UTC" />
+      <attribute id="0842" name="CreditPaymentRef4" type="octstr">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="20"/>
+        </restriction>
+      </attribute>
+      <attribute id="0850" name="CreditPayment5" type="uint32" max="4294967295" />
+      <attribute id="0851" name="CreditPaymentDate5" type="UTC" />
+      <attribute id="0852" name="CreditPaymentRef5" type="octstr">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="20"/>
+        </restriction>
+      </attribute>
+
+      <!-- Tier Label (Received) -->
+      <attribute id="8000" name="ReceivedTier1PriceLabel" type="octstr" default="Tier 1">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8001" name="ReceivedTier2PriceLabel" type="octstr" default="Tier 2">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8002" name="ReceivedTier3PriceLabel" type="octstr" default="Tier 3">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8003" name="ReceivedTier4PriceLabel" type="octstr" default="Tier 4">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8004" name="ReceivedTier5PriceLabel" type="octstr" default="Tier 5">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8005" name="ReceivedTier6PriceLabel" type="octstr" default="Tier 6">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8006" name="ReceivedTier7PriceLabel" type="octstr" default="Tier 7">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8007" name="ReceivedTier8PriceLabel" type="octstr" default="Tier 8">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8008" name="ReceivedTier9PriceLabel" type="octstr" default="Tier 9">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8009" name="ReceivedTier10PriceLabel" type="octstr" default="Tier 10">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="800a" name="ReceivedTier11PriceLabel" type="octstr" default="Tier 11">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="800b" name="ReceivedTier12PriceLabel" type="octstr" default="Tier 12">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="800c" name="ReceivedTier13PriceLabel" type="octstr" default="Tier 13">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="800d" name="ReceivedTier14PriceLabel" type="octstr" default="Tier 14">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="800e" name="ReceivedTier15PriceLabel" type="octstr" default="Tier 15">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="800f" name="ReceivedTier16PriceLabel" type="octstr" default="Tier 16">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8010" name="ReceivedTier17PriceLabel" type="octstr" default="Tier 17">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8011" name="ReceivedTier18PriceLabel" type="octstr" default="Tier 18">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8012" name="ReceivedTier19PriceLabel" type="octstr" default="Tier 19">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8013" name="ReceivedTier20PriceLabel" type="octstr" default="Tier 20">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8014" name="ReceivedTier21PriceLabel" type="octstr" default="Tier 21">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8015" name="ReceivedTier22PriceLabel" type="octstr" default="Tier 22">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8016" name="ReceivedTier23PriceLabel" type="octstr" default="Tier 23">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8017" name="ReceivedTier24PriceLabel" type="octstr" default="Tier 24">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8018" name="ReceivedTier25PriceLabel" type="octstr" default="Tier 25">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8019" name="ReceivedTier26PriceLabel" type="octstr" default="Tier 26">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="801a" name="ReceivedTier27PriceLabel" type="octstr" default="Tier 27">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="801b" name="ReceivedTier28PriceLabel" type="octstr" default="Tier 28">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="801c" name="ReceivedTier29PriceLabel" type="octstr" default="Tier 29">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="801d" name="ReceivedTier30PriceLabel" type="octstr" default="Tier 30">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="801e" name="ReceivedTier31PriceLabel" type="octstr" default="Tier 31">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="801f" name="ReceivedTier32PriceLabel" type="octstr" default="Tier 32">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8020" name="ReceivedTier33PriceLabel" type="octstr" default="Tier 33">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8021" name="ReceivedTier34PriceLabel" type="octstr" default="Tier 34">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8022" name="ReceivedTier35PriceLabel" type="octstr" default="Tier 35">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8023" name="ReceivedTier36PriceLabel" type="octstr" default="Tier 36">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8024" name="ReceivedTier37PriceLabel" type="octstr" default="Tier 37">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8025" name="ReceivedTier38PriceLabel" type="octstr" default="Tier 38">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8026" name="ReceivedTier39PriceLabel" type="octstr" default="Tier 39">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8027" name="ReceivedTier40PriceLabel" type="octstr" default="Tier 40">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8028" name="ReceivedTier41PriceLabel" type="octstr" default="Tier 41">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="8029" name="ReceivedTier42PriceLabel" type="octstr" default="Tier 42">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="802a" name="ReceivedTier43PriceLabel" type="octstr" default="Tier 43">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="802b" name="ReceivedTier44PriceLabel" type="octstr" default="Tier 44">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="802c" name="ReceivedTier45PriceLabel" type="octstr" default="Tier 45">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="802d" name="ReceivedTier46PriceLabel" type="octstr" default="Tier 46">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="802e" name="ReceivedTier47PriceLabel" type="octstr" default="Tier 47">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+      <attribute id="802f" name="ReceivedTier48PriceLabel" type="octstr" default="Tier 48">
+        <restriction>
+          <!-- Restriction is on data length, not bytes across the wire -->
+          <type:minLength value="0"/>
+          <type:maxLength value="12"/>
+        </restriction>
+      </attribute>
+
+      <!-- Block Threshold (Received) -->
+      <attribute id="8100" name="ReceivedBlock1Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8101" name="ReceivedBlock2Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8102" name="ReceivedBlock3Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8103" name="ReceivedBlock4Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8104" name="ReceivedBlock5Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8105" name="ReceivedBlock6Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8106" name="ReceivedBlock7Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8107" name="ReceivedBlock8Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8108" name="ReceivedBlock9Threshold" type="uint48" max="281474976710655" />
+      <attribute id="8109" name="ReceivedBlock10Threshold" type="uint48" max="281474976710655" />
+      <attribute id="810a" name="ReceivedBlock11Threshold" type="uint48" max="281474976710655" />
+      <attribute id="810b" name="ReceivedBlock12Threshold" type="uint48" max="281474976710655" />
+      <attribute id="810c" name="ReceivedBlock13Threshold" type="uint48" max="281474976710655" />
+      <attribute id="810d" name="ReceivedBlock14Threshold" type="uint48" max="281474976710655" />
+      <attribute id="810e" name="ReceivedBlock15Threshold" type="uint48" max="281474976710655" />
+
+      <!-- Block Period (Received) -->
+      <attribute id="8200" name="ReceivedStartofBlockPeriod" type="UTC" />
+      <attribute id="8201" name="ReceivedBlockPeriodDuration" type="uint24" max="16777215" />
+      <attribute id="8202" name="ReceivedThresholdMultiplier" type="uint24" max="16777215" />
+      <attribute id="8203" name="ReceivedThresholdDivisor" type="uint24" max="16777215" />
+
+      <!-- Block Price Information (Received) -->
+      <!-- TODO: Ian, Should This Be Renamed Received... from RX... for consistency? -->
+      <attribute id="7400" name="RxNoTierBlock1Price" type="uint32" max="4294967295" />
+      <attribute id="7401" name="RxNoTierBlock2Price" type="uint32" max="4294967295" />
+      <attribute id="7402" name="RxNoTierBlock3Price" type="uint32" max="4294967295" />
+      <attribute id="7403" name="RxNoTierBlock4Price" type="uint32" max="4294967295" />
+      <attribute id="7404" name="RxNoTierBlock5Price" type="uint32" max="4294967295" />
+      <attribute id="7405" name="RxNoTierBlock6Price" type="uint32" max="4294967295" />
+      <attribute id="7406" name="RxNoTierBlock7Price" type="uint32" max="4294967295" />
+      <attribute id="7407" name="RxNoTierBlock8Price" type="uint32" max="4294967295" />
+      <attribute id="7408" name="RxNoTierBlock9Price" type="uint32" max="4294967295" />
+      <attribute id="7409" name="RxNoTierBlock10Price" type="uint32" max="4294967295" />
+      <attribute id="740a" name="RxNoTierBlock11Price" type="uint32" max="4294967295" />
+      <attribute id="740b" name="RxNoTierBlock12Price" type="uint32" max="4294967295" />
+      <attribute id="740c" name="RxNoTierBlock13Price" type="uint32" max="4294967295" />
+      <attribute id="740d" name="RxNoTierBlock14Price" type="uint32" max="4294967295" />
+      <attribute id="740e" name="RxNoTierBlock15Price" type="uint32" max="4294967295" />
+      <attribute id="740f" name="RxNoTierBlock16Price" type="uint32" max="4294967295" />
+      <attribute id="7410" name="RxTier1Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7411" name="RxTier1Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7412" name="RxTier1Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7413" name="RxTier1Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7414" name="RxTier1Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7415" name="RxTier1Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7416" name="RxTier1Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7417" name="RxTier1Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7418" name="RxTier1Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7419" name="RxTier1Block10Price" type="uint32" max="4294967295" />
+      <attribute id="741a" name="RxTier1Block11Price" type="uint32" max="4294967295" />
+      <attribute id="741b" name="RxTier1Block12Price" type="uint32" max="4294967295" />
+      <attribute id="741c" name="RxTier1Block13Price" type="uint32" max="4294967295" />
+      <attribute id="741d" name="RxTier1Block14Price" type="uint32" max="4294967295" />
+      <attribute id="741e" name="RxTier1Block15Price" type="uint32" max="4294967295" />
+      <attribute id="741f" name="RxTier1Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7420" name="RxTier2Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7421" name="RxTier2Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7422" name="RxTier2Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7423" name="RxTier2Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7424" name="RxTier2Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7425" name="RxTier2Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7426" name="RxTier2Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7427" name="RxTier2Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7428" name="RxTier2Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7429" name="RxTier2Block10Price" type="uint32" max="4294967295" />
+      <attribute id="742a" name="RxTier2Block11Price" type="uint32" max="4294967295" />
+      <attribute id="742b" name="RxTier2Block12Price" type="uint32" max="4294967295" />
+      <attribute id="742c" name="RxTier2Block13Price" type="uint32" max="4294967295" />
+      <attribute id="742d" name="RxTier2Block14Price" type="uint32" max="4294967295" />
+      <attribute id="742e" name="RxTier2Block15Price" type="uint32" max="4294967295" />
+      <attribute id="742f" name="RxTier2Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7430" name="RxTier3Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7431" name="RxTier3Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7432" name="RxTier3Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7433" name="RxTier3Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7434" name="RxTier3Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7435" name="RxTier3Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7436" name="RxTier3Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7437" name="RxTier3Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7438" name="RxTier3Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7439" name="RxTier3Block10Price" type="uint32" max="4294967295" />
+      <attribute id="743a" name="RxTier3Block11Price" type="uint32" max="4294967295" />
+      <attribute id="743b" name="RxTier3Block12Price" type="uint32" max="4294967295" />
+      <attribute id="743c" name="RxTier3Block13Price" type="uint32" max="4294967295" />
+      <attribute id="743d" name="RxTier3Block14Price" type="uint32" max="4294967295" />
+      <attribute id="743e" name="RxTier3Block15Price" type="uint32" max="4294967295" />
+      <attribute id="743f" name="RxTier3Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7440" name="RxTier4Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7441" name="RxTier4Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7442" name="RxTier4Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7443" name="RxTier4Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7444" name="RxTier4Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7445" name="RxTier4Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7446" name="RxTier4Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7447" name="RxTier4Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7448" name="RxTier4Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7449" name="RxTier4Block10Price" type="uint32" max="4294967295" />
+      <attribute id="744a" name="RxTier4Block11Price" type="uint32" max="4294967295" />
+      <attribute id="744b" name="RxTier4Block12Price" type="uint32" max="4294967295" />
+      <attribute id="744c" name="RxTier4Block13Price" type="uint32" max="4294967295" />
+      <attribute id="744d" name="RxTier4Block14Price" type="uint32" max="4294967295" />
+      <attribute id="744e" name="RxTier4Block15Price" type="uint32" max="4294967295" />
+      <attribute id="744f" name="RxTier4Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7450" name="RxTier5Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7451" name="RxTier5Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7452" name="RxTier5Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7453" name="RxTier5Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7454" name="RxTier5Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7455" name="RxTier5Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7456" name="RxTier5Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7457" name="RxTier5Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7458" name="RxTier5Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7459" name="RxTier5Block10Price" type="uint32" max="4294967295" />
+      <attribute id="745a" name="RxTier5Block11Price" type="uint32" max="4294967295" />
+      <attribute id="745b" name="RxTier5Block12Price" type="uint32" max="4294967295" />
+      <attribute id="745c" name="RxTier5Block13Price" type="uint32" max="4294967295" />
+      <attribute id="745d" name="RxTier5Block14Price" type="uint32" max="4294967295" />
+      <attribute id="745e" name="RxTier5Block15Price" type="uint32" max="4294967295" />
+      <attribute id="745f" name="RxTier5Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7460" name="RxTier6Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7461" name="RxTier6Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7462" name="RxTier6Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7463" name="RxTier6Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7464" name="RxTier6Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7465" name="RxTier6Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7466" name="RxTier6Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7467" name="RxTier6Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7468" name="RxTier6Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7469" name="RxTier6Block10Price" type="uint32" max="4294967295" />
+      <attribute id="746a" name="RxTier6Block11Price" type="uint32" max="4294967295" />
+      <attribute id="746b" name="RxTier6Block12Price" type="uint32" max="4294967295" />
+      <attribute id="746c" name="RxTier6Block13Price" type="uint32" max="4294967295" />
+      <attribute id="746d" name="RxTier6Block14Price" type="uint32" max="4294967295" />
+      <attribute id="746e" name="RxTier6Block15Price" type="uint32" max="4294967295" />
+      <attribute id="746f" name="RxTier6Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7470" name="RxTier7Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7471" name="RxTier7Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7472" name="RxTier7Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7473" name="RxTier7Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7474" name="RxTier7Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7475" name="RxTier7Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7476" name="RxTier7Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7477" name="RxTier7Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7478" name="RxTier7Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7479" name="RxTier7Block10Price" type="uint32" max="4294967295" />
+      <attribute id="747a" name="RxTier7Block11Price" type="uint32" max="4294967295" />
+      <attribute id="747b" name="RxTier7Block12Price" type="uint32" max="4294967295" />
+      <attribute id="747c" name="RxTier7Block13Price" type="uint32" max="4294967295" />
+      <attribute id="747d" name="RxTier7Block14Price" type="uint32" max="4294967295" />
+      <attribute id="747e" name="RxTier7Block15Price" type="uint32" max="4294967295" />
+      <attribute id="747f" name="RxTier7Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7480" name="RxTier8Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7481" name="RxTier8Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7482" name="RxTier8Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7483" name="RxTier8Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7484" name="RxTier8Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7485" name="RxTier8Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7486" name="RxTier8Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7487" name="RxTier8Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7488" name="RxTier8Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7489" name="RxTier8Block10Price" type="uint32" max="4294967295" />
+      <attribute id="748a" name="RxTier8Block11Price" type="uint32" max="4294967295" />
+      <attribute id="748b" name="RxTier8Block12Price" type="uint32" max="4294967295" />
+      <attribute id="748c" name="RxTier8Block13Price" type="uint32" max="4294967295" />
+      <attribute id="748d" name="RxTier8Block14Price" type="uint32" max="4294967295" />
+      <attribute id="748e" name="RxTier8Block15Price" type="uint32" max="4294967295" />
+      <attribute id="748f" name="RxTier8Block16Price" type="uint32" max="4294967295" />
+      <attribute id="7490" name="RxTier9Block1Price" type="uint32" max="4294967295" />
+      <attribute id="7491" name="RxTier9Block2Price" type="uint32" max="4294967295" />
+      <attribute id="7492" name="RxTier9Block3Price" type="uint32" max="4294967295" />
+      <attribute id="7493" name="RxTier9Block4Price" type="uint32" max="4294967295" />
+      <attribute id="7494" name="RxTier9Block5Price" type="uint32" max="4294967295" />
+      <attribute id="7495" name="RxTier9Block6Price" type="uint32" max="4294967295" />
+      <attribute id="7496" name="RxTier9Block7Price" type="uint32" max="4294967295" />
+      <attribute id="7497" name="RxTier9Block8Price" type="uint32" max="4294967295" />
+      <attribute id="7498" name="RxTier9Block9Price" type="uint32" max="4294967295" />
+      <attribute id="7499" name="RxTier9Block10Price" type="uint32" max="4294967295" />
+      <attribute id="749a" name="RxTier9Block11Price" type="uint32" max="4294967295" />
+      <attribute id="749b" name="RxTier9Block12Price" type="uint32" max="4294967295" />
+      <attribute id="749c" name="RxTier9Block13Price" type="uint32" max="4294967295" />
+      <attribute id="749d" name="RxTier9Block14Price" type="uint32" max="4294967295" />
+      <attribute id="749e" name="RxTier9Block15Price" type="uint32" max="4294967295" />
+      <attribute id="749f" name="RxTier9Block16Price" type="uint32" max="4294967295" />
+      <attribute id="74a0" name="RxTier10Block1Price" type="uint32" max="4294967295" />
+      <attribute id="74a1" name="RxTier10Block2Price" type="uint32" max="4294967295" />
+      <attribute id="74a2" name="RxTier10Block3Price" type="uint32" max="4294967295" />
+      <attribute id="74a3" name="RxTier10Block4Price" type="uint32" max="4294967295" />
+      <attribute id="74a4" name="RxTier10Block5Price" type="uint32" max="4294967295" />
+      <attribute id="74a5" name="RxTier10Block6Price" type="uint32" max="4294967295" />
+      <attribute id="74a6" name="RxTier10Block7Price" type="uint32" max="4294967295" />
+      <attribute id="74a7" name="RxTier10Block8Price" type="uint32" max="4294967295" />
+      <attribute id="74a8" name="RxTier10Block9Price" type="uint32" max="4294967295" />
+      <attribute id="74a9" name="RxTier10Block10Price" type="uint32" max="4294967295" />
+      <attribute id="74aa" name="RxTier10Block11Price" type="uint32" max="4294967295" />
+      <attribute id="74ab" name="RxTier10Block12Price" type="uint32" max="4294967295" />
+      <attribute id="74ac" name="RxTier10Block13Price" type="uint32" max="4294967295" />
+      <attribute id="74ad" name="RxTier10Block14Price" type="uint32" max="4294967295" />
+      <attribute id="74ae" name="RxTier10Block15Price" type="uint32" max="4294967295" />
+      <attribute id="74af" name="RxTier10Block16Price" type="uint32" max="4294967295" />
+      <attribute id="74b0" name="RxTier11Block1Price" type="uint32" max="4294967295" />
+      <attribute id="74b1" name="RxTier11Block2Price" type="uint32" max="4294967295" />
+      <attribute id="74b2" name="RxTier11Block3Price" type="uint32" max="4294967295" />
+      <attribute id="74b3" name="RxTier11Block4Price" type="uint32" max="4294967295" />
+      <attribute id="74b4" name="RxTier11Block5Price" type="uint32" max="4294967295" />
+      <attribute id="74b5" name="RxTier11Block6Price" type="uint32" max="4294967295" />
+      <attribute id="74b6" name="RxTier11Block7Price" type="uint32" max="4294967295" />
+      <attribute id="74b7" name="RxTier11Block8Price" type="uint32" max="4294967295" />
+      <attribute id="74b8" name="RxTier11Block9Price" type="uint32" max="4294967295" />
+      <attribute id="74b9" name="RxTier11Block10Price" type="uint32" max="4294967295" />
+      <attribute id="74ba" name="RxTier11Block11Price" type="uint32" max="4294967295" />
+      <attribute id="74bb" name="RxTier11Block12Price" type="uint32" max="4294967295" />
+      <attribute id="74bc" name="RxTier11Block13Price" type="uint32" max="4294967295" />
+      <attribute id="74bd" name="RxTier11Block14Price" type="uint32" max="4294967295" />
+      <attribute id="74be" name="RxTier11Block15Price" type="uint32" max="4294967295" />
+      <attribute id="74bf" name="RxTier11Block16Price" type="uint32" max="4294967295" />
+      <attribute id="74c0" name="RxTier12Block1Price" type="uint32" max="4294967295" />
+      <attribute id="74c1" name="RxTier12Block2Price" type="uint32" max="4294967295" />
+      <attribute id="74c2" name="RxTier12Block3Price" type="uint32" max="4294967295" />
+      <attribute id="74c3" name="RxTier12Block4Price" type="uint32" max="4294967295" />
+      <attribute id="74c4" name="RxTier12Block5Price" type="uint32" max="4294967295" />
+      <attribute id="74c5" name="RxTier12Block6Price" type="uint32" max="4294967295" />
+      <attribute id="74c6" name="RxTier12Block7Price" type="uint32" max="4294967295" />
+      <attribute id="74c7" name="RxTier12Block8Price" type="uint32" max="4294967295" />
+      <attribute id="74c8" name="RxTier12Block9Price" type="uint32" max="4294967295" />
+      <attribute id="74c9" name="RxTier12Block10Price" type="uint32" max="4294967295" />
+      <attribute id="74ca" name="RxTier12Block11Price" type="uint32" max="4294967295" />
+      <attribute id="74cb" name="RxTier12Block12Price" type="uint32" max="4294967295" />
+      <attribute id="74cc" name="RxTier12Block13Price" type="uint32" max="4294967295" />
+      <attribute id="74cd" name="RxTier12Block14Price" type="uint32" max="4294967295" />
+      <attribute id="74ce" name="RxTier12Block15Price" type="uint32" max="4294967295" />
+      <attribute id="74cf" name="RxTier12Block16Price" type="uint32" max="4294967295" />
+      <attribute id="74d0" name="RxTier13Block1Price" type="uint32" max="4294967295" />
+      <attribute id="74d1" name="RxTier13Block2Price" type="uint32" max="4294967295" />
+      <attribute id="74d2" name="RxTier13Block3Price" type="uint32" max="4294967295" />
+      <attribute id="74d3" name="RxTier13Block4Price" type="uint32" max="4294967295" />
+      <attribute id="74d4" name="RxTier13Block5Price" type="uint32" max="4294967295" />
+      <attribute id="74d5" name="RxTier13Block6Price" type="uint32" max="4294967295" />
+      <attribute id="74d6" name="RxTier13Block7Price" type="uint32" max="4294967295" />
+      <attribute id="74d7" name="RxTier13Block8Price" type="uint32" max="4294967295" />
+      <attribute id="74d8" name="RxTier13Block9Price" type="uint32" max="4294967295" />
+      <attribute id="74d9" name="RxTier13Block10Price" type="uint32" max="4294967295" />
+      <attribute id="74da" name="RxTier13Block11Price" type="uint32" max="4294967295" />
+      <attribute id="74db" name="RxTier13Block12Price" type="uint32" max="4294967295" />
+      <attribute id="74dc" name="RxTier13Block13Price" type="uint32" max="4294967295" />
+      <attribute id="74dd" name="RxTier13Block14Price" type="uint32" max="4294967295" />
+      <attribute id="74de" name="RxTier13Block15Price" type="uint32" max="4294967295" />
+      <attribute id="74df" name="RxTier13Block16Price" type="uint32" max="4294967295" />
+      <attribute id="74e0" name="RxTier14Block1Price" type="uint32" max="4294967295" />
+      <attribute id="74e1" name="RxTier14Block2Price" type="uint32" max="4294967295" />
+      <attribute id="74e2" name="RxTier14Block3Price" type="uint32" max="4294967295" />
+      <attribute id="74e3" name="RxTier14Block4Price" type="uint32" max="4294967295" />
+      <attribute id="74e4" name="RxTier14Block5Price" type="uint32" max="4294967295" />
+      <attribute id="74e5" name="RxTier14Block6Price" type="uint32" max="4294967295" />
+      <attribute id="74e6" name="RxTier14Block7Price" type="uint32" max="4294967295" />
+      <attribute id="74e7" name="RxTier14Block8Price" type="uint32" max="4294967295" />
+      <attribute id="74e8" name="RxTier14Block9Price" type="uint32" max="4294967295" />
+      <attribute id="74e9" name="RxTier14Block10Price" type="uint32" max="4294967295" />
+      <attribute id="74ea" name="RxTier14Block11Price" type="uint32" max="4294967295" />
+      <attribute id="74eb" name="RxTier14Block12Price" type="uint32" max="4294967295" />
+      <attribute id="74ec" name="RxTier14Block13Price" type="uint32" max="4294967295" />
+      <attribute id="74ed" name="RxTier14Block14Price" type="uint32" max="4294967295" />
+      <attribute id="74ee" name="RxTier14Block15Price" type="uint32" max="4294967295" />
+      <attribute id="74ef" name="RxTier14Block16Price" type="uint32" max="4294967295" />
+      <attribute id="74f0" name="RxTier15Block1Price" type="uint32" max="4294967295" />
+      <attribute id="74f1" name="RxTier15Block2Price" type="uint32" max="4294967295" />
+      <attribute id="74f2" name="RxTier15Block3Price" type="uint32" max="4294967295" />
+      <attribute id="74f3" name="RxTier15Block4Price" type="uint32" max="4294967295" />
+      <attribute id="74f4" name="RxTier15Block5Price" type="uint32" max="4294967295" />
+      <attribute id="74f5" name="RxTier15Block6Price" type="uint32" max="4294967295" />
+      <attribute id="74f6" name="RxTier15Block7Price" type="uint32" max="4294967295" />
+      <attribute id="74f7" name="RxTier15Block8Price" type="uint32" max="4294967295" />
+      <attribute id="74f8" name="RxTier15Block9Price" type="uint32" max="4294967295" />
+      <attribute id="74f9" name="RxTier15Block10Price" type="uint32" max="4294967295" />
+      <attribute id="74fa" name="RxTier15Block11Price" type="uint32" max="4294967295" />
+      <attribute id="74fb" name="RxTier15Block12Price" type="uint32" max="4294967295" />
+      <attribute id="74fc" name="RxTier15Block13Price" type="uint32" max="4294967295" />
+      <attribute id="74fd" name="RxTier15Block14Price" type="uint32" max="4294967295" />
+      <attribute id="74fe" name="RxTier15Block15Price" type="uint32" max="4294967295" />
+      <attribute id="74ff" name="RxTier15Block16Price" type="uint32" max="4294967295" />
+
+      <!-- Extended Price Information (Received) -->
+      <attribute id="850f" name="ReceivedPriceTier16" type="uint32" max="4294967295" />
+      <attribute id="8510" name="ReceivedPriceTier17" type="uint32" max="4294967295" />
+      <attribute id="8511" name="ReceivedPriceTier18" type="uint32" max="4294967295" />
+      <attribute id="8512" name="ReceivedPriceTier19" type="uint32" max="4294967295" />
+      <attribute id="8513" name="ReceivedPriceTier20" type="uint32" max="4294967295" />
+      <attribute id="8514" name="ReceivedPriceTier21" type="uint32" max="4294967295" />
+      <attribute id="8515" name="ReceivedPriceTier22" type="uint32" max="4294967295" />
+      <attribute id="8516" name="ReceivedPriceTier23" type="uint32" max="4294967295" />
+      <attribute id="8517" name="ReceivedPriceTier24" type="uint32" max="4294967295" />
+      <attribute id="8518" name="ReceivedPriceTier25" type="uint32" max="4294967295" />
+      <attribute id="8519" name="ReceivedPriceTier26" type="uint32" max="4294967295" />
+      <attribute id="851a" name="ReceivedPriceTier27" type="uint32" max="4294967295" />
+      <attribute id="851b" name="ReceivedPriceTier28" type="uint32" max="4294967295" />
+      <attribute id="851c" name="ReceivedPriceTier29" type="uint32" max="4294967295" />
+      <attribute id="851d" name="ReceivedPriceTier30" type="uint32" max="4294967295" />
+      <attribute id="851e" name="ReceivedPriceTier31" type="uint32" max="4294967295" />
+      <attribute id="851f" name="ReceivedPriceTier32" type="uint32" max="4294967295" />
+      <attribute id="8520" name="ReceivedPriceTier33" type="uint32" max="4294967295" />
+      <attribute id="8521" name="ReceivedPriceTier34" type="uint32" max="4294967295" />
+      <attribute id="8522" name="ReceivedPriceTier35" type="uint32" max="4294967295" />
+      <attribute id="8523" name="ReceivedPriceTier36" type="uint32" max="4294967295" />
+      <attribute id="8524" name="ReceivedPriceTier37" type="uint32" max="4294967295" />
+      <attribute id="8525" name="ReceivedPriceTier38" type="uint32" max="4294967295" />
+      <attribute id="8526" name="ReceivedPriceTier39" type="uint32" max="4294967295" />
+      <attribute id="8527" name="ReceivedPriceTier40" type="uint32" max="4294967295" />
+      <attribute id="8528" name="ReceivedPriceTier41" type="uint32" max="4294967295" />
+      <attribute id="8529" name="ReceivedPriceTier42" type="uint32" max="4294967295" />
+      <attribute id="852a" name="ReceivedPriceTier43" type="uint32" max="4294967295" />
+      <attribute id="852b" name="ReceivedPriceTier44" type="uint32" max="4294967295" />
+      <attribute id="852c" name="ReceivedPriceTier45" type="uint32" max="4294967295" />
+      <attribute id="852d" name="ReceivedPriceTier46" type="uint32" max="4294967295" />
+      <attribute id="852e" name="ReceivedPriceTier47" type="uint32" max="4294967295" />
+      <attribute id="852f" name="ReceivedPriceTier48" type="uint32" max="4294967295" />
+
+      <!-- Tariff Information Set (Received) -->
+     <attribute id="8610" name="ReceivedTariffLabel" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="24"/>
+        </restriction>
+      </attribute>
+      <attribute id="8611" name="ReceivedNumberOfPriceTiersInUse" type="uint8" min="0" max="15" />
+      <attribute id="8612" name="ReceivedNumberOfBlockThresholdsInUse" type="uint8" min="0" max="15" />
+      <attribute id="8613" name="ReceivedTierBlockMode" type="TierBlockMode" default="255" />
+      <attribute id="8615" name="ReceivedTariffResolutionPeriod" type="TariffResolutionPeriod" />
+      <attribute id="8625" name="ReceivedCO2" type="uint32" max="4294967295" default="185" />
+      <attribute id="8626" name="ReceivedCO2Unit" type="CO2Unit" default="1" />
+      <attribute id="8627" name="ReceivedCO2TrailingDigit" type="map8">
+        <bitmap>
+          <element mask="f0" shiftRight="4" name="TrailingDigit" type="uint8" default="0" />
+        </bitmap>
+      </attribute>
+
+      <!-- Billing Information Set (Received) -->
+      <attribute id="8700" name="ReceivedCurrentBillingPeriodStart" type="UTC" />
+      <attribute id="8701" name="ReceivedCurrentBillingPeriodDuration" type="uint24" max="16777215" />
+      <attribute id="8702" name="ReceivedLastBillingPeriodStart" type="UTC" />
+      <attribute id="8703" name="ReceivedLastBillingPeriodDuration" type="uint24" max="16777215" />
+      <attribute id="8704" name="ReceivedLastBillingPeriodConsolidatedBill" type="uint32" max="4294967295" />
+    </attributes>
+    <commands>
+      <command id="00" name="GetCurrentPrice" required="true">
+        <fields>
+          <field name="CommandOptions" type="map8">
+            <bitmap>
+              <element mask="01" name="RequestorRxOnWhenIdle" type="bool" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="01" name="GetScheduledPrices">
+        <fields>
+          <field name="StartTime" type="UTC"/>
+          <field name="NumberOfEvents" type="uint8"/>
+        </fields>
+      </command>
+      <command id="02" name="PriceAcknowledgement" required="true">
+        <fields>
+          <field name="ProviderID" type="uint32"/>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="PriceAckTime" type="UTC"/>
+          <field name="Control" type="map8">
+            <bitmap>
+              <element mask="01" name="PriceAcknowledgementRequired" type="bool" />
+              <!-- TODO: How to handle this being -->
+              <element mask="02" shiftRight="1" name="TotalTiersExceeds15" type="bool" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="03" name="GetBlockPeriods">
+        <fields>
+          <field name="StartTime" type="UTC" />
+          <field name="NumberOfEvents" type="uint8" />
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="Type" type="TariffType" default="1" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="04" name="GetConversionFactor">
+        <fields>
+          <field name="EarliestStartTime" type="UTC" />
+          <field name="MinIssuerEventID" type="uint32" />
+          <field name="NumberOfCommands" type="uint8" />
+        </fields>
+      </command>
+      <command id="05" name="GetCalorificValue">
+        <fields>
+          <field name="EarliestStartTime" type="UTC" />
+          <field name="MinIssuerEventID" type="uint32" />
+          <field name="NumberOfCommands" type="uint8" />
+        </fields>
+      </command>
+      <command id="06" name="GetTariffInformation">
+        <fields>
+          <field name="EarliestStartTime" type="UTC" />
+          <field name="MinIssuerEventID" type="uint32" />
+          <field name="NumberOfCommands" type="uint8" />
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="Type" type="TariffType" default="1" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="07" name="GetPriceMatrix">
+        <fields>
+          <field name="IssuerTariffID" type="uint32" />
+        </fields>
+      </command>
+      <command id="08" name="GetBlockThresholds">
+        <fields>
+          <field name="IssuerTariffID" type="uint32" />
+        </fields>
+      </command>
+      <command id="09" name="GetCO2Value">
+        <fields>
+          <field name="EarliestStartTime" type="UTC" />
+          <field name="MinIssuerEventID" type="uint32" />
+          <field name="NumberOfCommands" type="uint8" />
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="Type" type="TariffType" default="1" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="0a" name="GetTierLabels">
+        <fields>
+          <field name="IssuerTariffID" type="uint32" />
+        </fields>
+      </command>
+      <command id="0b" name="GetBillingPeriod">
+        <fields>
+          <field name="EarliestStartTime" type="UTC" />
+          <field name="MinIssuerEventID" type="uint32" />
+          <field name="NumberOfCommands" type="uint8" />
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="Type" type="TariffType" default="1" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="0c" name="GetConsolidatedBill">
+        <fields>
+          <field name="EarliestStartTime" type="UTC" />
+          <field name="MinIssuerEventID" type="uint32" />
+          <field name="NumberOfCommands" type="uint8" />
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="Type" type="TariffType" default="1" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="0d" name="CPPEventResponse">
+        <fields>
+          <field name="IssuerEventID" type="uint32" />
+          <field name="CPPAuth" type="CPPAuthType" />
+        </fields>
+      </command>
+      <command id="0e" name="GetCreditPayment">
+        <fields>
+          <field name="LatestEndTime" type="UTC" />
+          <field name="NumberOfRecords" type="uint8" />
+        </fields>
+      </command>
+      <command id="0f" name="GetCurrencyConversion" />
+      <command id="10" name="GetTariffCancellation" />
+    </commands>
+  </server>
+
+  <client>
+    <attributes>
+      <attribute id="0000" name="PriceIncreaseRandomizeMinutes" type="uint8" writable="true" max="60" default="5" />
+      <attribute id="0001" name="PriceDecreaseRandomizeMinutes" type="uint8" writable="true" max="60" default="15" />
+      <!-- Changed To Client Commodity Type To Force Name Uniqueness Within Cluster -->
+      <attribute id="0002" name="ClientCommodityType" type="NonMirroredEnergyCommodityType" />
+    </attributes>
+    <commands>
+      <command id="00" name="PublishPrice" required="true">
+        <!-- TODO: Come Back -->
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="RateLabel" type="octstr" />
+          <field name="IssuerEventID" type="uint32" />
+          <field name="CurrentTime" type="UTC" />
+          <field name="UnitOfMeasure" type="EnergyPureBinaryUnitOfMeasure" />
+          <field name="Currency" type="uint16" />
+          <field name="PriceTrailingDigitAndPriceTier" type="map8">
+            <bitmap>
+              <element mask="f0" shiftRight="4" name="TrailingDigit" type="uint8" />
+              <element mask="0f" name="PriceTier" type="enum8">
+                <restriction>
+                  <type:enumeration value="00" name="NoTier" />
+                  <type:enumeration value="01" name="Tier1PriceLabel" />
+                  <type:enumeration value="02" name="Tier2PriceLabel" />
+                  <type:enumeration value="03" name="Tier3PriceLabel" />
+                  <type:enumeration value="04" name="Tier4PriceLabel" />
+                  <type:enumeration value="05" name="Tier5PriceLabel" />
+                  <type:enumeration value="06" name="Tier6PriceLabel" />
+                  <type:enumeration value="07" name="Tier7PriceLabel" />
+                  <type:enumeration value="08" name="Tier8PriceLabel" />
+                  <type:enumeration value="09" name="Tier9PriceLabel" />
+                  <type:enumeration value="0a" name="Tier10PriceLabel" />
+                  <type:enumeration value="0b" name="Tier11PriceLabel" />
+                  <type:enumeration value="0c" name="Tier12PriceLabel" />
+                  <type:enumeration value="0d" name="Tier13PriceLabel" />
+                  <type:enumeration value="0e" name="Tier14PriceLabel" />
+                  <type:enumeration value="0f" name="UseExtendedPriceTier" />
+                </restriction>
+              </element>
+            </bitmap>
+          </field>
+
+          <field name="NumberOfPriceTiersAndRegisterTier" type="map8">
+            <bitmap>
+              <element mask="f0" shiftRight="4" name="TrailingDigit" type="uint8" />
+              <element mask="0f" name="PriceTier" type="uint8" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="01" name="PublishBlockPeriod">
+        <fields>
+          <field name="ProviderID" type="uint32"/>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="BlockPeriodStartTime" type="UTC"/>
+          <field name="BlockPeriodDuration" type="uint24"/>
+          <field name="BlockPeriodControl" type="map8">
+            <bitmap>
+              <element mask="01" name="PriceAcknowledgementRequired" type="bool" />
+              <element mask="02" shiftRight="1" name="RepeatingBlock" type="bool" />
+            </bitmap>
+          </field>
+          <field name="BlockPeriodDurationType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TimeBase" type="DurationType" />
+              <element mask="f0" shiftRight="4" name="DurationControl" type="enum8">
+                <restriction>
+                  <type:enumeration name="StartOfTimebase" value="00"/>
+                  <type:enumeration name="EndOfTimebase" value="01"/>
+                  <type:enumeration name="NotSpecified" value="02"/>
+                </restriction>
+              </element>
+            </bitmap>
+          </field>
+          <field name="TariffType" type="TariffType"/>
+          <field name="TariffResolutionPeriod" type="TariffResolutionPeriod"/>
+        </fields>
+      </command>
+      <command id="02" name="PublishConversionFactor">
+        <fields>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="StartTime" type="UTC"/>
+          <field name="ConversionFactor" type="uint32"/>
+          <field name="ConversionFactorTrailingDigit" type="map8">
+            <bitmap>
+              <element mask="F0" shiftRight="4" default="7" name="DigitsToRightOfDecimal" type="uint8" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="03" name="PublishCalorificValue">
+        <fields>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="StartTime" type="UTC"/>
+          <field name="CalorificValue" type="uint32"/>
+          <field name="CalorificValueUnit" type="CalorificValueUnit"/>
+          <field name="CalorificValueTrailingDigit" type="map8">
+            <bitmap>
+              <element mask="F0" shiftRight="4" default="7" name="DigitsToRightOfDecimal" type="uint8" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+
+    </commands>
+  </client>
+</zcl:cluster>

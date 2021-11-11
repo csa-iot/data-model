@@ -429,6 +429,88 @@ applicable to this document can be found in the LICENSE.md file.
     </bitmap>
   </type:type>
 
+  <!-- Common Smart Energy Types -->
+  <type:type short="NonMirroredEnergyCommodityType" name="NonMirroredEnergyCommodityType" id="18" inheritsFrom="map8">
+    <restriction>
+      <type:enumeration value="00" name="Electric" />
+      <type:enumeration value="01" name="Gas" />
+      <type:enumeration value="02" name="Water" />
+      <type:enumeration value="03" name="Thermal" deprecated="true" />
+      <type:enumeration value="04" name="Pressure" />
+      <type:enumeration value="05" name="Heat" />
+      <type:enumeration value="06" name="Cooling" />
+      <type:enumeration value="07" name="EndUseMeasurementDevice" />
+      <type:enumeration value="08" name="PVGeneration" />
+      <type:enumeration value="09" name="WindTurbineGeneration" />
+      <type:enumeration value="0a" name="WaterTurbineGeneration" />
+      <type:enumeration value="0b" name="MicroGeneration" />
+      <type:enumeration value="0c" name="SolarHotWaterGeneration" />
+      <type:enumeration value="0d" name="ElectricMeteringElementOrPhase1" />
+      <type:enumeration value="0e" name="ElectricMeteringElementOrPhase2" />
+      <type:enumeration value="0f" name="ElectricMeteringElementOrPhase3" />
+    </restriction>
+  </type:type>  
+  
+  <type:type short="EnergyCommodityType" name="EnergyCommodityType" id="18" inheritsFrom="NonMirroredEnergyCommodityType">
+    <restriction>
+      <type:enumeration value="7f" name="MirroredElectric" />
+      <type:enumeration value="80" name="MirroredGas" />
+      <type:enumeration value="81" name="MirroredWater" />
+      <type:enumeration value="82" name="MirroredThermal" deprecated="true" />
+      <type:enumeration value="83" name="MirroredPressure" />
+      <type:enumeration value="84" name="MirroredHeat" />
+      <type:enumeration value="85" name="MirroredCooling" />
+      <type:enumeration value="86" name="MirroredEndUseMeasurementDevice" />
+      <type:enumeration value="87" name="MirroredPVGeneration" />
+      <type:enumeration value="88" name="MirroredWindTurbineGeneration" />
+      <type:enumeration value="89" name="MirroredWaterTurbineGeneration" />
+      <type:enumeration value="8a" name="MirroredMicroGeneration" />
+      <type:enumeration value="8b" name="MirroredSolarHotWaterGeneration" />
+      <type:enumeration value="8c" name="MirroredElectricMeteringElementOrPhase1" />
+      <type:enumeration value="8d" name="MirroredElectricMeteringElementOrPhase2" />
+      <type:enumeration value="8e" name="MirroredElectricMeteringElementOrPhase3" />
+    </restriction>
+  </type:type>  
+  
+  <type:type short="EnergyPureBinaryUnitOfMeasure" name="EnergyPureBinaryUnitOfMeasure" id="18" inheritsFrom="map8">
+    <restriction>
+      <type:enumeration value="00" name="kW" />
+      <type:enumeration value="01" name="CubicMeters" />
+      <type:enumeration value="02" name="CubicFeet" />
+      <type:enumeration value="03" name="CentumCubicFeet" />
+      <type:enumeration value="04" name="USGallons" />
+      <type:enumeration value="05" name="ImperialGallons" />
+      <type:enumeration value="06" name="BTU" />
+      <type:enumeration value="07" name="Liter" />
+      <type:enumeration value="08" name="kPAGauge" />
+      <type:enumeration value="09" name="kPAAbsolute" />
+      <type:enumeration value="0a" name="mcf" />
+      <type:enumeration value="0b" name="Unitless" />
+      <type:enumeration value="0c" name="MJ" />
+      <type:enumeration value="0d" name="kVar" />
+    </restriction>
+  </type:type>
+  
+  <type:type short="EnergyUnitOfMeasure" name="EnergyUnitOfMeasure" id="18" inheritsFrom="EnergyPureBinaryUnitOfMeasure">
+    <restriction>
+      <type:enumeration value="80" name="BCD_kW" />
+      <type:enumeration value="81" name="BCD_CubicMeters" />
+      <type:enumeration value="82" name="BCD_CubicFeet" />
+      <type:enumeration value="83" name="BCD_CentumCubicFeet" />
+      <type:enumeration value="84" name="BCD_USGallons" />
+      <type:enumeration value="85" name="BCD_ImperialGallons" />
+      <type:enumeration value="86" name="BCD_BTU" />
+      <type:enumeration value="87" name="BCD_Liter" />
+      <type:enumeration value="88" name="BCD_kPAGauge" />
+      <type:enumeration value="89" name="BCD_kPAAbsolute" />
+      <type:enumeration value="8a" name="BCD_mcf" />
+      <type:enumeration value="8b" name="BCD_Unitless" />
+      <type:enumeration value="8c" name="BCD_MJ" />
+      <type:enumeration value="8d" name="BCD_kVar" />
+    </restriction>
+  </type:type>
+  
+
   <xi:include href="global.xml" parse="xml" />
   <xi:include href="Basic.xml" parse="xml" />
   <xi:include href="PowerConfiguration.xml" parse="xml" />
@@ -477,6 +559,7 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="OTAUpgrade.xml" parse="xml" />
   <xi:include href="ConcentrationMeasurement.xml" parse="xml"/>
   
+  <xi:include href="Price.xml" parse="xml" />
   <xi:include href="Messaging.xml" parse="xml" />
   
   <xi:include href="EN50523ApplianceEventsAndAlerts.xml" parse="xml" />
