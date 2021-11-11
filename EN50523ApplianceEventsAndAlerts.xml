@@ -1,0 +1,95 @@
+﻿<?xml version="1.0"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0B02" revision="1" name="EN50523ApplianceEventsAndAlerts">
+  <classification role="application" picsCode="APPLEV" primaryTransaction="2" />
+  
+  <type:type short="ApplevAlertCount" name="ApplevAlertCount" id="18" inheritsFrom="map8">
+    <bitmap>
+      <element mask="0f" name="AlertCount" type="uint8" />
+      <element mask="f0" shiftRight="4" name="AlertType" type="enum8">
+        <restriction>
+          <type:enumeration name="Unstructured" value="00" />
+        </restriction>
+      </element> 
+    </bitmap>
+  </type:type>
+  
+  <type:type short="ApplevAlertStructure" name="ApplevAlertStructure" id="22" inheritsFrom="uint24">
+    <bitmap>
+      <element mask="0000ff" shiftRight="0" name="AlertID" type="uint8">
+        <restriction>
+          <type:enumeratedRange min="01" max="3f" name="Standardized" />
+          <type:enumeratedRange min="80" max="ff" name="ManufacturerSpecific" />
+        </restriction>
+      </element>
+      <element mask="000f00" shiftRight="8" name="Category" type="enum8">
+        <restriction>
+          <type:enumeration value="01" name="Warning" />
+          <type:enumeration value="02" name="Danger" />
+          <type:enumeration value="03" name="Failure" />
+        </restriction>
+      </element>
+      <element mask="003000" shiftRight="12" name="PresenceRecovery" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="Recovery" />
+          <type:enumeration value="01" name="Presence" />
+        </restriction>
+      </element>
+      <element mask="ff0000" shiftRight="16" name="ManufacturerSpecific" type="data8" />
+    </bitmap>
+  </type:type>
+  
+  <server>
+    <commands>
+      <command id="00" name="GetAlerts" required="true" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+      <command id="00" name="GetAlertsResponse" required="true">
+        <fields>
+          <field name="AlertsCount" type="ApplevAlertCount" />
+          <field name="Alerts" type="ApplevAlertStructure" array="true" arrayLengthField="AlertsCount" arrayLengthSubfield="AlertCount" />
+        </fields>
+      </command>
+      <command id="01" name="AlertsNotification" required="true">
+        <fields>
+          <field name="AlertsCount" type="ApplevAlertCount" />
+          <field name="Alerts" type="ApplevAlertStructure" array="true" arrayLengthField="AlertsCount" arrayLengthSubfield="AlertCount" />
+        </fields>
+      </command>
+      <command id="02" name="EventNotification" required="true">
+        <fields>
+          <field name="EventHeader" type="uint8">
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="0"/>
+            </restriction>
+          </field>
+          <field name="EventIdentification" type="enum8">
+            <restriction>
+              <type:enumeration value="01" name="EndOfCycle" />
+              <type:enumeration value="04" name="TemperatureReached" />
+              <type:enumeration value="05" name="EndOfCooking" />
+              <type:enumeration value="06" name="SwitchingOff" />
+              <type:enumeratedRange max="f6" min="40" name="ManufacturerSpecific1" />
+              <type:enumeration value="f7" name="WrongData" />
+              <type:enumeratedRange max="ff" min="f8" name="ManufacturerSpecific2"/>
+            </restriction>
+          </field>
+        </fields>
+      </command>
+    </commands>
+  </client>
+</zcl:cluster>

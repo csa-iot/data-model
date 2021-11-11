@@ -17,6 +17,7 @@ Basic.xml
 =========
 - CCB 2722: changed the ZCLVersion attribute value to reflect the library release number, ie. 8
 - CCB 2885: Fixed the cluster revision error 
+- CCB 3469: Updated second Office and Living Room entries to be "Secondary"
 
 Calendar.xml
 ============
@@ -79,6 +80,16 @@ ElectricalMeasurement.xml
 - CCB 2817: Specified change already correctly reflected, no XML change needed.
 - Updated cluster revision number
 
+EN50523ApplianceEventsAndAlerts.xml
+===================================
+- XML validated against cluster specification.
+- Updated Cluster Revision
+
+EN50523ApplianceStatistics.xml
+==============================
+- XML validated against cluster specificiation.
+- Updated Cluster Revision
+
 Events.xml
 ==========
 - NEW
@@ -104,6 +115,15 @@ KeyEstablishment.xml
 
 Level.xml
 =========
+- CCB 2574: Changed the type of DefaultMoveRate to uint8.
+- CCB 2616: Clarification to spec text, no XML change needed.
+- CCB 2659: Clarification to spec text, no XML change needed.
+- CCB 2702: Clarification to spec text, no XML change needed.
+- CCB 2814: Added default values for OptionsMask and OptionsOverride fields.
+- CCB 2818: Clarification to spec text, no XML change needed.
+- CCB 2819: Clarification to spec text, no XML change needed.
+- CCB 2898: Clarification to spec text, no XML change needed.
+- Updated cluster revision number.
 
 LevelControlForLighting.xml
 ===========================
@@ -123,6 +143,10 @@ OTAUpgrade.xml
 - CCB 2519: Clarification to spec text, no XML change needed.
 - CCB 2873: Clarification to spec text, no XML change needed.
 - Updated cluster revision number
+
+OnOffSwitchConfiguration.xml
+============================
+- NEW
 
 PollControl.xml
 ===============
@@ -186,6 +210,8 @@ Time.xml
 
 TouchlinkCommissioning.xml
 ==========================
+- CCB 2648: Clarification to spec text, no XML change needed.
+- Updated cluster revision number.
 
 type.xsd
 ========

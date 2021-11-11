@@ -12,7 +12,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0008" revision="2" name="Level">
+  id="0008" revision="3" name="Level">
   <classification role="application" picsCode="LVL" primaryTransaction="1" />
 
   <type:type short="LevelOptions" name="LevelOptions" id="18" inheritsFrom="map8">
@@ -73,7 +73,7 @@ applicable to this document can be found in the LICENSE.md file.
       </attribute>
       <attribute id="0012" name="OnTransitionTime" type="uint16" max="65534" writable="true" default="65535" />
       <attribute id="0013" name="OffTransitionTime" type="uint16" max="65534" writable="true" default="65535" />
-      <attribute id="0014" name="DefaultMoveRate" type="uint16" max="254" writable="true" />
+      <attribute id="0014" name="DefaultMoveRate" type="uint8" max="254" writable="true" />
       <attribute id="000F" name="Options" type="LevelOptions" writable="true" default="0" />
       <attribute id="4000" name="StartUpCurrentLevel" type="uint8" max="255" writable="true">
         <restriction>
@@ -88,16 +88,16 @@ applicable to this document can be found in the LICENSE.md file.
         <fields>
           <field name="Level" type="uint8" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0"/>
+          <field name="OptionsOverride" type="LevelOptions" default="0"/>
         </fields>
       </command>
       <command id="01" name="Move" required="true">
         <fields>
           <field name="MoveMode" type="MoveStepMode" />
           <field name="Rate" type="uint8" />
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0" />
+          <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
       <command id="02" name="Step" required="true">
@@ -105,30 +105,30 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="StepMode" type="MoveStepMode" />
           <field name="StepSize" type="uint8" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0" />
+          <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
       <command id="03" name="Stop" required="true">
         <fields>
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0" />
+          <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
       <command id="04" name="MoveToLevelWithOnOff" required="true">
         <fields>
           <field name="Level" type="uint8" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0" />
+          <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
       <command id="05" name="MoveWithOnOff" required="true">
         <fields>
           <field name="MoveMode" type="MoveStepMode" />
           <field name="Rate" type="uint8" />
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0" />
+          <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
       <command id="06" name="StepWithOnOff" required="true">
@@ -136,14 +136,14 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="StepMode" type="MoveStepMode" />
           <field name="StepSize" type="uint8" />
           <field name="TransitionTime" type="uint16" />
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0" />
+          <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
       <command id="07" name="StopWithOnOff" required="true">
         <fields>
-          <field name="OptionsMask" type="LevelOptions" />
-          <field name="OptionsOverride" type="LevelOptions" />
+          <field name="OptionsMask" type="LevelOptions" default="0" />
+          <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
       <command id="08" name="MoveToClosestFrequency" requiredIf="defined(CurrentFrequency)">
