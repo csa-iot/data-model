@@ -1,11 +1,13 @@
 Releases
 ========
-Releases are tied to a specific revision of the Zigbee Cluster Library (ZCL). These files are released from a git repo which is tagged based on the release version of the ZCL. At the time of the initial conversion, the ZCL document was at release 7. Multiple releases of the XML files may be made against a single ZCL version. the tagging mechanism is designed to handle this and follows the format zcl<ZCL Version>.<XML Release Version> where ZCL Version is the version of the ZCL document and the XML Release Version is a counter based on the source document which starts from 0. This means the initial release tag for ZCLr7 is zcl7.0. Subsequent releases of XML against ZCLr7 will be zcl7.1, zcl7.2, etc. When a new ZCL, such as ZCLr8 is released, the tags will be come zcl8.0, zcl8.1, etc.
+Releases are tied to a specific revision of the DotDot Cluster Library (CL). These files are released from a git repo which is tagged based on the release version of the CL. At the time of the initial conversion, the CL document was at release 7. Multiple releases of the XML files may be made against a single CL version. the tagging mechanism is designed to handle this and follows the format cl<CL Version>.<XML Release Version> where CL Version is the version of the CL document and the XML Release Version is a counter based on the source document which starts from 0. This means the initial release tag for CLr8 is cl8.0. Subsequent releases of XML against CLr8 will be cl8.1, cl8.2, etc. When a new CL, such as CLr9 is released, the tags will be come cl9.0, cl9.1, etc.
+	
+Note: Historically this cluster libary was called the Zigbee Cluster Library (ZCL). That is baked into the XML, so some references will remain.
 
-Joining the Zigbee Alliance
-===========================
+Joining the Connectivity Standards Alliance
+===========================================
 
-Information on becoming a member of the Zigbee Alliance can be found at [www.zigbee.org](www.zigbee.org).
+Information on becoming a member of the Connectivity Standards Alliance can be found at [www.csa-iot.org](www.csa-iot.org). 
 
 Eclipse Setup
 =============
@@ -24,7 +26,7 @@ To configure eclipse to properly work with the XML files you'll need a version o
 
 Converting Clusters
 ===================
-There should be a base file for each cluster available in the project, produced by scraping the word documents for the ZCL. These files need to be reviewed by a human and edited as necessary. The process to do this at a high level is as follows
+There should be a base file for each cluster available in the project, produced by scraping the source word or asciidoc documents for the CL. These files need to be reviewed by a human and edited as necessary. The process to do this at a high level is as follows
 
 1. Create a branch for your work (use your name)
 2. Start to edit the files
@@ -40,7 +42,7 @@ Each file should be referenced in library.xml as it is reviewd. At the bottom of
 	<xi:include href="Basic.xml" parse="xml" />
 ```
 
-Duplicate the line for Basic.xml for your cluster, and insert it into the correct position based on the ordering in the ZCL document.
+Duplicate the line for Basic.xml for your cluster, and insert it into the correct position based on the ordering in the CL document.
 
 Clusters
 --------
@@ -61,7 +63,7 @@ Each base cluster is defined with the following basic structure
 </zcl:cluster>
 ```
 
-The classification element is required, all of the others can be omitted if there is no content. The classification information is given in the ZCL document and must include the role and picsCode. It may also include the primaryTransaction if the role is application.
+The classification element is required, all of the others can be omitted if there is no content. The classification information is given in the CL document and must include the role and picsCode. It may also include the primaryTransaction if the role is application.
 
 The type:type definition allows for the definition of complex types, or types which are used by multiple attributes and/or commands. This must be used whenever an enumeration, bitmap, etc. is reused. For more information see the Types section below.
 
@@ -86,7 +88,7 @@ Clusters may inherit from a base cluster. Each derived cluster is defined with t
 </zcl:derivedCluster>
 ```
 
-The classification element is required, all of the others can be omitted if there is no content. The classification information is given in the ZCL document and must include the picsCode.
+The classification element is required, all of the others can be omitted if there is no content. The classification information is given in the CL document and must include the picsCode.
 
 The server and client allow the attributes and commands that are modified by the respective server and client sides of a cluster to be expressed. For more information see the Derived Clusters section below.
 
@@ -461,7 +463,7 @@ Tags allow for the extension of an existing command. A tag is defined as an iden
 
 Viewing As HTML
 ===============
-The library.xml field has a stylesheet associated which can generate a HTML representation of the ZCL Library. This can be accessed by running the following python command inside the directory. The <port> attribute indicates the port you want to run on.
+The library.xml field has a stylesheet associated which can generate a HTML representation of the CL Library. This can be accessed by running the following python command inside the directory. The <port> attribute indicates the port you want to run on.
 
 python -m SimpleHTTPServer <port>
 
