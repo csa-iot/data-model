@@ -8,21 +8,7 @@ submitting the patch that your contributions are licensed under the
 sure you have tested your changes and that they follow the project guidelines
 for contributing code.
 
-# Contributing as an Open Source Contributor
-
-As an open source contributor you can report bugs and request features in the
-[Issue Tracker](https://github.com/csa-iot/data-model/issues), as well
-as contribute bug fixes and features that do not impact the Dotdot
-specification as a pull request. For example: tooling to perform translation of models, or fixes for 
-errors against the published cluster and device library documents. For features that impact the
-specification, please join Data Model work group within the Connectivity Standards Alliance.
-
-The requirements to become an open source contributor of the
-[csa-iot data model](https://github.com/csa-iot/data-model) are:
-
--   Agree to the [Code of Conduct](./CODE_OF_CONDUCT.md)
--   Agree to the [License](./LICENSE.md)
--   Have signed the [Connectivity Standards Alliance Data Model Working Group CLA](https://gist.github.com/clapre/65aa9fc63981da765039e0bb7e8701be)
+To contribute, you must be a member of the CSA Data Model Working Group.
 
 # Contributing as a Connectivity Standards Alliance Data Model Working Group Member
 
@@ -52,19 +38,7 @@ with a fix.
 
 # New Features
 
-You can request a new feature by
-[submitting a GitHub Issue](https://github.com/csa-iot/data-model/issues/new).
-If you would like to implement a new feature, please consider the scope of the
-new feature:
-
--   _Large feature_: first
-    [submit a GitHub Issue](https://github.com/csa-iot/data-model/issues/new)
-    and communicate your proposal so that the community can review and provide
-    feedback. Getting early feedback will help ensure your implementation work
-    is accepted by the community. This will also allow us to better coordinate
-    our efforts and minimize duplicated effort.
--   _Small feature_: can be implemented and directly
-    [submitted as a Pull Request](https://github.com/csa-iot/data-model/blob/main/CONTRIBUTING.md#submitting-a-pull-request).
+You can request a new feature using the existing New Feature Request process of the alliance.
 
 # Contributing Code
 
@@ -164,12 +138,6 @@ on occasion.
 
 ### Review Requirements
 
-#### Documentation Best Practices
-
-Data Model uses Doxygen to markup (or markdown) all C, C++, Objective C,
-Objective C++, Perl, Python, and Java code. Read our
-[Doxygen Best Practices, Conventions, and Style](https://github.com/csa-iot/data-model/blob/main/docs/style/DOXYGEN.adoc)
-
 #### Submit Pull Request
 
 Once you've validated the CI results, go to the page for your fork on GitHub,
@@ -188,9 +156,3 @@ branch and update.
 
 When can I merge? After these have been satisfied, a reviewer will merge the PR
 into main
-
-#### Documentation
-
-Documentation undergoes the same review process as code See the
-[Documentation Style Guide](https://github.com/csa-iot/data-model/blob/main/docs/STYLE_GUIDE.md)
-for more information on how to author and format documentation for contribution.
