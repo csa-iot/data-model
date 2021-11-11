@@ -29,13 +29,21 @@
       <element mask="01" name="UseOriginalRandomizationSetting" type="bool" />
     </bitmap>
   </type:type>
+  
+  <type:type short="DRLCEventControl" name="DRLCEventControl" inheritsFrom="map8" id="18">
+    <bitmap>
+      <element mask="01" name="RandomizeStartTime" type="bool" />
+      <element mask="02" shiftRight="1" name="RandomizeDuration" type="bool" />
+    </bitmap>  
+  </type:type>
     
   <server>
     <commands>
       <command id="00" name="ReportEventStatus" required="true">
         <fields>
           <field name="IssuerEventID" type="uint32"/>
-          <field name="EventStatus" type="uint8">
+          <field name="EventStatus" type="enum8">
+            <!-- Adjusted to enum8 as it doesn't get encoded over the wire but should be an enum -->
             <restriction>
               <type:enumeration name="LoadControlEventReceived" value="01" />
               <type:enumeration name="EventStarted" value="02" />
@@ -47,11 +55,11 @@
               <type:enumeration name="PartiallyCompletedWithOptOut" value="08" />
               <type:enumeration name="PartiallyCompletedWithOptIn" value="09" />
               <type:enumeration name="EventCompletedWithoutParticipation" value="0a" />
-              <type:enumeration name="RejectedInvalidCancelCommandDefault" value="0b" />
-              <type:enumeration name="RejectedInvalidCancelCommandEffectiveTime" value="0c" />
-              <type:enumeration name="RejectedExpiredEvent" value="0d"/>
-              <type:enumeration name="RejectedInvalidCancelCommandEventUndefined" value="0e"/>
-              <type:enumeration name="RejectedLoadControlEventCommand" value="0f"/>
+              <type:enumeration name="RejectedInvalidCancelCommandDefault" value="f8" />
+              <type:enumeration name="RejectedInvalidCancelCommandEffectiveTime" value="f9" />
+              <type:enumeration name="RejectedExpiredEvent" value="fb"/>
+              <type:enumeration name="RejectedInvalidCancelCommandEventUndefined" value="fd"/>
+              <type:enumeration name="RejectedLoadControlEventCommand" value="fe"/>
             </restriction>
           </field>
           <field name="EventStatusTime" type="UTC">
@@ -62,6 +70,7 @@
           <field name="CriticalityLevelApplied" type="uint8"/>
           <!-- TODO: Figure these values out since the unused value indicates they should be signed, 
                 and the matching values in the load control event are signed. -->
+          <!-- TODO: Ask Ian -->
           <field name="CoolingTemperatureSetPointApplied" type="uint16" default="non"/>
           <field name="HeatingTemperatureSetPointApplied" type="uint16" default="non"/>
           
@@ -74,7 +83,11 @@
               <type:enumeration name="ECDSA" value="01" />
             </restriction>
           </field>
-          <field name="Signature" type="opaque" />
+          <field name="Signature" type="opaque">
+            <restriction>
+              <type:length value="42" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="01" name="GetScheduledEvents" required="true">
@@ -141,12 +154,7 @@
               <type:invalid value="255"/>
             </restriction>
           </field>
-          <field name="EventControl" type="map8">
-            <bitmap>
-              <element mask="01" name="RandomizeStartTime" type="bool" />
-              <element mask="02" shiftRight="1" name="RandomizeDurationTime" type="bool" />
-            </bitmap>
-          </field>
+          <field name="EventControl" type="DRLCEventControl" />
         </fields>
       </command>
       <command id="01" name="CancelLoadControlEvent" required="true">

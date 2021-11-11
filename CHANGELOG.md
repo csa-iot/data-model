@@ -50,6 +50,7 @@ ConcentrationMeasurement.xml
 
 DemandResponseAndLoadControl.xml
 ================================
+- NEW
 
 DeviceManagement.xml
 ====================
@@ -128,6 +129,10 @@ Level.xml
 LevelControlForLighting.xml
 ===========================
 
+Messaging.xml
+========================
+- NEW
+
 MeterIdentification.xml
 =======================
 - Validated scraped XML.
@@ -174,10 +179,6 @@ Scenes.xml
 - CCB 2427: Clarification to spec text, no XML change needed.
 - CCB 3026: Change already reflected in XML, no further XML change needed.
 - Updated cluster revision number
-
-SmartEnergyMessaging.xml
-========================
-- First import of ZCL8 version
 
 SmartEnergyTunneling.xml
 ========================

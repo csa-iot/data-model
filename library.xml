@@ -263,6 +263,7 @@ applicable to this document can be found in the LICENSE.md file.
     </restriction>
   </type:type>
   <!-- Opaque (not defined since there is no ID -->
+  <type:type id="ff" short="opaque" name="Opaque" discrete="true" />
   <!-- Unknown -->
   <type:type id="ff" short="unk" name="Unknown" />
 
@@ -324,6 +325,7 @@ applicable to this document can be found in the LICENSE.md file.
       <type:enumeration name="bacOID" value="ea" />
       <type:enumeration name="EUI64" value="f0" />
       <type:enumeration name="key128" value="f1" />
+      <type:enumeration name="opaque" value="ff"/>
       <type:enumeration name="unk" value="ff" />
     </restriction>
   </type:type>
@@ -560,6 +562,7 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="ConcentrationMeasurement.xml" parse="xml"/>
   
   <xi:include href="Price.xml" parse="xml" />
+  <xi:include href="DemandResponseandLoadControl.xml" parse="xml" />
   <xi:include href="Messaging.xml" parse="xml" />
   
   <xi:include href="EN50523ApplianceEventsAndAlerts.xml" parse="xml" />
