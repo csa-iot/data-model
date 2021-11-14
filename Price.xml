@@ -14,6 +14,29 @@ applicable to this document can be found in the LICENSE.md file.
   id="0700" revision="2" name="Price">
   <classification role="application" picsCode="SEPR" primaryTransaction="1" />
 
+  <type:type short="PriceMatrixPayload" name="PriceMatrixPayload" id="ff">
+    <restriction>
+      <type:sequence>
+        <field name="TierOrBlockId" type="uint8" />
+        <field name="Price" type="uint32" />
+      </type:sequence>
+    </restriction>
+  </type:type>
+
+  <type:type short="TierLabelPayload" name="TierLabelPayload" id="ff">
+    <restriction>
+      <type:sequence>
+        <field name="TierID" type="uint8" />
+        <field name="TierLabel" type="octstr">
+          <restriction>
+            <type:minLength value="0"/>
+            <type:maxLength value="12"/>
+          </restriction>
+        </field>
+      </type:sequence>
+    </restriction>
+  </type:type>
+
   <type:type short="SeprTrailingDigit" name="SeprTrailingDigit" id="18" inheritsFrom="map8" discrete="true">
     <bitmap>
       <element name="DigitsToRightOfDecimal" type="uint8" mask="F0" shiftRight="4" />
@@ -26,6 +49,14 @@ applicable to this document can be found in the LICENSE.md file.
       <type:enumeration value="01" name="Days" />
       <type:enumeration value="02" name="Weeks" />
       <type:enumeration value="03" name="Months" />
+    </restriction>
+  </type:type>
+
+  <type:type short="DurationControl" name="DurationControl" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="StartOfTimebase" value="00"/>
+      <type:enumeration name="EndOfTimebase" value="01"/>
+      <type:enumeration name="NotSpecified" value="02"/>
     </restriction>
   </type:type>
 
@@ -72,6 +103,16 @@ applicable to this document can be found in the LICENSE.md file.
     </restriction>
   </type:type>
 
+  <type:type short="CreditPaymentStatusType" name="CreditPaymentStatusType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="Pending" />
+      <type:enumeration value="01" name="ReceivedOrPaid" />
+      <type:enumeration value="02" name="Overdue" />
+      <type:enumeration value="03" name="TwoPaymentsOverdue" />
+      <type:enumeration value="04" name="ThreePaymentsOverdue" />
+    </restriction>
+  </type:type>
+
   <type:type short="CalorificValueUnit" name="CalorificValueUnit" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="01" name="MJperm3"/>
@@ -82,338 +123,293 @@ applicable to this document can be found in the LICENSE.md file.
   <server>
     <attributes>
       <!-- Tier Label (Delivered) -->
+      <!-- Note: octstr restriction is on the content length, not bytes across the wire as this is for
+           multiple transports (eg, Zigbee, Matter)
+      -->
       <attribute id="0000" name="Tier1PriceLabel" type="octstr" default="Tier 1">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0001" name="Tier2PriceLabel" type="octstr" default="Tier 2">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0002" name="Tier3PriceLabel" type="octstr" default="Tier 3">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0003" name="Tier4PriceLabel" type="octstr" default="Tier 4">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0004" name="Tier5PriceLabel" type="octstr" default="Tier 5">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0005" name="Tier6PriceLabel" type="octstr" default="Tier 6">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0006" name="Tier7PriceLabel" type="octstr" default="Tier 7">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0007" name="Tier8PriceLabel" type="octstr" default="Tier 8">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0008" name="Tier9PriceLabel" type="octstr" default="Tier 9">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0009" name="Tier10PriceLabel" type="octstr" default="Tier 10">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="000a" name="Tier11PriceLabel" type="octstr" default="Tier 11">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="000b" name="Tier12PriceLabel" type="octstr" default="Tier 12">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="000c" name="Tier13PriceLabel" type="octstr" default="Tier 13">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="000d" name="Tier14PriceLabel" type="octstr" default="Tier 14">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="000e" name="Tier15PriceLabel" type="octstr" default="Tier 15">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="000f" name="Tier16PriceLabel" type="octstr" default="Tier 16">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0010" name="Tier17PriceLabel" type="octstr" default="Tier 17">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0011" name="Tier18PriceLabel" type="octstr" default="Tier 18">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0012" name="Tier19PriceLabel" type="octstr" default="Tier 19">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0013" name="Tier20PriceLabel" type="octstr" default="Tier 20">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0014" name="Tier21PriceLabel" type="octstr" default="Tier 21">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0015" name="Tier22PriceLabel" type="octstr" default="Tier 22">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0016" name="Tier23PriceLabel" type="octstr" default="Tier 23">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0017" name="Tier24PriceLabel" type="octstr" default="Tier 24">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0018" name="Tier25PriceLabel" type="octstr" default="Tier 25">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0019" name="Tier26PriceLabel" type="octstr" default="Tier 26">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="001a" name="Tier27PriceLabel" type="octstr" default="Tier 27">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="001b" name="Tier28PriceLabel" type="octstr" default="Tier 28">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="001c" name="Tier29PriceLabel" type="octstr" default="Tier 29">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="001d" name="Tier30PriceLabel" type="octstr" default="Tier 30">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="001e" name="Tier31PriceLabel" type="octstr" default="Tier 31">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="001f" name="Tier32PriceLabel" type="octstr" default="Tier 32">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0020" name="Tier33PriceLabel" type="octstr" default="Tier 33">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0021" name="Tier34PriceLabel" type="octstr" default="Tier 34">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0022" name="Tier35PriceLabel" type="octstr" default="Tier 35">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0023" name="Tier36PriceLabel" type="octstr" default="Tier 36">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0024" name="Tier37PriceLabel" type="octstr" default="Tier 37">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0025" name="Tier38PriceLabel" type="octstr" default="Tier 38">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0026" name="Tier39PriceLabel" type="octstr" default="Tier 39">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0027" name="Tier40PriceLabel" type="octstr" default="Tier 40">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0028" name="Tier41PriceLabel" type="octstr" default="Tier 41">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="0029" name="Tier42PriceLabel" type="octstr" default="Tier 42">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="002a" name="Tier43PriceLabel" type="octstr" default="Tier 43">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="002b" name="Tier44PriceLabel" type="octstr" default="Tier 44">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="002c" name="Tier45PriceLabel" type="octstr" default="Tier 45">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="002d" name="Tier46PriceLabel" type="octstr" default="Tier 46">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="002e" name="Tier47PriceLabel" type="octstr" default="Tier 47">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="002f" name="Tier48PriceLabel" type="octstr" default="Tier 48">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
@@ -1027,15 +1023,7 @@ applicable to this document can be found in the LICENSE.md file.
 
       <!-- Credit Payment Attribute Set -->
       <attribute id="0800" name="CreditPaymentDueDate" type="UTC" />
-      <attribute id="0801" name="CreditPaymentStatus" type="enum8">
-        <restriction>
-          <type:enumeration value="00" name="Pending" />
-          <type:enumeration value="01" name="ReceivedOrPaid" />
-          <type:enumeration value="02" name="Overdue" />
-          <type:enumeration value="03" name="TwoPaymentsOverdue" />
-          <type:enumeration value="04" name="ThreePaymentsOverdue" />
-        </restriction>
-      </attribute>
+      <attribute id="0801" name="CreditPaymentStatus" type="CreditPaymentStatusType" />
       <attribute id="0802" name="CreditPaymentOverdueAmount" type="int32" />
       <attribute id="0803" name="PaymentDiscount" type="int32" />
       <attribute id="0804" name="PaymentDiscountPeriod" type="enum8">
@@ -1051,7 +1039,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0811" name="CreditPaymentDate1" type="UTC" />
       <attribute id="0812" name="CreditPaymentRef1" type="octstr">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="20"/>
         </restriction>
@@ -1060,7 +1047,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0821" name="CreditPaymentDate2" type="UTC" />
       <attribute id="0822" name="CreditPaymentRef2" type="octstr">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="20"/>
         </restriction>
@@ -1069,7 +1055,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0831" name="CreditPaymentDate3" type="UTC" />
       <attribute id="0832" name="CreditPaymentRef3" type="octstr">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="20"/>
         </restriction>
@@ -1078,7 +1063,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0841" name="CreditPaymentDate4" type="UTC" />
       <attribute id="0842" name="CreditPaymentRef4" type="octstr">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="20"/>
         </restriction>
@@ -1087,7 +1071,6 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0851" name="CreditPaymentDate5" type="UTC" />
       <attribute id="0852" name="CreditPaymentRef5" type="octstr">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="20"/>
         </restriction>
@@ -1096,336 +1079,288 @@ applicable to this document can be found in the LICENSE.md file.
       <!-- Tier Label (Received) -->
       <attribute id="8000" name="ReceivedTier1PriceLabel" type="octstr" default="Tier 1">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8001" name="ReceivedTier2PriceLabel" type="octstr" default="Tier 2">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8002" name="ReceivedTier3PriceLabel" type="octstr" default="Tier 3">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8003" name="ReceivedTier4PriceLabel" type="octstr" default="Tier 4">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8004" name="ReceivedTier5PriceLabel" type="octstr" default="Tier 5">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8005" name="ReceivedTier6PriceLabel" type="octstr" default="Tier 6">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8006" name="ReceivedTier7PriceLabel" type="octstr" default="Tier 7">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8007" name="ReceivedTier8PriceLabel" type="octstr" default="Tier 8">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8008" name="ReceivedTier9PriceLabel" type="octstr" default="Tier 9">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8009" name="ReceivedTier10PriceLabel" type="octstr" default="Tier 10">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="800a" name="ReceivedTier11PriceLabel" type="octstr" default="Tier 11">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="800b" name="ReceivedTier12PriceLabel" type="octstr" default="Tier 12">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="800c" name="ReceivedTier13PriceLabel" type="octstr" default="Tier 13">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="800d" name="ReceivedTier14PriceLabel" type="octstr" default="Tier 14">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="800e" name="ReceivedTier15PriceLabel" type="octstr" default="Tier 15">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="800f" name="ReceivedTier16PriceLabel" type="octstr" default="Tier 16">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8010" name="ReceivedTier17PriceLabel" type="octstr" default="Tier 17">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8011" name="ReceivedTier18PriceLabel" type="octstr" default="Tier 18">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8012" name="ReceivedTier19PriceLabel" type="octstr" default="Tier 19">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8013" name="ReceivedTier20PriceLabel" type="octstr" default="Tier 20">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8014" name="ReceivedTier21PriceLabel" type="octstr" default="Tier 21">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8015" name="ReceivedTier22PriceLabel" type="octstr" default="Tier 22">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8016" name="ReceivedTier23PriceLabel" type="octstr" default="Tier 23">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8017" name="ReceivedTier24PriceLabel" type="octstr" default="Tier 24">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8018" name="ReceivedTier25PriceLabel" type="octstr" default="Tier 25">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8019" name="ReceivedTier26PriceLabel" type="octstr" default="Tier 26">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="801a" name="ReceivedTier27PriceLabel" type="octstr" default="Tier 27">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="801b" name="ReceivedTier28PriceLabel" type="octstr" default="Tier 28">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="801c" name="ReceivedTier29PriceLabel" type="octstr" default="Tier 29">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="801d" name="ReceivedTier30PriceLabel" type="octstr" default="Tier 30">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="801e" name="ReceivedTier31PriceLabel" type="octstr" default="Tier 31">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="801f" name="ReceivedTier32PriceLabel" type="octstr" default="Tier 32">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8020" name="ReceivedTier33PriceLabel" type="octstr" default="Tier 33">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8021" name="ReceivedTier34PriceLabel" type="octstr" default="Tier 34">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8022" name="ReceivedTier35PriceLabel" type="octstr" default="Tier 35">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8023" name="ReceivedTier36PriceLabel" type="octstr" default="Tier 36">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8024" name="ReceivedTier37PriceLabel" type="octstr" default="Tier 37">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8025" name="ReceivedTier38PriceLabel" type="octstr" default="Tier 38">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8026" name="ReceivedTier39PriceLabel" type="octstr" default="Tier 39">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8027" name="ReceivedTier40PriceLabel" type="octstr" default="Tier 40">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8028" name="ReceivedTier41PriceLabel" type="octstr" default="Tier 41">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="8029" name="ReceivedTier42PriceLabel" type="octstr" default="Tier 42">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="802a" name="ReceivedTier43PriceLabel" type="octstr" default="Tier 43">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="802b" name="ReceivedTier44PriceLabel" type="octstr" default="Tier 44">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="802c" name="ReceivedTier45PriceLabel" type="octstr" default="Tier 45">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="802d" name="ReceivedTier46PriceLabel" type="octstr" default="Tier 46">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="802e" name="ReceivedTier47PriceLabel" type="octstr" default="Tier 47">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
       </attribute>
       <attribute id="802f" name="ReceivedTier48PriceLabel" type="octstr" default="Tier 48">
         <restriction>
-          <!-- Restriction is on data length, not bytes across the wire -->
           <type:minLength value="0"/>
           <type:maxLength value="12"/>
         </restriction>
@@ -1798,8 +1733,9 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Control" type="map8">
             <bitmap>
               <element mask="01" name="PriceAcknowledgementRequired" type="bool" />
-              <!-- TODO: How to handle this being -->
+              <!-- Both of these point to the same bit as that's what has been defined by the model -->
               <element mask="02" shiftRight="1" name="TotalTiersExceeds15" type="bool" />
+              <element mask="02" shiftRight="1" name="RepeatingBlock" type="bool" />
             </bitmap>
           </field>
         </fields>
@@ -1918,7 +1854,6 @@ applicable to this document can be found in the LICENSE.md file.
     </attributes>
     <commands>
       <command id="00" name="PublishPrice" required="true">
-        <!-- TODO: Come Back -->
         <fields>
           <field name="ProviderID" type="uint32" />
           <field name="RateLabel" type="octstr" />
@@ -1954,9 +1889,219 @@ applicable to this document can be found in the LICENSE.md file.
 
           <field name="NumberOfPriceTiersAndRegisterTier" type="map8">
             <bitmap>
-              <element mask="f0" shiftRight="4" name="TrailingDigit" type="uint8" />
-              <element mask="0f" name="PriceTier" type="uint8" />
+              <element mask="f0" shiftRight="4" name="NumberOfPriceTiers" type="uint8" />
+              <element mask="0f" name="RegisterTier" type="enum8">
+                <restriction>
+                  <type:enumeration value="00" name="NoTier" />
+                  <type:enumeration value="01" name="CurrentTier1SummationDelivered" />
+                  <type:enumeration value="02" name="CurrentTier2SummationDelivered" />
+                  <type:enumeration value="03" name="CurrentTier3SummationDelivered" />
+                  <type:enumeration value="04" name="CurrentTier4SummationDelivered" />
+                  <type:enumeration value="05" name="CurrentTier5SummationDelivered" />
+                  <type:enumeration value="06" name="CurrentTier6SummationDelivered" />
+                  <type:enumeration value="07" name="CurrentTier7SummationDelivered" />
+                  <type:enumeration value="08" name="CurrentTier8SummationDelivered" />
+                  <type:enumeration value="09" name="CurrentTier9SummationDelivered" />
+                  <type:enumeration value="0a" name="CurrentTier10SummationDelivered" />
+                  <type:enumeration value="0b" name="CurrentTier11SummationDelivered" />
+                  <type:enumeration value="0c" name="CurrentTier12SummationDelivered" />
+                  <type:enumeration value="0d" name="CurrentTier13SummationDelivered" />
+                  <type:enumeration value="0e" name="CurrentTier14SummationDelivered" />
+                  <type:enumeration value="0f" name="UseExtendedRegisterTier" />
+                </restriction>
+              </element>
             </bitmap>
+          </field>
+          <field name="StartTime" type="UTC" />
+          <field name="DurationInMinutes" type="uint16" />
+          <field name="Price" type="uint32" />
+          <field name="PriceRatio" type="uint8" default="255" />
+          <field name="GenerationPrice" type="uint32" default="4294967295" />
+          <field name="GenerationPriceRatio" type="uint8" default="255" />
+          <field name="AlternateCostDelivered" type="uint32" default="4294967295" />
+          <field name="AlternateCostUnit" type="enum8" default="255">
+            <restriction>
+              <type:enumeration value="01" name="KgCO2perUnitOfMeasure"/>
+              <type:enumeration value="ff" name="Unused"/>
+            </restriction>
+          </field>
+          <!-- TODO: Ian, is this value supposed to be signed or unsigned? -->
+          <field name="NumberOfBlockThresholds" type="int8" default="NaN" />
+          <field name="PriceControl" type="map8">
+            <bitmap>
+              <element mask="01" name="PriceAcknowledgeRequired" type="bool" default="false" />
+              <element mask="02" shiftRight="1" name="TotalTiersExceedsFifteen" type="bool" default="false" />
+            </bitmap>
+          </field>
+          <!-- TODO: Ian, is this value supposed to be signed or unsigned? -->
+          <!-- TODO: Ian, what is the default value when it's not used? -->
+          <field name="NumberOfGenerationTiers" type="int8" default="NaN" />
+          <!-- TODO: Ian, what is the default value when it's not used? -->
+          <field name="GenerationTier" type="enum8" default="">
+            <restriction>
+              <type:enumeration value="01" name="CurrentTier1SummationReceived" />
+              <type:enumeration value="02" name="CurrentTier2SummationReceived" />
+              <type:enumeration value="03" name="CurrentTier3SummationReceived" />
+              <type:enumeration value="04" name="CurrentTier4SummationReceived" />
+              <type:enumeration value="05" name="CurrentTier5SummationReceived" />
+              <type:enumeration value="06" name="CurrentTier6SummationReceived" />
+              <type:enumeration value="07" name="CurrentTier7SummationReceived" />
+              <type:enumeration value="08" name="CurrentTier8SummationReceived" />
+              <type:enumeration value="09" name="CurrentTier9SummationReceived" />
+              <type:enumeration value="0a" name="CurrentTier10SummationReceived" />
+              <type:enumeration value="0b" name="CurrentTier11SummationReceived" />
+              <type:enumeration value="0c" name="CurrentTier12SummationReceived" />
+              <type:enumeration value="0d" name="CurrentTier13SummationReceived" />
+              <type:enumeration value="0e" name="CurrentTier14SummationReceived" />
+              <type:enumeration value="0f" name="CurrentTier15SummationReceived" />
+              <type:enumeration value="10" name="CurrentTier16SummationReceived" />
+              <type:enumeration value="11" name="CurrentTier17SummationReceived" />
+              <type:enumeration value="12" name="CurrentTier18SummationReceived" />
+              <type:enumeration value="13" name="CurrentTier19SummationReceived" />
+              <type:enumeration value="14" name="CurrentTier20SummationReceived" />
+              <type:enumeration value="15" name="CurrentTier21SummationReceived" />
+              <type:enumeration value="16" name="CurrentTier22SummationReceived" />
+              <type:enumeration value="17" name="CurrentTier23SummationReceived" />
+              <type:enumeration value="18" name="CurrentTier24SummationReceived" />
+              <type:enumeration value="19" name="CurrentTier25SummationReceived" />
+              <type:enumeration value="1a" name="CurrentTier26SummationReceived" />
+              <type:enumeration value="1b" name="CurrentTier27SummationReceived" />
+              <type:enumeration value="1c" name="CurrentTier28SummationReceived" />
+              <type:enumeration value="1d" name="CurrentTier29SummationReceived" />
+              <type:enumeration value="1e" name="CurrentTier30SummationReceived" />
+              <type:enumeration value="1f" name="CurrentTier31SummationReceived" />
+              <type:enumeration value="20" name="CurrentTier32SummationReceived" />
+              <type:enumeration value="21" name="CurrentTier33SummationReceived" />
+              <type:enumeration value="22" name="CurrentTier34SummationReceived" />
+              <type:enumeration value="23" name="CurrentTier35SummationReceived" />
+              <type:enumeration value="24" name="CurrentTier36SummationReceived" />
+              <type:enumeration value="25" name="CurrentTier37SummationReceived" />
+              <type:enumeration value="26" name="CurrentTier38SummationReceived" />
+              <type:enumeration value="27" name="CurrentTier39SummationReceived" />
+              <type:enumeration value="28" name="CurrentTier40SummationReceived" />
+              <type:enumeration value="29" name="CurrentTier41SummationReceived" />
+              <type:enumeration value="2a" name="CurrentTier42SummationReceived" />
+              <type:enumeration value="2b" name="CurrentTier43SummationReceived" />
+              <type:enumeration value="2c" name="CurrentTier44SummationReceived" />
+              <type:enumeration value="2d" name="CurrentTier45SummationReceived" />
+              <type:enumeration value="2e" name="CurrentTier46SummationReceived" />
+              <type:enumeration value="2f" name="CurrentTier47SummationReceived" />
+              <type:enumeration value="30" name="CurrentTier48SummationReceived" />
+            </restriction>
+          </field>
+            <field name="ExtendedNumberOfPriceTiers" type="enum8" default="0">
+            <restriction>
+              <type:enumeration value="00" name="UserNumberOfPriceTiers" />
+              <type:enumeration value="01" name="CurrentTier16SummationDelivered" />
+              <type:enumeration value="02" name="CurrentTier17SummationDelivered" />
+              <type:enumeration value="03" name="CurrentTier18SummationDelivered" />
+              <type:enumeration value="04" name="CurrentTier19SummationDelivered" />
+              <type:enumeration value="05" name="CurrentTier20SummationDelivered" />
+              <type:enumeration value="06" name="CurrentTier21SummationDelivered" />
+              <type:enumeration value="07" name="CurrentTier22SummationDelivered" />
+              <type:enumeration value="08" name="CurrentTier23SummationDelivered" />
+              <type:enumeration value="09" name="CurrentTier24SummationDelivered" />
+              <type:enumeration value="0a" name="CurrentTier25SummationDelivered" />
+              <type:enumeration value="0b" name="CurrentTier26SummationDelivered" />
+              <type:enumeration value="0c" name="CurrentTier27SummationDelivered" />
+              <type:enumeration value="0d" name="CurrentTier28SummationDelivered" />
+              <type:enumeration value="0e" name="CurrentTier29SummationDelivered" />
+              <type:enumeration value="0f" name="CurrentTier30SummationDelivered" />
+              <type:enumeration value="10" name="CurrentTier31SummationDelivered" />
+              <type:enumeration value="11" name="CurrentTier32SummationDelivered" />
+              <type:enumeration value="12" name="CurrentTier33SummationDelivered" />
+              <type:enumeration value="13" name="CurrentTier34SummationDelivered" />
+              <type:enumeration value="14" name="CurrentTier35SummationDelivered" />
+              <type:enumeration value="15" name="CurrentTier36SummationDelivered" />
+              <type:enumeration value="16" name="CurrentTier37SummationDelivered" />
+              <type:enumeration value="17" name="CurrentTier38SummationDelivered" />
+              <type:enumeration value="18" name="CurrentTier39SummationDelivered" />
+              <type:enumeration value="19" name="CurrentTier40SummationDelivered" />
+              <type:enumeration value="1a" name="CurrentTier41SummationDelivered" />
+              <type:enumeration value="1b" name="CurrentTier42SummationDelivered" />
+              <type:enumeration value="1c" name="CurrentTier43SummationDelivered" />
+              <type:enumeration value="1d" name="CurrentTier44SummationDelivered" />
+              <type:enumeration value="1e" name="CurrentTier45SummationDelivered" />
+              <type:enumeration value="1f" name="CurrentTier46SummationDelivered" />
+              <type:enumeration value="20" name="CurrentTier47SummationDelivered" />
+              <type:enumeration value="21" name="CurrentTier48SummationDelivered" />
+            </restriction>
+          </field>
+          <field name="ExtendedPriceTier" type="enum8" default="">
+            <restriction>
+              <type:enumeration value="00" name="UsePriceTier"/>
+              <type:enumeration value="01" name="Tier16PriceLabel" />
+              <type:enumeration value="02" name="Tier17PriceLabel" />
+              <type:enumeration value="03" name="Tier18PriceLabel" />
+              <type:enumeration value="04" name="Tier19PriceLabel" />
+              <type:enumeration value="05" name="Tier20PriceLabel" />
+              <type:enumeration value="06" name="Tier21PriceLabel" />
+              <type:enumeration value="07" name="Tier22PriceLabel" />
+              <type:enumeration value="08" name="Tier23PriceLabel" />
+              <type:enumeration value="09" name="Tier24PriceLabel" />
+              <type:enumeration value="0a" name="Tier25PriceLabel" />
+              <type:enumeration value="0b" name="Tier26PriceLabel" />
+              <type:enumeration value="0c" name="Tier27PriceLabel" />
+              <type:enumeration value="0d" name="Tier28PriceLabel" />
+              <type:enumeration value="0e" name="Tier29PriceLabel" />
+              <type:enumeration value="0f" name="Tier30PriceLabel" />
+              <type:enumeration value="10" name="Tier31PriceLabel" />
+              <type:enumeration value="11" name="Tier32PriceLabel" />
+              <type:enumeration value="12" name="Tier33PriceLabel" />
+              <type:enumeration value="13" name="Tier34PriceLabel" />
+              <type:enumeration value="14" name="Tier35PriceLabel" />
+              <type:enumeration value="15" name="Tier36PriceLabel" />
+              <type:enumeration value="16" name="Tier37PriceLabel" />
+              <type:enumeration value="17" name="Tier38PriceLabel" />
+              <type:enumeration value="18" name="Tier39PriceLabel" />
+              <type:enumeration value="19" name="Tier40PriceLabel" />
+              <type:enumeration value="1a" name="Tier41PriceLabel" />
+              <type:enumeration value="1b" name="Tier42PriceLabel" />
+              <type:enumeration value="1c" name="Tier43PriceLabel" />
+              <type:enumeration value="1d" name="Tier44PriceLabel" />
+              <type:enumeration value="1e" name="Tier45PriceLabel" />
+              <type:enumeration value="1f" name="Tier46PriceLabel" />
+              <type:enumeration value="20" name="Tier47PriceLabel" />
+              <type:enumeration value="21" name="Tier48PriceLabel" />
+            </restriction>
+          </field>
+          <field name="ExtendedRegisterTier" type="enum8" default="0">
+            <restriction>
+              <type:enumeration value="00" name="UseRegisterTier" />
+              <type:enumeration value="01" name="CurrentTier16SummationDelivered" />
+              <type:enumeration value="02" name="CurrentTier17SummationDelivered" />
+              <type:enumeration value="03" name="CurrentTier18SummationDelivered" />
+              <type:enumeration value="04" name="CurrentTier19SummationDelivered" />
+              <type:enumeration value="05" name="CurrentTier20SummationDelivered" />
+              <type:enumeration value="06" name="CurrentTier21SummationDelivered" />
+              <type:enumeration value="07" name="CurrentTier22SummationDelivered" />
+              <type:enumeration value="08" name="CurrentTier23SummationDelivered" />
+              <type:enumeration value="09" name="CurrentTier24SummationDelivered" />
+              <type:enumeration value="0a" name="CurrentTier25SummationDelivered" />
+              <type:enumeration value="0b" name="CurrentTier26SummationDelivered" />
+              <type:enumeration value="0c" name="CurrentTier27SummationDelivered" />
+              <type:enumeration value="0d" name="CurrentTier28SummationDelivered" />
+              <type:enumeration value="0e" name="CurrentTier29SummationDelivered" />
+              <type:enumeration value="0f" name="CurrentTier30SummationDelivered" />
+              <type:enumeration value="10" name="CurrentTier31SummationDelivered" />
+              <type:enumeration value="11" name="CurrentTier32SummationDelivered" />
+              <type:enumeration value="12" name="CurrentTier33SummationDelivered" />
+              <type:enumeration value="13" name="CurrentTier34SummationDelivered" />
+              <type:enumeration value="14" name="CurrentTier35SummationDelivered" />
+              <type:enumeration value="15" name="CurrentTier36SummationDelivered" />
+              <type:enumeration value="16" name="CurrentTier37SummationDelivered" />
+              <type:enumeration value="17" name="CurrentTier38SummationDelivered" />
+              <type:enumeration value="18" name="CurrentTier39SummationDelivered" />
+              <type:enumeration value="19" name="CurrentTier40SummationDelivered" />
+              <type:enumeration value="1a" name="CurrentTier41SummationDelivered" />
+              <type:enumeration value="1b" name="CurrentTier42SummationDelivered" />
+              <type:enumeration value="1c" name="CurrentTier43SummationDelivered" />
+              <type:enumeration value="1d" name="CurrentTier44SummationDelivered" />
+              <type:enumeration value="1e" name="CurrentTier45SummationDelivered" />
+              <type:enumeration value="1f" name="CurrentTier46SummationDelivered" />
+              <type:enumeration value="20" name="CurrentTier47SummationDelivered" />
+              <type:enumeration value="21" name="CurrentTier48SummationDelivered" />
+            </restriction>
           </field>
         </fields>
       </command>
@@ -1975,16 +2120,14 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="BlockPeriodDurationType" type="map8">
             <bitmap>
               <element mask="0f" name="TimeBase" type="DurationType" />
-              <element mask="f0" shiftRight="4" name="DurationControl" type="enum8">
-                <restriction>
-                  <type:enumeration name="StartOfTimebase" value="00"/>
-                  <type:enumeration name="EndOfTimebase" value="01"/>
-                  <type:enumeration name="NotSpecified" value="02"/>
-                </restriction>
-              </element>
+              <element mask="f0" shiftRight="4" name="DurationControl" type="DurationControl" />
             </bitmap>
           </field>
-          <field name="TariffType" type="TariffType"/>
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TariffType" type="TariffType" />
+            </bitmap>
+          </field>
           <field name="TariffResolutionPeriod" type="TariffResolutionPeriod"/>
         </fields>
       </command>
@@ -2026,7 +2169,6 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
           <field name="TariffLabel" type="octstr">
             <restriction>
-              <!-- Restriction is on data length, not bytes across the wire -->
               <type:minLength value="0" />
               <type:maxLength value="24"/>
             </restriction>
@@ -2050,7 +2192,185 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="BlockThresholdDivisor" type="uint24" />
         </fields>
       </command>
-
+      <command id="05" name="PublishPriceMatrix">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="StartTime" type="UTC" />
+          <field name="IssuerTariffID" type="uint32" />
+          <field name="CommandIndex" type="uint8" />
+          <field name="TotalNumberOfCommands" type="uint8" />
+          <field name="SubPayloadControl" type="map8">
+            <bitmap>
+              <element mask="01" name="TOUOnly" type="bool" />
+            </bitmap>
+          </field>
+          <field name="PriceMatrixSubPayload" type="PriceMatrixPayload" array="true" arrayLengthField="TotalNumberOfCommands"/>
+        </fields>
+      </command>
+      <command id="06" name="PublishBlockThresholds">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="StartTime" type="UTC" />
+          <field name="IssuerTariffID" type="uint32" />
+          <field name="CommandIndex" type="uint8" />
+          <field name="TotalNumberOfCommands" type="uint8" />
+          <field name="SubPayloadControl" type="map8">
+            <bitmap>
+              <element mask="01" name="BlocksApplyToAllTOUTiers" type="bool" />
+            </bitmap>
+          </field>
+          <field name="BlockThresholdSubPayload" type="unk" array="true" arrayLengthField="TotalNumberOfCommands">
+            <restriction>
+              <type:sequence>
+                <field name="TierAndNumberOfBlockThresholds" type="map8">
+                  <bitmap>
+                    <element mask="0f" name="NumberOfThresholds" type="uint8" />
+                    <element mask="f0" shiftRight="4" name="Tier" type="uint8" />
+                  </bitmap>
+                </field>
+                <field name="BlockThresholds" type="uint48" array="true" arrayLengthField="TierAndNumberOfBlockThresholds" arrayLengthSubfield="NumberOfThresholds" />
+              </type:sequence>
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="07" name="PublishCO2Value">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="StartTime" type="UTC" />
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TariffType" type="TariffType" />
+            </bitmap>
+          </field>
+          <field name="CO2Value" type="uint32" />
+          <field name="CO2ValueUnit" type="CO2Unit" />
+          <field name="CO2ValueTrailingDigit" type="SeprTrailingDigit" />
+        </fields>
+      </command>
+      <command id="08" name="PublishTierLabels">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="IssuerTariffID" type="uint32" />
+          <field name="CommandIndex" type="uint8" />
+          <!-- TODO: Ian, What Is The Difference Between TotalNumberOfCommands and Number Of Labels? -->
+          <field name="TotalNumberOfCommands" type="uint8" />
+          <!-- Number Of Labels Is The Array Size Which Is Handled By Array Type -->
+          <field name="TierLabels" type="TierLabelPayload" array="true" />
+        </fields>
+      </command>
+      <command id="09" name="PublishBillingPeriod">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="BillingPeriodStartTime" type="UTC" />
+          <field name="BillingPeriodDuration" type="uint24" />
+          <field name="BillingPeriodDurationType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TimeBase" type="DurationType" />
+              <element mask="f0" shiftRight="4" name="DurationControl" type="DurationControl" />
+            </bitmap>
+          </field>
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TariffType" type="TariffType" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="0A" name="PublishConsolidatedBill">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="BillingPeriodStartTime" type="UTC" />
+          <field name="BillingPeriodDuration" type="uint24" />
+          <field name="BillingPeriodDurationType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TimeBase" type="DurationType" />
+              <element mask="f0" shiftRight="4" name="DurationControl" type="DurationControl" />
+            </bitmap>
+          </field>
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TariffType" type="TariffType" />
+            </bitmap>
+          </field>
+          <field name="ConsolidatedBill" type="uint32" />
+          <field name="Currency" type="uint16" />
+          <field name="BillTrailingDigit" type="SeprTrailingDigit" />
+        </fields>
+      </command>
+      <command id="0B" name="PublishCPPEvent">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="StartTime" type="UTC" />
+          <field name="DurationInMinutes" type="uint16" />
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TariffType" type="TariffType" />
+            </bitmap>
+          </field>
+          <field name="CPPPriceTier" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="CPP1" />
+              <type:enumeration value="01" name="CPP2" />
+            </restriction>
+          </field>
+          <field name="CPPAuth" type="CPPAuthType" />
+        </fields>
+      </command>
+      <command id="0C" name="PublishCreditPayment">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="CreditPaymentDueDate" type="UTC" />
+          <field name="CreditPaymentOverdueAmount" type="uint32" />
+          <field name="CreditPaymentStatus" type="CreditPaymentStatusType" />
+          <field name="CreditPayment" type="uint32" />
+          <field name="CreditPaymentDate" type="UTC" />
+          <field name="CreditPaymentRef" type="octstr">
+            <restriction>
+              <type:minLength value="0" />
+              <type:maxLength value="20" />
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="0D" name="PublishCurrencyConversion">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="StartTime" type="UTC" />
+          <field name="OldCurrency" type="uint16" />
+          <field name="NewCurrency" type="uint16" />
+          <field name="ConversionFactor" type="uint32" />
+          <field name="ConversionFactorTrailingDigit" type="SeprTrailingDigit" />
+          <field name="CurrencyChangeControlFlags" type="map32">
+            <bitmap>
+              <element mask="01" name="ClearBillingInformation" type="bool" />
+              <element mask="02" shiftRight="1" name="ConvertBillingInformationToNewCurrency" type="bool" />
+              <element mask="04" shiftRight="2" name="ClearOldConsumptionData" type="bool" />
+              <element mask="08" shiftRight="3" name="ConvertOldConsumptionDataUsingNewCurrency" type="bool" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
+      <command id="0E" name="CancelTariff">
+        <fields>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="TariffType" type="map8">
+            <bitmap>
+              <element mask="0f" name="TariffType" type="TariffType" />
+            </bitmap>
+          </field>
+        </fields>
+      </command>
     </commands>
   </client>
 </zcl:cluster>
