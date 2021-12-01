@@ -138,6 +138,10 @@ on occasion.
 
 ### Review Requirements
 
+All changes must reflect the material published in the human readable documents
+published by the Data Model Workgroup. Pull Requests that do not match that 
+content will not be accepted.
+
 #### Submit Pull Request
 
 Once you've validated the CI results, go to the page for your fork on GitHub,
@@ -153,6 +157,7 @@ branch and update.
 -   Tests pass
 -   Linting passes
 -   Code style passes
+-   PR Approval by at least 2 companies other than the submitter
 
 When can I merge? After these have been satisfied, a reviewer will merge the PR
 into main
