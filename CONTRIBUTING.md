@@ -22,8 +22,8 @@ The requirements to become a member of the
 -   Must be a [Participant member](http://www.zigbeealliance.org/join) or higher
     of the Connectivity Standards Alliance
 -   Must be a Data Model Working Group member
--   Have signed the Alliance Data Model Working Group CLA
--   Have approval from your company's official approver
+-   Has signed the Alliance Data Model Working Group CLA
+-   Has approval from your company's official approver
 
 # Bugs
 
