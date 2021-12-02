@@ -67,6 +67,81 @@
     </bitmap>
   </type:type>
 
+  <type:type short="SnapshotScheduleType" name="SnapshotScheduleType" id="1a" inheritsFrom="map24">
+    <bitmap>
+      <element mask="0FFFFF" name="Frequency" type="uint24" />
+      <element mask="300000" shiftRight="20" name="FrequencyType" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="Day" />
+          <type:enumeration value="01" name="Week" />
+          <type:enumeration value="02" name="Month" />
+        </restriction>
+      </element>
+      <element mask="C00000" shiftRight="22" name="WildcardFrequency" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="StartOf" />
+          <type:enumeration value="01" name="EndOf" />
+          <type:enumeration value="02" name="NotUsed" />
+        </restriction>
+      </element>
+    </bitmap>
+  </type:type>
+
+  <type:type short="SnapshotPayloadType" name="SnapshotPayloadType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="TOUInformationSetDeliveredRegisters" />
+      <type:enumeration value="01" name="TOUInformationSetReceivedRegisters" />
+      <type:enumeration value="02" name="BlockTierInformationSetDelivered" />
+      <type:enumeration value="03" name="BlockTierInformationSetReceived" />
+      <type:enumeration value="04" name="TOUInformationSetDeliveredNoBilling" />
+      <type:enumeration value="05" name="TOUInformationSetReceivedNoBilling" />
+      <type:enumeration value="06" name="BlockTierInformationSetDeliveredNoBilling" />
+      <type:enumeration value="07" name="BlockTierInformationSetReceivedNoBilling" />
+      <type:enumeration value="80" name="DataUnavailable" />
+    </restriction>
+  </type:type>
+
+  <type:type short="SnapshotCauseType" name="SnapshotCauseType" id="1b" inheritsFrom="map32">
+    <bitmap>
+      <element mask="00000001" name="General" type="bool" />
+      <element mask="00000002" shiftRight="1" name="EndOfBillingPeriod" type="bool" />
+      <element mask="00000004" shiftRight="2" name="EndOfBlockPeriod" type="bool" />
+      <element mask="00000008" shiftRight="3" name="ChangeOfTariffInformation" type="bool" />
+      <element mask="00000010" shiftRight="4" name="ChangeOfPriceMatrix" type="bool" />
+      <element mask="00000020" shiftRight="5" name="ChangeOfBlockThresholds" type="bool" />
+      <element mask="00000040" shiftRight="6" name="ChangeOfCV" type="bool" />
+      <element mask="00000080" shiftRight="7" name="ChangeOfCF" type="bool" />
+      <element mask="00000100" shiftRight="8" name="ChangeOfCalendar" type="bool" />
+      <element mask="00000200" shiftRight="9" name="CriticalPeakPricing" type="bool" />
+      <element mask="00000400" shiftRight="10" name="ManuallyTriggeredFromClient" type="bool" />
+      <element mask="00000800" shiftRight="11" name="EndOfResolvePeriod" type="bool" />
+      <element mask="00001000" shiftRight="12" name="ChangeOfTenancy" type="bool" />
+      <element mask="00002000" shiftRight="13" name="ChangeOfSupplier" type="bool" />
+      <element mask="00004000" shiftRight="14" name="ChangeOfMeterMode" type="bool" />
+      <element mask="00008000" shiftRight="15" name="DebtPayment" type="bool" />
+      <element mask="00010000" shiftRight="16" name="ScheduledSnapshot" type="bool" />
+      <element mask="00020000" shiftRight="17" name="OTAFirmwareDownload" type="bool" />
+      <element mask="000C0000" shiftRight="18" name="ReservedForPrepaymentCluster" type="bool" />
+    </bitmap>
+  </type:type>
+
+  <type:type short="SnapshotSchedulePayloadType" name="SnapshotSchedulePayloadType" id="ff">
+    <restriction>
+      <type:sequence>
+        <field name="ScheduleId" type="uint8">
+          <restriction>
+            <type:minInclusive value="1" />
+            <type:maxInclusive value="254" />
+          </restriction>
+        </field>
+        <field name="StartTime" type="UTC" />
+        <field name="Schedule" type="SnapshotScheduleType" />
+        <field name="PayloadType" type="SnapshotPayloadType" />
+        <field name="Cause" type="SnapshotCauseType" />
+      </type:sequence>
+    </restriction>
+  </type:type>
+
   <server>
     <attributes>
       <!-- Reading Information Set -->
@@ -1218,23 +1293,23 @@
       </command>
       <command id="04" name="ScheduleSnapshot">
         <fields>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="CommandIndexM" type="uint8"/>
-          <field name="TotalNumberOfCommandsM" type="uint8"/>
-          <field name="SnapshotSchedulePayloadM" type=""/>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="CommandIndex" type="uint8"/>
+          <!-- TotalNumberOfCommands is the count of How Many Payloads -->
+          <field name="SnapshotSchedulePayload" type="SnapshotSchedulePayloadType" array="true" />
         </fields>
       </command>
       <command id="05" name="TakeSnapshot">
         <fields>
-          <field name="SnapshotCauseM" type="map32"/>
+          <field name="SnapshotCause" type="SnapshotCauseType" />
         </fields>
       </command>
       <command id="06" name="GetSnapshot">
         <fields>
-          <field name="EarliestStartTimeM" type="UTC"/>
-          <field name="LatestEndTimeM" type="UTC"/>
-          <field name="SnapshotOffsetM" type="uint8"/>
-          <field name="SnapshotCauseM" type="map32"/>
+          <field name="EarliestStartTime" type="UTC" />
+          <field name="LatestEndTime" type="UTC" />
+          <field name="SnapshotOffset" type="uint8" />
+          <field name="SnapshotCause" type="SnapshotCauseType" />
         </fields>
       </command>
       <command id="07" name="StartSampling">
