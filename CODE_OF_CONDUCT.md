@@ -61,12 +61,12 @@ a project may be further defined and clarified by project maintainers.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the Connectivity Standards Alliance Data Model 
-open source team at [INSERT EMAIL ADDRESS]. All complaints will be reviewed and 
-investigated and will result in a response that is deemed necessary and appropriate 
-to the circumstances. The Connectivity Standards Alliance Data Model open source 
-team should maintain confidentiality with regard to the reporter of an incident. 
-Further details of specific enforcement policies may be posted separately.
+reported by contacting the Connectivity Standards Alliance at help@csa-iot.org. 
+All complaints will be reviewed and investigated and will result in a response 
+that is deemed necessary and appropriate to the circumstances. The Connectivity 
+Standards Alliance should maintain confidentiality with regard to the reporter 
+of an incident. Further details of specific enforcement policies may be posted 
+separately.
 
 Project maintainers who do not follow or enforce the Code of Conduct in good
 faith may face temporary or permanent repercussions as determined by Connectivity
