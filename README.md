@@ -463,7 +463,7 @@ Tags allow for the extension of an existing command. A tag is defined as an iden
 
 Viewing As HTML
 ===============
-The library.xml field has a stylesheet associated which can generate a HTML representation of the CL Library. This can be accessed by running the following python command inside the directory. The <port> attribute indicates the port you want to run on.
+The library.xml field has a stylesheet associated which can generate a HTML representation of the CL. This can be accessed by running the following python command inside the directory. The <port> attribute indicates the port you want to run on.
 
 python -m SimpleHTTPServer <port>
 
