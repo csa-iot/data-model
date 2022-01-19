@@ -45,6 +45,16 @@
     </restriction>
   </type:type>
 
+  <type:type short="SampleType" name="SampleType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="ConsumptionDelivered" />
+      <type:enumeration value="01" name="ConsumptionReceived" />
+      <type:enumeration value="02" name="ReactiveConsumptionDelivered" />
+      <type:enumeration value="03" name="ReactiveConsumptionReceived" />
+      <type:enumeration value="04" name="InstantaneousDemand" />
+    </restriction>
+  </type:type>
+
   <type:type short="SupplyStatusType" name="SupplyStatusType" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="00" name="SupplyOff" />
@@ -53,9 +63,25 @@
     </restriction>
   </type:type>
 
+  <type:type short="ProposedSupplyStatusType" name="ProposedSupplyStatusType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="01" name="SupplyOffArmed" />
+      <type:enumeration value="02" name="SupplyOn" />
+    </restriction>
+  </type:type>
+
   <type:type short="SetSupplyStatusType" name="SetSupplyStatusType" id="30" inheritsFrom="SupplyStatusType">
     <restriction>
       <type:enumeration value="03" name="SupplyUnchanged" />
+    </restriction>
+  </type:type>
+
+  <type:type short="NotificationSchemeType" name="NotificationSchemeType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="NoNotificationSchemeDefined" />
+      <type:enumeration value="01" name="PredefinedNotificationSchemeA" />
+      <type:enumeration value="02" name="PredefinedNotificationSchemeB" />
+      <type:enumeratedRange min="8a" max="fe" name="ForMSPRequirements" />
     </restriction>
   </type:type>
 
@@ -142,6 +168,56 @@
     </restriction>
   </type:type>
 
+  <type:type short="PushPeriodType" name="PushPeriodType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="01" name="DayAttributes" />
+      <type:enumeration value="02" name="WeekAttributes" />
+      <type:enumeration value="05" name="MonthAttributes" />
+      <type:enumeration value="07" name="YearAttributes" />
+    </restriction>
+  </type:type>
+
+  <type:type short="WaitingCommandType" name="WaitingCommandType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="NotificationFlag1" />
+      <type:enumeration value="01" name="NotificationFlag2" />
+      <type:enumeration value="02" name="NotificationFlag3" />
+      <type:enumeration value="03" name="NotificationFlag4" />
+      <type:enumeration value="04" name="NotificationFlag5" />
+      <type:enumeration value="05" name="NotificationFlag6" />
+      <type:enumeration value="06" name="NotificationFlag7" />
+      <type:enumeration value="07" name="NotificationFlag8" />
+      <type:enumeration value="0f" name="BlankOrNoNotificationFlag" />
+    </restriction>
+  </type:type>
+
+  <type:type short="FunctionalNotificationFlagsType" name="FunctionalNotificationFlagsType" id="1b" inheritsFrom="map32">
+    <bitmap>
+      <element mask="00000001" name="NewOTAFirmware" type="bool" />
+      <element mask="00000002" shiftRight="1" name="CBKEUpdateRequest" type="bool" />
+      <element mask="00000004" shiftRight="2" name="TimeSync" type="bool" />
+      <element mask="00000010" shiftRight="4" name="StayAwakeRequestHAN" type="bool" />
+      <element mask="00000020" shiftRight="5" name="StayAwakeRequestWAN" type="bool" />
+      <element mask="000001C0" shiftRight="6" name="PushHistoricalMeteringDataAttributeSet" type="PushPeriodType" />
+      <element mask="00000E00" shiftRight="9" name="PushHistoricalPrepaymentDataAttributeSet" type="PushPeriodType" />
+      <element mask="00001000" shiftRight="12" name="PushAllStaticDataBasicCluster" type="bool" />
+      <element mask="00002000" shiftRight="13" name="PushAllStaticDataMeteringCluster" type="bool" />
+      <element mask="00004000" shiftRight="14" name="PushAllStaticDataPrepaymentCluster" type="bool" />
+      <element mask="00008000" shiftRight="15" name="NetworkKeyActive" type="bool" />
+      <element mask="00010000" shiftRight="16" name="DisplayMessage" type="bool" />
+      <element mask="00020000" shiftRight="17" name="CancelAllMessages" type="bool" />
+      <element mask="00040000" shiftRight="18" name="ChangeSupply" type="bool" />
+      <element mask="00080000" shiftRight="19" name="LocalChangeSupply" type="bool" />
+      <element mask="00100000" shiftRight="20" name="SetUncontrolledFlowThreshold" type="bool" />
+      <element mask="00200000" shiftRight="21" name="TunnelMessagePending" type="bool" />
+      <element mask="00400000" shiftRight="22" name="GetSnapshot" type="bool" />
+      <element mask="00800000" shiftRight="23" name="GetSampledData" type="bool" />
+      <element mask="01000000" shiftRight="24" name="NewSubGHzChannelMasksAvailable" type="bool" />
+      <element mask="02000000" shiftRight="25" name="EnergyScanPending" type="bool" />
+      <element mask="04000000" shiftRight="26" name="ChannelChangePending" type="bool" />
+    </bitmap>
+  </type:type>
+
   <server>
     <attributes>
       <!-- Reading Information Set -->
@@ -161,7 +237,7 @@
       <attribute id="000D" name="DailyConsumptionTarget" type="uint24" max="16777215"/>
       <attribute id="000E" name="CurrentBlock" type="CurrentBlockType" />
       <attribute id="000F" name="ProfileIntervalPeriod" type="ProfileIntervalPeriodType" />
-      <attribute id="0010" name="" type="" default=""  deprecated="true"/>
+      <attribute id="0010" name="Deprecated" type="int24" deprecated="true"/>
       <attribute id="0011" name="PresetReadingTime" type="uint16" max="5947" default="0"/>
       <attribute id="0012" name="SummationDeliveredPerReport" type="uint16" max="65535"/>
       <attribute id="0013" name="FlowRestriction" type="uint8" max="255"/>
@@ -1314,25 +1390,27 @@
       </command>
       <command id="07" name="StartSampling">
         <fields>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="StartSamplingTimeM" type="UTC"/>
-          <field name="SampleTypeM" type="enum8"/>
-          <field name="SampleRequestIntervalM" type="uint16"/>
-          <field name="MaxNumberofSamplesM" type="uint16"/>
+          <field name="IssuerEventID" type="uint32" />
+          <field name="StartSamplingTime" type="UTC" />
+          <field name="SampleType" type="SampleType" />
+          <field name="SampleRequestInterval" type="uint16" />
+          <field name="MaxNumberOfSamples" type="uint16" />
         </fields>
       </command>
       <command id="08" name="GetSampledData">
         <fields>
-          <field name="SampleIDM" type="uint16"/>
-          <field name="EarliestSampleTimeM" type="UTC"/>
-          <field name="SampleTypeM" type="enum8"/>
-          <field name="NumberOfSamplesM" type="uint16"/>
+          <field name="SampleID" type="uint16"/>
+          <field name="EarliestSampleTime" type="UTC"/>
+          <field name="SampleType" type="SampleType"/>
+          <field name="NumberOfSamples" type="uint16"/>
         </fields>
       </command>
       <command id="09" name="MirrorReportAttributeResponse">
         <fields>
-          <field name="NotificationSchemeM" type="uint8"/>
-          <field name="NotificationFlagsNM" type="map32"/>
+          <field name="NotificationScheme" type="NotificationSchemeType" />
+          <field name="NotificationFlags" type="map32">
+            <!-- Ian:  -->
+          </field>
         </fields>
       </command>
       <command id="0A" name="ResetLoadLimitCounter">
@@ -1343,43 +1421,57 @@
       </command>
       <command id="0B" name="ChangeSupply">
         <fields>
-          <field name="ProviderIDM" type="uint32"/>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="RequestDateTimeM" type="UTC"/>
-          <field name="ImplementationDateTimeM" type="UTC"/>
-          <field name="ProposedSupplyStatusafterImplementation" type="enum8"/>
-          <field name="SupplyControlBits" type="map8"/>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32" />
+          <field name="RequestDateTime" type="UTC" />
+          <field name="ImplementationDateTime" type="UTC" />
+          <field name="ProposedSupplyStatusAfterImplementation" type="SupplyStatusType" />
+          <field name="SupplyControlBits" type="map8">
+            <bitmap>
+              <element mask="01" name="AcknowledgeRequired" type="bool" />
+            </bitmap>
+          </field>
         </fields>
       </command>
       <command id="0C" name="LocalChangeSupply">
         <fields>
-          <field name="ProposedSupplyStatus" type="enum8"/>
+          <field name="ProposedSupplyStatus" type="ProposedSupplyStatusType" />
         </fields>
       </command>
       <command id="0D" name="SetSupplyStatus">
         <fields>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="SupplyTamperStateM:" type="enum8"/>
-          <field name="SupplyDepletionStateM:" type="enum8"/>
-          <field name="SupplyUncontrolledFlowStateM:" type="enum8"/>
-          <field name="LoadLimitSupplyStateM:" type="enum8"/>
+          <field name="IssuerEventID" type="uint32" />
+          <field name="SupplyTamperState" type="SetSupplyStatusType" />
+          <field name="SupplyDepletionState" type="SetSupplyStatusType" />
+          <field name="SupplyUncontrolledFlowState" type="SetSupplyStatusType" />
+          <field name="LoadLimitSupplyState" type="SetSupplyStatusType" />
         </fields>
       </command>
       <command id="0E" name="SetUncontrolledFlowThreshold">
         <fields>
-          <field name="ProviderIDM" type="uint32"/>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="UncontrolledFlowThresholdM" type="uint16"/>
-          <field name="UnitOfMeasureM" type="enum8"/>
-          <field name="MultiplierM" type="uint16"/>
-          <field name="DivisorM" type="uint16"/>
+          <field name="ProviderID" type="uint32" />
+          <field name="IssuerEventID" type="uint32" />
+          <field name="UncontrolledFlowThreshold" type="uint16" />
+          <field name="UnitOfMeasure" type="EnergyPureBinaryUnitOfMeasure" />
+          <field name="Multiplier" type="uint16">
+            <restriction>
+              <type:minInclusive value="1" />
+            </restriction>
+          </field>
+          <field name="Divisor" type="uint16">
+            <restriction>
+              <type:minInclusive value="1" />
+            </restriction>
+          </field>
+          <field name="StabilisationPeriod" type="uint8" />
+          <field name="MeasurementPeriod" type="uint16" />
         </fields>
       </command>
     </commands>
   </server>
   <client>
     <attributes>
-      <attribute id="0000" name="FunctionalNotificationFlags" type="map32" default="0"/>
+      <attribute id="0000" name="FunctionalNotificationFlags" type="FunctionalNotificationFlagsType" default="0" />
       <attribute id="0001" name="NotificationFlags2" type="map32" default="0"/>
       <attribute id="0002" name="NotificationFlags3" type="map32" default="0"/>
       <attribute id="0003" name="NotificationFlags4" type="map32" default="0"/>
@@ -1392,83 +1484,153 @@
       <command id="00" name="GetProfileResponse">
         <fields>
           <field name="EndTime" type="UTC"/>
-          <field name="Status" type="enum8"/>
-          <field name="ProfileIntervalPeriod" type="enum8"/>
-          <field name="NumberOfPeriodsDelivered" type="uint8"/>
-          <field name="Intervals" type="Series of uint24s"/>
+          <field name="Status" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="Success" />
+              <type:enumeration value="01" name="UndefinedIntervalChannelRequested" />
+              <type:enumeration value="02" name="IntervalChannelNotSupported" />
+              <type:enumeration value="03" name="InvalidEndTime" />
+              <type:enumeration value="04" name="MorePeriodsRequestedThanCanBeReturned" />
+              <type:enumeration value="05" name="NoIntervalsAvailableForTheRequestedTime" />
+            </restriction>
+          </field>
+          <field name="ProfileIntervalPeriod" type="ProfileIntervalPeriodType" />
+          <!-- NumberOfPeriodsDelivered is the length attribute for Intervals -->
+          <field name="Intervals" type="uint24" array="true" />
         </fields>
       </command>
       <command id="01" name="RequestMirror"/>
       <command id="02" name="RemoveMirror"/>
       <command id="03" name="RequestFastPollModeResponse">
         <fields>
-          <field name="AppliedUpdatePeriodsecondsM" type="uint8"/>
-          <field name="FastPollModeEndTimeM" type="UTC"/>
+          <field name="AppliedUpdatePeriod" type="uint8" />
+          <field name="FastPollModeEndTime" type="UTC" />
         </fields>
       </command>
       <command id="04" name="ScheduleSnapshotResponse">
         <fields>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="SnapshotResponsePayloadM" type=""/>
+          <field name="IssuerEventID" type="uint32"/>
+          <!-- TODO: David To Map This -->
+          <field name="SnapshotResponsePayload" type="enum8"/>
         </fields>
       </command>
       <command id="05" name="TakeSnapshotResponse">
         <fields>
-          <field name="SnapshotIDM" type="uint32"/>
-          <field name="SnapshotConfirmationM" type="uint8"/>
+          <field name="SnapshotID" type="uint32" />
+          <field name="SnapshotConfirmation" type="uint8" />
         </fields>
       </command>
       <command id="06" name="PublishSnapshot">
         <fields>
-          <field name="SnapshotIDM" type="uint32"/>
-          <field name="SnapshotTimeM" type="UTC"/>
-          <field name="TotalSnapshotsFoundM" type="uint8"/>
-          <field name="CommandIndexM" type="uint8"/>
-          <field name="TotalNumberOfCommandsM" type="uint8"/>
-          <field name="SnapshotCauseM" type="map32"/>
-          <field name="SnapshotPayloadTypeM" type="enum8"/>
-          <field name="SnapshotSub-PayloadM" type="Snapshot typedependent"/>
+          <field name="SnapshotID" type="uint32" />
+          <field name="SnapshotTime" type="UTC" />
+          <field name="TotalSnapshotsFound" type="uint8" />
+          <field name="CommandIndex" type="uint8" />
+          <field name="TotalNumberOfCommands" type="uint8" />
+          <field name="SnapshotCause" type="map32">
+            <bitmap>
+              <element mask="00000001" name="General" type="bool" />
+              <element mask="00000002" shiftRight="1" name="EndOfBillingPeriod" type="bool" />
+              <element mask="00000004" shiftRight="2" name="EndOfBlockPeriod" type="bool" />
+              <element mask="00000008" shiftRight="3" name="ChangeOfTariffInformation" type="bool" />
+              <element mask="00000010" shiftRight="4" name="ChangeOfPriceMatrix" type="bool" />
+              <element mask="00000020" shiftRight="5" name="ChangeOfBlockThresholds" type="bool" />
+              <element mask="00000040" shiftRight="6" name="ChangeOfCV" type="bool" />
+              <element mask="00000080" shiftRight="7" name="ChangeOfCF" type="bool" />
+              <element mask="00000100" shiftRight="8" name="ChangeOfCalendar" type="bool" />
+              <element mask="00000200" shiftRight="9" name="CriticalPeakPricing" type="bool" />
+              <element mask="00000400" shiftRight="10" name="ManuallyTriggeredFromClient" type="bool" />
+              <element mask="00000800" shiftRight="11" name="EndOfResolvePeriod" type="bool" />
+              <element mask="00001000" shiftRight="12" name="ChangeOfTenancy" type="bool" />
+              <element mask="00002000" shiftRight="13" name="ChangeOfSupplier" type="bool" />
+              <element mask="00004000" shiftRight="14" name="ChangeOfMeterMode" type="bool" />
+              <element mask="00008000" shiftRight="15" name="DebtPayment" type="bool" />
+              <element mask="00010000" shiftRight="16" name="ScheduledSnapshot" type="bool" />
+              <element mask="00020000" shiftRight="17" name="OTAFirmwareDownload" type="bool" />
+              <element mask="000C0000" shiftRight="18" name="ReservedForPrepaymentCluster" type="uint8" />
+            </bitmap>
+          </field>
+          <field name="SnapshotPayloadType" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="TOUInformationSetDeliveredRegisters" />
+              <type:enumeration value="01" name="TOUInformationSetReceivedRegisters" />
+              <type:enumeration value="02" name="BlockTierInformationSetDelivered" />
+              <type:enumeration value="03" name="BlockTierInformationSetReceived" />
+              <type:enumeration value="04" name="TOUInformationSetDeliveredNoBilling" />
+              <type:enumeration value="05" name="TOUInformationSetReceivedNoBilling" />
+              <type:enumeration value="06" name="BlockTierInformationSetDeliveredNoBilling" />
+              <type:enumeration value="07" name="BlockTierInformationSetReceivedNoBilling" />
+              <type:enumeration value="80" name="DataUnavailable" />
+            </restriction>
+          </field>
+          <!-- TODO: David to fix this -->
+          <field name="SnapshotSubPayload" type="enum8"/>
         </fields>
       </command>
       <command id="07" name="GetSampledDataResponse">
         <fields>
-          <field name="SampleIDM" type="uint16"/>
-          <field name="SampleStartTimeM" type="UTC"/>
-          <field name="SampleTypeM" type="enum8"/>
-          <field name="SampleRequestIntervalM" type="uint16"/>
-          <field name="NumberOfSamplesM" type="uint16"/>
-          <field name="SamplesM" type="Series of uint24"/>
+          <field name="SampleID" type="uint16"/>
+          <field name="SampleStartTime" type="UTC"/>
+          <field name="SampleType" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="ConsumptionDelivered" />
+              <type:enumeration value="01" name="ConsumptionReceived" />
+              <type:enumeration value="02" name="ReactiveConsumptionDelivered" />
+              <type:enumeration value="03" name="ReactiveConsumptionReceived" />
+              <type:enumeration value="04" name="InstantaneousDemand" />
+            </restriction>
+          </field>
+          <field name="SampleRequestInterval" type="uint16"/>
+          <!-- NumberOfSamples is the array size -->
+          <field name="Samples" type="uint24" array="true" />
         </fields>
       </command>
       <command id="08" name="ConfigureMirror">
         <fields>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="ReportingIntervalM" type="uint24"/>
-          <field name="MirrorNotificationReportingM" type="Boolean"/>
-          <field name="NotificationSchemeM" type="uint8"/>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="ReportingInterval" type="uint24"/>
+          <field name="MirrorNotificationReporting" type="bool"/>
+          <field name="NotificationScheme" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="NoNotificationSchemeDefined" />
+              <type:enumeration value="01" name="PredefinedNotificationSchemeA" />
+              <type:enumeration value="02" name="PredefinedNotificationSchemeB" />
+              <type:enumeratedRange min="81" max="fe" name="ForMSPRequirements" />
+            </restriction>
+          </field>
         </fields>
       </command>
       <command id="09" name="ConfigureNotificationScheme">
         <fields>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="NotificationSchemeM" type="uint8"/>
-          <field name="NotificationFlagOrderM" type="map32"/>
+          <field name="IssuerEventID" type="uint32" />
+          <field name="NotificationScheme" type="uint8" />
+          <field name="NotificationFlagOrder" type="map32">
+            <!-- TODO: Check with Ian about how this is supposed to work -->
+          </field>
         </fields>
       </command>
-      <command id="0A" name="ConfigureNotificationFlag"/>
+      <command id="0A" name="ConfigureNotificationFlags">
+        <fields>
+          <field name="IssuerEventID" type="uint32" />
+          <field name="NotificationScheme" type="uint8" />
+          <field name="NotificationFlagAttributeID" type="uint16" />
+          <!-- TODO: Check with Ian about how the BitFieldAllocation is supposed to work -->
+        </fields>
+      </command>
       <command id="0B" name="GetNotifiedMessage">
         <fields>
-          <field name="NotificationSchemeM" type="uint8"/>
-          <field name="NotificationFlagAttributeIDM" type="uint16"/>
-          <field name="NotificationFlagsNM" type="map32"/>
+          <field name="NotificationScheme" type="uint8"/>
+          <field name="NotificationFlagAttributeID" type="uint16"/>
+          <!-- TODO: Figure Out How To Properly Map This -->
+          <field name="NotificationFlags" type="map32" />
         </fields>
       </command>
       <command id="0C" name="SupplyStatusResponse">
         <fields>
-          <field name="ProviderIDM" type="uint32"/>
-          <field name="IssuerEventIDM" type="uint32"/>
-          <field name="ImplementationDateTimeM" type="UTC"/>
-          <field name="SupplyStatusafterImplementationM" type="enum8"/>
+          <field name="ProviderID" type="uint32"/>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="ImplementationDateTime" type="UTC"/>
+          <field name="SupplyStatus" type="SupplyStatusType"/>
         </fields>
       </command>
       <command id="0D" name="StartSamplingResponse">
