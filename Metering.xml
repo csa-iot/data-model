@@ -1,0 +1,1406 @@
+<?xml version="1.0"?>
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0702" revision="2" name="MeteringSmartEnergy">
+  <classification role="application" picsCode="SEMT" primaryTransaction="1" />
+
+  <type:type short="ProfileIntervalPeriodType" name="ProfileIntervalPeriodType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <!-- Spelling out minutes to allow for code generation as many
+           languages don't permit symbol names to start with numbers -->
+      <type:enumeration value="00" name="Daily" />
+      <type:enumeration value="01" name="SixtyMinutes" />
+      <type:enumeration value="02" name="ThirtyMinutes" />
+      <type:enumeration value="03" name="FifteenMinutes" />
+      <type:enumeration value="04" name="TenMinutes" />
+      <type:enumeration value="05" name="SevenAndOneHalfMinutes" />
+      <type:enumeration value="06" name="FiveMinutes" />
+      <type:enumeration value="07" name="TwoAndOneHalfMinutes" />
+      <type:enumeration value="08" name="OneMinute" />
+    </restriction>
+  </type:type>
+
+  <type:type short="CurrentBlockType" name="CurrentBlockType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="NoBlocksInUse"/>
+      <type:enumeration value="01" name="Block1" />
+      <type:enumeration value="02" name="Block2" />
+      <type:enumeration value="03" name="Block3" />
+      <type:enumeration value="04" name="Block4" />
+      <type:enumeration value="05" name="Block5" />
+      <type:enumeration value="06" name="Block6" />
+      <type:enumeration value="07" name="Block7" />
+      <type:enumeration value="08" name="Block8" />
+      <type:enumeration value="09" name="Block9" />
+      <type:enumeration value="0a" name="Block10" />
+      <type:enumeration value="0b" name="Block11" />
+      <type:enumeration value="0c" name="Block12" />
+      <type:enumeration value="0d" name="Block13" />
+      <type:enumeration value="0e" name="Block14" />
+      <type:enumeration value="0f" name="Block15" />
+      <type:enumeration value="10" name="Block16" />
+    </restriction>
+  </type:type>
+
+  <type:type short="SupplyStatusType" name="SupplyStatusType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="SupplyOff" />
+      <type:enumeration value="01" name="SupplyOffArmed" />
+      <type:enumeration value="02" name="SupplyOn" />
+    </restriction>
+  </type:type>
+
+  <type:type short="SetSupplyStatusType" name="SetSupplyStatusType" id="30" inheritsFrom="SupplyStatusType">
+    <restriction>
+      <type:enumeration value="03" name="SupplyUnchanged" />
+    </restriction>
+  </type:type>
+
+  <type:type short="FormattingType" name="FormattingType" id="18" inheritsFrom="map8">
+    <bitmap>
+      <element mask="07" name="DigitsRightOfDecimal" type="uint8" />
+      <element mask="78" shiftRight="3" name="DigitsLeftOfDecimal" type="uint8" />
+      <element mask="80" shiftRight="7" name="SuppressLeadingZeros" type="bool" />
+    </bitmap>
+  </type:type>
+
+  <server>
+    <attributes>
+      <!-- Reading Information Set -->
+      <attribute id="0000" name="CurrentSummationDelivered" type="uint48" required="true" max="281474976710655"/>
+      <attribute id="0001" name="CurrentSummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0002" name="CurrentMaxDemandDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0003" name="CurrentMaxDemandReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0004" name="DFTSummation" type="uint48" max="281474976710655"/>
+      <attribute id="0005" name="DailyFreezeTime" type="uint16" max="5947" default="0"/>
+      <attribute id="0006" name="PowerFactor" type="int8" min="-100" max="100" default="0"/>
+      <attribute id="0007" name="ReadingSnapShotTime" type="UTC"/>
+      <attribute id="0008" name="CurrentMaxDemandDeliveredTime" type="UTC"/>
+      <attribute id="0009" name="CurrentMaxDemandReceivedTime" type="UTC"/>
+      <attribute id="000A" name="DefaultUpdatePeriod" type="uint8" max="255" default="30"/>
+      <attribute id="000B" name="FastPollUpdatePeriod" type="uint8" max="255" default="5"/>
+      <attribute id="000C" name="CurrentBlockPeriodConsumptionDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="000D" name="DailyConsumptionTarget" type="uint24" max="16777215"/>
+      <attribute id="000E" name="CurrentBlock" type="CurrentBlockType" />
+      <attribute id="000F" name="ProfileIntervalPeriod" type="ProfileIntervalPeriodType" />
+      <attribute id="0010" name="" type="" default=""  deprecated="true"/>
+      <attribute id="0011" name="PresetReadingTime" type="uint16" max="5947" default="0"/>
+      <attribute id="0012" name="SummationDeliveredPerReport" type="uint16" max="65535"/>
+      <attribute id="0013" name="FlowRestriction" type="uint8" max="255"/>
+      <attribute id="0014" name="SupplyStatus" type="SupplyStatusType"/>
+      <attribute id="0015" name="CurrentInletEnergyCarrierSummation" type="uint48" max="281474976710655"/>
+      <attribute id="0016" name="CurrentOutletEnergyCarrierSummation" type="uint48" max="281474976710655"/>
+      <attribute id="0017" name="InletTemperature" type="int24"/>
+      <attribute id="0018" name="OutletTemperature" type="int24"/>
+      <attribute id="0019" name="ControlTemperature" type="int24"/>
+      <attribute id="001A" name="CurrentInletEnergyCarrierDemand" type="int24"/>
+      <attribute id="001B" name="CurrentOutletEnergyCarrierDemand" type="int24"/>
+      <attribute id="001C" name="PreviousBlockPeriodConsumptionDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="001D" name="CurrentBlockPeriodConsumptionReceived" type="uint48" max="281474976710655"/>
+      <attribute id="001E" name="CurrentBlockReceived" type="CurrentBlockType"/>
+      <attribute id="001F" name="DFTSummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0020" name="ActiveRegisterTierDelivered" type="SERegisterTier"/>
+      <attribute id="0021" name="ActiveRegisterTierReceived" type="SEGenerationTier"/>
+      <attribute id="0022" name="LastBlockSwitchTime" type="UTC"/>
+
+      <!-- TOU Information Set -->
+      <attribute id="0100" name="CurrentTier1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0101" name="CurrentTier1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0102" name="CurrentTier2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0103" name="CurrentTier2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0104" name="CurrentTier3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0105" name="CurrentTier3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0106" name="CurrentTier4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0107" name="CurrentTier4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0108" name="CurrentTier5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0109" name="CurrentTier5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="010A" name="CurrentTier6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="010B" name="CurrentTier6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="010C" name="CurrentTier7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="010D" name="CurrentTier7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="010E" name="CurrentTier8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="010F" name="CurrentTier8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0110" name="CurrentTier9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0111" name="CurrentTier9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0112" name="CurrentTier10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0113" name="CurrentTier10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0114" name="CurrentTier11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0115" name="CurrentTier11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0116" name="CurrentTier12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0117" name="CurrentTier12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0118" name="CurrentTier13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0119" name="CurrentTier13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="011A" name="CurrentTier14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="011B" name="CurrentTier14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="011C" name="CurrentTier15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="011D" name="CurrentTier15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="011E" name="CurrentTier16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="011F" name="CurrentTier16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0120" name="CurrentTier17SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0121" name="CurrentTier17SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0122" name="CurrentTier18SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0123" name="CurrentTier18SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0124" name="CurrentTier19SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0125" name="CurrentTier19SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0126" name="CurrentTier20SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0127" name="CurrentTier20SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0128" name="CurrentTier21SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0129" name="CurrentTier21SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="012A" name="CurrentTier22SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="012B" name="CurrentTier22SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="012C" name="CurrentTier23SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="012D" name="CurrentTier23SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="012E" name="CurrentTier24SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="012F" name="CurrentTier24SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0130" name="CurrentTier25SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0131" name="CurrentTier25SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0132" name="CurrentTier26SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0133" name="CurrentTier26SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0134" name="CurrentTier27SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0135" name="CurrentTier27SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0136" name="CurrentTier28SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0137" name="CurrentTier28SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0138" name="CurrentTier29SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0139" name="CurrentTier29SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="013A" name="CurrentTier30SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="013B" name="CurrentTier30SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="013C" name="CurrentTier31SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="013D" name="CurrentTier31SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="013E" name="CurrentTier32SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="013F" name="CurrentTier32SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0140" name="CurrentTier33SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0141" name="CurrentTier33SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0142" name="CurrentTier34SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0143" name="CurrentTier34SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0144" name="CurrentTier35SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0145" name="CurrentTier35SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0146" name="CurrentTier36SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0147" name="CurrentTier36SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0148" name="CurrentTier37SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0149" name="CurrentTier37SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="014A" name="CurrentTier38SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="014B" name="CurrentTier38SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="014C" name="CurrentTier39SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="014D" name="CurrentTier39SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="014E" name="CurrentTier40SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="014F" name="CurrentTier40SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0150" name="CurrentTier41SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0151" name="CurrentTier41SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0152" name="CurrentTier42SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0153" name="CurrentTier42SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0154" name="CurrentTier43SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0155" name="CurrentTier43SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0156" name="CurrentTier44SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0157" name="CurrentTier44SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0158" name="CurrentTier45SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0159" name="CurrentTier45SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="015A" name="CurrentTier46SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="015B" name="CurrentTier46SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="015C" name="CurrentTier47SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="015D" name="CurrentTier47SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="015E" name="CurrentTier48SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="015F" name="CurrentTier48SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="01FC" name="CPP1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="01FE" name="CPP2SummationDelivered" type="uint48" max="281474976710655"/>
+
+      <!-- Meter Status -->
+      <attribute id="0200" name="Status" type="map8" required="true" default="0">
+        <bitmap>
+          <element mask="01" name="CheckMeter" type="bool" />
+          <element mask="02" shiftRight="1" name="LowBattery" type="bool" />
+          <element mask="04" shiftRight="2" name="TamperDetect" type="bool" />
+          <element mask="08" shiftRight="3" name="PowerFailure" type="bool" />
+          <!-- The Low Presure and Power Quality bits are in the same place, meaning is determined by the type of meter -->
+          <element mask="10" shiftRight="4" name="PowerQuality" type="bool" />
+          <element mask="10" shiftRight="4" name="LowPressure" type="bool" />
+          <element mask="20" shiftRight="5" name="LeakDetect" type="bool" />
+          <element mask="40" shiftRight="6" name="ServiceDisconnect" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0201" name="RemainingBatteryLife" type="uint8" max="255"/>
+      <attribute id="0202" name="HoursInOperation" type="uint24" max="16777215"/>
+      <attribute id="0203" name="HoursInFault" type="uint24" max="16777215"/>
+      <attribute id="0204" name="ExtendedStatus" type="map64">
+        <bitmap>
+          <element mask="0000000000000001" name="MeterCoverRemoved" type="bool" />
+          <element mask="0000000000000002" shiftRight="1" name="StrongMagneticFieldDetected" type="bool" />
+          <element mask="0000000000000004" shiftRight="2" name="BatteryFailure" type="bool" />
+          <element mask="0000000000000008" shiftRight="3" name="ProgramMemoryFailure" type="bool" />
+          <element mask="0000000000000010" shiftRight="4" name="RAMError" type="bool" />
+          <element mask="0000000000000020" shiftRight="5" name="NVMemoryError" type="bool" />
+          <element mask="0000000000000040" shiftRight="6" name="MeasurementSystemError" type="bool" />
+          <element mask="0000000000000080" shiftRight="7" name="WatchdogError" type="bool" />
+          <element mask="0000000000000100" shiftRight="8" name="SupplyDisconnectFailure" type="bool" />
+          <element mask="0000000000000200" shiftRight="9" name="SupplyConnectFailure" type="bool" />
+          <element mask="0000000000000400" shiftRight="10" name="MeasurementSWChangedOrTampered" type="bool" />
+          <element mask="0000000000000800" shiftRight="11" name="ClockInvalid" type="bool" />
+          <element mask="0000000000001000" shiftRight="12" name="TemperatureExceeded" type="bool" />
+          <element mask="0000000000002000" shiftRight="13" name="MoistureDetected" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0205" name="RemainingBatteryLifeInDays" type="uint16" max="65535"/>
+      <attribute id="0206" name="CurrentMeterID" type="octstr"/>
+      <attribute id="0207" name="AmbientConsumptionIndicator" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="LowEnergyUsage" />
+          <type:enumeration value="01" name="MediumEnergyUsage" />
+          <type:enumeration value="02" name="HighEnergyUsage" />
+        </restriction>
+      </attribute>
+
+      <!-- Formatting -->
+      <attribute id="0300" name="UnitofMeasure" type="EnergyUnitOfMeasure" required="true" default="0" />
+      <attribute id="0301" name="Multiplier" type="uint24" max="16777215"/>
+      <attribute id="0302" name="Divisor" type="uint24" max="16777215"/>
+      <attribute id="0303" name="SummationFormatting" type="FormattingType" required="true" />
+      <attribute id="0304" name="DemandFormatting" type="FormattingType" />
+      <attribute id="0305" name="HistoricalConsumptionFormatting" type="FormattingType"/>
+      <attribute id="0306" name="MeteringDeviceType" type="map8" required="true">
+        <bitmap>
+          <element mask="ff" name="DeviceType" type="EnergyCommodityType" />
+        </bitmap>
+      </attribute>
+      <attribute id="0307" name="SiteID" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="32"/>
+        </restriction>
+      </attribute>
+      <attribute id="0308" name="MeterSerialNumber" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="24"/>
+        </restriction>
+      </attribute>
+      <attribute id="0309" name="EnergyCarrierUnitOfMeasure" type="EnergyUnitOfMeasure"/>
+      <attribute id="030A" name="EnergyCarrierSummationFormatting" type="FormattingType"/>
+      <attribute id="030B" name="EnergyCarrierDemandFormatting" type="FormattingType"/>
+      <attribute id="030C" name="TemperatureUnitOfMeasure" type="enum8">
+        <restriction>
+          <type:enumeration value="00" name="DegreesKelvin"/>
+          <type:enumeration value="01" name="DegreesCelsius"/>
+          <type:enumeration value="02" name="DegreesFahrenheit"/>
+          <type:enumeration value="80" name="BCD_DegreesKelvin"/>
+          <type:enumeration value="81" name="BCD_DegreesCelsius"/>
+          <type:enumeration value="82" name="BCD_DegreesFahrenheit"/>
+        </restriction>
+      </attribute>
+      <attribute id="030D" name="TemperatureFormatting" type="FormattingType"/>
+      <attribute id="030E" name="ModuleSerialNumber" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="24"/>
+        </restriction>
+      </attribute>
+      <attribute id="030F" name="OperatingTariffLabelDelivered" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="24"/>
+        </restriction>
+      </attribute>
+      <attribute id="0310" name="OperatingTariffLabelReceived" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="24"/>
+        </restriction>
+      </attribute>
+      <attribute id="0311" name="CustomerIDNumber" type="octstr">
+        <restriction>
+          <type:minLength value="0"/>
+          <type:maxLength value="24"/>
+        </restriction>
+      </attribute>
+      <attribute id="0312" name="AlternativeUnitofMeasure" type="EnergyUnitOfMeasure" default="0"/>
+      <attribute id="0313" name="AlternativeDemandFormatting" type="FormattingType"/>
+      <attribute id="0314" name="AlternativeConsumptionFormatting" type="FormattingType"/>
+
+      <!-- Historical Consumption -->
+      <attribute id="0400" name="InstantaneousDemand" type="int24" default="0"/>
+      <attribute id="0401" name="CurrentDayConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0402" name="CurrentDayConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0403" name="PreviousDayConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0404" name="PreviousDayConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0405" name="CurrentPartialProfileIntervalStartTimeDelivered" type="UTC"/>
+      <attribute id="0406" name="CurrentPartialProfileIntervalStartTimeReceived" type="UTC"/>
+      <attribute id="0407" name="CurrentPartialProfileIntervalValueDelivered" type="uint24" max="16777215"/>
+      <attribute id="0408" name="CurrentPartialProfileIntervalValueReceived" type="uint24" max="16777215"/>
+      <attribute id="0409" name="CurrentDayMaxPressure" type="uint48" max="16777215"/>
+      <attribute id="040A" name="CurrentDayMinPressure" type="uint48" max="16777215"/>
+      <attribute id="040B" name="PreviousDayMaxPressure" type="uint48" max="16777215"/>
+      <attribute id="040C" name="PreviousDayMinPressure" type="uint48" max="16777215"/>
+      <attribute id="040D" name="CurrentDayMaxDemand" type="int24"/>
+      <attribute id="040E" name="PreviousDayMaxDemand" type="int24"/>
+      <attribute id="040F" name="CurrentMonthMaxDemand" type="int24"/>
+      <attribute id="0410" name="CurrentYearMaxDemand" type="int24"/>
+      <attribute id="0411" name="CurrentDayMaxEnergyCarrierDemand" type="int24"/>
+      <attribute id="0412" name="PreviousDayMaxEnergyCarrierDemand" type="int24"/>
+      <attribute id="0413" name="CurrentMonthMaxEnergyCarrierDemand" type="int24"/>
+      <attribute id="0414" name="CurrentMonthMinEnergyCarrierDemand" type="int24"/>
+      <attribute id="0415" name="CurrentYearMaxEnergyCarrierDemand" type="int24"/>
+      <attribute id="0416" name="CurrentYearMinEnergyCarrierDemand" type="int24"/>
+      <attribute id="0420" name="PreviousDay2ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0421" name="PreviousDay2ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0422" name="PreviousDay3ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0423" name="PreviousDay3ConsumptioReceived" type="uint24" max="16777215"/>
+      <attribute id="0424" name="PreviousDay4ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0425" name="PreviousDay4ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0426" name="PreviousDay5ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0427" name="PreviousDay5ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0428" name="PreviousDay6ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0429" name="PreviousDay6ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="042A" name="PreviousDay7ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="042B" name="PreviousDay7ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="042C" name="PreviousDay8ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="042D" name="PreviousDay8ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0430" name="CurrentWeekConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0431" name="CurrentWeekConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0432" name="PreviousWeekConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0433" name="PreviousWeekConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0434" name="PreviousWeek2ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0435" name="PreviousWeek2ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0436" name="PreviousWeek3ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0437" name="PreviousWeek3ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0438" name="PreviousWeek4ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0439" name="PreviousWeek4ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="043A" name="PreviousWeek5ConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="043B" name="PreviousWeek5ConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0440" name="CurrentMonthConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0441" name="CurrentMonthConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0442" name="PreviousMonthConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0443" name="PreviousMonthConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0444" name="PreviousMonth2ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0445" name="PreviousMonth2ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0446" name="PreviousMonth3ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0447" name="PreviousMonth3ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0448" name="PreviousMonth4ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0449" name="PreviousMonth4ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="044A" name="PreviousMonth5ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="044B" name="PreviousMonth5ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="044C" name="PreviousMonth6ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="044D" name="PreviousMonth6ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="044E" name="PreviousMonth7ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="044F" name="PreviousMonth7ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0450" name="PreviousMonth8ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0451" name="PreviousMonth8ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0452" name="PreviousMonth9ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0453" name="PreviousMonth9ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0454" name="PreviousMonth10ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0455" name="PreviousMonth10ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0456" name="PreviousMonth11ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0457" name="PreviousMonth11ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0458" name="PreviousMonth12ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0459" name="PreviousMonth12ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="045A" name="PreviousMonth13ConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="045B" name="PreviousMonth13ConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="045C" name="HistoricalFreezeTime" type="uint16" max="371" default="0"/>
+
+      <!-- Load Profile Configuration -->
+      <attribute id="0500" name="MaxNumberOfPeriodsDelivered" type="uint8" max="255" default="24"/>
+
+      <!-- Supply Limit -->
+      <attribute id="0600" name="CurrentDemandDelivered" type="uint24" max="16777215" />
+      <attribute id="0601" name="DemandLimit" type="uint24" max="16777215" />
+      <attribute id="0602" name="DemandIntegrationPeriod" type="uint8" min="1" max="255" />
+      <attribute id="0603" name="NumberOfDemandSubintervals" type="uint8" min="1" max="255"/>
+      <attribute id="0604" name="DemandLimitArmDuration" type="uint16" max="65535" default="60"/>
+      <attribute id="0605" name="LoadLimitSupplyState" type="SetSupplyStatusType" default="0"/>
+      <attribute id="0606" name="LoadLimitCounter" type="uint8" max="255" default="1"/>
+      <attribute id="0607" name="SupplyTamperState" type="SetSupplyStatusType" default="0"/>
+      <attribute id="0608" name="SupplyDepletionState" type="SetSupplyStatusType" default="0"/>
+      <attribute id="0609" name="SupplyUncontrolledFlowState" type="SetSupplyStatusType" default="0"/>
+
+      <!-- Block Information (Delivered) -->
+      <attribute id="0700" name="CurrentNoTierBlock1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0701" name="CurrentNoTierBlock2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0702" name="CurrentNoTierBlock3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0703" name="CurrentNoTierBlock4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0704" name="CurrentNoTierBlock5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0705" name="CurrentNoTierBlock6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0706" name="CurrentNoTierBlock7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0707" name="CurrentNoTierBlock8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0708" name="CurrentNoTierBlock9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0709" name="CurrentNoTierBlock10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="070A" name="CurrentNoTierBlock11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="070B" name="CurrentNoTierBlock12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="070C" name="CurrentNoTierBlock13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="070D" name="CurrentNoTierBlock14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="070E" name="CurrentNoTierBlock15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="070F" name="CurrentNoTierBlock16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0710" name="CurrentTier1Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0711" name="CurrentTier1Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0712" name="CurrentTier1Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0713" name="CurrentTier1Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0714" name="CurrentTier1Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0715" name="CurrentTier1Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0716" name="CurrentTier1Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0717" name="CurrentTier1Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0718" name="CurrentTier1Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0719" name="CurrentTier1Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="071A" name="CurrentTier1Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="071B" name="CurrentTier1Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="071C" name="CurrentTier1Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="071D" name="CurrentTier1Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="071E" name="CurrentTier1Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="071F" name="CurrentTier1Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0720" name="CurrentTier2Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0721" name="CurrentTier2Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0722" name="CurrentTier2Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0723" name="CurrentTier2Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0724" name="CurrentTier2Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0725" name="CurrentTier2Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0726" name="CurrentTier2Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0727" name="CurrentTier2Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0728" name="CurrentTier2Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0729" name="CurrentTier2Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="072A" name="CurrentTier2Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="072B" name="CurrentTier2Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="072C" name="CurrentTier2Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="072D" name="CurrentTier2Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="072E" name="CurrentTier2Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="072F" name="CurrentTier2Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0730" name="CurrentTier3Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0731" name="CurrentTier3Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0732" name="CurrentTier3Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0733" name="CurrentTier3Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0734" name="CurrentTier3Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0735" name="CurrentTier3Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0736" name="CurrentTier3Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0737" name="CurrentTier3Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0738" name="CurrentTier3Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0739" name="CurrentTier3Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="073A" name="CurrentTier3Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="073B" name="CurrentTier3Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="073C" name="CurrentTier3Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="073D" name="CurrentTier3Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="073E" name="CurrentTier3Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="073F" name="CurrentTier3Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0740" name="CurrentTier4Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0741" name="CurrentTier4Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0742" name="CurrentTier4Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0743" name="CurrentTier4Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0744" name="CurrentTier4Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0745" name="CurrentTier4Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0746" name="CurrentTier4Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0747" name="CurrentTier4Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0748" name="CurrentTier4Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0749" name="CurrentTier4Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="074A" name="CurrentTier4Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="074B" name="CurrentTier4Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="074C" name="CurrentTier4Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="074D" name="CurrentTier4Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="074E" name="CurrentTier4Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="074F" name="CurrentTier4Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0750" name="CurrentTier5Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0751" name="CurrentTier5Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0752" name="CurrentTier5Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0753" name="CurrentTier5Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0754" name="CurrentTier5Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0755" name="CurrentTier5Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0756" name="CurrentTier5Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0757" name="CurrentTier5Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0758" name="CurrentTier5Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0759" name="CurrentTier5Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="075A" name="CurrentTier5Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="075B" name="CurrentTier5Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="075C" name="CurrentTier5Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="075D" name="CurrentTier5Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="075E" name="CurrentTier5Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="075F" name="CurrentTier5Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0760" name="CurrentTier6Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0761" name="CurrentTier6Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0762" name="CurrentTier6Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0763" name="CurrentTier6Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0764" name="CurrentTier6Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0765" name="CurrentTier6Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0766" name="CurrentTier6Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0767" name="CurrentTier6Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0768" name="CurrentTier6Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0769" name="CurrentTier6Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="076A" name="CurrentTier6Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="076B" name="CurrentTier6Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="076C" name="CurrentTier6Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="076D" name="CurrentTier6Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="076E" name="CurrentTier6Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="076F" name="CurrentTier6Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0770" name="CurrentTier7Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0771" name="CurrentTier7Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0772" name="CurrentTier7Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0773" name="CurrentTier7Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0774" name="CurrentTier7Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0775" name="CurrentTier7Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0776" name="CurrentTier7Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0777" name="CurrentTier7Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0778" name="CurrentTier7Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0779" name="CurrentTier7Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="077A" name="CurrentTier7Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="077B" name="CurrentTier7Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="077C" name="CurrentTier7Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="077D" name="CurrentTier7Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="077E" name="CurrentTier7Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="077F" name="CurrentTier7Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0780" name="CurrentTier8Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0781" name="CurrentTier8Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0782" name="CurrentTier8Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0783" name="CurrentTier8Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0784" name="CurrentTier8Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0785" name="CurrentTier8Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0786" name="CurrentTier8Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0787" name="CurrentTier8Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0788" name="CurrentTier8Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0789" name="CurrentTier8Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="078A" name="CurrentTier8Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="078B" name="CurrentTier8Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="078C" name="CurrentTier8Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="078D" name="CurrentTier8Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="078E" name="CurrentTier8Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="078F" name="CurrentTier8Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0790" name="CurrentTier9Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0791" name="CurrentTier9Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0792" name="CurrentTier9Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0793" name="CurrentTier9Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0794" name="CurrentTier9Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0795" name="CurrentTier9Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0796" name="CurrentTier9Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0797" name="CurrentTier9Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0798" name="CurrentTier9Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="0799" name="CurrentTier9Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="079A" name="CurrentTier9Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="079B" name="CurrentTier9Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="079C" name="CurrentTier9Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="079D" name="CurrentTier9Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="079E" name="CurrentTier9Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="079F" name="CurrentTier9Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A0" name="CurrentTier10Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A1" name="CurrentTier10Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A2" name="CurrentTier10Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A3" name="CurrentTier10Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A4" name="CurrentTier10Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A5" name="CurrentTier10Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A6" name="CurrentTier10Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A7" name="CurrentTier10Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A8" name="CurrentTier10Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07A9" name="CurrentTier10Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07AA" name="CurrentTier10Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07AB" name="CurrentTier10Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07AC" name="CurrentTier10Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07AD" name="CurrentTier10Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07AE" name="CurrentTier10Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07AF" name="CurrentTier10Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B0" name="CurrentTier11Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B1" name="CurrentTier11Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B2" name="CurrentTier11Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B3" name="CurrentTier11Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B4" name="CurrentTier11Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B5" name="CurrentTier11Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B6" name="CurrentTier11Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B7" name="CurrentTier11Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B8" name="CurrentTier11Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07B9" name="CurrentTier11Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07BA" name="CurrentTier11Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07BB" name="CurrentTier11Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07BC" name="CurrentTier11Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07BD" name="CurrentTier11Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07BE" name="CurrentTier11Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07BF" name="CurrentTier11Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C0" name="CurrentTier12Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C1" name="CurrentTier12Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C2" name="CurrentTier12Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C3" name="CurrentTier12Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C4" name="CurrentTier12Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C5" name="CurrentTier12Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C6" name="CurrentTier12Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C7" name="CurrentTier12Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C8" name="CurrentTier12Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07C9" name="CurrentTier12Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07CA" name="CurrentTier12Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07CB" name="CurrentTier12Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07CC" name="CurrentTier12Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07CD" name="CurrentTier12Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07CE" name="CurrentTier12Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07CF" name="CurrentTier12Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D0" name="CurrentTier13Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D1" name="CurrentTier13Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D2" name="CurrentTier13Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D3" name="CurrentTier13Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D4" name="CurrentTier13Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D5" name="CurrentTier13Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D6" name="CurrentTier13Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D7" name="CurrentTier13Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D8" name="CurrentTier13Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07D9" name="CurrentTier13Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07DA" name="CurrentTier13Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07DB" name="CurrentTier13Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07DC" name="CurrentTier13Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07DD" name="CurrentTier13Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07DE" name="CurrentTier13Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07DF" name="CurrentTier13Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E0" name="CurrentTier14Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E1" name="CurrentTier14Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E2" name="CurrentTier14Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E3" name="CurrentTier14Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E4" name="CurrentTier14Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E5" name="CurrentTier14Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E6" name="CurrentTier14Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E7" name="CurrentTier14Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E8" name="CurrentTier14Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07E9" name="CurrentTier14Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07EA" name="CurrentTier14Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07EB" name="CurrentTier14Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07EC" name="CurrentTier14Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07ED" name="CurrentTier14Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07EE" name="CurrentTier14Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07EF" name="CurrentTier14Block16SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F0" name="CurrentTier15Block1SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F1" name="CurrentTier15Block2SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F2" name="CurrentTier15Block3SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F3" name="CurrentTier15Block4SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F4" name="CurrentTier15Block5SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F5" name="CurrentTier15Block6SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F6" name="CurrentTier15Block7SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F7" name="CurrentTier15Block8SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F8" name="CurrentTier15Block9SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07F9" name="CurrentTier15Block10SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07FA" name="CurrentTier15Block11SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07FB" name="CurrentTier15Block12SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07FC" name="CurrentTier15Block13SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07FD" name="CurrentTier15Block14SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07FE" name="CurrentTier15Block15SummationDelivered" type="uint48" max="281474976710655"/>
+      <attribute id="07FF" name="CurrentTier15Block16SummationDelivered" type="uint48" max="281474976710655"/>
+
+      <!-- Alarms -->
+      <attribute id="0800" name="GenericAlarmMask" type="map16" writable="true" default="65535">
+        <bitmap>
+          <element mask="0001" name="CheckMeter" type="bool" />
+          <element mask="0002" shiftRight="1" name="LowBattery" type="bool" />
+          <element mask="0004" shiftRight="2" name="TamperDetect" type="bool" />
+          <!-- This Bit Is Duplicated As It Means Different Things Between Electricity and Heat/Cooling -->
+          <element mask="0008" shiftRight="3" name="PowerFailure" type="bool" /><!-- Electricity -->
+          <element mask="0008" shiftRight="3" name="TemperatureSensor" type="bool" /><!-- Heat/Cooling -->
+          <!-- This Bit Is Duplicated As It Means Different Things Between Commodity Types -->
+          <element mask="0010" shiftRight="4" name="PowerQuality" type="bool" /><!-- Electricity -->
+          <element mask="0010" shiftRight="4" name="LowPressure" type="bool" /><!-- Gas or Water -->
+          <element mask="0010" shiftRight="4" name="BurstDetect" type="bool" /><!-- Heat/Cooling -->
+          <element mask="0020" shiftRight="5" name="LeakDetect" type="bool" />
+          <element mask="0040" shiftRight="6" name="ServiceDisconnect" type="bool" />
+          <!-- This Bit Is Duplicated As It Means Different Things Between Commodity Types -->
+          <element mask="0080" shiftRight="7" name="ReverseFlow" type="bool" /><!-- Gas or Water-->
+          <element mask="0080" shiftRight="7" name="FlowSensor" type="bool" /><!-- Heat/Cooling -->
+          <element mask="0100" shiftRight="8" name="MeterCoverRemoved" type="bool" />
+          <element mask="0200" shiftRight="9" name="MeterCoverClosed" type="bool" />
+          <element mask="0400" shiftRight="10" name="StrongMagneticField" type="bool" />
+          <element mask="0800" shiftRight="11" name="NoStrongMagneticField" type="bool" />
+          <element mask="1000" shiftRight="12" name="BatteryFailure" type="bool" />
+          <element mask="2000" shiftRight="13" name="ProgramMemoryError" type="bool" />
+          <element mask="4000" shiftRight="14" name="RAMError" type="bool" />
+          <element mask="8000" shiftRight="15" name="NVMemoryError" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0801" name="ElectricityAlarmMask" type="map32" writable="true" default="4294967295">
+        <bitmap>
+          <element mask="00000000" name="LowVoltageL1" type="bool" />
+          <element mask="00000001" shiftRight="1" name="HighVoltageL1" type="bool" />
+          <element mask="00000002" shiftRight="2" name="LowVoltageL2" type="bool" />
+          <element mask="00000004" shiftRight="3" name="HighVoltageL2" type="bool" />
+          <element mask="00000008" shiftRight="4" name="LowVoltageL3" type="bool" />
+          <element mask="00000010" shiftRight="5" name="HighVoltageL3" type="bool" />
+          <element mask="00000020" shiftRight="6" name="OverCurrentL1" type="bool" />
+          <element mask="00000040" shiftRight="7" name="OverCurrentL2" type="bool" />
+          <element mask="00000080" shiftRight="8" name="OverCurrentL3" type="bool" />
+          <element mask="00000100" shiftRight="9" name="FrequencyTooLowL1" type="bool" />
+          <element mask="00000200" shiftRight="10" name="FrequencyTooHighL1" type="bool" />
+          <element mask="00000400" shiftRight="11" name="FrequencyTooLowL2" type="bool" />
+          <element mask="00000800" shiftRight="12" name="FrequencyTooHighL2" type="bool" />
+          <element mask="00001000" shiftRight="13" name="FrequencyTooLowL3" type="bool" />
+          <element mask="00002000" shiftRight="14" name="FrequencyTooHighL3" type="bool" />
+          <element mask="00004000" shiftRight="15" name="GroundFault" type="bool" />
+          <element mask="00008000" shiftRight="16" name="ElectricTamperDetect" type="bool" />
+          <element mask="00010000" shiftRight="17" name="IncorrectPolarity" type="bool" />
+          <element mask="00020000" shiftRight="18" name="CurrentNoVoltage" type="bool" />
+          <element mask="00040000" shiftRight="19" name="UnderVoltage" type="bool" />
+          <element mask="00080000" shiftRight="20" name="NormalVoltage" type="bool" />
+          <element mask="00100000" shiftRight="21" name="PFBelowThreshold" type="bool" />
+          <element mask="00200000" shiftRight="22" name="PFAboveThreshold" type="bool" />
+          <element mask="00400000" shiftRight="23" name="TerminalCoverRemoved" type="bool" />
+          <element mask="00800000" shiftRight="24" name="TerminalCoverClosed" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0802" name="GenericFlowPressureAlarmMask" type="map16" writable="true" default="65535">
+        <bitmap>
+          <element mask="0001" name="BurstDetect" type="bool" />
+          <element mask="0002" shiftRight="1" name="PressureTooLow" type="bool" />
+          <element mask="0004" shiftRight="2" name="PressureTooHigh" type="bool" />
+          <element mask="0008" shiftRight="3" name="FlowSensorCommunicationError" type="bool" />
+          <element mask="0010" shiftRight="4" name="FlowSensorMeasurementFault" type="bool" />
+          <element mask="0020" shiftRight="5" name="FlowSensorReverseFlow" type="bool" />
+          <element mask="0040" shiftRight="6" name="FlowSensorAirDetect" type="bool" />
+          <element mask="0080" shiftRight="7" name="PipeEmpty" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0803" name="WaterSpecificAlarmMask" type="map16" writable="true" default="65535" />
+      <attribute id="0804" name="HeatAndCoolingSpecificAlarmMask" type="map16" writable="true" default="65535">
+        <bitmap>
+          <element mask="0001" name="InletTemperatureSensorFault" type="bool" />
+          <element mask="0002" shiftRight="1" name="OutletTemperatureSensorFault" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0805" name="GasSpecificAlarmMask" type="map16" writable="true" default="65535">
+        <bitmap>
+          <element mask="0001" name="TiltTamper" type="bool" />
+          <element mask="0002" shiftRight="1" name="BatteryCoverRemoved" type="bool" />
+          <element mask="0004" shiftRight="2" name="BatteryCoverClosed" type="bool" />
+          <element mask="0008" shiftRight="3" name="ExcessFlow" type="bool" />
+          <element mask="0010" shiftRight="4" name="TiltTamperEnded" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0806" name="ExtendedGenericAlarmMask" type="map48" writable="true" default="281474976710655">
+        <bitmap>
+          <element mask="000000000000" name="MeasurementSystemError" type="bool" />
+          <element mask="000000000001" shiftRight="1" name="WatchdogError" type="bool" />
+          <element mask="000000000002" shiftRight="2" name="SupplyDisconnectFailure" type="bool" />
+          <element mask="000000000004" shiftRight="3" name="SupplyConnectFailure" type="bool" />
+          <element mask="000000000008" shiftRight="4" name="MeasurementSoftwareChanged" type="bool" />
+          <element mask="000000000010" shiftRight="5" name="DSTEnabled" type="bool" />
+          <element mask="000000000020" shiftRight="6" name="DSTDisabled" type="bool" />
+          <element mask="000000000040" shiftRight="7" name="ClockAdjBackward" type="bool" />
+          <element mask="000000000080" shiftRight="8" name="ClockAdjForward" type="bool" />
+          <element mask="000000000100" shiftRight="9" name="ClockInvalid" type="bool" />
+          <element mask="000000000200" shiftRight="10" name="CommunicationErrorHAN" type="bool" />
+          <element mask="000000000400" shiftRight="11" name="CommunicationOKHAN" type="bool" />
+          <element mask="000000000800" shiftRight="12" name="MeterFraudAttempt" type="bool" />
+          <element mask="000000001000" shiftRight="13" name="PowerLoss" type="bool" />
+          <element mask="000000002000" shiftRight="14" name="UnusualHANTraffic" type="bool" />
+          <element mask="000000004000" shiftRight="15" name="UnexpectedClockChange" type="bool" />
+          <element mask="000000008000" shiftRight="16" name="CommsUsingUnauthenticatedComponent" type="bool" />
+          <element mask="000000010000" shiftRight="17" name="ErrorRegClear" type="bool" />
+          <element mask="000000020000" shiftRight="18" name="AlarmRegClear" type="bool" />
+          <element mask="000000040000" shiftRight="19" name="UnexpectedHWReset" type="bool" />
+          <element mask="000000080000" shiftRight="20" name="UnexpectedProgramExecution" type="bool" />
+          <element mask="000000100000" shiftRight="21" name="EventLogCleared" type="bool" />
+          <element mask="000000200000" shiftRight="22" name="LimitThresholdExceeded" type="bool" />
+          <element mask="000000400000" shiftRight="23" name="LimitThresholdOK" type="bool" />
+          <element mask="000000800000" shiftRight="24" name="LimitThresholdChanged" type="bool" />
+          <element mask="000001000000" shiftRight="25" name="MaximumDemandExceeded" type="bool" />
+          <element mask="000002000000" shiftRight="26" name="ProfileCleared" type="bool" />
+          <element mask="000004000000" shiftRight="27" name="SamplingBufferCleared" type="bool" />
+          <element mask="000008000000" shiftRight="28" name="BatteryWarning" type="bool" />
+          <element mask="000010000000" shiftRight="29" name="WrongSignature" type="bool" />
+          <element mask="000020000000" shiftRight="30" name="NoSignature" type="bool" />
+          <element mask="000040000000" shiftRight="31" name="UnauthorisedActionFromHAN" type="bool" />
+          <element mask="000080000000" shiftRight="32" name="FastPollingStart" type="bool" />
+          <element mask="000100000000" shiftRight="33" name="FastPollingEnd" type="bool" />
+          <element mask="000200000000" shiftRight="34" name="MeterReportingIntervalChanged" type="bool" />
+          <element mask="000400000000" shiftRight="35" name="DisconnectDueToLoadLimit" type="bool" />
+          <element mask="000800000000" shiftRight="36" name="MeterSupplyStatusRegisterChanged" type="bool" />
+          <element mask="001000000000" shiftRight="37" name="MeterAlarmStatusRegisterChanged" type="bool" />
+          <element mask="002000000000" shiftRight="38" name="ExtendedMeterAlarmStatusRegisterChanged" type="bool" />
+        </bitmap>
+      </attribute>
+      <attribute id="0807" name="ManufacturerAlarmMask" type="map16" writable="true" default="65535">
+        <bitmap>
+          <element mask="0001" name="ManufacturerSpecificA" type="bool" />
+          <element mask="0002" shiftRight="1" name="ManufacturerSpecificB" type="bool" />
+          <element mask="0004" shiftRight="2" name="ManufacturerSpecificC" type="bool" />
+          <element mask="0008" shiftRight="3" name="ManufacturerSpecificD" type="bool" />
+          <element mask="0010" shiftRight="4" name="ManufacturerSpecificE" type="bool" />
+          <element mask="0020" shiftRight="5" name="ManufacturerSpecificF" type="bool" />
+          <element mask="0040" shiftRight="6" name="ManufacturerSpecificG" type="bool" />
+          <element mask="0080" shiftRight="7" name="ManufacturerSpecificH" type="bool" />
+          <element mask="0100" shiftRight="8" name="ManufacturerSpecificI" type="bool" />
+        </bitmap>
+      </attribute>
+
+      <!-- Block Information (Received) -->
+      <attribute id="0900" name="CurrentNoTierBlock1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0901" name="CurrentNoTierBlock2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0902" name="CurrentNoTierBlock3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0903" name="CurrentNoTierBlock4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0904" name="CurrentNoTierBlock5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0905" name="CurrentNoTierBlock6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0906" name="CurrentNoTierBlock7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0907" name="CurrentNoTierBlock8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0908" name="CurrentNoTierBlock9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0909" name="CurrentNoTierBlock10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="090A" name="CurrentNoTierBlock11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="090B" name="CurrentNoTierBlock12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="090C" name="CurrentNoTierBlock13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="090D" name="CurrentNoTierBlock14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="090E" name="CurrentNoTierBlock15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="090F" name="CurrentNoTierBlock16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0910" name="CurrentTier1Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0911" name="CurrentTier1Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0912" name="CurrentTier1Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0913" name="CurrentTier1Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0914" name="CurrentTier1Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0915" name="CurrentTier1Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0916" name="CurrentTier1Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0917" name="CurrentTier1Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0918" name="CurrentTier1Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0919" name="CurrentTier1Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="091A" name="CurrentTier1Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="091B" name="CurrentTier1Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="091C" name="CurrentTier1Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="091D" name="CurrentTier1Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="091E" name="CurrentTier1Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="091F" name="CurrentTier1Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0920" name="CurrentTier2Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0921" name="CurrentTier2Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0922" name="CurrentTier2Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0923" name="CurrentTier2Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0924" name="CurrentTier2Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0925" name="CurrentTier2Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0926" name="CurrentTier2Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0927" name="CurrentTier2Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0928" name="CurrentTier2Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0929" name="CurrentTier2Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="092A" name="CurrentTier2Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="092B" name="CurrentTier2Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="092C" name="CurrentTier2Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="092D" name="CurrentTier2Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="092E" name="CurrentTier2Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="092F" name="CurrentTier2Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0930" name="CurrentTier3Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0931" name="CurrentTier3Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0932" name="CurrentTier3Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0933" name="CurrentTier3Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0934" name="CurrentTier3Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0935" name="CurrentTier3Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0936" name="CurrentTier3Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0937" name="CurrentTier3Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0938" name="CurrentTier3Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0939" name="CurrentTier3Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="093A" name="CurrentTier3Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="093B" name="CurrentTier3Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="093C" name="CurrentTier3Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="093D" name="CurrentTier3Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="093E" name="CurrentTier3Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="093F" name="CurrentTier3Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0940" name="CurrentTier4Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0941" name="CurrentTier4Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0942" name="CurrentTier4Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0943" name="CurrentTier4Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0944" name="CurrentTier4Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0945" name="CurrentTier4Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0946" name="CurrentTier4Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0947" name="CurrentTier4Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0948" name="CurrentTier4Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0949" name="CurrentTier4Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="094A" name="CurrentTier4Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="094B" name="CurrentTier4Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="094C" name="CurrentTier4Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="094D" name="CurrentTier4Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="094E" name="CurrentTier4Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="094F" name="CurrentTier4Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0950" name="CurrentTier5Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0951" name="CurrentTier5Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0952" name="CurrentTier5Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0953" name="CurrentTier5Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0954" name="CurrentTier5Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0955" name="CurrentTier5Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0956" name="CurrentTier5Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0957" name="CurrentTier5Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0958" name="CurrentTier5Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0959" name="CurrentTier5Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="095A" name="CurrentTier5Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="095B" name="CurrentTier5Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="095C" name="CurrentTier5Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="095D" name="CurrentTier5Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="095E" name="CurrentTier5Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="095F" name="CurrentTier5Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0960" name="CurrentTier6Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0961" name="CurrentTier6Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0962" name="CurrentTier6Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0963" name="CurrentTier6Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0964" name="CurrentTier6Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0965" name="CurrentTier6Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0966" name="CurrentTier6Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0967" name="CurrentTier6Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0968" name="CurrentTier6Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0969" name="CurrentTier6Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="096A" name="CurrentTier6Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="096B" name="CurrentTier6Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="096C" name="CurrentTier6Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="096D" name="CurrentTier6Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="096E" name="CurrentTier6Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="096F" name="CurrentTier6Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0970" name="CurrentTier7Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0971" name="CurrentTier7Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0972" name="CurrentTier7Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0973" name="CurrentTier7Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0974" name="CurrentTier7Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0975" name="CurrentTier7Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0976" name="CurrentTier7Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0977" name="CurrentTier7Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0978" name="CurrentTier7Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0979" name="CurrentTier7Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="097A" name="CurrentTier7Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="097B" name="CurrentTier7Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="097C" name="CurrentTier7Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="097D" name="CurrentTier7Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="097E" name="CurrentTier7Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="097F" name="CurrentTier7Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0980" name="CurrentTier8Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0981" name="CurrentTier8Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0982" name="CurrentTier8Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0983" name="CurrentTier8Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0984" name="CurrentTier8Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0985" name="CurrentTier8Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0986" name="CurrentTier8Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0987" name="CurrentTier8Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0988" name="CurrentTier8Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0989" name="CurrentTier8Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="098A" name="CurrentTier8Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="098B" name="CurrentTier8Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="098C" name="CurrentTier8Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="098D" name="CurrentTier8Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="098E" name="CurrentTier8Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="098F" name="CurrentTier8Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0990" name="CurrentTier9Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0991" name="CurrentTier9Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0992" name="CurrentTier9Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0993" name="CurrentTier9Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0994" name="CurrentTier9Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0995" name="CurrentTier9Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0996" name="CurrentTier9Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0997" name="CurrentTier9Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0998" name="CurrentTier9Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="0999" name="CurrentTier9Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="099A" name="CurrentTier9Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="099B" name="CurrentTier9Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="099C" name="CurrentTier9Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="099D" name="CurrentTier9Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="099E" name="CurrentTier9Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="099F" name="CurrentTier9Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A0" name="CurrentTier10Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A1" name="CurrentTier10Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A2" name="CurrentTier10Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A3" name="CurrentTier10Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A4" name="CurrentTier10Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A5" name="CurrentTier10Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A6" name="CurrentTier10Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A7" name="CurrentTier10Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A8" name="CurrentTier10Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09A9" name="CurrentTier10Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09AA" name="CurrentTier10Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09AB" name="CurrentTier10Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09AC" name="CurrentTier10Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09AD" name="CurrentTier10Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09AE" name="CurrentTier10Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09AF" name="CurrentTier10Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B0" name="CurrentTier11Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B1" name="CurrentTier11Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B2" name="CurrentTier11Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B3" name="CurrentTier11Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B4" name="CurrentTier11Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B5" name="CurrentTier11Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B6" name="CurrentTier11Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B7" name="CurrentTier11Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B8" name="CurrentTier11Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09B9" name="CurrentTier11Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09BA" name="CurrentTier11Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09BB" name="CurrentTier11Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09BC" name="CurrentTier11Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09BD" name="CurrentTier11Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09BE" name="CurrentTier11Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09BF" name="CurrentTier11Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C0" name="CurrentTier12Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C1" name="CurrentTier12Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C2" name="CurrentTier12Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C3" name="CurrentTier12Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C4" name="CurrentTier12Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C5" name="CurrentTier12Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C6" name="CurrentTier12Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C7" name="CurrentTier12Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C8" name="CurrentTier12Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09C9" name="CurrentTier12Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09CA" name="CurrentTier12Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09CB" name="CurrentTier12Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09CC" name="CurrentTier12Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09CD" name="CurrentTier12Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09CE" name="CurrentTier12Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09CF" name="CurrentTier12Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D0" name="CurrentTier13Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D1" name="CurrentTier13Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D2" name="CurrentTier13Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D3" name="CurrentTier13Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D4" name="CurrentTier13Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D5" name="CurrentTier13Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D6" name="CurrentTier13Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D7" name="CurrentTier13Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D8" name="CurrentTier13Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09D9" name="CurrentTier13Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09DA" name="CurrentTier13Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09DB" name="CurrentTier13Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09DC" name="CurrentTier13Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09DD" name="CurrentTier13Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09DE" name="CurrentTier13Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09DF" name="CurrentTier13Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E0" name="CurrentTier14Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E1" name="CurrentTier14Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E2" name="CurrentTier14Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E3" name="CurrentTier14Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E4" name="CurrentTier14Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E5" name="CurrentTier14Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E6" name="CurrentTier14Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E7" name="CurrentTier14Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E8" name="CurrentTier14Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09E9" name="CurrentTier14Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09EA" name="CurrentTier14Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09EB" name="CurrentTier14Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09EC" name="CurrentTier14Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09ED" name="CurrentTier14Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09EE" name="CurrentTier14Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09EF" name="CurrentTier14Block16SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F0" name="CurrentTier15Block1SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F1" name="CurrentTier15Block2SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F2" name="CurrentTier15Block3SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F3" name="CurrentTier15Block4SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F4" name="CurrentTier15Block5SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F5" name="CurrentTier15Block6SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F6" name="CurrentTier15Block7SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F7" name="CurrentTier15Block8SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F8" name="CurrentTier15Block9SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09F9" name="CurrentTier15Block10SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09FA" name="CurrentTier15Block11SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09FB" name="CurrentTier15Block12SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09FC" name="CurrentTier15Block13SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09FD" name="CurrentTier15Block14SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09FE" name="CurrentTier15Block15SummationReceived" type="uint48" max="281474976710655"/>
+      <attribute id="09FF" name="CurrentTier15Block16SummationReceived" type="uint48" max="281474976710655"/>
+
+      <!-- Meter Billing Attribute Set -->
+      <attribute id="0A00" name="BillToDateDelivered" type="uint32" max="4294967295" default="0"/>
+      <attribute id="0A01" name="BillToDateTimeStampDelivered" type="UTC" default="0"/>
+      <attribute id="0A02" name="ProjectedBillDelivered" type="uint32" max="4294967295" default="0"/>
+      <attribute id="0A03" name="ProjectedBillTimeStampDelivered" type="UTC" default="0"/>
+      <attribute id="0A04" name="BillDeliveredTrailingDigit" type="SETrailingDigit" />
+      <attribute id="0A10" name="BillToDateReceived" type="uint32" max="4294967295" default="0"/>
+      <attribute id="0A11" name="BillToDateTimeStampReceived" type="UTC" default="0"/>
+      <attribute id="0A12" name="ProjectedBillReceived" type="uint32" max="4294967295" default="0"/>
+      <attribute id="0A13" name="ProjectedBillTimeStampReceived" type="UTC" default="0"/>
+      <attribute id="0A14" name="BillReceivedTrailingDigit" type="SETrailingDigit" />
+
+      <!-- Supply Control Attribute Set -->
+      <attribute id="0B00" name="ProposedChangeSupplyImplementationTime" type="UTC"/>
+      <attribute id="0B01" name="ProposedChangeSupplyStatus" type="SupplyStatusType"/>
+      <attribute id="0B10" name="UncontrolledFlowThreshold" type="uint16"/>
+      <attribute id="0B11" name="UncontrolledFlowThresholdUnitOfMeasure" type="EnergyPureBinaryUnitOfMeasure"/>
+      <attribute id="0B12" name="UncontrolledFlowMultiplier" type="uint16" default="1"/>
+      <attribute id="0B13" name="UncontrolledFlowDivisor" type="uint16" default="1"/>
+      <!-- Ian: Should This Be Changed To American Spelling? -->
+      <attribute id="0B14" name="FlowStabilisationPeriod" type="uint8"/>
+      <attribute id="0B15" name="FlowMeasurementPeriod" type="uint16"/>
+
+      <!-- Alternative Historical Consumption -->
+      <attribute id="0C00" name="AlternativeInstantaneousDemand" type="int24" default="0"/>
+      <attribute id="0C01" name="CurrentDayAlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C02" name="CurrentDayAlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C03" name="PreviousDayAlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C04" name="PreviousDayAlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C05" name="CurrentAlternativePartialProfileIntervalStartTimeDelivered" type="UTC"/>
+      <attribute id="0C06" name="CurrentAlternativePartialProfileIntervalStartTimeReceived" type="UTC"/>
+      <attribute id="0C07" name="CurrentAlternativePartialProfileIntervalValueDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C08" name="CurrentAlternativePartialProfileIntervalValueReceived" type="uint24" max="16777215"/>
+      <attribute id="0C09" name="CurrentDayAlternativeMaxPressure" type="uint48" max="16777215"/>
+      <attribute id="0C0A" name="CurrentDayAlternativeMinPressure" type="uint48" max="16777215"/>
+      <attribute id="0C0B" name="PreviousDayAlternativeMaxPressure" type="uint48" max="16777215"/>
+      <attribute id="0C0C" name="PreviousDayAlternativeMinPressure" type="uint48" max="16777215"/>
+      <attribute id="0C0D" name="CurrentDayAlternativeMaxDemand" type="int24"/>
+      <attribute id="0C0E" name="PreviousDayAlternativeMaxDemand" type="int24"/>
+      <attribute id="0C0F" name="CurrentMonthAlternativeMaxDemand" type="int24"/>
+      <attribute id="0C10" name="CurrentYearAlternativeMaxDemand" type="int24"/>
+      <attribute id="0C20" name="PreviousDay2AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C21" name="PreviousDay2AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C22" name="PreviousDay3AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C23" name="PreviousDay3AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C24" name="PreviousDay4AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C25" name="PreviousDay4AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C26" name="PreviousDay5AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C27" name="PreviousDay5AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C28" name="PreviousDay6AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C29" name="PreviousDay6AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C2A" name="PreviousDay7AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C2B" name="PreviousDay7AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C2C" name="PreviousDay8AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C2D" name="PreviousDay8AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C30" name="CurrentWeekAlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C31" name="CurrentWeekAlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C32" name="PreviousWeekAlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C33" name="PreviousWeekAlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C34" name="PreviousWeek2AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C35" name="PreviousWeek2AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C36" name="PreviousWeek3AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C37" name="PreviousWeek3AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C38" name="PreviousWeek4AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C39" name="PreviousWeek4AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C3A" name="PreviousWeek5AlternativeConsumptionDelivered" type="uint24" max="16777215"/>
+      <attribute id="0C3B" name="PreviousWeek5AlternativeConsumptionReceived" type="uint24" max="16777215"/>
+      <attribute id="0C40" name="CurrentMonthAlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C41" name="CurrentMonthAlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C42" name="PreviousMonthAlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C43" name="PreviousMonthAlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C44" name="PreviousMonth2AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C45" name="PreviousMonth2AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C46" name="PreviousMonth3AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C47" name="PreviousMonth3AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C48" name="PreviousMonth4AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C49" name="PreviousMonth4AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C4A" name="PreviousMonth5AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C4B" name="PreviousMonth5AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C4C" name="PreviousMonth6AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C4D" name="PreviousMonth6AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C4E" name="PreviousMonth7AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C4F" name="PreviousMonth7AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C50" name="PreviousMonth8AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C51" name="PreviousMonth8AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C52" name="PreviousMonth9AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C53" name="PreviousMonth9AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C54" name="PreviousMonth10AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C55" name="PreviousMonth10AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C56" name="PreviousMonth11AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C57" name="PreviousMonth11AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C58" name="PreviousMonth12AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C59" name="PreviousMonth12AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+      <attribute id="0C5A" name="PreviousMonth13AlternativeConsumptionDelivered" type="uint32" max="4294967295"/>
+      <attribute id="0C5B" name="PreviousMonth13AlternativeConsumptionReceived" type="uint32" max="4294967295"/>
+    </attributes>
+    <commands>
+      <command id="00" name="GetProfile">
+        <fields>
+          <field name="IntervalChannel" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="ConsumptionDelivered" />
+              <type:enumeration value="01" name="ConsumptionReceived" />
+              <type:enumeration value="02" name="ReactiveConsumptionDelivered" />
+              <type:enumeration value="03" name="ReactiveConsumptionReceived" />
+            </restriction>
+          </field>
+          <field name="EndTime" type="UTC"/>
+          <field name="NumberOfPeriods" type="uint8">
+            <restriction>
+              <type:maxInclusiveRef ref="MaxNumberOfPeriodsDelivered"/>
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="01" name="RequestMirrorResponse">
+        <fields>
+          <field name="EndPointID" type="uint16">
+            <restriction>
+              <type:minInclusive value="0"/>
+              <type:maxInclusive value="240"/>
+              <type:invalid value="65535"/>
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="02" name="MirrorRemoved">
+        <fields>
+          <field name="RemovedEndPointID" type="uint16">
+            <restriction>
+              <type:minInclusive value="0"/>
+              <type:maxInclusive value="240"/>
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="03" name="RequestFastPollMode">
+        <fields>
+          <field name="FastPollUpdatePeriod" type="uint8" />
+          <field name="Duration" type="uint8">
+            <restriction>
+              <type:maxInclusive value="15" />
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="04" name="ScheduleSnapshot">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="CommandIndexM" type="uint8"/>
+          <field name="TotalNumberOfCommandsM" type="uint8"/>
+          <field name="SnapshotSchedulePayloadM" type=""/>
+        </fields>
+      </command>
+      <command id="05" name="TakeSnapshot">
+        <fields>
+          <field name="SnapshotCauseM" type="map32"/>
+        </fields>
+      </command>
+      <command id="06" name="GetSnapshot">
+        <fields>
+          <field name="EarliestStartTimeM" type="UTC"/>
+          <field name="LatestEndTimeM" type="UTC"/>
+          <field name="SnapshotOffsetM" type="uint8"/>
+          <field name="SnapshotCauseM" type="map32"/>
+        </fields>
+      </command>
+      <command id="07" name="StartSampling">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="StartSamplingTimeM" type="UTC"/>
+          <field name="SampleTypeM" type="enum8"/>
+          <field name="SampleRequestIntervalM" type="uint16"/>
+          <field name="MaxNumberofSamplesM" type="uint16"/>
+        </fields>
+      </command>
+      <command id="08" name="GetSampledData">
+        <fields>
+          <field name="SampleIDM" type="uint16"/>
+          <field name="EarliestSampleTimeM" type="UTC"/>
+          <field name="SampleTypeM" type="enum8"/>
+          <field name="NumberOfSamplesM" type="uint16"/>
+        </fields>
+      </command>
+      <command id="09" name="MirrorReportAttributeResponse">
+        <fields>
+          <field name="NotificationSchemeM" type="uint8"/>
+          <field name="NotificationFlagsNM" type="map32"/>
+        </fields>
+      </command>
+      <command id="0A" name="ResetLoadLimitCounter">
+        <fields>
+          <field name="ProviderIDM" type="uint32"/>
+          <field name="IssuerEventIDM" type="uint32"/>
+        </fields>
+      </command>
+      <command id="0B" name="ChangeSupply">
+        <fields>
+          <field name="ProviderIDM" type="uint32"/>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="RequestDateTimeM" type="UTC"/>
+          <field name="ImplementationDateTimeM" type="UTC"/>
+          <field name="ProposedSupplyStatusafterImplementation" type="enum8"/>
+          <field name="SupplyControlBits" type="map8"/>
+        </fields>
+      </command>
+      <command id="0C" name="LocalChangeSupply">
+        <fields>
+          <field name="ProposedSupplyStatus" type="enum8"/>
+        </fields>
+      </command>
+      <command id="0D" name="SetSupplyStatus">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="SupplyTamperStateM:" type="enum8"/>
+          <field name="SupplyDepletionStateM:" type="enum8"/>
+          <field name="SupplyUncontrolledFlowStateM:" type="enum8"/>
+          <field name="LoadLimitSupplyStateM:" type="enum8"/>
+        </fields>
+      </command>
+      <command id="0E" name="SetUncontrolledFlowThreshold">
+        <fields>
+          <field name="ProviderIDM" type="uint32"/>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="UncontrolledFlowThresholdM" type="uint16"/>
+          <field name="UnitOfMeasureM" type="enum8"/>
+          <field name="MultiplierM" type="uint16"/>
+          <field name="DivisorM" type="uint16"/>
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <attributes>
+      <attribute id="0000" name="FunctionalNotificationFlags" type="map32" default="0"/>
+      <attribute id="0001" name="NotificationFlags2" type="map32" default="0"/>
+      <attribute id="0002" name="NotificationFlags3" type="map32" default="0"/>
+      <attribute id="0003" name="NotificationFlags4" type="map32" default="0"/>
+      <attribute id="0004" name="NotificationFlags5" type="map32" default="0"/>
+      <attribute id="0005" name="NotificationFlags6" type="map32" default="0"/>
+      <attribute id="0006" name="NotificationFlags7" type="map32" default="0"/>
+      <attribute id="0007" name="NotificationFlags8" type="map32" default="0"/>
+    </attributes>
+    <commands>
+      <command id="00" name="GetProfileResponse">
+        <fields>
+          <field name="EndTime" type="UTC"/>
+          <field name="Status" type="enum8"/>
+          <field name="ProfileIntervalPeriod" type="enum8"/>
+          <field name="NumberOfPeriodsDelivered" type="uint8"/>
+          <field name="Intervals" type="Series of uint24s"/>
+        </fields>
+      </command>
+      <command id="01" name="RequestMirror"/>
+      <command id="02" name="RemoveMirror"/>
+      <command id="03" name="RequestFastPollModeResponse">
+        <fields>
+          <field name="AppliedUpdatePeriodsecondsM" type="uint8"/>
+          <field name="FastPollModeEndTimeM" type="UTC"/>
+        </fields>
+      </command>
+      <command id="04" name="ScheduleSnapshotResponse">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="SnapshotResponsePayloadM" type=""/>
+        </fields>
+      </command>
+      <command id="05" name="TakeSnapshotResponse">
+        <fields>
+          <field name="SnapshotIDM" type="uint32"/>
+          <field name="SnapshotConfirmationM" type="uint8"/>
+        </fields>
+      </command>
+      <command id="06" name="PublishSnapshot">
+        <fields>
+          <field name="SnapshotIDM" type="uint32"/>
+          <field name="SnapshotTimeM" type="UTC"/>
+          <field name="TotalSnapshotsFoundM" type="uint8"/>
+          <field name="CommandIndexM" type="uint8"/>
+          <field name="TotalNumberOfCommandsM" type="uint8"/>
+          <field name="SnapshotCauseM" type="map32"/>
+          <field name="SnapshotPayloadTypeM" type="enum8"/>
+          <field name="SnapshotSub-PayloadM" type="Snapshot typedependent"/>
+        </fields>
+      </command>
+      <command id="07" name="GetSampledDataResponse">
+        <fields>
+          <field name="SampleIDM" type="uint16"/>
+          <field name="SampleStartTimeM" type="UTC"/>
+          <field name="SampleTypeM" type="enum8"/>
+          <field name="SampleRequestIntervalM" type="uint16"/>
+          <field name="NumberOfSamplesM" type="uint16"/>
+          <field name="SamplesM" type="Series of uint24"/>
+        </fields>
+      </command>
+      <command id="08" name="ConfigureMirror">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="ReportingIntervalM" type="uint24"/>
+          <field name="MirrorNotificationReportingM" type="Boolean"/>
+          <field name="NotificationSchemeM" type="uint8"/>
+        </fields>
+      </command>
+      <command id="09" name="ConfigureNotificationScheme">
+        <fields>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="NotificationSchemeM" type="uint8"/>
+          <field name="NotificationFlagOrderM" type="map32"/>
+        </fields>
+      </command>
+      <command id="0A" name="ConfigureNotificationFlag"/>
+      <command id="0B" name="GetNotifiedMessage">
+        <fields>
+          <field name="NotificationSchemeM" type="uint8"/>
+          <field name="NotificationFlagAttributeIDM" type="uint16"/>
+          <field name="NotificationFlagsNM" type="map32"/>
+        </fields>
+      </command>
+      <command id="0C" name="SupplyStatusResponse">
+        <fields>
+          <field name="ProviderIDM" type="uint32"/>
+          <field name="IssuerEventIDM" type="uint32"/>
+          <field name="ImplementationDateTimeM" type="UTC"/>
+          <field name="SupplyStatusafterImplementationM" type="enum8"/>
+        </fields>
+      </command>
+      <command id="0D" name="StartSamplingResponse">
+        <fields>
+          <field name="SampleID" type="uint16"/>
+        </fields>
+      </command>
+    </commands>
+  </client>
+</zcl:cluster>
