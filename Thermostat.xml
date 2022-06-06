@@ -223,7 +223,7 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="02" name="External" />
         </restriction>
       </attribute>
-      <attribute id="0031" name="SetpointChangeAmount" type="int16" default="32768" />
+      <attribute id="0031" name="SetpointChangeAmount" type="int16" default="-32768" />
       <attribute id="0032" name="SetpointChangeSourceTimestamp" type="UTC" default="0" />
       <attribute id="0034" name="OccupiedSetback" type="uint8" writable="true" default="255">
         <restriction>
