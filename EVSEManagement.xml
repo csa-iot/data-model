@@ -18,9 +18,9 @@ applicable to this document can be found in the LICENSE.md file.
     <restriction>
       <type:enumeration name="EvNotPluggedIn" value="00"/>
       <type:enumeration name="EvPluggedNc" value="01"/>
-      <type:enumeration name="EvPluggedCh" value="01"/>
-      <type:enumeration name="EvPluggedDisCh" value="02"/>
-      <type:enumeration name="EvSessionEnding" value="03"/>
+      <type:enumeration name="EvPluggedCh" value="02"/>
+      <type:enumeration name="EvPluggedDisCh" value="03"/>
+      <type:enumeration name="EvSessionEnding" value="04"/>
       <type:enumeration name="Reserved" value="fe"/>
     </restriction>
   </type:type>
@@ -86,14 +86,14 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0105" name="DischargingPower" type="uint32" max="4294967295" />
       
       <!-- Attribute Set 0x02: Formatting -->
-      <attribute id="0200" name="VoltageMultiplier" type="uint16" required="true" max="65535" />
-      <attribute id="0201" name="VoltageDivisor" type="uint16" required="true" max="65535" />
-      <attribute id="0202" name="CurrentMultiplier" type="uint16" required="true" max="65535" />
-      <attribute id="0203" name="CurrentDivisor" type="uint16" required="true" max="65535" />
-      <attribute id="0204" name="PowerMultiplier" type="uint16" max="65535" />
-      <attribute id="0205" name="PowerDivisor" type="uint16" max="65535" />
-      <attribute id="0206" name="EnergyMultiplier" type="uint16" max="65535" />
-      <attribute id="0207" name="EnergyDivisor" type="uint16" max="65535" />
+      <attribute id="0200" name="VoltageMultiplier" type="uint16" required="true" min="1" max="65535" />
+      <attribute id="0201" name="VoltageDivisor" type="uint16" required="true" min="1" max="65535" />
+      <attribute id="0202" name="CurrentMultiplier" type="uint16" required="true" min="1" max="65535" />
+      <attribute id="0203" name="CurrentDivisor" type="uint16" required="true" min="1" max="65535" />
+      <attribute id="0204" name="PowerMultiplier" type="uint16" min="1" max="65535" />
+      <attribute id="0205" name="PowerDivisor" type="uint16" min="1" max="65535" />
+      <attribute id="0206" name="EnergyMultiplier" type="uint16" min="1" max="65535" />
+      <attribute id="0207" name="EnergyDivisor" type="uint16" min="1" max="65535" />
       
       <!-- Attribute Set 0x03: Charging Session -->
       <attribute id="0300" name="EvseSessionID" type="uint32" max="4294967295" default="4294967295" />
@@ -101,9 +101,10 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0302" name="EvseSessionDuration" type="uint32" max="4294967295" />
       <attribute id="0303" name="EvseSessionEnergyDelivered" type="uint32" max="281474976710655" />
       <attribute id="0304" name="EvseSessionEnergyReceived" type="uint32" max="281474976710655" />
-      <attribute id="0301" name="EvseSessionMaximumCurrent" type="uint16" reportRequired="true" />
+      <attribute id="0305" name="EvseSessionMaximumCurrent" type="uint16" reportRequired="true" />
     </attributes>
     <commands>
+      <!-- Commands Received by Server -->
       <command id="00" name="DisableEvse" required="true" />
       <command id="01" name="EnableEvseCharging" required="true">
         <fields>
@@ -131,6 +132,7 @@ applicable to this document can be found in the LICENSE.md file.
   </server>
   <client>
     <commands>
+    <!-- Commands Received by Client -->
       <command name="NotifyEvent" id="00" required="false">
         <fields>
           <field name="Timestamp" type="UTC" />
@@ -139,7 +141,16 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="EvseState" type="EvseState" />
           <!-- Event Data Should Really Try To Follow The Pattern In OTA unless there's something wrong with that pattern. -->
           <!-- That would allow use to better capture the field formats for the content as separate fields -->
-          <field name="EventData" type="octstr" />
+          <!-- Fields When EvseState == EvPluggedCh -->
+          <field name="ChargingCurrent" type="uint16" presentIf="EvseState=2" />
+          <!-- Fields When EvseState == EvPluggedDisCh -->
+          <field name="DischargingCurrent" type="uint16" presentIf="EvseState=3" />
+          <!-- Fields When EvseState == EvseSessionEnding -->
+          <field name="EvseSessionDuration" type="uint32" presentIf="EvseState=4" />
+          <field name="EvseSessionEnergyDelivered" type="uint48" presentIf="EvseState=4" />
+          <field name="EvseSessionEnergyReceived" type="uint48" presentIf="EvseState=4" />
+          <!-- Fields When EvseState == ERROR -->
+          <field name="EvseFault" type="enum8" presentIf="EvseState=254" />
         </fields>
       </command>
     </commands>
