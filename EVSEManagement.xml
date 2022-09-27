@@ -84,16 +84,17 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0103" name="LineFrequency" type="uint16" max="65535" />
       <attribute id="0104" name="EvseEnergySummation" type="int48" min="-140737488355328" max="140737488355327" />
       <attribute id="0105" name="DischargingPower" type="uint32" max="4294967295" />
+      <attribute id="0106" name="DischargingCurrent" type="uint16"  max="65535" />
       
       <!-- Attribute Set 0x02: Formatting -->
-      <attribute id="0200" name="VoltageMultiplier" type="uint16" required="true" min="1" max="65535" />
-      <attribute id="0201" name="VoltageDivisor" type="uint16" required="true" min="1" max="65535" />
-      <attribute id="0202" name="CurrentMultiplier" type="uint16" required="true" min="1" max="65535" />
-      <attribute id="0203" name="CurrentDivisor" type="uint16" required="true" min="1" max="65535" />
-      <attribute id="0204" name="PowerMultiplier" type="uint16" min="1" max="65535" />
-      <attribute id="0205" name="PowerDivisor" type="uint16" min="1" max="65535" />
-      <attribute id="0206" name="EnergyMultiplier" type="uint16" min="1" max="65535" />
-      <attribute id="0207" name="EnergyDivisor" type="uint16" min="1" max="65535" />
+      <attribute id="0200" name="VoltageMultiplier" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0201" name="VoltageDivisor" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0202" name="CurrentMultiplier" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0203" name="CurrentDivisor" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0204" name="PowerMultiplier" type="uint16" default="1" min="1" max="65535" />
+      <attribute id="0205" name="PowerDivisor" type="uint16" default="1" min="1" max="65535" />
+      <attribute id="0206" name="EnergyMultiplier" type="uint16" default="1" min="1" max="65535" />
+      <attribute id="0207" name="EnergyDivisor" type="uint16" default="1" min="1" max="65535" />
       
       <!-- Attribute Set 0x03: Charging Session -->
       <attribute id="0300" name="EvseSessionID" type="uint32" max="4294967295" default="4294967295" />
@@ -105,29 +106,29 @@ applicable to this document can be found in the LICENSE.md file.
     </attributes>
     <commands>
       <!-- Commands Received by Server -->
-      <command id="00" name="DisableEvse" required="true" />
-      <command id="01" name="EnableEvseCharging" required="true">
+      <command id="01" name="DisableEvse" required="true" />
+      <command id="02" name="EnableEvseCharging" required="true">
         <fields>
           <field name="EvseEnableTime" type="uint16" />
           <field name="MinimumChargeCurrent" type="uint16" />
           <field name="MaximumChargeCurrent" type="uint16" />
         </fields>
       </command>
-      <command id="02" name="EnableEvseDischarging">
+      <command id="03" name="EnableEvseDischarging">
         <fields>
           <field name="EvseEnableTime" type="uint16" />
           <field name="MaximumDischargeCurrent" type="uint16" />
         </fields>
       </command>
-      <command id="03" name="StartDiagnostics" />      
-      <command id="04" name="ReadEvents">
+      <command id="04" name="StartDiagnostics" />      
+      <command id="05" name="ReadEvents">
         <fields>
           <field name="EarliestEvseSessionID" type="uint32" />
           <field name="EarliestEventSequenceNumber" type="uint16" />
           <field name="NumberOfEvents" type="uint8" />
         </fields>
       </command>
-      <command id="05" name="EraseAllEvents" />
+      <command id="06" name="EraseAllEvents" />
     </commands>
   </server>
   <client>
