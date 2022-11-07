@@ -90,6 +90,7 @@ applicable to this document can be found in the LICENSE.md file.
     <xs:attribute name="sceneRequired" type="xs:boolean" default="false" />
     <xs:attribute name="required" type="xs:boolean" default="false" />
     <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />
+    <xs:attribute name="optionalIf" type="type:DependencyExpression" default="true" />
     <xs:attribute name="min" type="xs:integer" default="0" use="optional" />
     <xs:attribute name="max" type="xs:integer" use="optional" />
     <xs:attribute name="default" type="xs:string" />
@@ -131,6 +132,7 @@ applicable to this document can be found in the LICENSE.md file.
     <xs:attribute name="name" type="type:NamedElement" use="required" />
     <xs:attribute name="required" type="xs:boolean" default="false" />
     <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />
+    <xs:attribute name="optionalIf" type="type:DependencyExpression" default="true" />    
     <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
   

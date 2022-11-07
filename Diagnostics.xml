@@ -12,7 +12,7 @@ applicable to this document can be found in the LICENSE.md file.
 	xmlns:type="http://zigbee.org/zcl/types"
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-	id="0B05" revision="3" name="Diagnostics">
+	id="0B05" revision="4" name="Diagnostics">
   <classification role="utility" picsCode="DIAG" />
   <server>
     <attributes>
@@ -48,6 +48,9 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="011B" name="AverageMACRetryPerAPSMessageSent" type="uint16" max="65535" default="0" />
       <attribute id="011C" name="LastMessageLQI" type="uint8" max="255" default="0" />
       <attribute id="011D" name="LastMessageRSSI" type="int8" min="-127" max="127" default="0" />
+      <attribute id="011E" name="MacTxUcastChAccFail" type="uint16" max="65535" default="0" />
+      <attribute id="011F" name="MaxTxBcastChAccFail" type="uint16" max="65535" default="0" />
+      <attribute id="0120" name="MacTxUcastNoAck" type="uint16" max="65535" default="0" />
     </attributes>
   </server>
 </zcl:cluster>

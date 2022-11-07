@@ -1,3 +1,205 @@
+ZCL9
+----
+
+All Files
+=========
+- Update copyright to Connectivity Standards Alliance
+- CCB 3498: Asked that we consolidate the formatting of reportable attributes 
+  and caused a number of cluster revisions to increment without impact to XML
+
+BallastConfiguration.xml
+========================
+- CCB 3366: Write access is optional for attributes 0x0030 to 0x0033
+
+BarrierControl.xml
+==================
+- Cluster Revision updated, no changes which impact XML
+
+Basic.xml
+=========
+- Cluster Version updated
+- ZCLVersion default value updated to 9
+
+cluster.xsd
+===========
+- Adds optionalIf for attributes and commands, this was done to enable feature 
+  sets.
+
+ColorControl.xml
+================
+- Cluster Revision updated
+- CCB 2490: Remove write access to attributes 0x0030-0x003c
+
+DehumidificationControl.xml
+===========================
+- Cluster Revision updated, no changes which impact XML
+
+Diagnostics.xml
+===============
+- Cluster Revision updated
+- Diagnostics NFR: Added attributes 0x011e - 0x0120 which were approved in an 
+  NFR but missed in ZCL8
+
+DoorLock.xml
+============
+- Cluster Revision updated
+- CCB 2953: Adjustment to spec text, no XML change needed.
+- CCB 3054: Adjustment to spec text, no XML change needed.
+- CCB 3057: Door Lock Feature Map NFR merge
+- CCB 3228: Adjustment to spec text, no XML change needed.
+- CCB 3279: Adds Scene support to LockState (missing from table, but was 
+  specified in text)
+- CCB 3318: Adjustment to spec text, no XML change needed.
+- CCB 3472: Adjusts default values on attributes 0x0040-0x0047 to MS
+- CCB 3474: Adjustment to spec text, no XML change needed
+
+ElectricalMeasurement.xml
+=========================
+- Cluster Revision updated, no changes which impact XML
+
+EN50523ApplianceEventsAndAlerts.xml
+===================================
+- Cluster Revision updated, no changes which impact XML
+
+EN50523ApplianceStatistics.xml
+==============================
+- Cluster Revision updated, no changes which impact XML
+
+FanControl.xml
+==============
+- Cluster Revision updated, no changes which impact XML
+
+FlowControl.xml
+===============
+- Cluster Revision updated, no changes which impact XML
+
+Groups.xml
+==========
+- Cluster Revision updated, no changes which impact XML
+
+IlluminanceLevelSensing.xml
+===========================
+- Cluster Revision updated, no changes which impact XML
+
+IlluminanceMeasurement.xml
+==========================
+- Cluster Revision updated, no changes which impact XML
+
+KeepAlive.xml
+=============
+- Cluster Revision updated
+- CCB 3342: Changed the min for TCKeepAliveBase to 1, which was already applied
+  in XML, but is now noted.
+
+Level.xml
+=========
+- Cluster Revision updated
+- Adds Level Control feature set
+- CCB 2819: Rename Second "Stop" command to "Stop (with On/Off)" to mirror 
+  the rest of the "(with On/Off)" commands
+- CCB 3075: Adjusts MaxLevel default to 254
+- CCB 3168: Adjustment to spec text, no XML change needed.
+- CCB 3169: Adjusts MaxFrequency default to 65535
+- CCB 3424: Adjustment to spec text, no XML change needed.
+- CCB 3470: Adds non to range for OnTransitionTime & OffTransitionTime as well
+  as setting default to non
+- CCB 3575:
+
+LevelControlForLighting.xml
+===========================
+- Removed as it's been merged into Level.xml with the introduction of feature maps
+
+library.xml
+===========
+- removed LevelControlForLighting.xml and PulseWidthModulation.xml from includes
+  as they have been subsumed by Level.xml
+  
+OnOff.xml
+=========
+- Cluster Revision updated
+- Added Feature Map
+- CCB 3425: Adjustment to spec text, no XML change needed
+
+OnOffSwitchConfiguration.xml
+============================
+- Cluster Revision updated, no changes which impact XML
+
+PollControl.xml
+===============
+- Cluster Revision updated, no changes which impact XML
+
+PowerConfiguration.xml
+======================
+- Cluster Revision updated
+- Battery Alarms NFR
+- CCB 2813: Adjustment to spec tex, no XML change needed
+- CCB 3267: Enforce strict relation between threshold attributes
+- CCB 3419: Adjust BatteryVoltage and BatteryThresholds to have manufacturer 
+  specific defaults
+- CCB 3305: Adjust BatterySize and BatteryQuantity to be readonly
+
+PressureMeasurement.xml
+=======================
+- Cluster Revision updated, no changes which impact XML
+
+PumpConfigurationAndControl.xml
+===============================
+- Cluster Revision updated, no changes which impact XML
+
+PollControl.xml
+===============
+- Cluster Revision updated, no changes which impact XML
+
+README.md
+=========
+- Add details on optionalIf attribute for attribute and command defintions
+
+Scenes.xml
+==========
+- Cluster Revision updated, no changes which impact XML
+
+TemperatureMeasurement.xml
+==========================
+- Cluster Revision updated, no changes which impact XML
+
+Thermostat.xml
+==============
+- Cluster Revision updated
+- CCB 2602: Add Unknown and AutoSwing to ACLouverPosition options
+- CCB 2915: Adjust ranges to be based on other range limits
+- CCB 3153: Adjustmnet to spec text, no XML change needed
+- CCB 3154: Add TemperatureSetpointHoldTimeRemaining
+- CCB 3155: Adjustment to spec text, no XML change needed
+- CCB 3348: Adjust defaults for LocalTemperature and OutdoorTemperature to non
+- CCB 3412: Adjustment to spec text, no XML change needed
+
+ThermostatUserInterface.xml
+===========================
+- Cluster Revision updated, no changes which impact XML
+
+Time.xml
+========
+- Defaults for most attributes updated to non
+
+TouchlinkCommissioning.xml
+==========================
+- Cluster Revision updated, no changes which impact XML
+
+type.xsd
+========
+- Adds required, requiredIf, and optionalIf to bitmaps and restrictions.
+
+WindowCovering.xml
+==================
+- Cluster Revision updated
+- Feature Map support
+- CCB 1846: Deprecated IntermediateSetpointsLift & IntermediateSetpointsTilt
+- CCB 3016: Adjustment to spec text, no XML change needed
+- CCB 3058: Require GoToLiftPercentage and GoToTiltPercentage in closed loop.
+- CCB 3344: Change CurrentPositionLiftPercentage and 
+  CurrentPositionTiltPercentage to use non as the default
+
+
 ZCL8
 ----
 

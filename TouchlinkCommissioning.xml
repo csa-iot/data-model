@@ -12,7 +12,9 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="1000" revision="3" name="TouchlinkCommissioning">
+  id="1000" revision="4" name="TouchlinkCommissioning">
+  <!-- Changes in version 4 are in descriptive / prescriptive text but do not
+  affect the materials which are encoded in this XML document -->  
   <classification role="utility" picsCode="TL" />
   
   <type:type short="TLKeyIndex" name="TLKeyIndex" id="20" inheritsFrom="uint8">
