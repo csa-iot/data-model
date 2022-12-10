@@ -59,7 +59,11 @@ applicable to this document can be found in the LICENSE.md file.
       <command id="00" name="ZoneStatusChangeNotification" required="true" >
         <fields>
           <field name="ZoneStatus" type="IasZoneStatus"/>
-          <field name="ExtendedStatus" type="map8"/>
+          <field name="ExtendedStatus" type="map8">
+              <bitmap>
+                <element name="Reserved" type="bool" mask="ff" />
+            </bitmap>
+          </field>
           <field name="ZoneID" type="uint8"/>
           <field name="Delay" type="uint16"/>
         </fields>
