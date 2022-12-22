@@ -78,14 +78,14 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="000D" name="CircuitCapacity" type="uint16" />
       
       <!-- Attribute Set 0x01: Reading Information -->
-      <attribute id="0100" name="ChargingVoltage" type="uint16" required="true" max="65535" />
-      <attribute id="0101" name="ChargingCurrent" type="uint16" required="true" max="65535" />
+      <attribute id="0100" name="ChargingVoltage" type="uint16" required="true" default="65535" max="65535" />
+      <attribute id="0101" name="ChargingCurrent" type="uint16" required="true" default="65535" max="65535" />
       <attribute id="0102" name="ChargingPower" type="uint32" max="4294967295" />
       <attribute id="0103" name="LineFrequency" type="uint16" max="65535" />
       <attribute id="0104" name="EvseEnergySummation" type="int48" min="-140737488355328" max="140737488355327" />
       <attribute id="0105" name="DischargingPower" type="uint32" max="4294967295" />
-      <attribute id="0106" name="DischargingCurrent" type="uint16"  max="65535" />
-      
+      <attribute id="0106" name="DischargingCurrent" type="uint16" max="65535" />
+
       <!-- Attribute Set 0x02: Formatting -->
       <attribute id="0200" name="VoltageMultiplier" type="uint16" required="true" default="1" min="1" max="65535" />
       <attribute id="0201" name="VoltageDivisor" type="uint16" required="true" default="1" min="1" max="65535" />
@@ -95,14 +95,14 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0205" name="PowerDivisor" type="uint16" default="1" min="1" max="65535" />
       <attribute id="0206" name="EnergyMultiplier" type="uint16" default="1" min="1" max="65535" />
       <attribute id="0207" name="EnergyDivisor" type="uint16" default="1" min="1" max="65535" />
-      
+
       <!-- Attribute Set 0x03: Charging Session -->
       <attribute id="0300" name="EvseSessionID" type="uint32" max="4294967295" default="4294967295" />
-      <attribute id="0301" name="EventSequenceNumber" type="uint16" max="65535" />
-      <attribute id="0302" name="EvseSessionDuration" type="uint32" max="4294967295" />
-      <attribute id="0303" name="EvseSessionEnergyDelivered" type="uint32" max="281474976710655" />
-      <attribute id="0304" name="EvseSessionEnergyReceived" type="uint32" max="281474976710655" />
-      <attribute id="0305" name="EvseSessionMaximumCurrent" type="uint16" reportRequired="true" />
+      <attribute id="0301" name="EventSequenceNumber" type="uint16" default="1" max="65535" />
+      <attribute id="0302" name="EvseSessionDuration" type="uint32" default="0" max="4294967295" />
+      <attribute id="0303" name="EvseSessionEnergyDelivered" type="uint32" default="0" max="281474976710655" />
+      <attribute id="0304" name="EvseSessionEnergyReceived" type="uint32" default="0" max="281474976710655" />
+      <attribute id="0305" name="EvseSessionMaximumCurrent" type="uint16" default="65535" reportRequired="true" />
     </attributes>
     <commands>
       <!-- Commands Received by Server -->
@@ -120,7 +120,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="MaximumDischargeCurrent" type="uint16" />
         </fields>
       </command>
-      <command id="04" name="StartDiagnostics" />      
+      <command id="04" name="StartDiagnostics" />
       <command id="05" name="ReadEvents">
         <fields>
           <field name="EarliestEvseSessionID" type="uint32" />
