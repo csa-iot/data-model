@@ -373,7 +373,7 @@ applicable to this document can be found in the LICENSE.md file.
       <type:enumeration name="SOFTWARE_FAILURE" value="c1" /><!-- 0xc1 -->
       <type:enumeration name="CALIBRATION_ERROR" value="c2" /><!-- 0xc2 -->
       <type:enumeration name="UNSUPPORTED_CLUSTER" value="c3" /><!-- 0xc3 -->
-      <type:enumeration name="LIMIT_REACHED" value="c4" /><!-- 0xc4 -->
+      <type:enumeration name="LIMIT_REACHED" value="c4" deprecated="true"/><!-- 0xc4 -->
     </restriction>
   </type:type>
 
