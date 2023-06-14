@@ -248,7 +248,25 @@ A default value of non indicates that the invalid value for the data type should
 
 Commands
 --------
-The commands specified in a specific side of the cluster represent the commands received by that side of the cluster. Command definitions look like the following, which would be located on the server side of the groups cluster. 
+The commands specified in a specific side of the cluster represent the commands received by that side of the cluster.
+Following the example below, if the specification does mention "commands generated" those SHALL be listed in the opposite side.
+
+```xml
+<server>
+  <commands>
+    <command id="00" name="ServerReceivedCommand" required="true" />
+    <command id="01" name="ClientGeneratedCommand" required="true" />
+  </commands>
+</server>
+<client>
+  <commands>
+    <command id="00" name="ClientReceivedCommand" required="true" />
+    <command id="01" name="ServerGeneratedCommand" required="true" />
+  </commands>
+</client>
+```
+
+Command definitions look like the following, which would be located on the server side of the groups cluster. 
 
 ```xml
 <commands>
