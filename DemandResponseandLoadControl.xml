@@ -1,0 +1,176 @@
+﻿<?xml version="1.0"?>
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
+  id="0701" revision="2" name="DemandResponseAndLoadControl">
+  <classification role="application" picsCode="DRLC" primaryTransaction="1"/>
+  
+  <type:type short="DRLCDeviceClass" name="DRLCDeviceClass" inheritsFrom="map16" id="19">
+    <bitmap>
+      <element type="bool" mask="0001" name="HVACCompressorOrFurnace" />
+      <element type="bool" mask="0002" shiftRight="1" name="StripHeatersBaseboardHeaters" />
+      <element type="bool" mask="0004" shiftRight="2" name="WaterHeater" />
+      <element type="bool" mask="0008" shiftRight="3" name="PoolPumpSpaJacuzzi" />
+      <element type="bool" mask="0010" shiftRight="4" name="SmartAppliances" />
+      <element type="bool" mask="0020" shiftRight="5" name="IrrigationPump" />
+      <element type="bool" mask="0040" shiftRight="6" name="ManagedCommercialIndustrialLoads" />
+      <element type="bool" mask="0080" shiftRight="7" name="SimpleMiscLoads" />
+      <element type="bool" mask="0100" shiftRight="8" name="ExteriorLighting" />
+      <element type="bool" mask="0200" shiftRight="9" name="InteriorLighting" />
+      <element type="bool" mask="0400" shiftRight="10" name="ElectricVehicle" />
+      <element type="bool" mask="0800" shiftRight="11" name="GenerationSystems" />
+    </bitmap>
+  </type:type>
+  
+  <type:type short="DRLCCancelControl" name="DRLCCancelControl" inheritsFrom="map8" id="18">
+    <bitmap>
+      <element mask="01" name="UseOriginalRandomizationSetting" type="bool" />
+    </bitmap>
+  </type:type>
+  
+  <type:type short="DRLCEventControl" name="DRLCEventControl" inheritsFrom="map8" id="18">
+    <bitmap>
+      <element mask="01" name="RandomizeStartTime" type="bool" />
+      <element mask="02" shiftRight="1" name="RandomizeDuration" type="bool" />
+    </bitmap>  
+  </type:type>
+    
+  <server>
+    <commands>
+      <command id="00" name="ReportEventStatus" required="true">
+        <fields>
+          <field name="IssuerEventID" type="uint32"/>
+          <field name="EventStatus" type="enum8">
+            <!-- Adjusted to enum8 as it doesn't get encoded over the wire but should be an enum -->
+            <restriction>
+              <type:enumeration name="LoadControlEventReceived" value="01" />
+              <type:enumeration name="EventStarted" value="02" />
+              <type:enumeration name="EventCompleted" value="03" />
+              <type:enumeration name="UserOptedOut" value="04" />
+              <type:enumeration name="UserOptedIn" value="05" />
+              <type:enumeration name="EventCancelled" value="06" />
+              <type:enumeration name="EventSuperseded" value="07" />
+              <type:enumeration name="PartiallyCompletedWithOptOut" value="08" />
+              <type:enumeration name="PartiallyCompletedWithOptIn" value="09" />
+              <type:enumeration name="EventCompletedWithoutParticipation" value="0a" />
+              <type:enumeration name="RejectedInvalidCancelCommandDefault" value="f8" />
+              <type:enumeration name="RejectedInvalidCancelCommandEffectiveTime" value="f9" />
+              <type:enumeration name="RejectedExpiredEvent" value="fb"/>
+              <type:enumeration name="RejectedInvalidCancelCommandEventUndefined" value="fd"/>
+              <type:enumeration name="RejectedLoadControlEventCommand" value="fe"/>
+            </restriction>
+          </field>
+          <field name="EventStatusTime" type="UTC">
+            <restriction>
+              <type:minExclusive value="0"/>
+            </restriction>
+          </field>
+          <field name="CriticalityLevelApplied" type="uint8"/>
+          <!-- TODO: Figure these values out since the unused value indicates they should be signed, 
+                and the matching values in the load control event are signed. -->
+          <!-- TODO: Ask Ian -->
+          <field name="CoolingTemperatureSetPointApplied" type="uint16" default="non"/>
+          <field name="HeatingTemperatureSetPointApplied" type="uint16" default="non"/>
+          
+          <field name="AverageLoadAdjustmentPercentageApplied" type="int8" default="NaS" />
+          <field name="DutyCycleApplied" type="uint8" default="non" />
+          <field name="EventControl" type="DRLCEventControl" />
+          <field name="SignatureType" type="uint8">
+            <restriction>
+              <type:enumeration name="NoSignature" value="00"/>
+              <type:enumeration name="ECDSA" value="01" />
+            </restriction>
+          </field>
+          <field name="Signature" type="opaque">
+            <restriction>
+              <type:length value="42" />
+            </restriction>
+          </field>
+        </fields>
+      </command>
+      <command id="01" name="GetScheduledEvents" required="true">
+        <fields>
+          <field name="StartTime" type="UTC"/>
+          <field name="NumberOfEvents" type="uint8"/>
+          <field name="IssuerEventID" type="uint32" default="ffffffff"/>
+        </fields>
+      </command>
+    </commands>
+  </server>
+  <client>
+    <attributes>
+      <attribute id="0000" name="UtilityEnrollmentGroup" type="uint8" writable="true" required="true" max="255" default="0"/>
+      <attribute id="0001" name="StartRandomizationMinutes" type="uint8" writable="true" required="true" max="60" default="30"/>
+      <attribute id="0002" name="DurationRandomizationMinutes" type="uint8" writable="true" required="true" max="60" default="0"/>
+      <attribute id="0003" name="DeviceClassValue" type="uint16" writable="true" required="true" max="65535">
+        <!-- Note: It is understood that this is a uint16 which is being used as a bitmap. 
+             To ensure backwards compatibility this cannot be changed. -->
+        <bitmap>
+          <element type="bool" mask="0001" name="HVACCompressorOrFurnace" />
+          <element type="bool" mask="0002" shiftRight="1" name="StripHeatersBaseboardHeaters" />
+          <element type="bool" mask="0004" shiftRight="2" name="WaterHeater" />
+          <element type="bool" mask="0008" shiftRight="3" name="PoolPumpSpaJacuzzi" />
+          <element type="bool" mask="0010" shiftRight="4" name="SmartAppliances" />
+          <element type="bool" mask="0020" shiftRight="5" name="IrrigationPump" />
+          <element type="bool" mask="0040" shiftRight="6" name="ManagedCommercialIndustrialLoads" />
+          <element type="bool" mask="0080" shiftRight="7" name="SimpleMiscLoads" />
+          <element type="bool" mask="0100" shiftRight="8" name="ExteriorLighting" />
+          <element type="bool" mask="0200" shiftRight="9" name="InteriorLighting" />
+          <element type="bool" mask="0400" shiftRight="10" name="ElectricVehicle" />
+          <element type="bool" mask="0800" shiftRight="11" name="GenerationSystems" />
+        </bitmap>
+      </attribute>
+    </attributes>
+    <commands>
+      <command id="00" name="LoadControlEvent" required="true">
+        <fields>
+          <field name="IssuerEventID" type="uint32" />
+          <field name="DeviceClass" type="DRLCDeviceClass"/>
+          <field name="UtilityEnrollmentGroup" type="uint8"/>
+          <field name="StartTime" type="UTC"/>
+          <field name="DurationInMinutes" type="uint16">
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="1440" />
+            </restriction>
+          </field>
+          <field name="CriticalityLevel" type="uint8">
+            <restriction>
+              <type:minInclusive value="1"/>
+              <type:maxInclusive value="15"/>
+            </restriction>
+          </field>
+          <field name="CoolingTemperatureOffset" type="uint8" default="non" />
+          <field name="HeatingTemperatureOffset" type="uint8" default="non" />
+          <field name="CoolingTemperatureSetPoint" type="int16" default="NaS" />
+          <field name="HeatingTemperatureSetPoint" type="int16" default="NaS" />
+          <field name="AverageLoadAdjustmentPercentage" type="int8" default="NaS" />
+          <field name="DutyCycle" type="uint8" default="non">
+            <restriction>
+              <type:minInclusive value="0" />
+              <type:maxInclusive value="100" />
+              <type:invalid value="255"/>
+            </restriction>
+          </field>
+          <field name="EventControl" type="DRLCEventControl" />
+        </fields>
+      </command>
+      <command id="01" name="CancelLoadControlEvent" required="true">
+        <fields>
+          <field name="IssuerEventID" type="uint32" />
+          <field name="DeviceClass" type="DRLCDeviceClass" />
+          <field name="UtilityEnrollmentGroup" type="uint8" />
+          <field name="CancelControl" type="DRLCCancelControl" />
+          <field name="EffectiveTime" type="UTC" />
+        </fields>
+      </command>
+      <command id="02" name="CancelAllLoadControlEvents" required="true">
+        <fields>
+          <field name="CancelControl" type="DRLCCancelControl" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</zcl:cluster>

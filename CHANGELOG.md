@@ -50,6 +50,7 @@ ConcentrationMeasurement.xml
 
 DemandResponseAndLoadControl.xml
 ================================
+- NEW
 
 DeviceManagement.xml
 ====================
@@ -128,6 +129,10 @@ Level.xml
 LevelControlForLighting.xml
 ===========================
 
+Messaging.xml
+========================
+- NEW
+
 MeterIdentification.xml
 =======================
 - Validated scraped XML.
@@ -175,9 +180,6 @@ Scenes.xml
 - CCB 3026: Change already reflected in XML, no further XML change needed.
 - Updated cluster revision number
 
-SmartEnergyMessaging.xml
-========================
-
 SmartEnergyTunneling.xml
 ========================
 
@@ -216,6 +218,7 @@ TouchlinkCommissioning.xml
 type.xsd
 ========
 - added default and defaultRef for command fields.
+- added capability to deprecate enumerations
 
 WindowCovering.xml
 ==================

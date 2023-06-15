@@ -263,6 +263,7 @@ applicable to this document can be found in the LICENSE.md file.
     </restriction>
   </type:type>
   <!-- Opaque (not defined since there is no ID -->
+  <type:type id="ff" short="opaque" name="Opaque" discrete="true" />
   <!-- Unknown -->
   <type:type id="ff" short="unk" name="Unknown" />
 
@@ -324,6 +325,7 @@ applicable to this document can be found in the LICENSE.md file.
       <type:enumeration name="bacOID" value="ea" />
       <type:enumeration name="EUI64" value="f0" />
       <type:enumeration name="key128" value="f1" />
+      <type:enumeration name="opaque" value="ff"/>
       <type:enumeration name="unk" value="ff" />
     </restriction>
   </type:type>
@@ -429,6 +431,167 @@ applicable to this document can be found in the LICENSE.md file.
     </bitmap>
   </type:type>
 
+  <!-- Common Smart Energy Types -->
+  <type:type short="SETrailingDigit" name="SETrailingDigit" id="18" inheritsFrom="map8">
+    <bitmap>
+      <element name="DigitsToRightOfDecimal" type="uint8" mask="F0" shiftRight="4" />
+    </bitmap>
+  </type:type>  
+  
+  <type:type short="NonMirroredEnergyCommodityType" name="NonMirroredEnergyCommodityType" id="18" inheritsFrom="map8">
+    <restriction>
+      <type:enumeration value="00" name="Electric" />
+      <type:enumeration value="01" name="Gas" />
+      <type:enumeration value="02" name="Water" />
+      <type:enumeration value="03" name="Thermal" deprecated="true" />
+      <type:enumeration value="04" name="Pressure" />
+      <type:enumeration value="05" name="Heat" />
+      <type:enumeration value="06" name="Cooling" />
+      <type:enumeration value="07" name="EndUseMeasurementDevice" />
+      <type:enumeration value="08" name="PVGeneration" />
+      <type:enumeration value="09" name="WindTurbineGeneration" />
+      <type:enumeration value="0a" name="WaterTurbineGeneration" />
+      <type:enumeration value="0b" name="MicroGeneration" />
+      <type:enumeration value="0c" name="SolarHotWaterGeneration" />
+      <type:enumeration value="0d" name="ElectricMeteringElementOrPhase1" />
+      <type:enumeration value="0e" name="ElectricMeteringElementOrPhase2" />
+      <type:enumeration value="0f" name="ElectricMeteringElementOrPhase3" />
+    </restriction>
+  </type:type>  
+  
+  <type:type short="EnergyCommodityType" name="EnergyCommodityType" id="18" inheritsFrom="NonMirroredEnergyCommodityType">
+    <restriction>
+      <type:enumeration value="7f" name="MirroredElectric" />
+      <type:enumeration value="80" name="MirroredGas" />
+      <type:enumeration value="81" name="MirroredWater" />
+      <type:enumeration value="82" name="MirroredThermal" deprecated="true" />
+      <type:enumeration value="83" name="MirroredPressure" />
+      <type:enumeration value="84" name="MirroredHeat" />
+      <type:enumeration value="85" name="MirroredCooling" />
+      <type:enumeration value="86" name="MirroredEndUseMeasurementDevice" />
+      <type:enumeration value="87" name="MirroredPVGeneration" />
+      <type:enumeration value="88" name="MirroredWindTurbineGeneration" />
+      <type:enumeration value="89" name="MirroredWaterTurbineGeneration" />
+      <type:enumeration value="8a" name="MirroredMicroGeneration" />
+      <type:enumeration value="8b" name="MirroredSolarHotWaterGeneration" />
+      <type:enumeration value="8c" name="MirroredElectricMeteringElementOrPhase1" />
+      <type:enumeration value="8d" name="MirroredElectricMeteringElementOrPhase2" />
+      <type:enumeration value="8e" name="MirroredElectricMeteringElementOrPhase3" />
+    </restriction>
+  </type:type>  
+  
+  <type:type short="EnergyPureBinaryUnitOfMeasure" name="EnergyPureBinaryUnitOfMeasure" id="18" inheritsFrom="map8">
+    <restriction>
+      <type:enumeration value="00" name="kW" />
+      <type:enumeration value="01" name="CubicMeters" />
+      <type:enumeration value="02" name="CubicFeet" />
+      <type:enumeration value="03" name="CentumCubicFeet" />
+      <type:enumeration value="04" name="USGallons" />
+      <type:enumeration value="05" name="ImperialGallons" />
+      <type:enumeration value="06" name="BTU" />
+      <type:enumeration value="07" name="Liter" />
+      <type:enumeration value="08" name="kPAGauge" />
+      <type:enumeration value="09" name="kPAAbsolute" />
+      <type:enumeration value="0a" name="mcf" />
+      <type:enumeration value="0b" name="Unitless" />
+      <type:enumeration value="0c" name="MJ" />
+      <type:enumeration value="0d" name="kVar" />
+    </restriction>
+  </type:type>
+  
+  <type:type short="EnergyUnitOfMeasure" name="EnergyUnitOfMeasure" id="18" inheritsFrom="EnergyPureBinaryUnitOfMeasure">
+    <restriction>
+      <type:enumeration value="80" name="BCD_kW" />
+      <type:enumeration value="81" name="BCD_CubicMeters" />
+      <type:enumeration value="82" name="BCD_CubicFeet" />
+      <type:enumeration value="83" name="BCD_CentumCubicFeet" />
+      <type:enumeration value="84" name="BCD_USGallons" />
+      <type:enumeration value="85" name="BCD_ImperialGallons" />
+      <type:enumeration value="86" name="BCD_BTU" />
+      <type:enumeration value="87" name="BCD_Liter" />
+      <type:enumeration value="88" name="BCD_kPAGauge" />
+      <type:enumeration value="89" name="BCD_kPAAbsolute" />
+      <type:enumeration value="8a" name="BCD_mcf" />
+      <type:enumeration value="8b" name="BCD_Unitless" />
+      <type:enumeration value="8c" name="BCD_MJ" />
+      <type:enumeration value="8d" name="BCD_kVar" />
+    </restriction>
+  </type:type>
+  
+  <type:type short="SERegisterTier" name="SERegisterTier" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="00" name="NoTier" />
+      <type:enumeration value="01" name="CurrentTier1SummationDelivered" />
+      <type:enumeration value="02" name="CurrentTier2SummationDelivered" />
+      <type:enumeration value="03" name="CurrentTier3SummationDelivered" />
+      <type:enumeration value="04" name="CurrentTier4SummationDelivered" />
+      <type:enumeration value="05" name="CurrentTier5SummationDelivered" />
+      <type:enumeration value="06" name="CurrentTier6SummationDelivered" />
+      <type:enumeration value="07" name="CurrentTier7SummationDelivered" />
+      <type:enumeration value="08" name="CurrentTier8SummationDelivered" />
+      <type:enumeration value="09" name="CurrentTier9SummationDelivered" />
+      <type:enumeration value="0a" name="CurrentTier10SummationDelivered" />
+      <type:enumeration value="0b" name="CurrentTier11SummationDelivered" />
+      <type:enumeration value="0c" name="CurrentTier12SummationDelivered" />
+      <type:enumeration value="0d" name="CurrentTier13SummationDelivered" />
+      <type:enumeration value="0e" name="CurrentTier14SummationDelivered" />
+      <type:enumeration value="0f" name="UseExtendedRegisterTier" />
+    </restriction>  
+  </type:type>
+  
+  <type:type short="SEGenerationTier" name="SEGenerationTier" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration value="01" name="CurrentTier1SummationReceived" />
+      <type:enumeration value="02" name="CurrentTier2SummationReceived" />
+      <type:enumeration value="03" name="CurrentTier3SummationReceived" />
+      <type:enumeration value="04" name="CurrentTier4SummationReceived" />
+      <type:enumeration value="05" name="CurrentTier5SummationReceived" />
+      <type:enumeration value="06" name="CurrentTier6SummationReceived" />
+      <type:enumeration value="07" name="CurrentTier7SummationReceived" />
+      <type:enumeration value="08" name="CurrentTier8SummationReceived" />
+      <type:enumeration value="09" name="CurrentTier9SummationReceived" />
+      <type:enumeration value="0a" name="CurrentTier10SummationReceived" />
+      <type:enumeration value="0b" name="CurrentTier11SummationReceived" />
+      <type:enumeration value="0c" name="CurrentTier12SummationReceived" />
+      <type:enumeration value="0d" name="CurrentTier13SummationReceived" />
+      <type:enumeration value="0e" name="CurrentTier14SummationReceived" />
+      <type:enumeration value="0f" name="CurrentTier15SummationReceived" />
+      <type:enumeration value="10" name="CurrentTier16SummationReceived" />
+      <type:enumeration value="11" name="CurrentTier17SummationReceived" />
+      <type:enumeration value="12" name="CurrentTier18SummationReceived" />
+      <type:enumeration value="13" name="CurrentTier19SummationReceived" />
+      <type:enumeration value="14" name="CurrentTier20SummationReceived" />
+      <type:enumeration value="15" name="CurrentTier21SummationReceived" />
+      <type:enumeration value="16" name="CurrentTier22SummationReceived" />
+      <type:enumeration value="17" name="CurrentTier23SummationReceived" />
+      <type:enumeration value="18" name="CurrentTier24SummationReceived" />
+      <type:enumeration value="19" name="CurrentTier25SummationReceived" />
+      <type:enumeration value="1a" name="CurrentTier26SummationReceived" />
+      <type:enumeration value="1b" name="CurrentTier27SummationReceived" />
+      <type:enumeration value="1c" name="CurrentTier28SummationReceived" />
+      <type:enumeration value="1d" name="CurrentTier29SummationReceived" />
+      <type:enumeration value="1e" name="CurrentTier30SummationReceived" />
+      <type:enumeration value="1f" name="CurrentTier31SummationReceived" />
+      <type:enumeration value="20" name="CurrentTier32SummationReceived" />
+      <type:enumeration value="21" name="CurrentTier33SummationReceived" />
+      <type:enumeration value="22" name="CurrentTier34SummationReceived" />
+      <type:enumeration value="23" name="CurrentTier35SummationReceived" />
+      <type:enumeration value="24" name="CurrentTier36SummationReceived" />
+      <type:enumeration value="25" name="CurrentTier37SummationReceived" />
+      <type:enumeration value="26" name="CurrentTier38SummationReceived" />
+      <type:enumeration value="27" name="CurrentTier39SummationReceived" />
+      <type:enumeration value="28" name="CurrentTier40SummationReceived" />
+      <type:enumeration value="29" name="CurrentTier41SummationReceived" />
+      <type:enumeration value="2a" name="CurrentTier42SummationReceived" />
+      <type:enumeration value="2b" name="CurrentTier43SummationReceived" />
+      <type:enumeration value="2c" name="CurrentTier44SummationReceived" />
+      <type:enumeration value="2d" name="CurrentTier45SummationReceived" />
+      <type:enumeration value="2e" name="CurrentTier46SummationReceived" />
+      <type:enumeration value="2f" name="CurrentTier47SummationReceived" />
+      <type:enumeration value="30" name="CurrentTier48SummationReceived" />
+    </restriction>  
+  </type:type>
+
   <xi:include href="global.xml" parse="xml" />
   <xi:include href="Basic.xml" parse="xml" />
   <xi:include href="PowerConfiguration.xml" parse="xml" />
@@ -476,6 +639,11 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="MeterIdentification.xml" parse="xml" />
   <xi:include href="OTAUpgrade.xml" parse="xml" />
   <xi:include href="ConcentrationMeasurement.xml" parse="xml"/>
+  
+  <xi:include href="Price.xml" parse="xml" />
+  <xi:include href="DemandResponseandLoadControl.xml" parse="xml" />
+  <xi:include href="Metering.xml" parse="xml" />
+  <xi:include href="Messaging.xml" parse="xml" />
   
   <xi:include href="EN50523ApplianceEventsAndAlerts.xml" parse="xml" />
   <xi:include href="EN50523ApplianceStatistics.xml" parse="xml" />
