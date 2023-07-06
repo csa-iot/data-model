@@ -126,12 +126,14 @@ applicable to this document can be found in the LICENSE.md file.
     <xs:sequence>
       <xs:element name="fields" type="type:CommandFieldList" minOccurs="0" maxOccurs="1" />
       <xs:element name="tag" type="zcl:TagRef" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="responses" type="zcl:CommandResponseList" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
     <xs:attribute name="id" type="type:CommandId" use="required" />
     <xs:attribute name="name" type="type:NamedElement" use="required" />
     <xs:attribute name="required" type="xs:boolean" default="false" />
     <xs:attribute name="requiredIf" type="type:DependencyExpression" default="false" />
     <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="responseOnly" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
   
   <xs:complexType name="DerivedCommand">
@@ -152,6 +154,21 @@ applicable to this document can be found in the LICENSE.md file.
   <xs:complexType name="DerivedCommandList">
     <xs:sequence>
       <xs:element name="command" type="zcl:DerivedCommand" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="CommandApplicationResponse">
+    <xs:attribute name="ref" type="type:NamedElement" use="required" />
+  </xs:complexType>
+  
+  <xs:complexType name="CommandStatusResponse">
+    <xs:attribute name="status" type="xs:string" use="required" />
+  </xs:complexType>
+  
+  <xs:complexType name="CommandResponseList">
+    <xs:sequence>
+      <xs:element name="appResponse" type="zcl:CommandApplicationResponse" minOccurs="0" maxOccurs="1" />
+      <xs:element name="statusResponse" type="zcl:CommandStatusResponse" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
 
@@ -314,5 +331,30 @@ applicable to this document can be found in the LICENSE.md file.
       <xs:selector xpath=".//zcl:cluster/classification | .//zcl:derivedCluster/classification" />
       <xs:field xpath="@picsCode" />
     </xs:unique>
+    
+    <!-- Command Response Requirements -->
+    <xs:keyref name="serverResponseRef" refer="zcl:clientCommandName">
+      <xs:selector xpath=".//zcl:cluster/server/commands/command/responses/appResponse" />
+      <xs:field xpath="@ref" />
+    </xs:keyref>
+    
+    <!-- 
+    <xs:keyref name="clientResponseRef" refer="zcl:serverCommandName">
+      <xs:selector xpath=".//zcl:cluster/client/commands/command/responses/appResponse" />
+      <xs:field xpath="@ref" />
+    </xs:keyref>
+    -->
+    
+    <xs:key name="clientCommandName">
+      <xs:selector xpath=".//zcl:cluster/client/commands/command" />
+      <xs:field xpath="@name" />
+    </xs:key>
+    <!-- 
+    <xs:key name="serverCommandName">
+      <xs:selector xpath=".//zcl:cluster/server/commands/command" />
+      <xs:field xpath="@name" />
+    </xs:key>
+    -->
+    
   </xs:element>
 </xs:schema>
