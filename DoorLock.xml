@@ -11,10 +11,10 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0101" revision="3" name="DoorLock">
+  id="0101" revision="5" name="DoorLock">
   <classification role="application" picsCode="DRLK" primaryTransaction="2" />
 
-  <type:type short="DrlkUserStatus" name="DrlkUserStatus" id="20" inheritsFrom="uint8">
+  <type:type short="DrlkUserStatus" name="DrlkUserStatus" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="00" name="Available" />
       <type:enumeration value="01" name="OccupiedEnabled" />
@@ -67,7 +67,7 @@ applicable to this document can be found in the LICENSE.md file.
     </bitmap>
   </type:type>
 
-  <type:type short="DrlkPassFailStatus" name="DrlkPassFailStatus" id="20" inheritsFrom="uint8">
+  <type:type short="DrlkPassFailStatus" name="DrlkPassFailStatus" id="30" inheritsFrom="enum8">
     <restriction>
       <type:enumeration value="00" name="Pass" />
       <type:enumeration value="01" name="Fail" />
@@ -86,7 +86,7 @@ applicable to this document can be found in the LICENSE.md file.
   <type:type short="DrlkOperEventSource" name="DrlkOperationEventSource" id="20" inheritsFrom="uint8">
     <restriction>
       <type:enumeration name="Keypad" value="00"/>
-      <type:enumeration name="RF" value="01"/>
+      <type:enumeration name="Remote" value="01"/>
       <type:enumeration name="Manual" value="02"/>
       <type:enumeration name="RFID" value="03"/>
       <type:enumeration name="Indeterminate" value="FF"/>
@@ -134,11 +134,11 @@ applicable to this document can be found in the LICENSE.md file.
 
       <!--  Basic Information Attribute Set -->
 
-      <attribute id="0000" name="LockState" type="enum8" reportRequired="true" required="true" >
+      <attribute id="0000" name="LockState" type="enum8" reportRequired="true" sceneRequired="true" required="true" >
         <restriction>
-          <type:enumeration value="00" name="NotFullyLocked" />
-          <type:enumeration value="01" name="Locked" />
-          <type:enumeration value="02" name="Unlocked" />
+          <type:enumeration value="00" name="NotFullyLocked" required="true" />
+          <type:enumeration value="01" name="Locked" required="true" />
+          <type:enumeration value="02" name="Unlocked" required="true" />
           <type:enumeration value="FF" name="Undefined" />
         </restriction>
       </attribute>
@@ -158,48 +158,38 @@ applicable to this document can be found in the LICENSE.md file.
         </restriction>
       </attribute>
       <attribute id="0002" name="ActuatorEnabled" type="bool" required="true" />
-      <attribute id="0003" name="DoorState" type="enum8" reportRequired="true" >
+      <attribute id="0003" name="DoorState" type="enum8" reportRequired="true" requiredIf="FeatureMap.OpenClosed" >
         <restriction>
-          <type:enumeration value="00" name="Open" />
-          <type:enumeration value="01" name="Closed" />
-          <type:enumeration value="02" name="ErrorJammed" />
-          <type:enumeration value="03" name="ErrorForcedOpen" />
-          <type:enumeration value="04" name="ErrorUnspecified" />
-          <type:enumeration value="FF" name="Undefined" />
+          <type:enumeration value="00" name="Open" requiredIf="FeatureMap.OpenClosed" />
+          <type:enumeration value="01" name="Closed" requiredIf="FeatureMap.OpenClosed" />
+          <type:enumeration value="02" name="ErrorJammed" optionalIf="FeatureMap.OpenClosed"/>
+          <type:enumeration value="03" name="ErrorForcedOpen" optionalIf="FeatureMap.OpenClosed"/>
+          <type:enumeration value="04" name="ErrorUnspecified" requiredIf="FeatureMap.OpenClosed"/>
+          <type:enumeration value="FF" name="Undefined" optionalIf="FeatureMap.OpenClosed" />
         </restriction>
       </attribute>
-      <attribute id="0004" name="DoorOpenEvents" type="uint32" writable="true" />
-      <attribute id="0005" name="DoorClosedEvents" type="uint32" writable="true" />
-      <attribute id="0006" name="OpenPeriod" type="uint16" writable="true" />
+      <attribute id="0004" name="DoorOpenEvents" type="uint32" writable="true" optionalIf="FeatureMap.OpenClosed" />
+      <attribute id="0005" name="DoorClosedEvents" type="uint32" writable="true" optionalIf="FeatureMap.OpenClosed" />
+      <attribute id="0006" name="OpenPeriod" type="uint16" writable="true" optionalIf="FeatureMap.OpenClosed" />
 
       <!--  User / PIN / Schedule Information Attribute Set -->
 
-      <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" default="0" />
-      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" >
-        <restriction>
-          <!--
-            ZCL states that NumberOfTotalUsersSupported is equal to the higher of subsequent
-            ...PINUsers... and ...RFIDUsers... attribute values. But this constraint is removed
-            in feature set ballot for door lock.
-          -->
-          <type:minInclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
-          <type:maxInclusiveExpression expression="max(NumberOfPINUsersSupported, NumberOfRFIDUsersSupported)" />
-        </restriction>
-      </attribute>
-      <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" default="0" />
-      <attribute id="0013" name="NumberOfRFIDUsersSupported" type="uint16" default="0" />
-      <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" />
-      <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" default="0" />
-      <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" default="0" />
+      <attribute id="0010" name="NumberOfLogRecordsSupported" type="uint16" default="0" requiredIf="FeatureMap.Logging"  />
+      <attribute id="0011" name="NumberOfTotalUsersSupported" type="uint16" default="0" requiredIf="FeatureMap.PIN or FeatureMap.RFID or FeatureMap.Fingerprint" />
+      <attribute id="0012" name="NumberOfPINUsersSupported" type="uint16" default="0" requiredIf="FeatureMap.PIN" />
+      <attribute id="0013" name="NumberOfRFIDUsersSupported" type="uint16" default="0" requiredIf="FeatureMap.RFID" />
+      <attribute id="0014" name="NumberOfWeekDaySchedulesSupportedPerUser" type="uint8" default="0" requiredIf="FeatureMap.Scheduling" />
+      <attribute id="0015" name="NumberOfYearDaySchedulesSupportedPerUser" type="uint8" default="0" requiredIf="FeatureMap.Scheduling" />
+      <attribute id="0016" name="NumberOfHolidaySchedulesSupported" type="uint8" default="0" requiredIf="FeatureMap.Scheduling" />
       <!--  ZCL does not state a relationship between these next two sets of Max/Min attribute pairs. -->
-      <attribute id="0017" name="MaxPINCodeLength" type="uint8" default="8" />
-      <attribute id="0018" name="MinPINCodeLength" type="uint8" default="4" />
-      <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" default="20" />
-      <attribute id="001A" name="MinRFIDCodeLength" type="uint8" default="8" />
+      <attribute id="0017" name="MaxPINCodeLength" type="uint8" default="MS" requiredIf="FeatureMap.PIN"/>
+      <attribute id="0018" name="MinPINCodeLength" type="uint8" default="MS" requiredIf="FeatureMap.PIN" />
+      <attribute id="0019" name="MaxRFIDCodeLength" type="uint8" default="MS" requiredIf="FeatureMap.RFID" />
+      <attribute id="001A" name="MinRFIDCodeLength" type="uint8" default="MS" requiredIf="FeatureMap.RFID" />
 
       <!--  Operational Settings Attribute Set -->
 
-      <attribute id="0020" name="EnableLogging" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
+      <attribute id="0020" name="EnableLogging" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" requiredIf="FeatureMap.Logging" />
       <attribute id="0021" name="Language" type="string" writable="true" writeOptional="true" reportRequired="true" default="" >
         <restriction>
           <type:length value="2" />
@@ -212,7 +202,7 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="02" name="UseLEDForAllEvents" />
         </restriction>
       </attribute>
-      <attribute id="0023" name="AutoRelockTime" type="uint32" writable="true" writeOptional="true" reportRequired="true" default="0" >
+      <attribute id="0023" name="AutoRelockTime" type="uint32" writable="true" writeOptional="true" reportRequired="true" default="0" required="true" >
         <restriction>
           <type:special name="Disabled" value="0"/>
         </restriction>
@@ -225,12 +215,12 @@ applicable to this document can be found in the LICENSE.md file.
         </restriction>
       </attribute>
       <attribute id="0025" name="OperatingMode" type="DrlkOperMode" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0026" name="SupportedOperatingModes" type="map16" default="1" >
+      <attribute id="0026" name="SupportedOperatingModes" type="map16" default="65526" required="true">
         <bitmap>
-          <element name="NormalModeSupported" type="bool" mask="0001" />
+          <element name="NormalModeSupported" type="bool" mask="0001" required="true" />
           <element name="VacationModeSupported" type="bool" mask="0002" shiftRight="1" />
           <element name="PrivacyModeSupported" type="bool" mask="0004" shiftRight="2" />
-          <element name="NoRFLockOrUnlockModeSupported" type="bool" mask="0008" shiftRight="3" />
+          <element name="NoRemoteLockOrUnlockModeSupported" type="bool" mask="0008" shiftRight="3" required="true" />
           <element name="PassageModeSupported" type="bool" mask="0010" shiftRight="4" />
         </bitmap>
       </attribute>
@@ -238,7 +228,7 @@ applicable to this document can be found in the LICENSE.md file.
         <bitmap>
           <element name="DefaultEnableLocalProgrammingAttributeIsEnabled" type="bool" mask="0001" />
           <element name="DefaultKeypadInterfaceIsEnabled" type="bool" mask="0002" shiftRight="1" />
-          <element name="DefaultRFInterfaceIsEnabled" type="bool" mask="0004" shiftRight="2" />
+          <element name="DefaultRemoteInterfaceIsEnabled" type="bool" mask="0004" shiftRight="2" />
           <!--  Bits 3 and 4 not defined. -->
           <element name="DefaultSoundVolumeIsEnabled" type="bool" mask="0020" shiftRight="5" />
           <element name="DefaultAutoRelockTimeIsEnabled" type="bool" mask="0040" shiftRight="6" />
@@ -252,11 +242,11 @@ applicable to this document can be found in the LICENSE.md file.
 
       <!--  Security Settings Attribute Set -->
 
-      <attribute id="0030" name="WrongCodeEntryLimit" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0031" name="UserCodeTemporaryDisableTime" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0032" name="SendPINOverTheAir" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0033" name="RequirePINforRFOperation" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" />
-      <attribute id="0034" name="SecurityLevel" type="enum8" reportRequired="true" default="0" >
+      <attribute id="0030" name="WrongCodeEntryLimit" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" requiredIf="false" />
+      <attribute id="0031" name="UserCodeTemporaryDisableTime" type="uint8" writable="true" writeOptional="true" reportRequired="true" default="0" requiredIf="FeatureMap.PIN or FeatureMap.RFID" />
+      <attribute id="0032" name="SendPINOverTheAir" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" requiredIf="FeatureMap.PIN" />
+      <attribute id="0033" name="RequirePINforRemoteOperation" type="bool" writable="true" writeOptional="true" reportRequired="true" default="0" requiredIf="FeatureMap.PIN" />
+      <attribute id="0034" name="SecurityLevel" type="enum8" reportRequired="true" default="0" deprecated="true">
         <restriction>
           <type:enumeration value="00" name="Network" />
           <type:enumeration value="01" name="APS" />
@@ -265,18 +255,18 @@ applicable to this document can be found in the LICENSE.md file.
 
       <!--  Alarm and Event Masks Attribute Set -->
 
-      <attribute id="0040" name="AlarmMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0040" name="AlarmMask" type="map16" writable="true" reportRequired="true" default="MS" required="true" >
         <bitmap>
-          <element name="DeadboltJammed" type="bool" mask="0001" />
+          <element name="LockingMechanismJammed" type="bool" mask="0001" required="true" />
           <element name="LockResetToFactoryDefaults" type="bool" mask="0002" shiftRight="1" />
           <!--  Bit 2 reserved. -->
           <element name="RFPowerModuleCycled" type="bool" mask="0008" shiftRight="3" />
-          <element name="TamperAlarmWrongCodeEntryLimit" type="bool" mask="0010" shiftRight="4" />
+          <element name="TamperAlarmWrongCodeEntryLimit" type="bool" mask="0010" shiftRight="4" requiredIf="FeatureMap.PIN or FeatureMap.RFID" />
           <element name="TamperAlarmFrontEscutcheonRemovedFromMain" type="bool" mask="0020" shiftRight="5" />
           <element name="ForcedDoorOpenUnderDoorLockedCondition" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0041" name="KeypadOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0041" name="KeypadOperationEventMask" type="map16" writable="true" reportRequired="true" default="MS" requiredIf="FeatureMap.PIN">
         <bitmap>
           <element name="KeypadOpUnknownOrMS" type="bool" mask="0001" />
           <element name="KeypadOpLock" type="bool" mask="0002" shiftRight="1" />
@@ -288,7 +278,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="KeypadOpNonAccessUser" type="bool" mask="0080" shiftRight="7" />
         </bitmap>
       </attribute>
-      <attribute id="0042" name="RFOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0042" name="RFOperationEventMask" type="map16" writable="true" reportRequired="true" default="MS" >
         <bitmap>
           <element name="RFOpUnknownOrMS" type="bool" mask="0001" />
           <element name="RFOpLock" type="bool" mask="0002" shiftRight="1" />
@@ -299,7 +289,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="RFOpUnlockInvalidSchedule" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0043" name="ManualOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0043" name="ManualOperationEventMask" type="map16" writable="true" reportRequired="true" default="MS" >
         <bitmap>
           <element name="ManualOpUnknownOrMS" type="bool" mask="0001" />
           <element name="ManualOpThumbturnLock" type="bool" mask="0002" shiftRight="1" />
@@ -314,7 +304,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="ManualOpUnlock" type="bool" mask="0400" shiftRight="10" />
         </bitmap>
       </attribute>
-      <attribute id="0044" name="RFIDOperationEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0044" name="RFIDOperationEventMask" type="map16" writable="true" reportRequired="true" default="MS" requiredIf="FeatureMap.RFID" >
         <bitmap>
           <element name="RFIDOpUnknownOrMS" type="bool" mask="0001" />
           <element name="RFIDOpLock" type="bool" mask="0002" shiftRight="1" />
@@ -325,7 +315,7 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="RFIDOpUnlockErrorInvalidSchedule" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0045" name="KeypadProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0045" name="KeypadProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="MS" requiredIf="FeatureMap.PIN" >
         <bitmap>
           <element name="KeypadProgUnknownOrMS" type="bool" mask="0001" />
           <element name="KeypadProgMasterCodeChanged" type="bool" mask="0002" shiftRight="1" />
@@ -334,23 +324,33 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="KeypadProgPINChanged" type="bool" mask="0010" shiftRight="4" />
         </bitmap>
       </attribute>
-      <attribute id="0046" name="RFProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0046" name="RemoteProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="MS" required="true">
         <bitmap>
-          <element name="RFProgUnknownOrMS" type="bool" mask="0001" />
+          <element name="RemoteProgUnknownOrMS" type="bool" mask="0001" />
           <!--  Bit 1 not defined.  -->
-          <element name="RFProgPINAdded" type="bool" mask="0004" shiftRight="2" />
-          <element name="RFProgPINDeleted" type="bool" mask="0008" shiftRight="3" />
-          <element name="RFProgPINChanged" type="bool" mask="0010" shiftRight="4" />
-          <element name="RFProgRFIDAdded" type="bool" mask="0020" shiftRight="5" />
-          <element name="RFProgRFIDDeleted" type="bool" mask="0040" shiftRight="6" />
+          <element name="RemoteProgPINAdded" type="bool" mask="0004" shiftRight="2" />
+          <element name="RemoteProgPINDeleted" type="bool" mask="0008" shiftRight="3" />
+          <element name="RemoteProgPINChanged" type="bool" mask="0010" shiftRight="4" />
+          <element name="RemoteProgRFIDAdded" type="bool" mask="0020" shiftRight="5" />
+          <element name="RemoteProgRFIDDeleted" type="bool" mask="0040" shiftRight="6" />
         </bitmap>
       </attribute>
-      <attribute id="0047" name="RFIDProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="0" >
+      <attribute id="0047" name="RFIDProgrammingEventMask" type="map16" writable="true" reportRequired="true" default="MS" requiredIf="FeatureMap.RFID" >
          <bitmap>
           <element name="RFIDProgUnknownOrMS" type="bool" mask="0001" />
           <!--  Bits 1-4 not defined. -->
           <element name="RFIDProgRFIDAdded" type="bool" mask="0020" shiftRight="5" />
           <element name="RFIDProgRFIDDeleted" type="bool" mask="0040" shiftRight="6" />
+        </bitmap>
+      </attribute>
+      <attribute id="fffc" name="FeatureMap" type="map32" default="0">
+        <bitmap>
+          <element name="PIN" mask="00000001" shiftRight="0" type="bool" />
+          <element name="RFID" mask="00000002" shiftRight="1" type="bool" />
+          <element name="Fingerprint" mask="00000004" shiftRight="2" type="bool" />
+          <element name="Logging" mask="00000008" shiftRight="3" type="bool" />
+          <element name="Scheduling" mask="00000010" shiftRight="4" type="bool" />
+          <element name="OpenClosed" mask="00000020" shiftRight="5" type="bool" />
         </bitmap>
       </attribute>
     </attributes>
@@ -371,13 +371,13 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="PINOrRFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="03" name="UnlockWithTimeout">
+      <command id="03" name="UnlockWithTimeout" required="true">
         <fields>
           <field name="TimeoutInSeconds" type="uint16" />
           <field name="PINOrRFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="04" name="GetLogRecord">
+      <command id="04" name="GetLogRecord" requiredIf="FeatureMap.Logging">
         <fields>
           <field name="LogIndex" type="uint16" >
             <restriction>
@@ -389,7 +389,7 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="05" name="SetPINCode">
+      <command id="05" name="SetPINCode" requiredIf="FeatureMap.PIN">
         <fields>
           <field name="UserID" type="DrlkPINUserID" />
           <field name="UserStatus" type="DrlkSettableUserStatus" />
@@ -397,29 +397,29 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="PIN" type="octstr" />
         </fields>
       </command>
-      <command id="06" name="GetPINCode">
+      <command id="06" name="GetPINCode" requiredIf="FeatureMap.PIN">
         <fields>
           <field name="UserID" type="DrlkPINUserID" />
         </fields>
       </command>
-      <command id="07" name="ClearPINCode">
+      <command id="07" name="ClearPINCode" requiredIf="FeatureMap.PIN">
         <fields>
           <field name="UserID" type="DrlkPINUserID" />
         </fields>
       </command>
-      <command id="08" name="ClearAllPINCodes" />
-      <command id="09" name="SetUserStatus">
+      <command id="08" name="ClearAllPINCodes" requiredIf="FeatureMap.PIN" />
+      <command id="09" name="SetUserStatus" requiredIf="FeatureMap.PIN or FeatureMap.RFID or FeatureMap.Fingerprint">
         <fields>
           <field name="UserID" type="DrlkTotalUserID" />
           <field name="UserStatus" type="DrlkSettableUserStatus" />
         </fields>
       </command>
-      <command id="0A" name="GetUserStatus">
+      <command id="0A" name="GetUserStatus" requiredIf="FeatureMap.PIN or FeatureMap.RFID or FeatureMap.Fingerprint">
         <fields>
           <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
-      <command id="0B" name="SetWeekdaySchedule">
+      <command id="0B" name="SetWeekdaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="DrlkWeekDayScheduleID" />
           <field name="UserID" type="DrlkTotalUserID" />
@@ -461,19 +461,19 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="0C" name="GetWeekdaySchedule">
+      <command id="0C" name="GetWeekdaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="DrlkWeekDayScheduleID" />
           <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
-      <command id="0D" name="ClearWeekdaySchedule">
+      <command id="0D" name="ClearWeekdaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="DrlkWeekDayScheduleID" />
           <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
-      <command id="0E" name="SetYearDaySchedule">
+      <command id="0E" name="SetYearDaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="DrlkYearDayScheduleID" />
           <field name="UserID" type="DrlkTotalUserID" />
@@ -485,19 +485,19 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="0F" name="GetYearDaySchedule">
+      <command id="0F" name="GetYearDaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="DrlkYearDayScheduleID" />
           <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
-      <command id="10" name="ClearYearDaySchedule">
+      <command id="10" name="ClearYearDaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="DrlkYearDayScheduleID" />
           <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
-      <command id="11" name="SetHolidaySchedule">
+      <command id="11" name="SetHolidaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="HolidayScheduleID" type="DrlkHolidayScheduleID" />
           <field name="LocalStartTime" type="uint32" />
@@ -509,28 +509,28 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="OperatingModeDuringHoliday" type="DrlkOperMode" />
         </fields>
       </command>
-      <command id="12" name="GetHolidaySchedule">
+      <command id="12" name="GetHolidaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="HolidayScheduleID" type="DrlkHolidayScheduleID" />
         </fields>
       </command>
-      <command id="13" name="ClearHolidaySchedule">
+      <command id="13" name="ClearHolidaySchedule" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="HolidayScheduleID" type="DrlkHolidayScheduleID" />
         </fields>
       </command>
-      <command id="14" name="SetUserType">
+      <command id="14" name="SetUserType" requiredIf="FeatureMap.PIN or FeatureMap.RFID or FeatureMap.Fingerprint">
         <fields>
           <field name="UserID" type="DrlkTotalUserID" />
           <field name="UserType" type="DrlkUserType" />
         </fields>
       </command>
-      <command id="15" name="GetUserType">
+      <command id="15" name="GetUserType" requiredIf="FeatureMap.PIN or FeatureMap.RFID or FeatureMap.Fingerprint">
         <fields>
           <field name="UserID" type="DrlkTotalUserID" />
         </fields>
       </command>
-      <command id="16" name="SetRFIDCode">
+      <command id="16" name="SetRFIDCode" requiredIf="FeatureMap.RFID">
         <fields>
           <field name="UserID" type="DrlkRFIDUserID" />
           <field name="UserStatus" type="DrlkSettableUserStatus" />
@@ -538,17 +538,17 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="17" name="GetRFIDCode">
+      <command id="17" name="GetRFIDCode" requiredIf="FeatureMap.RFID">
         <fields>
           <field name="UserID" type="DrlkRFIDUserID" />
         </fields>
       </command>
-      <command id="18" name="ClearRFIDCode">
+      <command id="18" name="ClearRFIDCode" requiredIf="FeatureMap.RFID">
         <fields>
           <field name="UserID" type="DrlkRFIDUserID" />
         </fields>
       </command>
-      <command id="19" name="ClearAllRFIDCodes" />
+      <command id="19" name="ClearAllRFIDCodes" requiredIf="FeatureMap.RFID" />
     </commands>
   </server>
   <client>
@@ -568,12 +568,12 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Status" type="zclStatus" />
         </fields>
       </command>
-      <command id="03" name="UnlockWithTimeoutResponse" >
+      <command id="03" name="UnlockWithTimeoutResponse" ><!-- Why is this not mandatory given UnlockWithTimeout is now mandatory -->
         <fields>
           <field name="Status" type="zclStatus" />
         </fields>
       </command>
-      <command id="04" name="GetLogRecordResponse">
+      <command id="04" name="GetLogRecordResponse" requiredIf="FeatureMap.Logging">
         <fields>
           <field name="LogEntryID" type="uint16" />
           <field name="Timestamp" type="uint32" />
@@ -590,12 +590,12 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="PIN" type="octstr" />
         </fields>
       </command>
-      <command id="05" name="SetPINCodeResponse">
+      <command id="05" name="SetPINCodeResponse" requiredIf="FeatureMap.PIN">
         <fields>
           <field name="Status" type="DrlkSetCodeStatus" />
         </fields>
       </command>
-      <command id="06" name="GetPINCodeResponse">
+      <command id="06" name="GetPINCodeResponse" requiredIf="FeatureMap.PIN">
         <fields>
           <field name="UserID" type="uint16" />
           <field name="UserStatus" type="DrlkUserStatus" />
@@ -603,33 +603,33 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Code" type="octstr" />
         </fields>
       </command>
-      <command id="07" name="ClearPINCodeResponse" >
+      <command id="07" name="ClearPINCodeResponse" requiredIf="FeatureMap.PIN">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="08" name="ClearAllPINCodesResponse" >
+      <command id="08" name="ClearAllPINCodesResponse" requiredIf="FeatureMap.PIN">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="09" name="SetUserStatusResponse" >
+      <command id="09" name="SetUserStatusResponse" requiredIf="FeatureMap.PIN | FeatureMap.RFID | FeatureMap.Fingerprint">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="0A" name="GetUserStatusResponse">
+      <command id="0A" name="GetUserStatusResponse" requiredIf="FeatureMap.PIN | FeatureMap.RFID | FeatureMap.Fingerprint">
         <fields>
           <field name="UserID" type="uint16" />
-          <field name="UserStatus" type="DrlkUserStatus" />
+          <field name="Status" type="DrlkUserStatus" />
         </fields>
       </command>
-      <command id="0B" name="SetWeekdayScheduleResponse" >
+      <command id="0B" name="SetWeekdayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="0C" name="GetWeekdayScheduleResponse">
+      <command id="0C" name="GetWeekdayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
@@ -672,17 +672,17 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="0D" name="ClearWeekdayScheduleResponse" >
+      <command id="0D" name="ClearWeekdayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="0E" name="SetYearDayScheduleResponse" >
+      <command id="0E" name="SetYearDayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="0F" name="GetYearDayScheduleResponse">
+      <command id="0F" name="GetYearDayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="ScheduleID" type="uint8" />
           <field name="UserID" type="uint16" />
@@ -695,17 +695,17 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="10" name="ClearYearDayScheduleResponse" >
+      <command id="10" name="ClearYearDayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="11" name="SetHolidayScheduleResponse" >
+      <command id="11" name="SetHolidayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="12" name="GetHolidayScheduleResponse">
+      <command id="12" name="GetHolidayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="HolidayScheduleID" type="uint8" />
           <field name="Status" type="zclStatus" />
@@ -718,28 +718,28 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="OperatingModeDuringHoliday" type="DrlkOperMode" presentIf="Status = 0" />
         </fields>
       </command>
-      <command id="13" name="ClearHolidayScheduleResponse" >
+      <command id="13" name="ClearHolidayScheduleResponse" requiredIf="FeatureMap.Scheduling">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="14" name="SetUserTypeResponse" >
+      <command id="14" name="SetUserTypeResponse" requiredIf="FeatureMap.PIN | FeatureMap.RFID | FeatureMap.Fingerprint">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="15" name="GetUserTypeResponse">
+      <command id="15" name="GetUserTypeResponse" requiredIf="FeatureMap.PIN | FeatureMap.RFID | FeatureMap.Fingerprint">
         <fields>
           <field name="UserID" type="uint16" />
           <field name="UserType" type="DrlkUserType" />
         </fields>
       </command>
-      <command id="16" name="SetRFIDCodeResponse">
+      <command id="16" name="SetRFIDCodeResponse" requiredIf="FeatureMap.RFID">
         <fields>
           <field name="Status" type="DrlkSetCodeStatus" />
         </fields>
       </command>
-      <command id="17" name="GetRFIDCodeResponse">
+      <command id="17" name="GetRFIDCodeResponse" requiredIf="FeatureMap.RFID">
         <fields>
           <field name="UserID" type="uint16" />
           <field name="UserStatus" type="DrlkUserStatus" />
@@ -747,17 +747,17 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="RFIDCode" type="octstr" />
         </fields>
       </command>
-      <command id="18" name="ClearRFIDCodeResponse" >
+      <command id="18" name="ClearRFIDCodeResponse" requiredIf="FeatureMap.RFID">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="19" name="ClearAllRFIDCodesResponse" >
+      <command id="19" name="ClearAllRFIDCodesResponse" requiredIf="FeatureMap.RFID">
         <fields>
           <field name="Status" type="DrlkPassFailStatus" />
         </fields>
       </command>
-      <command id="20" name="OperatingEventNotification" >
+      <command id="20" name="OperatingEventNotification" required="true">
         <fields>
           <field name="OperationEventSource" type="DrlkOperEventSource" />
           <field name="OperationEventCode" type="uint8" >
@@ -786,7 +786,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="Data" type="string" />
         </fields>
       </command>
-      <command id="21" name="ProgrammingEventNotification">
+      <command id="21" name="ProgrammingEventNotification" required="true">
         <fields>
           <field name="ProgramEventSource" type="uint8" >
             <restriction>

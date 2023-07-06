@@ -12,7 +12,9 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0401" revision="1" name="IlluminanceLevelSensing">
+  id="0401" revision="2" name="IlluminanceLevelSensing">
+  <!-- Changes in version 2 are in descriptive / prescriptive text but do not
+  affect the materials which are encoded in this XML document -->  
   <classification role="application" picsCode="ILLVL" primaryTransaction="2" />
   <server>
     <attributes>

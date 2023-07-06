@@ -12,7 +12,11 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0008" revision="3" name="Level">
+  id="0008" revision="4" name="Level">
+  <aliases>
+      <alias id="0008" name="LevelControlForLighting" />
+      <alias id="001c" name="PulseWidthModulation" />
+  </aliases>
   <classification role="application" picsCode="LVL" primaryTransaction="1" />
 
   <type:type short="LevelOptions" name="LevelOptions" id="18" inheritsFrom="map8">
@@ -37,50 +41,57 @@ applicable to this document can be found in the LICENSE.md file.
           <type:maxInclusiveRef ref="MaxLevel" />
         </restriction>
       </attribute>
-      <attribute id="0001" name="RemainingTime" type="uint16" max="65535" default="0" />
+      <attribute id="0001" name="RemainingTime" type="uint16" max="65535" default="0" requiredIf="FeatureMap.Lighting = true" />
       <attribute id="0002" name="MinLevel" type="uint8" default="0">
         <restriction>
           <type:maxInclusiveRef ref="MaxLevel" />
         </restriction>
       </attribute>
-      <attribute id="0003" name="MaxLevel" type="uint8" max="255" default="255">
+      <attribute id="0003" name="MaxLevel" type="uint8" max="255" default="254"><!-- Default value changed to 254 in CCB 3075 -->
         <restriction>
           <type:minInclusiveRef ref="MinLevel" />
         </restriction>
       </attribute>
-      <attribute id="0004" name="CurrentFrequency" type="uint16" reportRequired="true" sceneRequired="true" default="0">
+      <attribute id="0004" name="CurrentFrequency" type="uint16" reportRequired="true" sceneRequired="true" default="0" requiredIf="FeatureMap.Frequency = true">
         <restriction>
           <type:minInclusiveRef ref="MinFrequency" />
           <type:maxInclusiveRef ref="MaxFrequency" />
         </restriction>
       </attribute>
-      <attribute id="0005" name="MinFrequency" type="uint16" default="0">
+      <attribute id="0005" name="MinFrequency" type="uint16" default="0" requiredIf="FeatureMap.Frequency = true">
         <restriction>
           <type:maxInclusiveRef ref="MaxFrequency" />
         </restriction>
       </attribute>
-      <attribute id="0006" name="MaxFrequency" type="uint16" max="65535" default="0">
+      <attribute id="0006" name="MaxFrequency" type="uint16" max="65535" default="65535" requiredIf="FeatureMap.Frequency = true">
         <restriction>
           <type:minInclusiveRef ref="MinFrequency" />
         </restriction>
       </attribute>
-      <attribute id="0010" name="OnOffTransitionTime" type="uint16" max="65535" writable="true" default="0" />
+      <attribute id="0010" name="OnOffTransitionTime" type="uint16" max="65535" writable="true" default="0" requiredIf="FeatureMap.Frequency = true" /><!-- Is this actually correct? -->
       <attribute id="0011" name="OnLevel" type="uint8" writable="true" default="255">
         <restriction>
           <type:minInclusiveRef ref="MinLevel" />
           <type:maxInclusiveRef ref="MaxLevel" />
         </restriction>
       </attribute>
-      <attribute id="0012" name="OnTransitionTime" type="uint16" max="65534" writable="true" default="65535" />
-      <attribute id="0013" name="OffTransitionTime" type="uint16" max="65534" writable="true" default="65535" />
-      <attribute id="0014" name="DefaultMoveRate" type="uint8" max="254" writable="true" />
-      <attribute id="000F" name="Options" type="LevelOptions" writable="true" default="0" />
-      <attribute id="4000" name="StartUpCurrentLevel" type="uint8" max="255" writable="true">
+      <attribute id="0012" name="OnTransitionTime" type="uint16" max="65534" writable="true" default="non" />
+      <attribute id="0013" name="OffTransitionTime" type="uint16" max="65534" writable="true" default="non" />
+      <attribute id="0014" name="DefaultMoveRate" type="uint8" max="254" writable="true" default="MS" />
+      <attribute id="000F" name="Options" type="LevelOptions" writable="true" default="0" required="true" />
+      <attribute id="4000" name="StartUpCurrentLevel" type="uint8" max="255" writable="true" requiredIf="FeatureMap.Lighting = true">
         <restriction>
           <type:special value="00" name="MinimumDeviceValuePermitted" />
           <type:enumeratedRange min="01" max="fe" />
           <type:special value="ff" name="SetToPreviousValue" />
         </restriction>
+      </attribute>
+      <attribute id="fffc" name="FeatureMap" type="map32" default="0" required="true">
+        <bitmap>
+          <element name="OnOff" mask="00000001" shiftRight="0" type="bool" />
+          <element name="Lighting" mask="00000002" shiftRight="1" type="bool" />
+          <element name="Frequency" mask="00000004" shiftRight="2" type="bool" />
+        </bitmap>
       </attribute>
     </attributes>
     <commands>
@@ -146,7 +157,7 @@ applicable to this document can be found in the LICENSE.md file.
           <field name="OptionsOverride" type="LevelOptions" default="0" />
         </fields>
       </command>
-      <command id="08" name="MoveToClosestFrequency" requiredIf="defined(CurrentFrequency)">
+      <command id="08" name="MoveToClosestFrequency" requiredIf="FeatureMap.Frequency = true">
         <fields>
           <field name="Frequency" type="uint16" />
         </fields>

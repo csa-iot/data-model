@@ -12,7 +12,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0301" revision="3" name="BallastConfiguration">
+  id="0301" revision="4" name="BallastConfiguration">
   <classification role="application" picsCode="BC" primaryTransaction="1" />
   <server>
     <attributes>
@@ -47,20 +47,21 @@ applicable to this document can be found in the LICENSE.md file.
       <!-- Lamp Information Attribute Set -->
       <attribute id="0020" name="LampQuantity" type="uint8" max="254" />
       <!-- Lamp Settings Attribute Set -->
-      <attribute id="0030" name="LampType" type="string" writable="true" default="">
+      <!-- CCB 3366 made write optional for attributes 0x0030 - 0x0033 -->
+      <attribute id="0030" name="LampType" type="string" writeOptional="true" default="">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
         </restriction>
       </attribute>
-      <attribute id="0031" name="LampManufacturer" type="string" writable="true" default="">
+      <attribute id="0031" name="LampManufacturer" type="string" writeOptional="true" default="">
         <restriction>
           <type:minLength value="0" />
           <type:maxLength value="16" />
         </restriction>
       </attribute>
-      <attribute id="0032" name="LampRatedHours" type="uint24" max="16777214" writable="true" default="16777215" />
-      <attribute id="0033" name="LampBurnHours" type="uint24" max="16777214" writable="true" default="0" />
+      <attribute id="0032" name="LampRatedHours" type="uint24" max="16777214" writeOptional="true" default="16777215" />
+      <attribute id="0033" name="LampBurnHours" type="uint24" max="16777214" writeOptional="true" default="0" />
       <attribute id="0034" name="LampAlarmMode" type="map8" default="0" writable="true">
         <bitmap>
           <element name="LampBurnHours" type="bool" mask="01" />

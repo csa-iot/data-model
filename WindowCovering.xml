@@ -11,53 +11,64 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0102" revision="3" name="WindowCovering">
+  id="0102" revision="4" name="WindowCovering">
   <classification role="application" picsCode="WNCV" primaryTransaction="1" />
   <server>
     <attributes>
       <!-- Window Covering Information Attribute Set -->
       <attribute id="0000" name="WindowCoveringType" type="enum8" required="true" default="0">
         <restriction>
-          <type:enumeration value="00" name="Rollershade"/>
-          <type:enumeration value="01" name="Rollershade2Motor"/>
-          <type:enumeration value="02" name="RollershadeExterior"/>
-          <type:enumeration value="03" name="RollershadeExterior2Motor"/>
-          <type:enumeration value="04" name="Drapery"/>
-          <type:enumeration value="05" name="Awning"/>
-          <type:enumeration value="06" name="Shutter"/>
-          <type:enumeration value="07" name="TiltBlindTiltOnly" />
-          <type:enumeration value="08" name="TiltBlindLiftAndTilt" />
-          <type:enumeration value="09" name="ProjectorScreen" />
+          <type:enumeration value="00" name="Rollershade" optionalIf="FeatureMap.Lift" />
+          <type:enumeration value="01" name="Rollershade2Motor" optionalIf="FeatureMap.Lift" />
+          <type:enumeration value="02" name="RollershadeExterior" optionalIf="FeatureMap.Lift" />
+          <type:enumeration value="03" name="RollershadeExterior2Motor" optionalIf="FeatureMap.Lift" />
+          <type:enumeration value="04" name="Drapery" optionalIf="FeatureMap.Lift" />
+          <type:enumeration value="05" name="Awning" optionalIf="FeatureMap.Lift" />
+          <type:enumeration value="06" name="Shutter" optionalIf="FeatureMap.Tilt" />
+          <type:enumeration value="07" name="TiltBlindTiltOnly" optionalIf="FeatureMapTilt" />
+          <type:enumeration value="08" name="TiltBlindLiftAndTilt" optionalIf="FeatureMap.Lift and FeatureMap.Tilt" />
+          <type:enumeration value="09" name="ProjectorScreen" optionalIf="FeatureMap.Lift" />
         </restriction>
       </attribute>
-      <attribute id="0001" name="PhysicalClosedLimitLift" type="uint16" default="0" />
-      <attribute id="0002" name="PhysicalClosedLimitTilt" type="uint16" default="0" />
-      <attribute id="0003" name="CurrentPositionLift" type="uint16" default="0" />
-      <attribute id="0004" name="CurrentPositionTilt" type="uint16" default="0" />
-      <attribute id="0005" name="NumberOfActuationsLift" type="uint16" default="0" />
-      <attribute id="0006" name="NumberOfActuationsTilt" type="uint16" default="0" />
+      <attribute id="0001" name="PhysicalClosedLimitLift" type="uint16" default="0" optionalIf="FeatureMap.Lift and FeatureMap.ClosedLoop" />
+      <attribute id="0002" name="PhysicalClosedLimitTilt" type="uint16" default="0" optionalIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" />
+      <attribute id="0003" name="CurrentPositionLift" type="uint16" default="0" requiredIf="FeatureMap.Lift and FeatureMap.ClosedLoop" />
+      <attribute id="0004" name="CurrentPositionTilt" type="uint16" default="0" requiredIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" />
+      <attribute id="0005" name="NumberOfActuationsLift" type="uint16" default="0" optionalIf="FeatureMap.Lift" />
+      <attribute id="0006" name="NumberOfActuationsTilt" type="uint16" default="0" optionalIf="FeatureMap.Tilt" />
       <attribute id="0007" name="ConfigOrStatus" type="map8" required="true" default="3">
         <bitmap>
-          <element name="Operational" type="bool" mask="01" />
-          <element name="Online" type="bool" mask="02" shiftRight="1" />
-          <element name="OpenAndUpCommandsReversed" type="bool" mask="04" shiftRight="2" />
-          <element name="LiftClosedLoop" type="bool" mask="08" shiftRight="3" />
-          <element name="TiltClosedLoop" type="bool" mask="10" shiftRight="4" />
-          <element name="LiftEncoderControlled" type="bool" mask="20" shiftRight="5" />
-          <element name="TiltEncoderControlled" type="bool" mask="40" shiftRight="6" />
+          <element name="Operational" type="bool" mask="01" required="true" />
+          <element name="Online" type="bool" mask="02" shiftRight="1" required="true" />
+          <element name="OpenAndUpCommandsReversed" type="bool" mask="04" shiftRight="2" requiredIf="FeatureMap.Lift" />
+          <element name="LiftClosedLoop" type="bool" mask="08" shiftRight="3" requiredIf="FeatureMap.Lift and FeatureMap.ClosedLoop" />
+          <element name="TiltClosedLoop" type="bool" mask="10" shiftRight="4" requiredIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" />
+          <element name="LiftEncoderControlled" type="bool" mask="20" shiftRight="5" requiredIf="FeatureMap.Lift and FeatureMap.ClosedLoop" />
+          <element name="TiltEncoderControlled" type="bool" mask="40" shiftRight="6" requiredIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" />
         </bitmap>
       </attribute>
-      <attribute id="0008" name="CurrentPositionLiftPercentage" type="uint8" requiredIf="ConfigOrStatus.LiftClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="non" />
-      <attribute id="0009" name="CurrentPositionTiltPercentage" type="uint8" requiredIf="ConfigOrStatus.TiltClosedLoop = true" reportRequired="true" sceneRequired="true" max="100" default="non" />
+      <attribute id="0008" name="CurrentPositionLiftPercentage" type="uint8" requiredIf="FeatureMap.Lift and FeatureMap.ClosedLoop" reportRequired="true" sceneRequired="true" max="100" default="non" />
+      <attribute id="0009" name="CurrentPositionTiltPercentage" type="uint8" requiredIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" reportRequired="true" sceneRequired="true" max="100" default="non" />
+      <attribute id="000a" name="OperationalStatus" type="map8" requiredIf="!FeatureMap.ClosedLoop" default="0">
+        <bitmap>
+          <element name="Status" mask="03" type="enum8">
+            <restriction>
+              <type:enumeration value="00" name="NotMoving" />
+              <type:enumeration value="01" name="Opening" />
+              <type:enumeration value="02" name="Closing" />
+            </restriction>
+          </element>
+        </bitmap>        
+      </attribute>
       
        <!-- Window Covering Settings Attribute Set -->
-      <attribute id="0010" name="InstalledOpenLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="0" />
-      <attribute id="0011" name="InstalledClosedLimitLift" type="uint16" requiredIf="ConfigOrStatus.LiftClosedLoop = true" default="65535" />
-      <attribute id="0012" name="InstalledOpenLimitTilt" type="uint16" requiredIf="ConfigOrStatus.TiltClosedLoop = true" default="0" />
-      <attribute id="0013" name="InstalledClosedLimitTilt" type="uint16" requiredIf="ConfigOrStatus.TiltClosedLoop = true" default="65535" />
-      <attribute id="0014" name="VelocityLift" type="uint16" writable="true" default="0" />
-      <attribute id="0015" name="AccelerationTimeLift" type="uint16" writable="true" default="0" />
-      <attribute id="0016" name="DecelerationTimeLift" type="uint16" writable="true" default="0" />
+      <attribute id="0010" name="InstalledOpenLimitLift" type="uint16" requiredIf="FeatureMap.Lift and FeatureMap.ClosedLoop" default="0" />
+      <attribute id="0011" name="InstalledClosedLimitLift" type="uint16" requiredIf="FeatureMap.Lift and FeatureMap.ClosedLoop" default="65535" />
+      <attribute id="0012" name="InstalledOpenLimitTilt" type="uint16" requiredIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" default="0" />
+      <attribute id="0013" name="InstalledClosedLimitTilt" type="uint16" requiredIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" default="65535" />
+      <attribute id="0014" name="VelocityLift" type="uint16" writable="true" default="0" optionalIf="FeatureMap.Lift" />
+      <attribute id="0015" name="AccelerationTimeLift" type="uint16" writable="true" default="0" optionalIf="FeatureMap.Lift" />
+      <attribute id="0016" name="DecelerationTimeLift" type="uint16" writable="true" default="0" optionalIf="FeatureMap.Lift" />
       <attribute id="0017" name="Mode" type="map8" required="true" default="4">
         <bitmap>
           <element name="MotorDirectionReversed" type="bool" mask="01" />
@@ -66,14 +77,21 @@ applicable to this document can be found in the LICENSE.md file.
           <element name="LEDFeedback" type="bool" mask="08" shiftRight="3" />
         </bitmap>
       </attribute>
-      <attribute id="0018" name="IntermediateSetpointsLift" type="octstr" default="1,0x0000" />
-      <attribute id="0019" name="IntermediateSetpointsTilt" type="octstr" default="1,0x0000" />
+      <attribute id="0018" name="IntermediateSetpointsLift" type="octstr" default="1,0x0000" deprecated="true" />
+      <attribute id="0019" name="IntermediateSetpointsTilt" type="octstr" default="1,0x0000" deprecated="true" />
+      <attribute id="fffc" name="FeatureMap" type="map32" default="0" required="true">
+        <bitmap>
+          <element name="Lift" mask="00000001" shiftRight="0" type="bool" />
+          <element name="Tilt" mask="00000002" shiftRight="1" type="bool" />
+          <element name="ClosedLoop" mask="00000004" shiftRight="2" type="bool" />
+        </bitmap>
+      </attribute>
     </attributes>
     <commands>
       <command id="00" name="UpOrOpen" required="true" />
       <command id="01" name="DownOrClose" required="true" />
       <command id="02" name="Stop" required="true" />
-      <command id="04" name="GoToLiftValue">
+      <command id="04" name="GoToLiftValue" optionalIf="FeatureMap.Lift">
         <fields>
           <field name="LiftValue" type="uint16">
             <restriction>
@@ -83,7 +101,7 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="05" name="GoToLiftPercentage" requiredIf="implements(GoToTiltPercentage) = false">
+      <command id="05" name="GoToLiftPercentage" requiredIf="FeatureMap.Lift and FeatureMap.ClosedLoop" optionalIf="FeatureMap.Lift">
         <fields>
           <field name="PercentageLiftValue" type="uint8">
             <restriction>
@@ -92,7 +110,7 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="07" name="GoToTiltValue">
+      <command id="07" name="GoToTiltValue" optionalIf="FeatureMap.Tilt">
         <fields>
           <field name="TiltValue" type="uint16">
             <restriction>
@@ -102,7 +120,7 @@ applicable to this document can be found in the LICENSE.md file.
           </field>
         </fields>
       </command>
-      <command id="08" name="GoToTiltPercentage" requiredIf="implements(GoToLiftPercentage) = false">
+      <command id="08" name="GoToTiltPercentage" requiredIf="FeatureMap.Tilt and FeatureMap.ClosedLoop" optionalIf="FeatureMap.Tilt">
         <fields>
           <field name="PercentageTiltValue" type="uint8">
             <restriction>

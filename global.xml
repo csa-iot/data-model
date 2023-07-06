@@ -175,6 +175,8 @@
         <type:enumeration value="01" name="Attribute Reporting Complete" />
       </restriction>
     </attribute>
+    <!-- The feature map attribute needs to be defined per cluster as its content
+    will be unique. -->
   </attributes>
 
   <commands>

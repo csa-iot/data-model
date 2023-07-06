@@ -236,10 +236,11 @@ An attribute may be specified using the following attributes in the XML.
 | sceneRequired  | false    | If attribute is required to be part of the scene extensions. Defaults to false |
 | required       | false    | If the attribute is mandatory. Defaults to false               |
 | requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which an attribute is mandatory. Defaults to false |
+| optionalIf     | false    | Allows for an expression to be implemented which indicates the conditions in which an attribute is optional. Defaults to true |
 | min            | false    | A decimal integer specifying the min value (inclusive). Not for use on strings, use minLength restriction instead. Defaults to 0 |
 | max            | false    | A decimal integer specifiying the max value (inclusive). Not for use on strings, use maxLength restriction instead. No Default. |
 | default        | false    | Specifies the default value of an attribute. No Default        |
-| defaultRef     | false    | Specifies that the default value of the attribute takes the value of the referenced attribute. Must be another attriibute in this cluster. Referenced by name, schema forces this during validation. |
+| defaultRef     | false    | Specifies that the default value of the attribute takes the value of the referenced attribute. Must be another attribute in this cluster. Referenced by name, schema forces this during validation. |
 | deprecated     | false    | Indicates that an attribute has been deprecated                |
 
 Inside an attribute definition, either a bitmap or a series of restrictions may be specified. An example of restrictions can be seen in the example attribute definition for `GenericDevice-Class`. For an example of bitmap definitions, see the Bitmaps section.
@@ -291,6 +292,7 @@ A command may be specified using the following attributes in XML
 | name           | true     | The name of the command, as per the Naming section above                                                                     | 
 | required       | false    | If the command is mandatory. Defaults to false                                                                               |
 | requiredIf     | false    | Allows for an expression to be implemented which indicates the conditions in which a command is mandatory. Defaults to false |
+| optionalIf     | false    | Alllows for an expression to be implemented which indicates the conditions in which an command is optional. Defaults to true |
 | deprecated     | false    | Indicates that a command has been deprecated                                                                                 |
 
 Inside a command definition, a series of fields followed by tag definitions is permitted. 
@@ -306,10 +308,10 @@ Each field is defined with the following attributes in XML
 | arrayLengthField | false    | When the number of elements in an array field is specified by another field which does not immediately precede an array field, that field may be referenced using this attribute. | 
 | arrayLengthSubfield | false | When the number of elements in an array field is specified as a sub-element of a bitmap field, that sub-element may be referenced using this attribute |
 | presentIf        | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is present. Defaults to true, i.e. Field is present. |
-| requiredIf      | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
-| deprecated     | false    | Indicates that a command field has been deprecated               |
-| default        | false    | Specifies the default value of a command field. No Default        |
-| defaultRef     | false    | Specifies that the default value of the command takes the value of the referenced attribute or command field. Must be an attriibute in this cluster or a field in this command. Referenced by name. |
+| requiredIf       | false    | Specifies an expression (as described in the Expressions section) that indicates if the field is required. Defaults to false, i.e. the command is not mandatory |
+| deprecated       | false    | Indicates that a command field has been deprecated               |
+| default          | false    | Specifies the default value of a command field. No Default        |
+| defaultRef       | false    | Specifies that the default value of the command takes the value of the referenced attribute or command field. Must be an attriibute in this cluster or a field in this command. Referenced by name. |
 
 Similar to an attribute, a field may contain definitions of bitmaps or restrictions.
 

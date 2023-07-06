@@ -11,7 +11,9 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0203" revision="1" name="DehumidificationControl">
+  id="0203" revision="2" name="DehumidificationControl">
+  <!-- Changes in version 2 are in descriptive / prescriptive text but do not
+  affect the materials which are encoded in this XML document -->    
   <classification role="application" picsCode="DHUM" primaryTransaction="1" />
   <server>
     <attributes>

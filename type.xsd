@@ -58,6 +58,9 @@ applicable to this document can be found in the LICENSE.md file.
     <xs:attribute name="mask" type="xs:hexBinary" use="required" />
     <xs:attribute name="shiftRight" type="xs:unsignedByte" use="optional" default="0" />
     <xs:attribute name="default" type="xs:string" />
+    <xs:attribute name="required" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="requiredIf" type="zclType:DependencyExpression" use="optional" default="false" />
+    <xs:attribute name="optionalIf" type="zclType:DependencyExpression" use="optional" default="false" />
   </xs:complexType>
 
   <xs:complexType name="CommandField">
@@ -113,6 +116,9 @@ applicable to this document can be found in the LICENSE.md file.
     <xs:attribute name="value" use="optional" />
     <xs:attribute name="fixed" type="xs:boolean" default="false" use="optional" />
     <xs:attribute name="name" type="xs:string" use="optional" />
+    <xs:attribute name="required" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="requiredIf" type="zclType:DependencyExpression" use="optional" default="false" />
+    <xs:attribute name="optionalIf" type="zclType:DependencyExpression" use="optional" default="false" />
     <xs:anyAttribute />
   </xs:complexType>
 
@@ -137,6 +143,9 @@ applicable to this document can be found in the LICENSE.md file.
       <xs:restriction base="zclType:noFixedFacet">
         <xs:attribute name="value" type="xs:hexBinary" use="required" />
         <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="required" type="xs:boolean" use="optional" default="false" />
+        <xs:attribute name="requiredIf" type="zclType:DependencyExpression" use="optional" default="false" />
+        <xs:attribute name="optionalIf" type="zclType:DependencyExpression" use="optional" default="false" />
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>

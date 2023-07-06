@@ -11,11 +11,11 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0025" revision="1" name="KeepAlive">
+  id="0025" revision="2" name="KeepAlive">
   <classification role="utility" picsCode="KA" />
   <server>
     <attributes>
-      <attribute id="0000" name="TCKeepAliveBase" type="uint8" required="true" min="1" max="255" default="10" />
+      <attribute id="0000" name="TCKeepAliveBase" type="uint8" required="true" min="1" max="255" default="10" /><!-- CCB3342 changed min to 1 -->
       <attribute id="0001" name="TCKeepAliveJitter" type="uint16" required="true" max="65535" default="300" />
     </attributes>
   </server>
