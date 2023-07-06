@@ -1,0 +1,159 @@
+﻿<?xml version="1.0"?>
+<!-- 
+Zigbee Alliance owns the copyright to the text and content displayed or 
+included in this document (including in PDF, XML files and other formats) in 
+all forms of media, which copyright is protected by the copyright laws of the 
+United States and by international treaties.  Full text of licensing terms 
+applicable to this document can be found in the LICENSE.md file.
+-->
+<zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:type="http://zigbee.org/zcl/types"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
+  id="070C" revision="1" name="EVSEManagement">
+  <classification role="application" picsCode="EVSE" primaryTransaction="1" />
+  
+  <type:type short="EvseState" name="EvseState" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="EvNotPluggedIn" value="00"/>
+      <type:enumeration name="EvPluggedNc" value="01"/>
+      <type:enumeration name="EvPluggedCh" value="02"/>
+      <type:enumeration name="EvPluggedDisCh" value="03"/>
+      <type:enumeration name="EvSessionEnding" value="04"/>
+      <type:enumeration name="Reserved" value="fe"/>
+    </restriction>
+  </type:type>
+  
+  <type:type short="EvseSupplyState" name="EvseSupplyState" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="Disabled" value="00"/>
+      <type:enumeration name="ChargingEnabled" value="01"/>
+      <type:enumeration name="DischargingEnabled" value="02"/>
+      <type:enumeration name="DisabledError" value="03"/>
+      <type:enumeration name="DisabledDiagnostics" value="04"/>
+    </restriction>
+  </type:type>
+  
+  <type:type short="EvseType" name="EvseType" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="TypeUnknown" value="00"/>
+      <type:enumeration name="TypeLevel1" value="01"/>
+      <type:enumeration name="TypeLevel2" value="02"/>
+    </restriction>
+  </type:type>
+  
+  <type:type short="EvseFault" name="EvseFault" id="30" inheritsFrom="enum8">
+    <restriction>
+      <type:enumeration name="NoError" value="00"/>
+      <type:enumeration name="EvseMeterFailure" value="01"/>
+      <type:enumeration name="OverVoltage" value="02"/>
+      <type:enumeration name="UnderVoltage" value="03"/>
+      <type:enumeration name="OverCurrent" value="04"/>
+      <type:enumeration name="ContactWetFailure" value="05"/>
+      <type:enumeration name="ContactDryFailure" value="06"/>
+      <type:enumeration name="GroundFault" value="07"/>
+      <type:enumeration name="PilotShortCircuit" value="08"/>
+      <type:enumeration name="WrongPowerSupply" value="09"/>
+      <type:enumeration name="OverTemperature" value="0a"/>
+    </restriction>
+  </type:type>
+  
+  <server>
+    <attributes>
+      <!-- Attribute Set 0x00: EVSE State -->
+      <attribute id="0000" name="EvseState" type="EvseState" required="true" default="0" />
+      <attribute id="0001" name="SupplyState" type="EvseSupplyState" required="true" default="0" />
+      <attribute id="0002" name="EvseType" type="EvseType" required="true" default="0" />
+      <attribute id="0003" name="EvseFault" type="EvseFault" required="true" default="0" />
+      <attribute id="0004" name="EvseEnableChargeTime" type="uint16" max="65535" required="true" default="65535" />
+      <attribute id="0005" name="EvseEnableDischargeTime" type="uint16" max="65535" default="0" />
+      <attribute id="0006" name="MinimumChargeCurrent" type="uint16" required="true" default="6" />
+      <attribute id="0007" name="MaximumChargeCurrent" type="uint16" required="true" default="15" />
+      <attribute id="0008" name="MaximumDischargeCurrent" type="uint16" default="15" />
+      <attribute id="0009" name="EvseInternalTemperature" type="int16" />
+      <attribute id="000A" name="BatteryLevel" type="uint8" required="true" reportRequired="true"  max="100" default="255" />
+      <attribute id="000B" name="BatteryCapacity" type="uint16" required="true" default="65535" />
+      <attribute id="000C" name="CircuitId" type="uint16"  />
+      <attribute id="000D" name="CircuitCapacity" type="uint16" />
+      
+      <!-- Attribute Set 0x01: Reading Information -->
+      <attribute id="0100" name="ChargingVoltage" type="uint16" required="true" default="65535" max="65535" />
+      <attribute id="0101" name="ChargingCurrent" type="uint16" required="true" default="65535" max="65535" />
+      <attribute id="0102" name="ChargingPower" type="uint32" max="4294967295" />
+      <attribute id="0103" name="LineFrequency" type="uint16" max="65535" />
+      <attribute id="0104" name="EvseEnergySummation" type="int48" min="-140737488355328" max="140737488355327" />
+      <attribute id="0105" name="DischargingPower" type="uint32" max="4294967295" />
+      <attribute id="0106" name="DischargingCurrent" type="uint16" max="65535" />
+
+      <!-- Attribute Set 0x02: Formatting -->
+      <attribute id="0200" name="VoltageMultiplier" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0201" name="VoltageDivisor" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0202" name="CurrentMultiplier" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0203" name="CurrentDivisor" type="uint16" required="true" default="1" min="1" max="65535" />
+      <attribute id="0204" name="PowerMultiplier" type="uint16" default="1" min="1" max="65535" />
+      <attribute id="0205" name="PowerDivisor" type="uint16" default="1" min="1" max="65535" />
+      <attribute id="0206" name="EnergyMultiplier" type="uint16" default="1" min="1" max="65535" />
+      <attribute id="0207" name="EnergyDivisor" type="uint16" default="1" min="1" max="65535" />
+
+      <!-- Attribute Set 0x03: Charging Session -->
+      <attribute id="0300" name="EvseSessionID" type="uint32" max="4294967295" default="4294967295" />
+      <attribute id="0301" name="EventSequenceNumber" type="uint16" default="1" max="65535" />
+      <attribute id="0302" name="EvseSessionDuration" type="uint32" default="0" max="4294967295" />
+      <attribute id="0303" name="EvseSessionEnergyDelivered" type="uint32" default="0" max="281474976710655" />
+      <attribute id="0304" name="EvseSessionEnergyReceived" type="uint32" default="0" max="281474976710655" />
+      <attribute id="0305" name="EvseSessionMaximumCurrent" type="uint16" default="65535" reportRequired="true" />
+    </attributes>
+    <commands>
+      <!-- Commands Received by Server -->
+      <command id="01" name="DisableEvse" required="true" />
+      <command id="02" name="EnableEvseCharging" required="true">
+        <fields>
+          <field name="EvseEnableTime" type="uint16" />
+          <field name="MinimumChargeCurrent" type="uint16" />
+          <field name="MaximumChargeCurrent" type="uint16" />
+        </fields>
+      </command>
+      <command id="03" name="EnableEvseDischarging">
+        <fields>
+          <field name="EvseEnableTime" type="uint16" />
+          <field name="MaximumDischargeCurrent" type="uint16" />
+        </fields>
+      </command>
+      <command id="04" name="StartDiagnostics" />
+      <command id="05" name="ReadEvents">
+        <fields>
+          <field name="EarliestEvseSessionID" type="uint32" />
+          <field name="EarliestEventSequenceNumber" type="uint16" />
+          <field name="NumberOfEvents" type="uint8" />
+        </fields>
+      </command>
+      <command id="06" name="EraseAllEvents" />
+    </commands>
+  </server>
+  <client>
+    <commands>
+    <!-- Commands Received by Client -->
+      <command name="NotifyEvent" id="00" required="false">
+        <fields>
+          <field name="Timestamp" type="UTC" />
+          <field name="EvseSessionID" type="uint32" />
+          <field name="EventSequenceNumber" type="uint16" />
+          <field name="EvseState" type="EvseState" />
+          <!-- Event Data Should Really Try To Follow The Pattern In OTA unless there's something wrong with that pattern. -->
+          <!-- That would allow use to better capture the field formats for the content as separate fields -->
+          <!-- Fields When EvseState == EvPluggedCh -->
+          <field name="ChargingCurrent" type="uint16" presentIf="EvseState=2" />
+          <!-- Fields When EvseState == EvPluggedDisCh -->
+          <field name="DischargingCurrent" type="uint16" presentIf="EvseState=3" />
+          <!-- Fields When EvseState == EvseSessionEnding -->
+          <field name="EvseSessionDuration" type="uint32" presentIf="EvseState=4" />
+          <field name="EvseSessionEnergyDelivered" type="uint48" presentIf="EvseState=4" />
+          <field name="EvseSessionEnergyReceived" type="uint48" presentIf="EvseState=4" />
+          <!-- Fields When EvseState == ERROR -->
+          <field name="EvseFault" type="enum8" presentIf="EvseState=254" />
+        </fields>
+      </command>
+    </commands>
+  </client>
+</zcl:cluster>
