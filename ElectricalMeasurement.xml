@@ -11,7 +11,9 @@ applicable to this document can be found in the LICENSE.md file.
              xmlns:type="http://zigbee.org/zcl/types" 
              xmlns:xi="http://www.w3.org/2001/XInclude" 
              xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-             id="0B04" revision="3" name="ElectricalMeasurement">
+             id="0B04" revision="4" name="ElectricalMeasurement">
+  <!-- Changes in version 4 are in descriptive / prescriptive text but do not
+  affect the materials which are encoded in this XML document -->             
   <classification role="application" picsCode="EMR" primaryTransaction="1" />
   <!--  For any measurement cluster with MeasuredValue, MinMeasuredValue and MaxMeasuredValue attributes, the 
         following SHALL be always be true:

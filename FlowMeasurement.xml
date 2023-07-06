@@ -11,7 +11,9 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0404" revision="2" name="FlowMeasurement">
+  id="0404" revision="3" name="FlowMeasurement">
+  <!-- Changes in version 3 are in descriptive / prescriptive text but do not
+  affect the materials which are encoded in this XML document -->  
   <classification role="application" picsCode="FLW" primaryTransaction="2" />
   <server>
     <attributes>

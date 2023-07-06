@@ -12,15 +12,16 @@ applicable to this document can be found in the LICENSE.md file.
 	xmlns:type="http://zigbee.org/zcl/types"
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-	id="0006" revision="2" name="OnOff">
+	id="0006" revision="4" name="OnOff">
+  <!-- FeatureMap added for LevelControl & Lighting Features -->
   <classification role="application" picsCode="OO" primaryTransaction="1" />
   <server>
     <attributes>
       <attribute id="0000" name="OnOff" type="bool" max="1" required="true" reportRequired="true" sceneRequired="true" default="0" />
-      <attribute id="4000" name="GlobalSceneControl" type="bool" max="1" default="1" />
-      <attribute id="4001" name="OnTime" type="uint16" max="65535" writable="true" default="0" />
-      <attribute id="4002" name="OffWaitTime" type="uint16" max="65535" writable="true" default="0" />
-      <attribute id="4003" name="StartUpOnOff" type="enum8" writable="true">
+      <attribute id="4000" name="GlobalSceneControl" type="bool" max="1" default="1" requiredIf="FeatureMap.Lighting = true" />
+      <attribute id="4001" name="OnTime" type="uint16" max="65535" writable="true" default="0" requiredIf="FeatureMap.Lighting = true" />
+      <attribute id="4002" name="OffWaitTime" type="uint16" max="65535" writable="true" default="0" requiredIf="FeatureMap.Lighting = true" />
+      <attribute id="4003" name="StartUpOnOff" type="enum8" writable="true" default="MS">
         <restriction>
           <type:enumeration value="00" name="SetOnOffTo0" />
           <type:enumeration value="01" name="SetOnOffTo1" />
@@ -28,6 +29,12 @@ applicable to this document can be found in the LICENSE.md file.
           <type:enumeration value="FF" name="SetPreviousOnOff" />
         </restriction>
       </attribute>
+      <attribute id="fffc" name="FeatureMap" type="map32" default="0" required="true">
+        <bitmap>
+          <element name="LevelControl" mask="00000001" shiftRight="0" type="bool" />
+          <element name="Lighting" mask="00000002" shiftRight="2" type="bool" />
+        </bitmap>
+      </attribute>  
     </attributes>
     <commands>
       <command id="00" name="Off" required="true" />

@@ -25,7 +25,6 @@ IlluminanceMeasurement.xml
 KeepAlive.xml
 LICENSE.md
 Level.xml
-LevelControlForLighting.xml
 MeterIdentification.xml
 OccupancySensing.xml
 OnOff.xml

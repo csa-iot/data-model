@@ -11,11 +11,11 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:type="http://zigbee.org/zcl/types"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" 
-  id="0000" revision="3" name="Basic">
+  id="0000" revision="4" name="Basic">
   <classification role="utility" picsCode="B" />
   <server>
     <attributes>
-      <attribute id="0000" name="ZCLVersion" type="uint8" required="true" max="255" default="8" />
+      <attribute id="0000" name="ZCLVersion" type="uint8" required="true" max="255" default="9" />
       <attribute id="0001" name="ApplicationVersion" type="uint8" max="255" default="0" />
       <attribute id="0002" name="StackVersion" type="uint8" max="255" default="0" />
       <attribute id="0003" name="HWVersion" type="uint8" max="255" default="0" />

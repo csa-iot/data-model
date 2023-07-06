@@ -12,7 +12,7 @@ applicable to this document can be found in the LICENSE.md file.
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:zcl="http://zigbee.org/zcl/clusters"
   xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd"
-  id="0300" revision="3" name="ColorControl">
+  id="0300" revision="4" name="ColorControl">
   <classification role="application" picsCode="CC" primaryTransaction="1" />
   
   <type:type short="CCColorOptions" name="CCColorOptions" id="18" inheritsFrom="map8">
@@ -171,17 +171,18 @@ applicable to this document can be found in the LICENSE.md file.
       <attribute id="0029" name="Primary6Y" type="uint16" max="65279" requiredIf="NumberOfPrimaries > 5" />
       <attribute id="002A" name="Primary6Intensity" type="uint8" max="255" requiredIf="NumberOfPrimaries > 5" />
       <!-- Defined Color Points Settings Attribute Set -->
-      <attribute id="0030" name="WhitePointX" type="uint16" max="65279" writable="true" requiredIf="implements(WhitePointY)" />
-      <attribute id="0031" name="WhitePointY" type="uint16" max="65279" writable="true" requiredIf="implements(WhitePointX)" />
-      <attribute id="0032" name="ColorPointRX" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRY) or implements(ColorPointRIntensity) or implements(ColorPointGX) or implements(ColorPointGY) or implements(ColorPointGIntensity) or implements(ColorPointBX) or implements(ColorPointBY) or implements(ColorPointBIntensity)" />
-      <attribute id="0033" name="ColorPointRY" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="0034" name="ColorPointRIntensity" type="uint8" max="255" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="0036" name="ColorPointGX" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="0037" name="ColorPointGY" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="0038" name="ColorPointGIntensity" type="uint8" max="255" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="003A" name="ColorPointBX" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="003B" name="ColorPointBY" type="uint16" max="65279" writable="true" requiredIf="implements(ColorPointRX)" />
-      <attribute id="003C" name="ColorPointBIntensity" type="uint8" max="255" writable="true" requiredIf="implements(ColorPointRX)" />
+      <!-- CCB 2490 made attributes 0x0030 - 0x003c read-only -->
+      <attribute id="0030" name="WhitePointX" type="uint16" max="65279" requiredIf="implements(WhitePointY)" />
+      <attribute id="0031" name="WhitePointY" type="uint16" max="65279" requiredIf="implements(WhitePointX)" />
+      <attribute id="0032" name="ColorPointRX" type="uint16" max="65279" requiredIf="implements(ColorPointRY) or implements(ColorPointRIntensity) or implements(ColorPointGX) or implements(ColorPointGY) or implements(ColorPointGIntensity) or implements(ColorPointBX) or implements(ColorPointBY) or implements(ColorPointBIntensity)" />
+      <attribute id="0033" name="ColorPointRY" type="uint16" max="65279" requiredIf="implements(ColorPointRX)" />
+      <attribute id="0034" name="ColorPointRIntensity" type="uint8" max="255" requiredIf="implements(ColorPointRX)" />
+      <attribute id="0036" name="ColorPointGX" type="uint16" max="65279" requiredIf="implements(ColorPointRX)" />
+      <attribute id="0037" name="ColorPointGY" type="uint16" max="65279" requiredIf="implements(ColorPointRX)" />
+      <attribute id="0038" name="ColorPointGIntensity" type="uint8" max="255" requiredIf="implements(ColorPointRX)" />
+      <attribute id="003A" name="ColorPointBX" type="uint16" max="65279" requiredIf="implements(ColorPointRX)" />
+      <attribute id="003B" name="ColorPointBY" type="uint16" max="65279" requiredIf="implements(ColorPointRX)" />
+      <attribute id="003C" name="ColorPointBIntensity" type="uint8" max="255" requiredIf="implements(ColorPointRX)" />
     </attributes>
     <commands>
       <command id="00" name="MoveToHue" requiredIf="ColorCapabilities.HueSaturationSupported = true">

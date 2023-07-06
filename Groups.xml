@@ -9,7 +9,9 @@ applicable to this document can be found in the LICENSE.md file.
 <zcl:cluster xmlns:zcl="http://zigbee.org/zcl/clusters" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns:type="http://zigbee.org/zcl/types" 
-  xmlns:xi="http://www.w3.org/2001/XInclude" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" id="0004" revision="3" name="Groups">
+  xmlns:xi="http://www.w3.org/2001/XInclude" xsi:schemaLocation="http://zigbee.org/zcl/clusters cluster.xsd http://zigbee.org/zcl/types type.xsd" id="0004" revision="4" name="Groups">
+  <!-- Changes in version 4 are in descriptive / prescriptive text but do not
+  affect the materials which are encoded in this XML document -->
   <classification role="utility" picsCode="G" />
 
   <type:type short="GGroupStatus" name="GGroupStatus" id="20" inheritsFrom="zclStatus">
