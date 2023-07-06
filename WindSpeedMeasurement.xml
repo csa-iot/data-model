@@ -31,6 +31,7 @@ applicable to this document can be found in the LICENSE.md file.
         </restriction>
       </attribute>
       <attribute id="0003" name="Tolerance" type="uint16" max="776" default="" />
+      <attribute id="fffc" name="FeatureMap" type="map32" default="0" />
     </attributes>
   </server>
 </zcl:cluster>

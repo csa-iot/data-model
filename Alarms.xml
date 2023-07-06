@@ -16,6 +16,7 @@ applicable to this document can be found in the LICENSE.md file.
   <server>
     <attributes>
       <attribute id="0000" name="AlarmCount" type="uint16" default="0" />
+      <attribute id="fffc" name="FeatureMap" type="map32" default="0" />
     </attributes>
     <commands>
       <command id="00" name="ResetAlarm" required="true">
