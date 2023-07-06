@@ -25,7 +25,7 @@ for filename in *.xml; do
 <zcl/' "$filename"
 	sed -i '' '$!N;s/<?xml version="1.0"?>\n<zcl/<?xml version="1.0"?>\
 <!-- \
-Zigbee Alliance owns the copyright to the text and content displayed or \
+Connectivity Standards Alliance owns the copyright to the text and content displayed or \
 included in this document (including in PDF, XML files and other formats) in \
 all forms of media, which copyright is protected by the copyright laws of the \
 United States and by international treaties.  Full text of licensing terms \
