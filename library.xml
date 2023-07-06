@@ -477,8 +477,6 @@ applicable to this document can be found in the LICENSE.md file.
   <xi:include href="OTAUpgrade.xml" parse="xml" />
   <xi:include href="ConcentrationMeasurement.xml" parse="xml"/>
   
-  <xi:include href="EVSEManagement.xml" parse="xml" />
-  
   <xi:include href="EN50523ApplianceEventsAndAlerts.xml" parse="xml" />
   <xi:include href="EN50523ApplianceStatistics.xml" parse="xml" />
 
