@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <!-- 
-Zigbee Alliance owns the copyright to the text and content displayed or 
+Connectivity Standards Alliance owns the copyright to the text and content displayed or
 included in this document (including in PDF, XML files and other formats) in 
 all forms of media, which copyright is protected by the copyright laws of the 
 United States and by international treaties.  Full text of licensing terms 
@@ -39,16 +39,16 @@ applicable to this document can be found in the LICENSE.md file.
       </attribute>
       <!-- PIR Configuration Set -->
       <attribute id="0010" name="PIROccupiedToUnoccupiedDelay" type="uint16" max="65534" writable="true" default="0" />
-      <attribute id="0011" name="PIRUnoccupiedToOccupiedDelay" type="uint16" max="65534" writable="true" default="0" />
-      <attribute id="0012" name="PIRUnoccupiedToOccupiedThreshold" type="uint8" min="1" max="254" writable="true" default="1" />
+      <attribute id="0011" name="PIRUnoccupiedToOccupiedDelay" type="uint16" max="65534" writable="true" default="0" requiredIf="implements(PIRUnoccupiedToOccupiedThreshold)"/>
+      <attribute id="0012" name="PIRUnoccupiedToOccupiedThreshold" type="uint8" min="1" max="254" writable="true" default="1" requiredIf="implements(PIRUnoccupiedToOccupiedDelay)"/>
       <!-- Ultrasonic Configuration Set -->
       <attribute id="0020" name="UltrasonicOccupiedToUnoccupiedDelay" type="uint16" max="65534" writable="true" default="0" />
-      <attribute id="0021" name="UltrasonicUnoccupiedToOccupiedDelay" type="uint16" max="65534" writable="true" default="0" />
-      <attribute id="0022" name="UltrasonicUnoccupiedToOccupiedThreshold" type="uint8" min="1" max="254" writable="true" default="1" />
+      <attribute id="0021" name="UltrasonicUnoccupiedToOccupiedDelay" type="uint16" max="65534" writable="true" default="0" requiredIf="implements(UltrasonicUnoccupiedToOccupiedThreshold)"/>
+      <attribute id="0022" name="UltrasonicUnoccupiedToOccupiedThreshold" type="uint8" min="1" max="254" writable="true" default="1" requiredIf="implements(UltrasonicUnoccupiedToOccupiedDelay)"/>
       <!-- Physical Contact Configuration Set -->
       <attribute id="0030" name="PhysicalContactOccupiedToUnoccupiedDelay" type="uint16" max="65534" writable="true" default="0" />
-      <attribute id="0031" name="PhysicalContactUnoccupiedToOccupiedDelay" type="uint16" max="65534" writable="true" default="0" />
-      <attribute id="0032" name="PhysicalContactUnoccupiedToOccupiedThreshold" type="uint8" min="1" max="254" writable="true" default="1" />
+      <attribute id="0031" name="PhysicalContactUnoccupiedToOccupiedDelay" type="uint16" max="65534" writable="true" default="0" requiredIf="implements(PhysicalContactUnoccupiedToOccupiedThreshold)"/>
+      <attribute id="0032" name="PhysicalContactUnoccupiedToOccupiedThreshold" type="uint8" min="1" max="254" writable="true" default="1" requiredIf="implements(PhysicalContactUnoccupiedToOccupiedDelay)"/>
     </attributes>
   </server>
 </zcl:cluster>
