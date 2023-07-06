@@ -15,7 +15,7 @@ applicable to this document can be found in the LICENSE.md file.
   <classification role="utility" picsCode="B" />
   <server>
     <attributes>
-      <attribute id="0000" name="ZCLVersion" type="uint8" required="true" max="255" default="8" />
+      <attribute id="0000" name="ZCLVersion" type="uint8" required="true" max="255" default="9" />
       <attribute id="0001" name="ApplicationVersion" type="uint8" max="255" default="0" />
       <attribute id="0002" name="StackVersion" type="uint8" max="255" default="0" />
       <attribute id="0003" name="HWVersion" type="uint8" max="255" default="0" />
