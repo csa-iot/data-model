@@ -167,8 +167,8 @@
   </type:type>
 
   <attributes>
-    <attribute id="fffd" name="ClusterRevision" type="uint16" min="1" max="65534" required="true"
-      default="revision()" />
+    <attribute id="fffc" name="FeatureMap" type="map32" min="0" max="4294967295" required="true" default="0" />
+    <attribute id="fffd" name="ClusterRevision" type="uint16" min="1" max="65534" required="true" default="revision()" />
     <attribute id="fffe" name="AttributeReportingStatus" type="enum8">
       <restriction>
         <type:enumeration value="00" name="Pending" />
