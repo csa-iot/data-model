@@ -46,14 +46,20 @@ applicable to this document can be found in the LICENSE.md file.
       <element name="Battery1Threshold1" type="bool" mask="00000002" shiftRight="1" />
       <element name="Battery1Threshold2" type="bool" mask="00000004" shiftRight="2" />
       <element name="Battery1Threshold3" type="bool" mask="00000008" shiftRight="3" />
+      <element name="Battery1NotPresent" type="bool" mask="00000010" shiftRight="4" />
+      <element name="Battery1RejectCharge" type="bool" mask="00000020" shiftRight="5" />
       <element name="Battery2MinThreshold" type="bool" mask="00000400" shiftRight="10" />
       <element name="Battery2Threshold1" type="bool" mask="00000800" shiftRight="11" />
       <element name="Battery2Threshold2" type="bool" mask="00001000" shiftRight="12" />
       <element name="Battery2Threshold3" type="bool" mask="00002000" shiftRight="13" />
+      <element name="Battery2NotPresent" type="bool" mask="00004000" shiftRight="14" />
+      <element name="Battery2RejectCharge" type="bool" mask="00008000" shiftRight="15" />
       <element name="Battery3MinThreshold" type="bool" mask="00100000" shiftRight="20" />
       <element name="Battery3Threshold1" type="bool" mask="00200000" shiftRight="21" />
       <element name="Battery3Threshold2" type="bool" mask="00400000" shiftRight="22" />
       <element name="Battery3Threshold3" type="bool" mask="00800000" shiftRight="23" />
+      <element name="Battery3NotPresent" type="bool" mask="01000000" shiftRight="24" />
+      <element name="Battery3RejectCharge" type="bool" mask="02000000" shiftRight="25" />
       <element name="MainsPowerSupplyLost" type="bool" mask="40000000" shiftRight="30" />
     </bitmap>
   </type:type>
